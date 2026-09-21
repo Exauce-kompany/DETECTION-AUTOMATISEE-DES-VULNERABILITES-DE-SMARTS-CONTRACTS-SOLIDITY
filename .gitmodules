@@ -1,0 +1,3 @@
+[submodule "dataset/raw/smartbugs-curated"]
+	path = dataset/raw/smartbugs-curated
+	url = https://github.com/smartbugs/smartbugs-curated.git
