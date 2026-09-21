@@ -1,0 +1,14 @@
+{
+    "total_test_samples": 2363,
+    "true_negative": 1017,
+    "false_positive": 136,
+    "false_negative": 226,
+    "true_positive": 984,
+    "accuracy": 0.8468049090139653,
+    "precision_macro": 0.8483766233766235,
+    "recall_macro": 0.8476349874205271,
+    "f1_macro": 0.8467750256149377,
+    "precision_weighted": 0.8491049788129771,
+    "recall_weighted": 0.8468049090139653,
+    "f1_weighted": 0.8467234088347989
+}

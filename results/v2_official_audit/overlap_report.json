@@ -1,0 +1,48 @@
+{
+  "train_samples": 19104,
+  "validation_samples": 4667,
+  "test_samples": 2363,
+  "train_validation": {
+    "normalized": {
+      "common": 0,
+      "conflicts": 0
+    },
+    "raw": {
+      "common": 0,
+      "conflicts": 0
+    },
+    "context": {
+      "common": 0,
+      "conflicts": 0
+    }
+  },
+  "train_test": {
+    "normalized": {
+      "common": 0,
+      "conflicts": 0
+    },
+    "raw": {
+      "common": 0,
+      "conflicts": 0
+    },
+    "context": {
+      "common": 0,
+      "conflicts": 0
+    }
+  },
+  "validation_test": {
+    "normalized": {
+      "common": 0,
+      "conflicts": 0
+    },
+    "raw": {
+      "common": 0,
+      "conflicts": 0
+    },
+    "context": {
+      "common": 0,
+      "conflicts": 0
+    }
+  },
+  "overlap_details": []
+}

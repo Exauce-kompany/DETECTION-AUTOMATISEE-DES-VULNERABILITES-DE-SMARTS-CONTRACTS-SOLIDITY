@@ -1,0 +1,18 @@
+{
+  "tensorflow": "2.21.0",
+  "parameters": 346978,
+  "accuracy": 0.8586542530681337,
+  "confusion": [
+    [
+      1026,
+      127
+    ],
+    [
+      207,
+      1003
+    ]
+  ],
+  "saved_predictions_disagreements": 0,
+  "max_probability_delta": 0.0,
+  "cross_entropy": 0.3446803390979767
+}

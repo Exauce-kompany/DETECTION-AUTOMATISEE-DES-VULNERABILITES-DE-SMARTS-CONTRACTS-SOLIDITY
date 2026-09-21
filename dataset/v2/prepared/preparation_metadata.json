@@ -1,0 +1,15 @@
+{
+    "dataset_version": "v2_cgt",
+    "max_sequence_length": 512,
+    "max_vocab_size": 5000,
+    "vocabulary_size": 5000,
+    "train_samples": 19104,
+    "validation_samples": 4667,
+    "test_samples": 2363,
+    "train_non_vulnerable": 9182,
+    "train_vulnerable": 9922,
+    "validation_non_vulnerable": 2298,
+    "validation_vulnerable": 2369,
+    "test_non_vulnerable": 1153,
+    "test_vulnerable": 1210
+}

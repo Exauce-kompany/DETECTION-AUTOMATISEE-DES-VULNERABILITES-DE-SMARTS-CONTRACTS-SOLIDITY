@@ -1,0 +1,11 @@
+* text=auto
+
+# Model weights and prepared machine-learning inputs
+*.keras filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+*.pkl filter=lfs diff=lfs merge=lfs -text
+
+# Raw V2 partitions exceed ordinary GitHub file-size recommendations
+dataset/v2/raw/train.json filter=lfs diff=lfs merge=lfs -text
+dataset/v2/raw/val.json filter=lfs diff=lfs merge=lfs -text
+dataset/v2/raw/test.json filter=lfs diff=lfs merge=lfs -text

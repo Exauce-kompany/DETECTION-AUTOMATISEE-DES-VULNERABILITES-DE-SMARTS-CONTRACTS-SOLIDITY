@@ -1,0 +1,662 @@
+
+/* =========================================================
+   SMART BUG - PERFORMANCES
+   ========================================================= */
+
+.performance-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.performance-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.performance-page-header h1 {
+    margin: 6px 0 7px;
+    font-size: 26px;
+    line-height: 1.1;
+    color: #f3f7ff;
+}
+
+.performance-page-header p {
+    margin: 0;
+    max-width: 720px;
+    color: #8499b4;
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.performance-page-header p strong {
+    color: #cbd9ec;
+}
+
+.performance-eyebrow,
+.performance-card-label,
+.performance-section-heading span {
+    color: #679cff;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1.4px;
+}
+
+.performance-primary-button,
+.performance-secondary-button {
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 9px;
+    font-weight: 900;
+    transition: 0.18s ease;
+}
+
+.performance-primary-button {
+    border: 1px solid rgba(74, 133, 255, 0.40);
+    color: #ffffff;
+    background:
+        linear-gradient(
+            135deg,
+            #2870f2,
+            #5957ed
+        );
+    box-shadow:
+        0 10px 28px rgba(49, 102, 238, 0.18);
+}
+
+.performance-secondary-button {
+    color: #a9c7f2;
+    border: 1px solid rgba(91, 131, 189, 0.24);
+    background: rgba(17, 31, 53, 0.66);
+}
+
+.performance-primary-button:hover,
+.performance-secondary-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(96, 151, 255, 0.58);
+}
+
+.performance-empty-state,
+.performance-error-state {
+    min-height: 320px;
+    border-radius: 14px;
+    border: 1px solid rgba(76, 111, 164, 0.17);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16, 31, 54, 0.84),
+            rgba(9, 21, 39, 0.92)
+        );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+}
+
+.performance-empty-icon {
+    width: 66px;
+    height: 66px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 29px;
+    color: #77a9ff;
+    background: rgba(47, 119, 255, 0.10);
+    border: 1px solid rgba(69, 136, 255, 0.21);
+}
+
+.performance-empty-state h2,
+.performance-error-state strong {
+    margin: 0 0 9px;
+    color: #eaf2ff;
+    font-size: 16px;
+}
+
+.performance-empty-state p,
+.performance-error-state p {
+    margin: 0;
+    max-width: 530px;
+    color: #7f94af;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.performance-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(210px, 0.85fr) minmax(310px, 1.35fr) minmax(220px, 1fr);
+    gap: 14px;
+}
+
+.performance-main-score,
+.performance-engine-card,
+.performance-score-card,
+.performance-section,
+.performance-metric-card,
+.performance-finding-card,
+.performance-disclaimer {
+    border: 1px solid rgba(74, 107, 155, 0.17);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16, 30, 52, 0.90),
+            rgba(10, 21, 39, 0.94)
+        );
+    box-shadow:
+        0 16px 42px rgba(1, 8, 20, 0.12);
+}
+
+.performance-main-score {
+    border-radius: 14px;
+    min-height: 265px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.performance-main-score .performance-card-label {
+    align-self: flex-start;
+}
+
+.performance-score-ring {
+    --performance-value: 0deg;
+    width: 126px;
+    height: 126px;
+    margin: 21px 0 13px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        conic-gradient(
+            #3a82ff 0deg,
+            #6962ff var(--performance-value),
+            rgba(48, 65, 93, 0.30) var(--performance-value),
+            rgba(48, 65, 93, 0.30) 360deg
+        );
+    position: relative;
+}
+
+.performance-score-ring::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border-radius: 50%;
+    background: #0d1b30;
+    border: 1px solid rgba(88, 124, 175, 0.15);
+}
+
+.performance-score-ring > div {
+    position: relative;
+    z-index: 2;
+}
+
+.performance-score-ring strong {
+    color: white;
+    font-size: 30px;
+}
+
+.performance-score-ring small {
+    color: #7890ad;
+    font-size: 9px;
+}
+
+.performance-main-score h2 {
+    margin: 0;
+    color: #76a7ff;
+    font-size: 13px;
+}
+
+.performance-main-score p {
+    margin: 7px 0 0;
+    color: #7389a5;
+    font-size: 9px;
+}
+
+.performance-score-stack {
+    display: grid;
+    gap: 14px;
+}
+
+.performance-score-card {
+    border-radius: 13px;
+    padding: 18px;
+}
+
+.performance-score-top,
+.performance-score-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.performance-score-top span {
+    color: #8ea2bd;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.performance-score-top strong {
+    color: #edf4ff;
+    font-size: 14px;
+}
+
+.performance-score-track {
+    height: 6px;
+    margin: 15px 0 12px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(62, 82, 113, 0.32);
+}
+
+.performance-score-track span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background:
+        linear-gradient(
+            90deg,
+            #347fff,
+            #6a62ff
+        );
+}
+
+.performance-score-card.cost .performance-score-track span,
+.performance-score-card.storage .performance-score-track span {
+    background:
+        linear-gradient(
+            90deg,
+            #d59e45,
+            #ff7d59
+        );
+}
+
+.performance-score-card.execution .performance-score-track span {
+    background:
+        linear-gradient(
+            90deg,
+            #24b5d9,
+            #497dff
+        );
+}
+
+.performance-score-card.code-size .performance-score-track span {
+    background:
+        linear-gradient(
+            90deg,
+            #7167ff,
+            #b269ff
+        );
+}
+
+.performance-score-bottom strong {
+    color: #77a9ff;
+    font-size: 8px;
+}
+
+.performance-score-bottom small {
+    color: #71849e;
+    font-size: 8px;
+    text-align: right;
+}
+
+.performance-engine-card {
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.performance-engine-card > strong {
+    display: block;
+    margin: 16px 0 7px;
+    color: #e8f1ff;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.performance-engine-card > p {
+    margin: 0;
+    color: #758ba8;
+    font-size: 9px;
+}
+
+.performance-engine-flags {
+    display: grid;
+    gap: 9px;
+    margin-top: 26px;
+}
+
+.performance-engine-flags span {
+    min-height: 35px;
+    padding: 0 11px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #8197b3;
+    font-size: 8px;
+    background: rgba(18, 34, 59, 0.72);
+    border: 1px solid rgba(83, 114, 158, 0.12);
+}
+
+.performance-engine-flags b {
+    color: #7daeff;
+    font-size: 8px;
+}
+
+.performance-section {
+    border-radius: 14px;
+    padding: 19px;
+}
+
+.performance-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.performance-section-heading h2 {
+    margin: 5px 0 0;
+    color: #edf4ff;
+    font-size: 14px;
+}
+
+.performance-section-heading small {
+    max-width: 340px;
+    color: #71869f;
+    font-size: 8px;
+    text-align: right;
+}
+
+.performance-findings-count {
+    color: #80aefe;
+    font-size: 9px;
+}
+
+.performance-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.performance-metric-card {
+    border-radius: 11px;
+    padding: 14px;
+}
+
+.performance-metric-card span {
+    display: block;
+    color: #768ba5;
+    font-size: 8px;
+}
+
+.performance-metric-card strong {
+    display: block;
+    margin: 8px 0 5px;
+    color: #f0f6ff;
+    font-size: 21px;
+}
+
+.performance-metric-card small {
+    color: #667a94;
+    font-size: 7px;
+}
+
+.performance-pressure-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 11px;
+}
+
+.performance-findings-list {
+    display: grid;
+    gap: 11px;
+}
+
+.performance-finding-card {
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.performance-finding-card.high {
+    border-color: rgba(255, 119, 91, 0.24);
+}
+
+.performance-finding-card.medium {
+    border-color: rgba(226, 174, 77, 0.22);
+}
+
+.performance-finding-card.low {
+    border-color: rgba(67, 150, 255, 0.20);
+}
+
+.performance-finding-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.performance-finding-head > div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.performance-finding-number {
+    color: #657c99;
+    font-size: 8px;
+}
+
+.performance-severity-badge,
+.performance-category {
+    padding: 5px 7px;
+    border-radius: 6px;
+    font-size: 7px;
+    font-weight: 900;
+}
+
+.performance-severity-badge.high {
+    color: #ff8f72;
+    background: rgba(255, 102, 70, 0.09);
+}
+
+.performance-severity-badge.medium {
+    color: #eab95c;
+    background: rgba(224, 169, 65, 0.09);
+}
+
+.performance-severity-badge.low {
+    color: #71aaff;
+    background: rgba(58, 127, 255, 0.09);
+}
+
+.performance-severity-badge.info {
+    color: #83b0d7;
+    background: rgba(83, 133, 176, 0.09);
+}
+
+.performance-category {
+    color: #758da9;
+    background: rgba(82, 111, 153, 0.08);
+}
+
+.performance-finding-head small {
+    color: #697f99;
+    font-size: 7px;
+}
+
+.performance-finding-card h3 {
+    margin: 13px 0 7px;
+    color: #e7effc;
+    font-size: 12px;
+}
+
+.performance-finding-card > p {
+    margin: 0;
+    color: #7c91ac;
+    font-size: 9px;
+    line-height: 1.65;
+}
+
+.performance-evidence,
+.performance-recommendation-box {
+    margin-top: 13px;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+.performance-evidence {
+    background: rgba(8, 18, 34, 0.70);
+    border: 1px solid rgba(68, 104, 153, 0.13);
+}
+
+.performance-evidence span,
+.performance-recommendation-box span {
+    display: block;
+    margin-bottom: 7px;
+    color: #668dca;
+    font-size: 7px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+}
+
+.performance-evidence code {
+    color: #9fb8d6;
+    font-size: 8px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.performance-recommendation-box {
+    background: rgba(43, 91, 163, 0.07);
+    border: 1px solid rgba(67, 119, 203, 0.13);
+}
+
+.performance-recommendation-box p {
+    margin: 0;
+    color: #8ca4c2;
+    font-size: 8px;
+    line-height: 1.6;
+}
+
+.performance-recommendations {
+    display: grid;
+    gap: 8px;
+}
+
+.performance-recommendation-item {
+    min-height: 49px;
+    border-radius: 9px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    background: rgba(15, 29, 51, 0.70);
+    border: 1px solid rgba(74, 108, 158, 0.12);
+}
+
+.performance-recommendation-item > span {
+    min-width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #75a7ff;
+    font-size: 8px;
+    font-weight: 900;
+    background: rgba(52, 117, 242, 0.09);
+}
+
+.performance-recommendation-item p {
+    margin: 0;
+    color: #859ab5;
+    font-size: 8px;
+    line-height: 1.55;
+}
+
+.performance-no-findings {
+    border-radius: 9px;
+    padding: 18px;
+    text-align: center;
+    color: #7e93ae;
+    font-size: 9px;
+    background: rgba(14, 29, 50, 0.60);
+    border: 1px dashed rgba(77, 111, 158, 0.17);
+}
+
+.performance-disclaimer {
+    border-radius: 12px;
+    padding: 16px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(29, 49, 79, 0.75),
+            rgba(15, 28, 49, 0.83)
+        );
+}
+
+.performance-disclaimer strong {
+    color: #d6e5fa;
+    font-size: 9px;
+}
+
+.performance-disclaimer p {
+    margin: 7px 0 0;
+    color: #7e94b1;
+    font-size: 8px;
+    line-height: 1.65;
+}
+
+@media (max-width: 1120px) {
+    .performance-hero-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .performance-engine-card {
+        grid-column: 1 / -1;
+    }
+
+    .performance-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .performance-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .performance-hero-grid,
+    .performance-pressure-grid,
+    .performance-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .performance-engine-card {
+        grid-column: auto;
+    }
+
+    .performance-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .performance-section-heading small {
+        text-align: left;
+    }
+}

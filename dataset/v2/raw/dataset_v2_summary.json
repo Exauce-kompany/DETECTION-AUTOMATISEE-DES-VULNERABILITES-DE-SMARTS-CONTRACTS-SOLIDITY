@@ -1,0 +1,22 @@
+{
+  "version": "v2_cgt",
+  "negative_min_assessed_types": 4,
+  "train_samples": 19104,
+  "validation_samples": 4667,
+  "test_samples": 2363,
+  "cgt_added": 1693,
+  "cgt_vulnerable_added": 1190,
+  "cgt_non_vulnerable_added": 503,
+  "train_distribution": {
+    "0": 9182,
+    "1": 9922
+  },
+  "validation_distribution": {
+    "0": 2298,
+    "1": 2369
+  },
+  "test_distribution": {
+    "0": 1153,
+    "1": 1210
+  }
+}

@@ -1,0 +1,101 @@
+
+/* =========================================================
+   SMART BUG - IMPRESSION / PDF
+   ========================================================= */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #111111 !important;
+    }
+
+    .sidebar,
+    .topbar,
+    .no-print,
+    .bottom-system-bar {
+        display: none !important;
+    }
+
+    .app-shell,
+    .main-area,
+    .content,
+    .reports-page {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+    }
+
+    .security-report {
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        color: #111111 !important;
+    }
+
+    .security-report-header,
+    .security-report-footer,
+    .report-summary-grid > div,
+    .report-kpis > div,
+    .report-method-note {
+        background: #ffffff !important;
+        color: #111111 !important;
+    }
+
+    .security-report-header,
+    .security-report-section,
+    .report-summary-grid {
+        border-color: #d9d9d9 !important;
+    }
+
+    .security-report-brand,
+    .security-report-header h2,
+    .security-report-meta strong,
+    .report-summary-grid strong,
+    .report-kpis strong,
+    .security-report-section h3,
+    .report-method-note strong,
+    .report-method-note b,
+    .report-table th,
+    .security-report-footer,
+    .report-conclusion,
+    .report-recommendation-list {
+        color: #111111 !important;
+    }
+
+    .security-report-header p,
+    .security-report-meta span,
+    .report-summary-grid span,
+    .report-summary-grid small,
+    .report-kpis span,
+    .report-kpis small,
+    .report-method-note p,
+    .report-table td,
+    .report-footnote {
+        color: #444444 !important;
+    }
+
+    .report-table th,
+    .report-table td {
+        border-color: #d9d9d9 !important;
+    }
+
+    .security-report-section,
+    .report-table tr {
+        break-inside: avoid;
+    }
+
+    .report-table {
+        font-size: 8pt;
+    }
+}

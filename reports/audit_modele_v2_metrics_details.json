@@ -1,0 +1,136 @@
+{
+  "overlap_train": {
+    "n": 841,
+    "accuracy": 0.9334126040428062,
+    "confusion": [
+      [
+        463,
+        12
+      ],
+      [
+        44,
+        322
+      ]
+    ]
+  },
+  "no_overlap_train": {
+    "n": 1522,
+    "accuracy": 0.8173455978975033,
+    "confusion": [
+      [
+        563,
+        115
+      ],
+      [
+        163,
+        681
+      ]
+    ]
+  },
+  "per_source": {
+    "dappscan": {
+      "n": 46,
+      "accuracy": 0.9347826086956522,
+      "vulnerable": 46
+    },
+    "legacy_unknown": {
+      "n": 229,
+      "accuracy": 0.6986899563318777,
+      "vulnerable": 161
+    },
+    "scrawld": {
+      "n": 197,
+      "accuracy": 0.8629441624365483,
+      "vulnerable": 197
+    },
+    "slither_audited_smart_contracts": {
+      "n": 1787,
+      "accuracy": 0.868494683827644,
+      "vulnerable": 702
+    },
+    "solidifi_benchmark": {
+      "n": 104,
+      "accuracy": 1.0,
+      "vulnerable": 104
+    }
+  },
+  "high_confidence": {
+    "n": 1071,
+    "accuracy": 0.9635854341736695
+  },
+  "paired_comparison": {
+    "gained": 96,
+    "lost": 68,
+    "mcnemar_exact_p": 0.03468069745563246,
+    "truth_aligned": true
+  },
+  "conflicting_identical_test_contexts": [
+    [
+      {
+        "index": 257,
+        "label": 1,
+        "id": null,
+        "legacy_label": "zeus_vulnerable",
+        "contract": "0xe47014f16c55ddd3add5b68b951e10fcea7da686.sol"
+      },
+      {
+        "index": 258,
+        "label": 0,
+        "id": null,
+        "legacy_label": "zeus_safe",
+        "contract": "0xe47014f16c55ddd3add5b68b951e10fcea7da686.sol"
+      }
+    ]
+  ],
+  "annotation_comments_examples": [
+    {
+      "i": 2,
+      "label": 1,
+      "source": "dappscan",
+      "comment": "/**\n     * @dev Internal data to control the reentrancy.\n     */"
+    },
+    {
+      "i": 7,
+      "label": 1,
+      "source": "dappscan",
+      "comment": "// SWC-107-Reentrancy: L95"
+    },
+    {
+      "i": 13,
+      "label": 1,
+      "source": "dappscan",
+      "comment": "//SWC-107-Reentrancy:L119-134"
+    },
+    {
+      "i": 43,
+      "label": 1,
+      "source": "dappscan",
+      "comment": "// An escape hatch is used in case a major vulnerability is discovered in the contract code."
+    },
+    {
+      "i": 119,
+      "label": 1,
+      "source": null,
+      "comment": "/*\n * @source: https://github.com/seresistvanandras/EthBench/blob/master/Benchmark/Simple/timestampdependent.sol\n * @author: -\n * @vulnerable_at_lines: 13,27\n */"
+    },
+    {
+      "i": 120,
+      "label": 1,
+      "source": null,
+      "comment": "/*\n * @source: etherscan.io \n * @author: -\n * @vulnerable_at_lines: 45\n */"
+    },
+    {
+      "i": 144,
+      "label": 1,
+      "source": null,
+      "comment": "/*\n * @source: etherscan.io \n * @author: -\n * @vulnerable_at_lines: 150\n */"
+    },
+    {
+      "i": 170,
+      "label": 1,
+      "source": null,
+      "comment": "/*\n * @source: etherscan.io \n * @author: -\n * @vulnerable_at_lines: 55\n */"
+    }
+  ],
+  "annotation_comments_samples_count": 118
+}

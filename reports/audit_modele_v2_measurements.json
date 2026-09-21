@@ -1,0 +1,568 @@
+{
+  "train": {
+    "size": 19104,
+    "counts": {
+      "truncated": 14914,
+      "empty": 0,
+      "samples_with_comments": 17570,
+      "unknown_tokens": 367825,
+      "non_padding_tokens": 8592116
+    },
+    "source_label_counts": {
+      "dappscan": {
+        "1": 318,
+        "truncated": 276
+      },
+      "slither_audited_smart_contracts": {
+        "0": 8227,
+        "truncated": 11585,
+        "1": 5124
+      },
+      "legacy_unknown": {
+        "0": 452,
+        "truncated": 905,
+        "1": 1067
+      },
+      "scrawld": {
+        "1": 1365,
+        "truncated": 1099
+      },
+      "solidifi_benchmark": {
+        "1": 858,
+        "truncated": 0
+      },
+      "CGT": {
+        "1": 1190,
+        "truncated": 1049,
+        "0": 503
+      }
+    },
+    "token_length_quantiles": [
+      4.0,
+      579.0,
+      999.5,
+      1642.0,
+      2637.0,
+      27831.0
+    ],
+    "encoding_mismatch": 0,
+    "label_mismatch": 0,
+    "internal": {
+      "raw": {
+        "duplicate_groups": 0,
+        "conflicting_groups": 0
+      },
+      "official": {
+        "duplicate_groups": 587,
+        "conflicting_groups": 67
+      },
+      "tokens": {
+        "duplicate_groups": 227,
+        "conflicting_groups": 0
+      },
+      "encoded": {
+        "duplicate_groups": 1701,
+        "conflicting_groups": 140
+      },
+      "without_comments": {
+        "duplicate_groups": 635,
+        "conflicting_groups": 74
+      },
+      "source_path": {
+        "duplicate_groups": 121,
+        "conflicting_groups": 0
+      }
+    },
+    "legacy_example": [
+      {
+        "label": "zeus_vulnerable",
+        "contract": "0x911d71eed45dbc20059004f8476fe149105bf1dc.sol",
+        "vulnerabilities": [],
+        "has_vulnerability": 0,
+        "metadata": {
+          "augmented_split_role": "train",
+          "augmented_dataset_role": "balanced_clean_pool",
+          "resplit_protocol": "source_stratified_binary_721_v1",
+          "resplit_split_role": "train",
+          "resplit_group_hash": "006242430975a0382ffa462bf6bb5709cb31bb06f988b761eece16948f1b355b"
+        }
+      }
+    ]
+  },
+  "val": {
+    "size": 4667,
+    "counts": {
+      "truncated": 3765,
+      "empty": 0,
+      "samples_with_comments": 4324,
+      "unknown_tokens": 102300,
+      "non_padding_tokens": 2140803
+    },
+    "source_label_counts": {
+      "dappscan": {
+        "1": 89,
+        "truncated": 67
+      },
+      "slither_audited_smart_contracts": {
+        "0": 2169,
+        "truncated": 3117,
+        "1": 1407
+      },
+      "legacy_unknown": {
+        "0": 129,
+        "truncated": 265,
+        "1": 305
+      },
+      "scrawld": {
+        "1": 389,
+        "truncated": 316
+      },
+      "solidifi_benchmark": {
+        "1": 179,
+        "truncated": 0
+      }
+    },
+    "token_length_quantiles": [
+      9.0,
+      632.0,
+      1030.0,
+      1731.5,
+      2893.2000000000016,
+      24693.0
+    ],
+    "encoding_mismatch": 0,
+    "label_mismatch": 0,
+    "internal": {
+      "raw": {
+        "duplicate_groups": 0,
+        "conflicting_groups": 0
+      },
+      "official": {
+        "duplicate_groups": 44,
+        "conflicting_groups": 20
+      },
+      "tokens": {
+        "duplicate_groups": 4,
+        "conflicting_groups": 0
+      },
+      "encoded": {
+        "duplicate_groups": 297,
+        "conflicting_groups": 20
+      },
+      "without_comments": {
+        "duplicate_groups": 51,
+        "conflicting_groups": 21
+      },
+      "source_path": {
+        "duplicate_groups": 42,
+        "conflicting_groups": 0
+      }
+    },
+    "legacy_example": [
+      {
+        "label": "zeus_safe",
+        "contract": "0x85b846d361f861c9363f769e65f76b83dc80b531.sol",
+        "vulnerabilities": [],
+        "has_vulnerability": 0,
+        "metadata": {
+          "augmented_split_role": "train",
+          "augmented_dataset_role": "balanced_clean_pool",
+          "resplit_protocol": "source_stratified_binary_721_v1",
+          "resplit_split_role": "val",
+          "resplit_group_hash": "b9387d44872d20bffb52f3fcc0abae879416eb41dfd3431cd6488b41d9e1d4fe"
+        }
+      }
+    ]
+  },
+  "test": {
+    "size": 2363,
+    "counts": {
+      "truncated": 1882,
+      "empty": 0,
+      "samples_with_comments": 2181,
+      "unknown_tokens": 47081,
+      "non_padding_tokens": 1081725
+    },
+    "source_label_counts": {
+      "dappscan": {
+        "1": 46,
+        "truncated": 27
+      },
+      "legacy_unknown": {
+        "0": 68,
+        "truncated": 148,
+        "1": 161
+      },
+      "scrawld": {
+        "1": 197,
+        "truncated": 155
+      },
+      "slither_audited_smart_contracts": {
+        "0": 1085,
+        "truncated": 1552,
+        "1": 702
+      },
+      "solidifi_benchmark": {
+        "1": 104,
+        "truncated": 0
+      }
+    },
+    "token_length_quantiles": [
+      12.0,
+      609.0,
+      960.0,
+      1618.0,
+      2509.600000000002,
+      21300.0
+    ],
+    "encoding_mismatch": 0,
+    "label_mismatch": 0,
+    "internal": {
+      "raw": {
+        "duplicate_groups": 11,
+        "conflicting_groups": 1
+      },
+      "official": {
+        "duplicate_groups": 28,
+        "conflicting_groups": 10
+      },
+      "tokens": {
+        "duplicate_groups": 11,
+        "conflicting_groups": 1
+      },
+      "encoded": {
+        "duplicate_groups": 137,
+        "conflicting_groups": 6
+      },
+      "without_comments": {
+        "duplicate_groups": 39,
+        "conflicting_groups": 11
+      },
+      "source_path": {
+        "duplicate_groups": 22,
+        "conflicting_groups": 0
+      }
+    },
+    "legacy_example": [
+      {
+        "label": "smartbugs_results",
+        "contract": "0xdc9f5b24b910addcb2e3be7ff75caf20e1fcdcf3.sol",
+        "vulnerabilities": [],
+        "has_vulnerability": 0,
+        "metadata": {
+          "augmented_split_role": "train",
+          "augmented_dataset_role": "balanced_clean_pool",
+          "resplit_protocol": "source_stratified_binary_721_v1",
+          "resplit_split_role": "test",
+          "resplit_group_hash": "e8e3a808eb6607417d8a16690eabc9fe41df1a71347ac811b031443dc54ddfca"
+        }
+      }
+    ]
+  },
+  "overlaps": {
+    "train_val": {
+      "raw": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      },
+      "official": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      },
+      "tokens": {
+        "common_groups": 4,
+        "rows_a": 4,
+        "rows_b": 4,
+        "conflicting_groups": 0
+      },
+      "encoded": {
+        "common_groups": 802,
+        "rows_a": 3718,
+        "rows_b": 1572,
+        "conflicting_groups": 82,
+        "examples": [
+          {
+            "a": [
+              [
+                3741,
+                0,
+                "slither_audited_smart_contracts::013a505d2d9842d9ef33e2413e5565a93a7c9431"
+              ],
+              [
+                3753,
+                0,
+                "slither_audited_smart_contracts::0163fadfa5c45a4c2b22175dcc680f384c21cde8"
+              ]
+            ],
+            "b": [
+              [
+                2690,
+                0,
+                "slither_audited_smart_contracts::56aCd2E672264f1118EAE55364E31F6DE080d9A8"
+              ]
+            ]
+          },
+          {
+            "a": [
+              [
+                3429,
+                0,
+                "slither_audited_smart_contracts::0044de5be32af3cdb08103bb075b4d7d3dc40872"
+              ]
+            ],
+            "b": [
+              [
+                2194,
+                0,
+                "slither_audited_smart_contracts::51f81b3a45afaab25258ae4123602e201d2e80b1"
+              ]
+            ]
+          },
+          {
+            "a": [
+              [
+                5814,
+                0,
+                "slither_audited_smart_contracts::11fDa2BD01f9d27e977F7aAc63BC114359767a86"
+              ]
+            ],
+            "b": [
+              [
+                1429,
+                0,
+                "slither_audited_smart_contracts::49e10c7f38db36958780c6941654521ab9fcf810"
+              ]
+            ]
+          }
+        ]
+      },
+      "without_comments": {
+        "common_groups": 21,
+        "rows_a": 25,
+        "rows_b": 21,
+        "conflicting_groups": 3
+      },
+      "source_path": {
+        "common_groups": 9,
+        "rows_a": 44,
+        "rows_b": 12,
+        "conflicting_groups": 0
+      }
+    },
+    "train_test": {
+      "raw": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      },
+      "official": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      },
+      "tokens": {
+        "common_groups": 1,
+        "rows_a": 1,
+        "rows_b": 1,
+        "conflicting_groups": 0
+      },
+      "encoded": {
+        "common_groups": 523,
+        "rows_a": 3135,
+        "rows_b": 841,
+        "conflicting_groups": 60,
+        "examples": [
+          {
+            "a": [
+              [
+                3741,
+                0,
+                "slither_audited_smart_contracts::013a505d2d9842d9ef33e2413e5565a93a7c9431"
+              ],
+              [
+                3753,
+                0,
+                "slither_audited_smart_contracts::0163fadfa5c45a4c2b22175dcc680f384c21cde8"
+              ]
+            ],
+            "b": [
+              [
+                937,
+                0,
+                "slither_audited_smart_contracts::5ed5d50f49fd9947ac1e2f97b64c4c24421a1133"
+              ]
+            ]
+          },
+          {
+            "a": [
+              [
+                3429,
+                0,
+                "slither_audited_smart_contracts::0044de5be32af3cdb08103bb075b4d7d3dc40872"
+              ]
+            ],
+            "b": [
+              [
+                915,
+                0,
+                "slither_audited_smart_contracts::5ea2b6e67336b9b32e6f6ee442a1e7a01fa29640"
+              ],
+              [
+                1288,
+                0,
+                "slither_audited_smart_contracts::62339bd7934f8ffa17593a929b148a74b480caf8"
+              ]
+            ]
+          },
+          {
+            "a": [
+              [
+                15761,
+                1,
+                "slither_audited_smart_contracts::84fbeee96250e8f5d596f5e285fe54c31c84f72a"
+              ],
+              [
+                16020,
+                1,
+                "slither_audited_smart_contracts::8a1e21adf7c9e948c7fdad878f162bbce3d5d873"
+              ]
+            ],
+            "b": [
+              [
+                1568,
+                1,
+                "slither_audited_smart_contracts::b07d5bf3ff33dfd566e468557f99420e57b810ff"
+              ],
+              [
+                1816,
+                1,
+                "slither_audited_smart_contracts::b78d52594ae5d63803cf6772d47533d892cef295"
+              ]
+            ]
+          }
+        ]
+      },
+      "without_comments": {
+        "common_groups": 12,
+        "rows_a": 12,
+        "rows_b": 12,
+        "conflicting_groups": 1
+      },
+      "source_path": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      }
+    },
+    "val_test": {
+      "raw": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      },
+      "official": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      },
+      "tokens": {
+        "common_groups": 0,
+        "rows_a": 0,
+        "rows_b": 0,
+        "conflicting_groups": 0
+      },
+      "encoded": {
+        "common_groups": 307,
+        "rows_a": 933,
+        "rows_b": 606,
+        "conflicting_groups": 15,
+        "examples": [
+          {
+            "a": [
+              [
+                2690,
+                0,
+                "slither_audited_smart_contracts::56aCd2E672264f1118EAE55364E31F6DE080d9A8"
+              ]
+            ],
+            "b": [
+              [
+                937,
+                0,
+                "slither_audited_smart_contracts::5ed5d50f49fd9947ac1e2f97b64c4c24421a1133"
+              ]
+            ]
+          },
+          {
+            "a": [
+              [
+                2194,
+                0,
+                "slither_audited_smart_contracts::51f81b3a45afaab25258ae4123602e201d2e80b1"
+              ]
+            ],
+            "b": [
+              [
+                915,
+                0,
+                "slither_audited_smart_contracts::5ea2b6e67336b9b32e6f6ee442a1e7a01fa29640"
+              ],
+              [
+                1288,
+                0,
+                "slither_audited_smart_contracts::62339bd7934f8ffa17593a929b148a74b480caf8"
+              ]
+            ]
+          },
+          {
+            "a": [
+              [
+                3111,
+                1,
+                "slither_audited_smart_contracts::97dadd9ebd72a84bdaa452afd9426ef9592e095e"
+              ],
+              [
+                3348,
+                1,
+                "slither_audited_smart_contracts::9d4c27fc758a98b233f083f7ef38c9d07698185d"
+              ]
+            ],
+            "b": [
+              [
+                1568,
+                1,
+                "slither_audited_smart_contracts::b07d5bf3ff33dfd566e468557f99420e57b810ff"
+              ],
+              [
+                1816,
+                1,
+                "slither_audited_smart_contracts::b78d52594ae5d63803cf6772d47533d892cef295"
+              ]
+            ]
+          }
+        ]
+      },
+      "without_comments": {
+        "common_groups": 3,
+        "rows_a": 3,
+        "rows_b": 3,
+        "conflicting_groups": 2
+      },
+      "source_path": {
+        "common_groups": 6,
+        "rows_a": 12,
+        "rows_b": 6,
+        "conflicting_groups": 0
+      }
+    }
+  }
+}

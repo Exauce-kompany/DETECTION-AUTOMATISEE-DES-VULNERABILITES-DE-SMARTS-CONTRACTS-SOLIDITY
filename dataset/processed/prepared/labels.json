@@ -1,0 +1,10 @@
+{
+    "label_to_id": {
+        "non_vulnerable": 0,
+        "vulnerable": 1
+    },
+    "id_to_label": {
+        "0": "non_vulnerable",
+        "1": "vulnerable"
+    }
+}

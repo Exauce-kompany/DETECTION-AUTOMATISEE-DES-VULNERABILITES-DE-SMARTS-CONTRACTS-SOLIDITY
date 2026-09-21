@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SMART BUG</title>
+<link href="/static/css/style.css?v=2" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+<!-- ====================================================== -->
+<!-- SIDEBAR -->
+<!-- ====================================================== -->
+<aside class="sidebar">
+<div class="brand">
+<div class="brand-logo">
+                    SG
+                </div>
+<div class="brand-text">
+<h1>SMART BUG</h1>
+<p>AI-Powered Smart Contract Security</p>
+</div>
+</div>
+<nav class="sidebar-nav">
+<button class="nav-item">
+<span class="nav-icon">◈</span>
+<span>Dashboard</span>
+</button>
+<button class="nav-item active">
+<span class="nav-icon">⌕</span>
+<span>Analyse</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">◷</span>
+<span>Historique</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">⌁</span>
+<span>Synthèse des risques</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">⌁</span>
+<span>Performances</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">◉</span>
+<span>Modèle IA</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">▤</span>
+<span>Jeux de données</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">▣</span>
+<span>Rapports</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">⚙</span>
+<span>Paramètres</span>
+</button>
+<button class="nav-item">
+<span class="nav-icon">ⓘ</span>
+<span>À propos</span>
+</button>
+</nav>
+<div class="sidebar-card premium-card">
+<div class="premium-title">
+                    Mode laboratoire
+                </div>
+<p>
+                    Analyse IA locale basée sur le modèle
+                    BiLSTM V2.
+                </p>
+<div class="premium-badge">
+                    V2 ACTIVE
+                </div>
+</div>
+<div class="system-status">
+<span class="status-dot"></span>
+<div>
+<small>SYSTÈME</small>
+<strong>Tous les systèmes opérationnels</strong>
+</div>
+</div>
+<div class="sidebar-footer">
+                © 2026 SMART BUG
+            </div>
+</aside>
+<!-- ====================================================== -->
+<!-- MAIN -->
+<!-- ====================================================== -->
+<main class="main-area">
+<!-- ================================================== -->
+<!-- TOP BAR -->
+<!-- ================================================== -->
+<header class="topbar">
+<div class="topbar-left">
+<div class="model-chip">
+                        BiLSTM V2
+                    </div>
+<div class="online-chip">
+<span></span>
+                        ONLINE
+                    </div>
+</div>
+<div class="topbar-right">
+<button class="icon-button">
+                        ☼
+                    </button>
+<button class="icon-button notification-button">
+                        ♢
+                        <span class="notification-count">
+                            3
+                        </span>
+</button>
+<div class="profile">
+<div class="profile-avatar">
+                            E
+                        </div>
+<div class="profile-info">
+<strong>Auditeur</strong>
+<small>Expert</small>
+</div>
+</div>
+</div>
+</header>
+<!-- ================================================== -->
+<!-- CONTENT -->
+<!-- ================================================== -->
+<div class="content">
+<!-- ============================================== -->
+<!-- KPI -->
+<!-- ============================================== -->
+<section class="kpi-grid kpi-grid-summary">
+<article class="kpi-card">
+<div class="kpi-icon blue">
+                            ▣
+                        </div>
+<div>
+<small>Contrats analysés</small>
+<strong id="contractsAnalyzed">
+                                0
+                            </strong>
+<span>Session actuelle</span>
+</div>
+</article>
+<article class="kpi-card">
+<div class="kpi-icon red">
+                            ◈
+                        </div>
+<div>
+<small>Vulnérables détectés</small>
+<strong id="vulnerableCount">
+                                0
+                            </strong>
+<span>Analyses locales</span>
+</div>
+</article>
+<article class="kpi-card kpi-model-metric">
+<div class="kpi-icon green">
+                            ◎
+                        </div>
+<div>
+<small>Précision du modèle</small>
+<strong>
+                                85.87%
+                            </strong>
+<span>Accuracy V2</span>
+</div>
+</article>
+<article class="kpi-card kpi-model-metric">
+<div class="kpi-icon purple">
+                            ⚡
+                        </div>
+<div>
+<small>F1 Macro</small>
+<strong>
+                                85.86%
+                            </strong>
+<span>Évaluation V2</span>
+</div>
+</article>
+</section>
+<!-- ============================================== -->
+<!-- WORKSPACE -->
+<!-- ============================================== -->
+<section class="workspace-grid">
+<!-- ========================================== -->
+<!-- UPLOAD -->
+<!-- ========================================== -->
+<article class="panel upload-panel">
+<div class="panel-heading">
+<div>
+<h2>Nouvelle analyse</h2>
+<p>
+                                    Déposez votre contrat Solidity
+                                </p>
+</div>
+<span class="panel-tag">
+                                .sol
+                            </span>
+</div>
+<form id="uploadForm">
+<label class="upload-zone" for="contractFile" id="uploadZone">
+<div class="file-visual">
+<div class="file-sheet">
+                                        .SOL
+                                    </div>
+<div class="file-cloud">
+                                        ↑
+                                    </div>
+</div>
+<h3>
+                                    Glissez &amp; déposez votre fichier ici
+                                </h3>
+<p>
+                                    ou cliquez pour sélectionner
+                                </p>
+<span class="upload-format">
+                                    Format accepté : .sol
+                                </span>
+<div class="selected-file" id="selectedFile">
+                                    Aucun fichier sélectionné
+                                </div>
+<input accept=".sol" hidden="" id="contractFile" name="file" type="file"/>
+</label>
+<button class="analyze-button" id="analyzeButton" type="submit">
+<span>⚡</span>
+                                LANCER L'ANALYSE IA
+                            </button>
+</form>
+</article>
+<!-- ========================================== -->
+<!-- RESULT -->
+<!-- ========================================== -->
+<article class="panel result-panel">
+<div class="panel-heading">
+<div>
+<h2>
+                                    Résultat de l'analyse
+                                </h2>
+</div>
+<span class="analysis-status idle" id="analysisStatus">
+                                EN ATTENTE
+                            </span>
+</div>
+<div class="result-placeholder" id="resultPlaceholder">
+<div class="placeholder-shield">
+                                ◇
+                            </div>
+<h3>
+                                Aucune analyse en cours
+                            </h3>
+<p>
+                                Sélectionnez un contrat Solidity
+                                pour lancer l’analyse.
+                            </p>
+</div>
+<div class="hidden" id="resultContent">
+<div class="verdict-box" id="verdictBox">
+<div class="verdict-main">
+<span class="eyebrow">
+                                        VERDICT
+                                    </span>
+<h3 id="verdictText">
+                                        -
+                                    </h3>
+<p id="resultMessage">
+                                        -
+                                    </p>
+<div class="confidence-block">
+<span>
+                                            Confiance de l'IA
+                                        </span>
+<strong id="confidenceValue">
+                                            0%
+                                        </strong>
+<div class="confidence-track">
+<div class="confidence-fill" id="confidenceBar">
+</div>
+</div>
+</div>
+</div>
+<div class="risk-score">
+<span>
+                                        SCORE DE RISQUE
+                                    </span>
+<div class="risk-ring">
+<div class="risk-inner">
+<strong id="riskScore">
+                                                0
+                                            </strong>
+<small>/100</small>
+</div>
+</div>
+<p id="riskLabel">
+                                        EN ATTENTE
+                                    </p>
+</div>
+</div>
+<!-- ================================== -->
+<!-- PROBABILITIES -->
+<!-- ================================== -->
+<div class="probability-card">
+<h3>
+                                    Probabilités prédites
+                                </h3>
+<div class="probability-item">
+<div class="probability-top">
+<span>Vulnérable</span>
+<strong id="vulnerableProbabilityText">
+                                            0%
+                                        </strong>
+</div>
+<div class="probability-track">
+<div class="probability-fill vulnerable" id="vulnerableProbabilityBar">
+</div>
+</div>
+</div>
+<div class="probability-item">
+<div class="probability-top">
+<span>Non vulnérable</span>
+<strong id="safeProbabilityText">
+                                            0%
+                                        </strong>
+</div>
+<div class="probability-track">
+<div class="probability-fill safe" id="safeProbabilityBar">
+</div>
+</div>
+</div>
+</div>
+<!-- ================================== -->
+<!-- TECH DETAILS -->
+<!-- ================================== -->
+<div class="technical-card">
+<h3>
+                                    Détails techniques
+                                </h3>
+<div class="technical-grid">
+<div>
+<span>
+                                            Tokens détectés
+                                        </span>
+<strong id="tokensDetected">
+                                            -
+                                        </strong>
+</div>
+<div>
+<span>
+                                            Tokens utilisés
+                                        </span>
+<strong id="tokensUsed">
+                                            -
+                                        </strong>
+</div>
+<div>
+<span>
+                                            Tokens inconnus
+                                        </span>
+<strong id="unknownTokens">
+                                            -
+                                        </strong>
+</div>
+<div>
+<span>
+                                            Taux &lt;UNK&gt;
+                                        </span>
+<strong id="unknownRate">
+                                            -
+                                        </strong>
+</div>
+<div>
+<span>
+                                            Tronqué
+                                        </span>
+<strong id="truncated">
+                                            -
+                                        </strong>
+</div>
+<div>
+<span>
+                                            Taille du fichier
+                                        </span>
+<strong id="fileSize">
+                                            -
+                                        </strong>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- ========================================== -->
+<!-- FILE DETAILS / CODE -->
+<!-- ========================================== -->
+<article class="panel file-panel">
+<div class="panel-heading">
+<div>
+<h2>
+                                    Fichier analysé
+                                </h2>
+</div>
+<span class="panel-tag">
+                                SOL
+                            </span>
+</div>
+<div class="file-meta">
+<strong id="fileName">
+                                Aucun fichier
+                            </strong>
+<div class="file-meta-row">
+<span>
+                                    Solidity
+                                </span>
+<span id="codeLineCount">
+                                    0 lignes
+                                </span>
+</div>
+</div>
+<div class="tabs">
+<button class="tab active">
+                                Aperçu du code
+                            </button>
+<button class="tab">
+                                Tokens
+                            </button>
+<button class="tab">
+                                Métriques
+                            </button>
+</div>
+<div class="code-container">
+<pre class="code-preview" id="codePreview">Aucun code chargé.</pre>
+</div>
+<div class="findings-card">
+<h3>
+                                Points clés détectés
+                            </h3>
+<div class="finding-list" id="findingList">
+<div class="finding info">
+                                    Analyse en attente
+                                </div>
+</div>
+</div>
+</article>
+</section>
+<!-- ============================================== -->
+<!-- LOADING -->
+<!-- ============================================== -->
+<section class="loading-overlay hidden" id="loadingSection">
+<div class="loader-card">
+<div class="loader-ring">
+</div>
+<h3>
+                            Analyse IA en cours
+                        </h3>
+<p>
+                            Tokenisation et classification
+                            du contrat Solidity...
+                        </p>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- ERROR -->
+<!-- ============================================== -->
+<section class="error-banner hidden" id="errorSection">
+<strong>
+                        Erreur
+                    </strong>
+<span id="errorMessage">
+                        -
+                    </span>
+</section>
+<!-- ============================================== -->
+<!-- LOWER DASHBOARD -->
+<!-- ============================================== -->
+<section class="lower-grid" style="grid-template-columns: minmax(0, 1fr) !important;">
+<!-- ========================================== -->
+<!-- MODEL PERFORMANCE -->
+<!-- ========================================== -->
+
+<!-- ========================================== -->
+<!-- ACTIVITY -->
+<!-- ========================================== -->
+<article class="panel activity-panel" style="grid-column: 1 / -1 !important; width: 100% !important;">
+<div class="panel-heading">
+<div>
+<h2>
+                                    Activité récente
+                                </h2>
+</div>
+</div>
+<div class="activity-list" id="recentActivity">
+<div class="activity-empty">
+
+                                Aucune analyse dans cette session.
+
+                            </div>
+</div>
+</article>
+</section>
+<!-- ============================================== -->
+<!-- BOTTOM SYSTEM BAR -->
+<!-- ============================================== -->
+<section class="bottom-system-bar">
+<div>
+                        🔒 Données traitées localement
+                    </div>
+<div>
+                        Modèle : BiLSTM V2
+                        <span>•</span>
+                        Dataset : V2 + CGT
+                        <span>•</span>
+                        Classes : 2
+                    </div>
+</section>
+</div>
+</main>
+</div>
+<script src="/static/js/app.js"></script>
+<link href="/static/css/risk_summary.css" rel="stylesheet"/>
+<script src="/static/js/risk_view.js"></script>
+<link href="/static/css/performance.css" rel="stylesheet"/>
+<script src="/static/js/performance_view.js"></script>
+<link href="/static/css/model.css" rel="stylesheet"/>
+<script src="/static/js/model_view.js"></script>
+<link href="/static/css/dataset.css" rel="stylesheet"/>
+<script src="/static/js/dataset_view.js"></script>
+<link href="/static/css/report.css" rel="stylesheet"/>
+<link href="/static/css/print.css" rel="stylesheet"/>
+<script src="/static/js/report_view.js"></script>
+<link href="/static/css/settings.css" rel="stylesheet"/>
+<script src="/static/js/settings_view.js"></script>
+<link href="/static/css/about.css" rel="stylesheet"/>
+<script src="/static/js/about_view.js"></script>
+</body>
+</html>

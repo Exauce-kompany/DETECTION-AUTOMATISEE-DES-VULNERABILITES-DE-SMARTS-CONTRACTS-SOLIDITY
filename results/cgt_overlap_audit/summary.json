@@ -1,0 +1,11 @@
+{
+    "v1_samples": 24441,
+    "v1_unique_normalized_hashes": 23045,
+    "cgt_candidates": 2349,
+    "cgt_overlaps_v1": 473,
+    "cgt_unique_before_dedup": 1876,
+    "cgt_unique_final": 1876,
+    "cgt_conflicts": 142,
+    "cgt_unique_vulnerable": 1190,
+    "cgt_unique_negative_candidate": 686
+}

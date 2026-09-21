@@ -1,0 +1,20 @@
+{
+    "labels": [
+        "non_vulnerable",
+        "vulnerable"
+    ],
+    "matrix": [
+        [
+            1026,
+            127
+        ],
+        [
+            207,
+            1003
+        ]
+    ],
+    "true_negative": 1026,
+    "false_positive": 127,
+    "false_negative": 207,
+    "true_positive": 1003
+}

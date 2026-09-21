@@ -1,0 +1,16 @@
+{
+    "labels": [
+        "non_vulnerable",
+        "vulnerable"
+    ],
+    "matrix": [
+        [
+            1017,
+            136
+        ],
+        [
+            226,
+            984
+        ]
+    ]
+}
