@@ -1,0 +1,67 @@
+{
+  "version": "v3",
+  "preprocessing_version": "solidity-v3.1",
+  "source_files": {
+    "dataset\\v2\\raw\\train.json": "193ccf3b9e3f265ad389353f2caa26fc96cf22786e561a0058a18730743f9292",
+    "dataset\\v2\\raw\\val.json": "eab37c88499a43d66f7671fba49aa481d6f74ea9d5ad78b76a54dc7b1b9c18d5",
+    "dataset\\v2\\raw\\test.json": "614ae6ee4b8de5148960f9b61a187a805c053fe4d462f9177394c3b6a2872e9b"
+  },
+  "files": {
+    "audit.json": "28116602468cb896fd5dd694106e8638f35a945c938a38dae621f5420cffdf9e",
+    "calibration.jsonl.gz": "62cda87555d4619d25de67b7e1f5c1919860b20e3ffdade3c4f681b22d31a7e2",
+    "calibration.npz": "a7c19e0553b60403b2c2a1568669bb20426ac5557b4ad0de12fd1d877216f7f3",
+    "config.json": "f6b5c6e7f62021ed156c7962e8b1609ec3f0af6d5458df8feaaf4baf1b7b7d43",
+    "duplicates.jsonl.gz": "49546d20619a2ecb3f38f73ead1208e5d49cf43873048b8e2d80f676b45d7c86",
+    "quarantine.jsonl.gz": "6796154bca240e991d3b796e71ad2b3465a574629bf5a6348da14481d262c94a",
+    "source_holdout.jsonl.gz": "f628e9e43c4fbb47d044ebffcdc0e4ef23c79212660ffc020c122952563d3232",
+    "source_holdout.npz": "9118b376736052e2ae960541172bf9a41457ed4b175c487e8c0add9f706eade6",
+    "test.jsonl.gz": "834625c5460f3ddfa386c9d59ee31dc45b63abaa721794b95eab6d66f3a55b69",
+    "test.npz": "0146ea2ba5c4389945b6f129251869c0763781eb2734c8d3c39ddc93e6247e6d",
+    "train.jsonl.gz": "b25732f538dc60090e9f44e2f987b93dab3f93282c0b3bd91984ff010914c1d9",
+    "train.npz": "b05e85c7b322395242eacd589847283d1107e7979ec062bf44f06c71acaef5a4",
+    "validation.jsonl.gz": "610f7e7e6a2a3e49c00c66e1bb93230ee4dfe40c8aaed8fd9e98daed2ae6536e",
+    "validation.npz": "0522928df94245a167553df2c15e43e7c3fb3efac6a8d3e7cf321cd1e7ee99b6",
+    "vocabulary.json": "785b5db984162e26e462ccad89b232f049b809fdc17b7adaff1afa044b3e84f6"
+  },
+  "config": {
+    "version": "v3",
+    "preprocessing_version": "solidity-v3.1",
+    "input_dir": "dataset/v2/raw",
+    "dataset_dir": "dataset/v3",
+    "results_dir": "results/v3",
+    "models_dir": "models/v3",
+    "split_seed": 42,
+    "folds": 10,
+    "holdout_source": "CGT",
+    "target_types": [
+      "arithmetic",
+      "unchecked_low_calls",
+      "reentrancy",
+      "denial_service",
+      "front_running",
+      "time_manipulation",
+      "bad_randomness"
+    ],
+    "window_size": 256,
+    "vocabulary_size": 8000,
+    "embedding_dim": 32,
+    "convolution_filters": 24,
+    "convolution_kernel": 5,
+    "lstm_units": 24,
+    "dropout": 0.3,
+    "batch_size": 32,
+    "epochs": 12,
+    "early_stopping_patience": 3,
+    "learning_rate": 0.001,
+    "seeds": [
+      42,
+      73,
+      101
+    ],
+    "target_recall": 0.9,
+    "cpu_threads": 4
+  },
+  "builder_sha256": "6715b24889922c408de5812536168ae8be8503475264c055fc8d98a6f54df713",
+  "preprocessor_sha256": "769953d64f2e7b208f4dbdf2a385e3323750d43136f3e922b874c979789a982b",
+  "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7"
+}

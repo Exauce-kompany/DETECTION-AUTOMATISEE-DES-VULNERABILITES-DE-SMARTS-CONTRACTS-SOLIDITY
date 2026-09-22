@@ -1,5 +1,7 @@
 Audit du modèle de détection de vulnérabilités — 21 septembre 2026
 
+> Archive historique : ce document décrit V2 avant correction. L'application utilise désormais V3 ; voir [les corrections et résultats du 22 septembre](corrections_v3.md). Les chemins et numéros de lignes ci-dessous décrivent l'état audité, pas nécessairement l'état actuel.
+
 Cet audit repose sur la lecture des scripts, l'inspection des deux archives Keras, le recalcul des entrées numériques de tous les exemples V2 et une nouvelle inférence du modèle V2 sur les 2 363 exemples de test. Aucun entraînement ni changement des scripts applicatifs n'a été effectué. Les mesures sont conservées dans les trois fichiers JSON `audit_modele_v2_*` de ce dossier.
 
 **Le modèle utilisé est un BiLSTM supervisé, entraîné à partir de zéro.** L'application charge `models/smart_contract_vulnerability_model_v2.keras` depuis `webapp/predictor.py:28`. Sa construction est définie dans `src/train_v2.py:391`. Il comporte 346 978 paramètres entraînables. L'archive indique Keras 3.15.1 et une sauvegarde le 28 août 2026. La vérification d'inférence a utilisé l'environnement Conda `smartcontract`, Python 3.12.13 et TensorFlow 2.21.0.

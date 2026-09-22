@@ -10,6 +10,18 @@
     gap: 18px;
 }
 
+.model-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+.model-section > p {
+    color: #a4b5cc;
+    line-height: 1.75;
+    font-size: 13px;
+}
+
 .model-page-header {
     display: flex;
     align-items: center;

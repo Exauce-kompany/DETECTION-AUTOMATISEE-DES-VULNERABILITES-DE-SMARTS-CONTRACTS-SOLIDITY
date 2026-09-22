@@ -5,7 +5,10 @@ import pickle
 
 import numpy as np
 
-from solidity_tokenizer import tokenize_solidity
+try:
+    from .solidity_tokenizer import tokenize_solidity
+except ImportError:
+    from solidity_tokenizer import tokenize_solidity
 
 
 # ============================================================
@@ -578,87 +581,20 @@ def final_checks(
     print("VERIFICATIONS FINALES")
     print("=" * 70)
 
-    assert X_train.shape == (
-        19104,
-        MAX_SEQUENCE_LENGTH
-    )
-
-    assert y_train.shape == (
-        19104,
-    )
-
-    assert X_val.shape == (
-        4667,
-        MAX_SEQUENCE_LENGTH
-    )
-
-    assert y_val.shape == (
-        4667,
-    )
-
-    assert X_test.shape == (
-        2363,
-        MAX_SEQUENCE_LENGTH
-    )
-
-    assert y_test.shape == (
-        2363,
-    )
-
-    assert len(vocabulary) <= (
-        MAX_VOCAB_SIZE
-    )
-
-    assert set(
-        np.unique(y_train)
-    ) == {
-        0,
-        1
-    }
-
-    assert set(
-        np.unique(y_val)
-    ) == {
-        0,
-        1
-    }
-
-    assert set(
-        np.unique(y_test)
-    ) == {
-        0,
-        1
-    }
-
-    max_token_id = max(
-        int(X_train.max()),
-        int(X_val.max()),
-        int(X_test.max()),
-    )
-
-    if max_token_id >= len(
-        vocabulary
-    ):
-
-        raise ValueError(
-            "Token ID hors vocabulaire."
-        )
-
-    print(
-        "Shapes : OK"
-    )
-
-    print(
-        "Labels binaires : OK"
-    )
-
-    print(
-        "Token IDs : OK"
-    )
-
-    print(
-        "Vocabulaire : OK"
-    )
+    if not vocabulary or len(vocabulary) > MAX_VOCAB_SIZE:
+        raise ValueError("Taille du vocabulaire invalide.")
+    if set(vocabulary.values()) != set(range(len(vocabulary))):
+        raise ValueError("Les IDs du vocabulaire doivent être contigus.")
+    for name, X, y in (("train", X_train, y_train), ("validation", X_val, y_val), ("test", X_test, y_test)):
+        if X.ndim != 2 or X.shape[1] != MAX_SEQUENCE_LENGTH or y.ndim != 1 or len(X) != len(y) or not len(y):
+            raise ValueError(f"Dimensions invalides : {name}.")
+        if not np.issubdtype(X.dtype, np.integer) or not np.issubdtype(y.dtype, np.integer):
+            raise ValueError(f"Types non entiers : {name}.")
+        if set(np.unique(y)) != {0, 1}:
+            raise ValueError(f"Les deux classes binaires sont requises : {name}.")
+        if X.min() < 0 or X.max() >= len(vocabulary):
+            raise ValueError(f"Token ID hors vocabulaire : {name}.")
+    print("Dimensions dynamiques, labels et IDs : OK")
 
 
 # ============================================================

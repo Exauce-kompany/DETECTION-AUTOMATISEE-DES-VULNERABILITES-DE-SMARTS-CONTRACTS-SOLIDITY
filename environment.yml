@@ -79,4 +79,5 @@ dependencies:
       - urllib3==2.7.0
       - uvicorn==0.52.4
       - wrapt==2.3.0
-prefix: C:\Users\Exauce\anaconda3\envs\smartcontract
+      - Jinja2==3.1.6
+      - python-multipart==0.0.32

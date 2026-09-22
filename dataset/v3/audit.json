@@ -1,0 +1,353 @@
+{
+  "passed": true,
+  "splits": {
+    "train": {
+      "samples": 11959,
+      "groups": 9196,
+      "labels": {
+        "1": 5887,
+        "0": 6072
+      },
+      "sources": {
+        "dappscan": 310,
+        "scrawld": 1150,
+        "slither_audited_smart_contracts": 9303,
+        "smartbugs_curated": 71,
+        "smartbugs_results": 779,
+        "zeus": 346
+      },
+      "source_labels": {
+        "dappscan": {
+          "1": 310
+        },
+        "scrawld": {
+          "1": 1150
+        },
+        "slither_audited_smart_contracts": {
+          "1": 3638,
+          "0": 5665
+        },
+        "smartbugs_curated": {
+          "1": 69,
+          "0": 2
+        },
+        "smartbugs_results": {
+          "1": 521,
+          "0": 258
+        },
+        "zeus": {
+          "0": 147,
+          "1": 199
+        }
+      },
+      "granularities": {
+        "file": 310,
+        "contract": 10453,
+        "contract_inferred": 1196
+      },
+      "conflicting_groups": {
+        "sample_id": 0,
+        "canonical_sha256": 0,
+        "feature_sha256": 0,
+        "encoded_sha256": 0
+      },
+      "tokens": 17450564
+    },
+    "validation": {
+      "samples": 1709,
+      "groups": 1310,
+      "labels": {
+        "1": 842,
+        "0": 867
+      },
+      "sources": {
+        "dappscan": 45,
+        "scrawld": 165,
+        "slither_audited_smart_contracts": 1329,
+        "smartbugs_curated": 10,
+        "smartbugs_results": 111,
+        "zeus": 49
+      },
+      "source_labels": {
+        "dappscan": {
+          "1": 45
+        },
+        "scrawld": {
+          "1": 165
+        },
+        "slither_audited_smart_contracts": {
+          "0": 809,
+          "1": 520
+        },
+        "smartbugs_curated": {
+          "1": 10
+        },
+        "smartbugs_results": {
+          "1": 74,
+          "0": 37
+        },
+        "zeus": {
+          "1": 28,
+          "0": 21
+        }
+      },
+      "granularities": {
+        "file": 45,
+        "contract": 1494,
+        "contract_inferred": 170
+      },
+      "conflicting_groups": {
+        "sample_id": 0,
+        "canonical_sha256": 0,
+        "feature_sha256": 0,
+        "encoded_sha256": 0
+      },
+      "tokens": 2564270
+    },
+    "calibration": {
+      "samples": 1709,
+      "groups": 1235,
+      "labels": {
+        "1": 841,
+        "0": 868
+      },
+      "sources": {
+        "dappscan": 45,
+        "scrawld": 165,
+        "slither_audited_smart_contracts": 1327,
+        "smartbugs_curated": 12,
+        "smartbugs_results": 111,
+        "zeus": 49
+      },
+      "source_labels": {
+        "dappscan": {
+          "1": 45
+        },
+        "scrawld": {
+          "1": 165
+        },
+        "slither_audited_smart_contracts": {
+          "0": 808,
+          "1": 519
+        },
+        "smartbugs_curated": {
+          "1": 10,
+          "0": 2
+        },
+        "smartbugs_results": {
+          "0": 37,
+          "1": 74
+        },
+        "zeus": {
+          "0": 21,
+          "1": 28
+        }
+      },
+      "granularities": {
+        "file": 45,
+        "contract": 1492,
+        "contract_inferred": 172
+      },
+      "conflicting_groups": {
+        "sample_id": 0,
+        "canonical_sha256": 0,
+        "feature_sha256": 0,
+        "encoded_sha256": 0
+      },
+      "tokens": 2369411
+    },
+    "test": {
+      "samples": 1709,
+      "groups": 1295,
+      "labels": {
+        "1": 842,
+        "0": 867
+      },
+      "sources": {
+        "dappscan": 45,
+        "scrawld": 165,
+        "slither_audited_smart_contracts": 1329,
+        "smartbugs_curated": 9,
+        "smartbugs_results": 111,
+        "zeus": 50
+      },
+      "source_labels": {
+        "dappscan": {
+          "1": 45
+        },
+        "scrawld": {
+          "1": 165
+        },
+        "slither_audited_smart_contracts": {
+          "0": 809,
+          "1": 520
+        },
+        "smartbugs_curated": {
+          "1": 9
+        },
+        "smartbugs_results": {
+          "1": 74,
+          "0": 37
+        },
+        "zeus": {
+          "0": 21,
+          "1": 29
+        }
+      },
+      "granularities": {
+        "file": 45,
+        "contract": 1494,
+        "contract_inferred": 170
+      },
+      "conflicting_groups": {
+        "sample_id": 0,
+        "canonical_sha256": 0,
+        "feature_sha256": 0,
+        "encoded_sha256": 0
+      },
+      "tokens": 2461348
+    },
+    "source_holdout": {
+      "samples": 1152,
+      "groups": 1054,
+      "labels": {
+        "1": 1146,
+        "0": 6
+      },
+      "sources": {
+        "CGT": 1110,
+        "scrawld": 5,
+        "slither_audited_smart_contracts": 3,
+        "smartbugs_curated": 16,
+        "smartbugs_results": 12,
+        "zeus": 6
+      },
+      "source_labels": {
+        "CGT": {
+          "1": 1110
+        },
+        "scrawld": {
+          "1": 5
+        },
+        "slither_audited_smart_contracts": {
+          "0": 3
+        },
+        "smartbugs_curated": {
+          "1": 16
+        },
+        "smartbugs_results": {
+          "1": 11,
+          "0": 1
+        },
+        "zeus": {
+          "1": 4,
+          "0": 2
+        }
+      },
+      "granularities": {
+        "contract": 1118,
+        "contract_inferred": 34
+      },
+      "conflicting_groups": {
+        "sample_id": 0,
+        "canonical_sha256": 0,
+        "feature_sha256": 0,
+        "encoded_sha256": 0
+      },
+      "tokens": 1488086
+    }
+  },
+  "overlaps": {
+    "train:validation": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "train:calibration": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "train:test": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "train:source_holdout": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "validation:calibration": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "validation:test": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "validation:source_holdout": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "calibration:test": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "calibration:source_holdout": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    },
+    "test:source_holdout": {
+      "sample_id": 0,
+      "group_id": 0,
+      "canonical_sha256": 0,
+      "feature_sha256": 0,
+      "structural_sha256": 0,
+      "encoded_sha256": 0
+    }
+  },
+  "limitations": [
+    "Shared library fragments can occur across otherwise distinct complete inputs.",
+    "Grouping does not prove absence of every approximate clone.",
+    "Labels describe source annotations; negative labels do not certify security."
+  ],
+  "quarantine": {
+    "function_without_parent_contract_context": 1141,
+    "negative_with_incomplete_target_coverage": 503,
+    "contradictory_labels_for_identical_code_or_model_representation": 796
+  },
+  "removed_duplicate_samples": 5456
+}

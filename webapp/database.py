@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import sqlite3
 from datetime import datetime
 
@@ -8,7 +9,7 @@ from datetime import datetime
 # ============================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-DATABASE_PATH = BASE_DIR / "smartbug.db"
+DATABASE_PATH = Path(os.environ.get("SMARTBUG_DATABASE_PATH", str(BASE_DIR / "smartbug.db")))
 
 
 # ============================================================

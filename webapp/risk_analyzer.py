@@ -4,7 +4,7 @@ SMART BUG - Static Risk Analyzer v1
 Analyse heuristique du code Solidity.
 
 IMPORTANT:
-- Le modèle BiLSTM V2 reste un classifieur BINAIRE:
+- Le modèle CNN + BiLSTM V3 reste un classifieur BINAIRE:
   vulnerable / non_vulnerable.
 - Les catégories affichées ici proviennent d'une analyse
   statique heuristique distincte du modèle IA.
@@ -251,7 +251,7 @@ def analyze_contract_risks(
     code:
         Code source Solidity.
     probability_vulnerable:
-        Probabilité fournie par le BiLSTM V2.
+        Probabilité fournie par le CNN + BiLSTM V3.
         Peut être au format 0..1 ou 0..100.
 
     Returns
@@ -715,21 +715,7 @@ def analyze_contract_risks(
     combined_score = None
     combined_level = None
 
-    if ml_probability is not None:
-        combined_score = int(
-            round(
-                (0.70 * ml_probability)
-                + (0.30 * static_score)
-            )
-        )
-
-        combined_score = int(
-            clamp(combined_score)
-        )
-
-        combined_level = get_risk_level(
-            combined_score
-        )
+    # Aucun mélange de deux échelles non validées : les scores restent séparés.
 
     # ========================================================
     # Tri
@@ -768,7 +754,7 @@ def analyze_contract_risks(
             "score": combined_score,
             "level": combined_level,
             "formula": (
-                "70% probabilité IA + 30% score heuristique statique"
+                "Aucune combinaison : score IA calibré et indice heuristique séparés"
             ),
         },
         "metrics": {

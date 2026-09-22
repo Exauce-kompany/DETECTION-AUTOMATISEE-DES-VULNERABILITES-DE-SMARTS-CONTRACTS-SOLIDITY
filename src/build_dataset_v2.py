@@ -1,4 +1,6 @@
+"""Reproduction historique V2. Pour le protocole corrigé : python -m src.build_dataset_v3."""
 from pathlib import Path
+import hashlib
 import json
 
 import pandas as pd
@@ -144,20 +146,35 @@ def load_cgt_candidates():
         dtype=str
     )
 
+    required = {"label", "n_assessed_types", "n_assessments", "fp_sol", "normalized_hash", "source_path"}
+    if missing := required.difference(df.columns):
+        raise ValueError(f"Colonnes CGT manquantes : {sorted(missing)}")
+
     df["label"] = pd.to_numeric(
         df["label"],
-        errors="coerce"
+        errors="raise"
     )
 
     df["n_assessed_types"] = pd.to_numeric(
         df["n_assessed_types"],
-        errors="coerce"
+        errors="raise"
     )
 
     df["n_assessments"] = pd.to_numeric(
         df["n_assessments"],
-        errors="coerce"
+        errors="raise"
     )
+
+    if not df["label"].isin([0, 1]).all():
+        raise ValueError("Les labels CGT doivent être 0 ou 1.")
+    for column in ("n_assessed_types", "n_assessments"):
+        if df[column].isna().any() or (df[column] < 0).any() or (df[column] % 1 != 0).any():
+            raise ValueError(f"Comptages CGT invalides : {column}")
+    for column in ("fp_sol", "normalized_hash", "source_path"):
+        if df[column].isna().any() or df[column].str.strip().eq("").any():
+            raise ValueError(f"Valeurs CGT absentes : {column}")
+    if df["fp_sol"].duplicated().any() or df["normalized_hash"].duplicated().any():
+        raise ValueError("Le CSV CGT contient des doublons ; relancer l'audit avant construction.")
 
     print(
         f"Candidats CGT disponibles : "
@@ -261,13 +278,7 @@ def convert_cgt_to_v1_format(selected):
         )
 
         if not source_path.exists():
-
-            print(
-                f"ATTENTION : fichier absent : "
-                f"{source_path}"
-            )
-
-            continue
+            raise FileNotFoundError(f"Source CGT absente : {source_path}")
 
         code = source_path.read_text(
             encoding="utf-8",
@@ -275,7 +286,7 @@ def convert_cgt_to_v1_format(selected):
         )
 
         if not code.strip():
-            continue
+            raise ValueError(f"Source CGT vide : {source_path}")
 
         # Le dataset V1 stocke context comme une liste.
         context = code.splitlines()
@@ -338,12 +349,7 @@ def convert_cgt_to_v1_format(selected):
                 "manual_consolidated_ground_truth",
 
             "dedup_hash_raw":
-                str(
-                    row.get(
-                        "fp_sol",
-                        ""
-                    )
-                ),
+                hashlib.sha256(code.encode("utf-8")).hexdigest(),
 
             "dedup_hash_normalized":
                 str(
@@ -553,21 +559,7 @@ def verify_unchanged_split(
             f"{split_name} a changé de taille."
         )
 
-    original_ids = [
-        sample.get(
-            "sample_id"
-        )
-        for sample in original
-    ]
-
-    new_ids = [
-        sample.get(
-            "sample_id"
-        )
-        for sample in new
-    ]
-
-    if original_ids != new_ids:
+    if original != new:
 
         raise ValueError(
             f"{split_name} n'est plus "

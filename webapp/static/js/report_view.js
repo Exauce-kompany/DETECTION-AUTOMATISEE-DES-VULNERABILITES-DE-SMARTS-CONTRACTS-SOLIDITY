@@ -417,14 +417,12 @@ function showReportsView() {
 
     const combinedRisk =
         reportNumber(
-            data.combined_risk_score
-            ??
-            data.risk_score
+            data.ml_risk_score ?? data.risk_score
         );
 
 
     const combinedRiskLevel =
-        data.combined_risk_level
+        data.ml_risk_level
         ??
         data.risk_level
         ??
@@ -713,7 +711,7 @@ function showReportsView() {
                         </strong>
 
                         <p>
-                            Le modèle BiLSTM V2 réalise uniquement
+                            Le modèle CNN + BiLSTM V3 réalise uniquement
                             une classification binaire :
                             <b>vulnerable</b> ou
                             <b>non_vulnerable</b>.
@@ -764,7 +762,7 @@ function showReportsView() {
 
                         <div>
                             <span>
-                                Risque combiné
+                                Score IA
                             </span>
                             <strong>
                                 ${combinedRisk.toFixed(0)}/100
@@ -967,7 +965,7 @@ function showReportsView() {
                     </span>
 
                     <span>
-                        BiLSTM V2 · Classification binaire
+                        CNN + BiLSTM V3 · Classification binaire
                     </span>
 
                 </footer>

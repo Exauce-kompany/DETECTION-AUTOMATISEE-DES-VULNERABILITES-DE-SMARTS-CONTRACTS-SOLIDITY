@@ -262,8 +262,8 @@ function renderRiskEmptyState(
                     </h1>
 
                     <p>
-                        Cette section combine la probabilité du modèle
-                        BiLSTM V2 et l'analyse statique heuristique.
+                        Cette section présente séparément le score du modèle
+                        CNN + BiLSTM V3 et l'analyse statique heuristique.
                     </p>
 
                 </div>
@@ -609,9 +609,7 @@ function showRiskSummaryView() {
 
     const combinedScore =
         riskSafeNumber(
-            data.combined_risk_score
-            ??
-            data.risk_score
+            data.ml_risk_score ?? data.risk_score
         );
 
 
@@ -631,7 +629,7 @@ function showRiskSummaryView() {
                     </h1>
 
                     <p>
-                        Analyse combinée du contrat
+                        Analyse du contrat
                         <strong>${riskEscapeHtml(filename)}</strong>.
                     </p>
 
@@ -658,7 +656,7 @@ function showRiskSummaryView() {
                 <article class="risk-main-card">
 
                     <span class="risk-card-label">
-                        SCORE GLOBAL
+                        SCORE IA
                     </span>
 
                     <div
@@ -690,15 +688,13 @@ function showRiskSummaryView() {
                     <h2>
                         ${riskEscapeHtml(
                             riskLevelLabel(
-                                data.combined_risk_level
-                                ||
-                                data.risk_level
+                                data.ml_risk_level || data.risk_level
                             )
                         )}
                     </h2>
 
                     <p>
-                        Score combiné IA + analyse statique
+                        Score IA ; les alertes statiques restent distinctes
                     </p>
 
                 </article>
@@ -744,7 +740,7 @@ function showRiskSummaryView() {
                     </div>
 
                     <small>
-                        Classification binaire BiLSTM V2
+                        Classification binaire CNN + BiLSTM V3
                     </small>
 
                 </article>
@@ -816,7 +812,7 @@ function showRiskSummaryView() {
                     mlScore,
                     data.ml_risk_level,
                     "ai",
-                    "Probabilité de vulnérabilité du BiLSTM V2"
+                    "Score IA V3 calibré sur un jeu dédié"
                 )}
 
                 ${riskScoreCard(
@@ -825,14 +821,6 @@ function showRiskSummaryView() {
                     data.static_risk_level,
                     "static",
                     "Analyse heuristique des motifs de code"
-                )}
-
-                ${riskScoreCard(
-                    "Score combiné",
-                    combinedScore,
-                    data.combined_risk_level,
-                    "combined",
-                    "70% IA + 30% analyse statique"
                 )}
 
             </section>
@@ -1017,7 +1005,7 @@ function showRiskSummaryView() {
                         riskEscapeHtml(
                             riskAnalysis.disclaimer
                             ||
-                            "Le BiLSTM V2 effectue uniquement une classification binaire. Les catégories de risques proviennent du moteur statique heuristique."
+                            "Le CNN + BiLSTM V3 effectue uniquement une classification binaire. Les catégories de risques proviennent du moteur statique heuristique."
                         )
                     }
                 </p>

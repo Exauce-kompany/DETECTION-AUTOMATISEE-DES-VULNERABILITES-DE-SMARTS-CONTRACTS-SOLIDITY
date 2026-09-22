@@ -10,6 +10,14 @@
     gap: 18px;
 }
 
+.dataset-section > p,
+.dataset-section > ul,
+.dataset-split-card > p {
+    color: #a4b5cc;
+    line-height: 1.75;
+    font-size: 13px;
+}
+
 .dataset-page-header {
     display: flex;
     align-items: center;

@@ -150,7 +150,7 @@ def compare_splits(
         labels_a = index_a[h]["labels"]
         labels_b = index_b[h]["labels"]
 
-        if labels_a != labels_b:
+        if len(labels_a | labels_b) > 1:
             conflicts += 1
 
     print(

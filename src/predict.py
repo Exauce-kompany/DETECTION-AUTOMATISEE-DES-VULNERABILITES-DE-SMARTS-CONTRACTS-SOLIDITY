@@ -3,6 +3,10 @@ import json
 import pickle
 import numpy as np
 import tensorflow as tf
+try:
+    from .solidity_tokenizer import tokenize_solidity
+except ImportError:
+    from solidity_tokenizer import tokenize_solidity
 
 
 # ============================================================
@@ -122,8 +126,8 @@ def tokenize_code(code):
     compatible avec le modèle.
     """
 
-    # Tokenisation simple par espaces
-    tokens = code.split()
+    # Même tokenisation que prepare_data.py pour le modèle historique V1.
+    tokens = tokenize_solidity(code)
 
     sequence = []
 

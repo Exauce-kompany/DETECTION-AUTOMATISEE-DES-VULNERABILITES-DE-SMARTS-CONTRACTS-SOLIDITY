@@ -1,0 +1,69 @@
+{
+  "run_id": "v3-403bb881-20260922T101754Z",
+  "started_utc": "20260922T101754Z",
+  "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7",
+  "config": {
+    "version": "v3",
+    "preprocessing_version": "solidity-v3.1",
+    "input_dir": "dataset/v2/raw",
+    "dataset_dir": "dataset/v3",
+    "results_dir": "results/v3",
+    "models_dir": "models/v3",
+    "split_seed": 42,
+    "folds": 10,
+    "holdout_source": "CGT",
+    "target_types": [
+      "arithmetic",
+      "unchecked_low_calls",
+      "reentrancy",
+      "denial_service",
+      "front_running",
+      "time_manipulation",
+      "bad_randomness"
+    ],
+    "window_size": 256,
+    "vocabulary_size": 8000,
+    "embedding_dim": 32,
+    "convolution_filters": 24,
+    "convolution_kernel": 5,
+    "lstm_units": 24,
+    "dropout": 0.3,
+    "batch_size": 32,
+    "epochs": 12,
+    "early_stopping_patience": 3,
+    "learning_rate": 0.001,
+    "seeds": [
+      42,
+      73,
+      101
+    ],
+    "target_recall": 0.9,
+    "cpu_threads": 4
+  },
+  "source_sha256": {
+    "build_dataset_v3.py": "6715b24889922c408de5812536168ae8be8503475264c055fc8d98a6f54df713",
+    "experiment_v3.py": "a3e858facb6a7167f4213ec4e4cd062f9f2912f742de5536f19fa9574004dbcf",
+    "model_v3.py": "52051601c01e35d427e85cbce80be6e423123ba5703e1448a60166006e4b9d20",
+    "predictor_v3.py": "959b095f25b58e53bb573202bbaa7f7f109281ba0db5ffbac8017265810c1e0c",
+    "predict_v3.py": "9b5eac49a2a0b51d163d22f263e88b0be5595bb45ac564c642a382475eb70513",
+    "preprocessing_v3.py": "769953d64f2e7b208f4dbdf2a385e3323750d43136f3e922b874c979789a982b",
+    "train_v3.py": "44c690fb27eec8c0404b41eeb0dd422a3eb9b242c001326fb1b87e45dbece604"
+  },
+  "environment": {
+    "tensorflow": "2.21.0",
+    "keras": "3.15.1",
+    "numpy": "2.5.2",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1"
+  },
+  "git_revision": "aec2afbf84385143f11c54d01afde5d47bf22ce6",
+  "deterministic_operations": true,
+  "selection_split": "validation",
+  "calibration_split": "calibration",
+  "test_used_for_selection": false,
+  "status": "complete",
+  "selected_seed": 73,
+  "validation_f1_mean": 0.7936127651415438,
+  "validation_f1_std": 0.013875917725820967,
+  "completed_utc": "2026-09-22T10:27:56.031320+00:00"
+}

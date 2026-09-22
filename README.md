@@ -1,119 +1,89 @@
-# DETECTION-AUTOMATISEE-DES-VULNERABILITES-DE-SMARTS-CONTRACTS-SOLIDITY
+# SMART BUG — Détection de vulnérabilités Solidity
 
-SMART BUG est un projet de détection automatisée de vulnérabilités dans du code
-Solidity. Il associe un classifieur neuronal binaire BiLSTM, une analyse statique
-heuristique et une interface web FastAPI.
+Le modèle actif **V3** est un CNN + BiLSTM hiérarchique, entraîné **depuis zéro** avec TensorFlow/Keras. Il traite toutes les fenêtres du code et prédit un label binaire issu des annotations du corpus. Aucun modèle pré-entraîné n'est utilisé et aucun fine-tuning n'est réalisé. L'analyse statique et les indications de performance sont des moteurs heuristiques distincts.
 
-Le modèle V2 est entraîné à partir de zéro avec TensorFlow/Keras. Ses deux
-classes sont `non_vulnerable` et `vulnerable`. Les catégories et lignes de
-vulnérabilités affichées par l'interface proviennent du moteur heuristique
-distinct, pas de la sortie binaire du réseau.
+Les corrections de l'audit et leurs limites sont détaillées dans [le rapport V3](reports/corrections_v3.md). Les artefacts V1/V2 et [l'audit historique](reports/audit_modele_v2.md) sont conservés pour la traçabilité.
 
-## Récupérer le projet
+## Installation
 
-Installer Git et [Git LFS](https://git-lfs.com/) avant le clonage. Les modèles,
-vocabulaires, tableaux NumPy et partitions brutes V2 sont stockés avec Git LFS.
-Le jeu de données SmartBugs Curated est référencé comme sous-module Git.
+Installer Git et [Git LFS](https://git-lfs.com/), puis :
 
 ```powershell
 git lfs install
 git clone --recurse-submodules https://github.com/Exauce-kompany/DETECTION-AUTOMATISEE-DES-VULNERABILITES-DE-SMARTS-CONTRACTS-SOLIDITY.git
 cd DETECTION-AUTOMATISEE-DES-VULNERABILITES-DE-SMARTS-CONTRACTS-SOLIDITY
 git lfs pull
-```
-
-Pour compléter un clonage déjà effectué :
-
-```powershell
-git submodule update --init --recursive
-git lfs pull
-```
-
-## Lancer l'application
-
-L'environnement utilisé par le projet repose sur Python 3.12 et TensorFlow
-2.21.0. Depuis la racine du dépôt :
-
-```powershell
 conda create -n smartcontract python=3.12
 conda activate smartcontract
 python -m pip install -r requirements.txt
-python -m pip install Jinja2==3.1.6 python-multipart==0.0.32
 python -m uvicorn webapp.app:app --host 127.0.0.1 --port 8000
 ```
 
-Les deux dépendances complémentaires servent aux templates HTML et aux envois
-de fichiers. Ouvrir ensuite <http://127.0.0.1:8000>.
+Ouvrir <http://127.0.0.1:8000>. Le modèle actif est désigné par `models/active_model.json` ; l'application vérifie les empreintes des poids et du vocabulaire avant de les charger. La base SQLite d'historique reste locale et n'est pas versionnée. `SMARTBUG_DATABASE_PATH` permet de choisir une base isolée pour les tests.
 
-La base SQLite de l'historique des analyses est créée au démarrage. Elle reste
-locale et n'est pas versionnée. `environment.yml` conserve également un export
-de l'environnement Windows d'origine ; son champ `prefix` correspond au poste
-sur lequel cet export a été réalisé.
+Pour un clone existant : `git submodule update --init --recursive`, puis `git lfs pull`.
 
-## Organisation
+## Fichiers du protocole actif
 
-| Chemin | Contenu |
+| Fichier | Rôle |
 |---|---|
-| `src/build_dataset_v2.py` | Assemblage du dataset V2 à partir de V1 et de CGT |
-| `src/prepare_data_v2.py` | Tokenisation, vocabulaire et encodage |
-| `src/train_v2.py` | Entraînement et validation du modèle V2 |
-| `src/evaluate_v2.py` | Évaluation détaillée sur le test |
-| `src/predict_v2.py` | Prédiction en ligne de commande |
-| `src/plot_results_v2.py` | Visualisation des résultats |
-| `webapp/` | Application FastAPI, interface et moteurs d'analyse |
-| `models/` | Modèles Keras V1 et V2 |
-| `dataset/v2/` | Partitions brutes et données préparées V2 |
-| `dataset/processed/prepared/` | Données préparées V1 pour comparaison |
-| `results/` | Résultats d'évaluation, historiques et audits |
-| `reports/` | Rapport d'audit du modèle et mesures associées |
+| `config/v3.json` | Configuration des données, hyperparamètres et graines |
+| `src/preprocessing_v3.py` | Analyse lexicale, retrait des commentaires, normalisation, vocabulaire et fenêtres complètes |
+| `src/build_dataset_v3.py` | Quarantaine, déduplication, regroupement, partitionnement et manifestes |
+| `src/audit_dataset_v3.py` | Audit indépendant des fichiers, encodages, labels et recouvrements |
+| `src/model_v3.py` | Architecture CNN + BiLSTM hiérarchique et masquage |
+| `src/experiment_v3.py` | Lots, pondérations, métriques et calibration |
+| `src/train_v3.py` | Entraînement sur trois graines, validation, référence TF-IDF, calibration et test final |
+| `src/predictor_v3.py` | Inférence partagée par le web et la commande CLI |
+| `src/predict_v3.py` | `python -m src.predict_v3 chemin/contrat.sol` |
+| `dataset/v3/` | Partitions complètes, entrées encodées, quarantaines et audit |
+| `models/v3/<run>/` | Meilleurs modèles par graine, référence et manifeste du modèle sélectionné |
+| `results/v3/<run>/` | Historiques, environnement, métriques et prédictions |
+| `tests/` | Régressions des données, du modèle et de l'API |
 
-Les scripts sans suffixe V2 permettent de reproduire la référence V1. Les
-fichiers V1 et V2 constituent des expériences distinctes.
+## Reproduire et vérifier
 
-## Évaluation et entraînement
-
-Les données préparées et les modèles sauvegardés permettent d'évaluer V2 :
+Les données et poids sont déjà fournis. Pour vérifier le dataset puis entraîner une nouvelle expérience indépendante :
 
 ```powershell
-python src/evaluate_v2.py
+python -m src.audit_dataset_v3
+python -m src.train_v3
+python -m unittest discover -s tests -v
 ```
 
-Pour reconstruire les entrées à partir des partitions brutes, puis entraîner
-le réseau :
+Chaque entraînement écrit un nouveau dossier et active son modèle uniquement après la fin de l'évaluation. Les graines et hyperparamètres sont figés avant l'accès au test. Ne pas ajuster les paramètres selon les résultats de ce test : une nouvelle recherche nécessiterait une nouvelle réserve de test.
+
+Pour reconstruire les données depuis les JSON V2 sans écraser le snapshot distribué :
 
 ```powershell
-python src/prepare_data_v2.py
-python src/train_v2.py
-python src/evaluate_v2.py
-python src/plot_results_v2.py
+python -m src.build_dataset_v3 --output dataset/v3_rebuilt
+python -m src.audit_dataset_v3 --dataset dataset/v3_rebuilt
 ```
 
-Ces commandes écrivent dans les dossiers de données, modèles et résultats V2.
-L'assemblage initial via `build_dataset_v2.py` nécessite aussi les dépôts voisins
-`smart-contract-vuln-dataset` et `smart-contract-cgt`, les partitions V1 attendues
-et les chemins sources CGT indiqués dans les CSV d'audit. Ces chemins doivent
-être adaptés sur une autre machine. Cette étape n'est pas nécessaire pour
-utiliser le modèle et les données V2 déjà fournis.
+Le constructeur refuse un dossier de destination non vide. Pour entraîner sur un autre dossier, utiliser une copie de la configuration dont `dataset_dir` pointe vers ce dossier, et fournir la même configuration à la construction et à l'entraînement via `--config`.
 
-## Résultats et limites
+Les dépendances de l'expérience sont enregistrées dans `experiment.json` et `requirements.txt`. Le déterminisme est activé ; l'identité bit à bit entre systèmes, versions de bibliothèques et processeurs différents n'est pas garantie.
 
-Le modèle V2 comporte 346 978 paramètres, un vocabulaire de 5 000 tokens et une
-entrée limitée à 512 tokens. Le test enregistré contient 2 363 exemples et donne
-85,87 % d'accuracy, avec 127 faux positifs et 207 faux négatifs.
+## Résultats V3
 
-L'audit a reproduit ces prédictions, mais identifié des limites importantes :
-recouvrement de représentations numériques entre entraînement et test,
-annotations contradictoires, troncature du code et commentaires révélant des
-annotations de vulnérabilité. Ces résultats ne constituent donc pas une
-garantie de sécurité sur de nouveaux contrats.
+Expérience : `v3-403bb881-20260922T101754Z`. Modèle sélectionné sur validation : graine **73**, époque **3**, **277 017 paramètres**. Température : **0,936841** ; seuil choisi sur la calibration : **0,269474**.
 
-Consulter le [rapport d'audit](reports/audit_modele_v2.md) et les mesures JSON
-associées avant d'interpréter les performances.
+| Modèle / décision | Exactitude test | F1 macro test | Rappel positif test |
+|---|---:|---:|---:|
+| CNN + BiLSTM, score brut, seuil 0,5 | 82,45 % | 82,41 % | 79,10 % |
+| CNN + BiLSTM, calibration et seuil actif | **82,15 %** | **82,10 %** | **88,95 %** |
+| TF-IDF + régression logistique, calibrée | 81,39 % | 81,39 % | 84,20 % |
 
-## Provenance des données
+Le test contient 1 709 contrats ; la décision active produit 212 faux positifs et 93 faux négatifs. L'objectif de rappel de 90 % est choisi sur la calibration et n'est pas garanti sur le test. La calibration améliore légèrement le Brier (0,125856 → 0,125753) et l'ECE à 10 classes (5,65 % → 5,12 %) sur ce test ; elle ne rend pas les scores universellement fiables.
 
-Le sous-module `dataset/raw/smartbugs-curated` pointe vers
-[SmartBugs Curated](https://github.com/smartbugs/smartbugs-curated) à une révision
-fixée. Son README et sa licence restent disponibles dans ce sous-module.
-Les autres partitions conservent leurs métadonnées de provenance ; les droits
-applicables aux sources Solidity restent ceux de leurs auteurs respectifs.
+Les 1 152 contrats de la source réservée comprennent **1 146 positifs et seulement 6 négatifs** : le rappel positif est de 89,01 %, mais l'estimation des faux positifs est très fragile et l'ECE atteint 29,84 %. Ces données ne prouvent pas une généralisation suffisante à toutes les sources. Des négatifs vérifiés et comparables restent à recueillir.
+
+Zéro recouvrement détecté entre les cinq partitions selon les six critères de l'audit. Cela ne prouve pas l'absence de tous les clones approximatifs. Les labels contradictoires sont exclus, pas corrigés arbitrairement. La classe 0 signifie une absence de signal selon les annotations apprises, **pas une certification de sécurité**.
+
+L'ancien score V2 de 85,87 % utilisait un autre test avec recouvrements. Il ne constitue pas une comparaison directe avec V3.
+
+## Archives et provenance
+
+Les scripts `*_v2.py` restent historiques. `build_dataset_v2.py` assemble les données et n'entraîne pas le réseau ; sa reconstruction nécessite les dépôts voisins et chemins CGT de l'expérience d'origine. V3 utilise les partitions V2 présentes dans ce dépôt et ne dépend plus de ces chemins externes pour reconstruire son benchmark.
+
+Le sous-module `dataset/raw/smartbugs-curated` pointe vers [SmartBugs Curated](https://github.com/smartbugs/smartbugs-curated) à une révision fixée. Son README et sa licence restent dans le sous-module. Les références des exemples V3 permettent de retrouver leur source V2 ; les droits sur les sources Solidity restent ceux de leurs auteurs respectifs.

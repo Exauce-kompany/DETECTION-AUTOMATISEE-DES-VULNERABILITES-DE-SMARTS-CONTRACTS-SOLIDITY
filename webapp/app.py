@@ -36,7 +36,7 @@ app = FastAPI(
         "Plateforme intelligente d'analyse de sécurité "
         "des Smart Contracts Solidity."
     ),
-    version="2.2.0",
+    version="3.0.0",
 )
 
 
@@ -247,7 +247,8 @@ async def api_status():
         "success": True,
         "application": "SMART BUG",
         "status": "online",
-        "model": "BiLSTM V2",
+        "model": "CNN + BiLSTM hiérarchique V3",
+        "model_ready": predictor.manifest_path.is_file(),
         "risk_engine": (
             "SMART BUG Static Risk Analyzer v1"
         ),
@@ -266,6 +267,22 @@ async def api_status():
 # ============================================================
 # ANALYSE D'UN SMART CONTRACT
 # ============================================================
+
+@app.get("/api/model-info")
+async def model_info():
+    try:
+        return predictor.model_report()
+    except (RuntimeError, OSError, ValueError) as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+@app.get("/api/dataset-info")
+async def dataset_info():
+    try:
+        return predictor.dataset_report()
+    except (RuntimeError, OSError, ValueError) as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
 
 @app.post(
     "/api/analyze"
@@ -343,7 +360,7 @@ async def analyze_contract(
 
 
     # ========================================================
-    # 1. PRÉDICTION IA BILSTM V2
+    # 1. PRÉDICTION IA V3 SUR LE CODE COMPLET
     # ========================================================
 
     try:
@@ -354,6 +371,10 @@ async def analyze_contract(
             )
         )
 
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except RuntimeError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
     except Exception as exc:
 
         print(
@@ -514,8 +535,7 @@ async def analyze_contract(
                 "score": None,
                 "level": None,
                 "formula": (
-                    "70% probabilité IA + "
-                    "30% score heuristique statique"
+                    "Aucune combinaison des scores"
                 ),
             },
             "metrics": {},
@@ -803,17 +823,16 @@ async def analyze_contract(
 
     result[
         "combined_risk_score"
-    ] = final_risk_score
+    ] = None
 
 
     result[
         "combined_risk_level"
-    ] = final_risk_level
+    ] = None
 
 
     # Le frontend actuel utilise déjà risk_score/risk_level.
-    # Ils représentent désormais le score combiné quand
-    # l'analyse statique est disponible.
+    # Le moteur statique expose un indice distinct ; aucune pondération arbitraire.
 
     result[
         "risk_score"
@@ -832,7 +851,7 @@ async def analyze_contract(
         if combined.get(
             "available"
         )
-        else "ml_probability_only"
+        else "calibrated_ml_probability"
     )
 
 
@@ -867,7 +886,7 @@ async def analyze_contract(
         "analysis_capabilities"
     ] = {
         "ai_model": {
-            "name": "BiLSTM V2",
+            "name": "CNN + BiLSTM hiérarchique V3",
             "type": "binary_classification",
             "classes": [
                 "non_vulnerable",

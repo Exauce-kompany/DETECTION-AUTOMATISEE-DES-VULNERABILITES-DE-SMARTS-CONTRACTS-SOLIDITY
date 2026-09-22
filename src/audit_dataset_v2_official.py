@@ -289,6 +289,7 @@ def audit_internal(
         f"--- {split_name} ---"
     )
 
+    summary = {}
     for hash_type in [
         "normalized",
         "raw",
@@ -321,6 +322,7 @@ def audit_internal(
                 if len(labels) > 1:
                     conflicting_hashes += 1
 
+        summary[hash_type] = {"unique_hashes": len(index), "duplicate_groups": duplicate_hashes, "duplicated_samples": duplicated_samples, "conflicting_groups": conflicting_hashes}
         print(
             f"{hash_type:<12} : "
             f"{len(index):,} hashes uniques | "
@@ -328,6 +330,9 @@ def audit_internal(
             f"{duplicated_samples:,} échantillons supplémentaires | "
             f"{conflicting_hashes:,} conflits labels"
         )
+
+
+    return summary
 
 
 # ============================================================
@@ -365,7 +370,7 @@ def compare_one_hash_type(
             ]
         }
 
-        if labels_a != labels_b:
+        if len(labels_a | labels_b) > 1:
             label_conflicts += 1
 
     return (
@@ -712,17 +717,17 @@ def main():
     print("DOUBLONS INTERNES")
     print("=" * 70)
 
-    audit_internal(
+    internal_train = audit_internal(
         train_indexes,
         "TRAIN"
     )
 
-    audit_internal(
+    internal_validation = audit_internal(
         val_indexes,
         "VALIDATION"
     )
 
-    audit_internal(
+    internal_test = audit_internal(
         test_indexes,
         "TEST"
     )
@@ -764,6 +769,7 @@ def main():
     )
 
     report = {
+        "internal": {"train": internal_train, "validation": internal_validation, "test": internal_test},
         "train_samples":
             len(train),
 
@@ -823,9 +829,9 @@ def main():
         )
 
         print(
-            "Le précédent audit basé sur notre "
-            "normalisation maison produisait donc "
-            "des collisions supplémentaires."
+            "Ce contrôle des empreintes fournies ne prouve pas "
+            "l'indépendance des entrées encodées ni l'absence de conflits internes. "
+            "Le protocole V3 contrôle aussi ces propriétés."
         )
 
     else:

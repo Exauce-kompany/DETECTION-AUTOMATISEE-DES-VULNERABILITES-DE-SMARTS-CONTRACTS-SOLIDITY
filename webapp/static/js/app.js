@@ -731,7 +731,7 @@ function updateFindings(data) {
 
         addFinding(
             "success",
-            "Aucune vulnérabilité binaire n'a été détectée par le modèle."
+            "Aucun signal IA dans le périmètre appris ; cela ne certifie pas la sécurité."
         );
     }
 
@@ -742,7 +742,7 @@ function updateFindings(data) {
 
         addFinding(
             "warning",
-            "Le contrat dépasse 512 tokens : seule la première partie du code a été utilisée."
+            "Cette analyse historique utilisait une entrée tronquée."
         );
 
     } else {
@@ -766,21 +766,21 @@ function updateFindings(data) {
 
         addFinding(
             "warning",
-            `Taux de tokens inconnus relativement élevé : ${(unkRate * 100).toFixed(2)}%.`
+            `Tokens encodés par repli en octets (contenu conservé) : ${(unkRate * 100).toFixed(2)}%.`
         );
 
     } else {
 
         addFinding(
             "info",
-            `Taux de tokens inconnus : ${(unkRate * 100).toFixed(2)}%.`
+            `Tokens encodés par repli en octets : ${(unkRate * 100).toFixed(2)}%.`
         );
     }
 
 
     addFinding(
         "info",
-        `Confiance du modèle : ${Number(data.confidence_percent).toFixed(2)}%.`
+        `Score de la classe prédite : ${Number(data.confidence_percent).toFixed(2)}%. Seuil de signalement : ${Number(data.decision_threshold * 100).toFixed(2)}%.`
     );
 }
 
