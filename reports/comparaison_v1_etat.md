@@ -1,76 +1,112 @@
-# Comparaison V1 : état publié et conclusion provisoire
+# Comparaison V1 : résultats finaux de l'expérience
 
-Snapshot publié le 23 septembre 2026, pour l'expérience
-`comparison-v1-20260922`. Cette publication sauvegarde les modifications et les
-résultats disponibles ; elle ne signifie pas que la comparaison est terminée.
+Expérience `comparison-v1-20260922`, terminée le 23 septembre 2026 à 14 h 16 UTC
+(15 h 16, heure locale). Les **26 entraînements et évaluations** sont achevés :
+18 réseaux depuis zéro, six têtes CodeT5 et deux références TF-IDF.
 
-## Ce qui est terminé
+Le [rapport complet](../results/comparison/comparison-v1-20260922/report.md)
+présente les dix variantes, leurs performances, la calibration et les comparaisons
+appariées. Les valeurs détaillées figurent dans
+[summary.csv](../results/comparison/comparison-v1-20260922/summary.csv).
 
-- 18 entraînements depuis zéro : CNN, BiLSTM et CNN-BiLSTM, chacun avec code
-  complet ou 512 premiers tokens lexicaux, sur trois graines.
-- Deux références TF-IDF + régression logistique, code complet ou tronqué.
-- Conservation des 20 modèles terminés, des historiques et des prédictions de validation.
-- Scripts de sélection, calibration, test, bootstrap apparié et génération du rapport.
-- Neuf tests de comparaison et 25 tests du projet V3 réussis.
+## Résultats sur le test exploratoire
 
-## Résultats disponibles
+Moyennes sur trois graines pour les réseaux, une estimation pour TF-IDF.
+Les seuils du tableau sont ajustés exclusivement sur calibration avec un objectif
+de rappel de 90 %, qui n'est pas garanti sur le test. Les 1 709 contrats du test V3
+avaient déjà été consultés lors de travaux antérieurs.
 
-Résultats sur les **1 709 contrats de validation**, pas sur le test final.
-Le F1 macro utilise le seuil brut 0,5 ; le rappel est mesuré séparément sur la
-courbe ROC à un taux de faux positifs inférieur ou égal à 10 %.
-Les réseaux sont résumés par la moyenne de trois graines, TF-IDF par un seul ajustement.
+| Modèle, code complet | F1 macro | Rappel | Taux de faux positifs | Latence médiane |
+|---|---:|---:|---:|---:|
+| CNN-BiLSTM | 84,54 % | 89,07 % | 19,84 % | 3,00 ms |
+| CodeT5 figé + tête dense | 83,40 % | 86,18 % | 19,30 % | 558,48 ms |
+| CNN | 83,36 % | 87,97 % | 21,07 % | 1,74 ms |
+| BiLSTM | 83,10 % | 88,16 % | 21,76 % | 6,97 ms |
+| TF-IDF + régression logistique | 81,39 % | 84,20 % | 21,34 % | 2,42 ms |
 
-| Modèle | F1 macro, code complet | F1 macro, 512 tokens | Rappel à FPR ≤ 10 %, code complet |
-|---|---:|---:|---:|
-| CNN | 80,33 % | 75,85 % | 71,89 % |
-| BiLSTM | 80,54 % | 75,94 % | 68,69 % |
-| CNN-BiLSTM | 81,73 % | 75,48 % | 72,09 % |
-| TF-IDF + régression logistique | 78,98 % | 70,27 % | 73,63 % |
+Les latences incluent l'encodage propre à chaque modèle et l'encodeur CodeT5,
+mais excluent la normalisation Solidity commune, les accès disque et le chargement
+des poids. Elles sont mesurées sur les mêmes 50 contrats de validation.
 
-Les écarts-types et AUC figurent dans le
-[tableau détaillé](../results/comparison/comparison-v1-20260922/validation_progress.md).
+## Sélection et incertitude
 
-## Conclusion provisoire
+**CodeT5 complet a été sélectionné sur validation**, selon le critère fixé avant
+l'accès aux nouveaux résultats du test : rappel moyen à FPR ≤ 10 %, puis F1 macro
+et log-loss. Cette sélection reste enregistrée dans `selection.json`.
 
-Conserver le CNN-BiLSTM avec le code complet est une décision raisonnable à ce
-stade. Le gain le plus net observé concerne la conservation du contexte :
-**+6,25 points de F1 macro** pour le CNN-BiLSTM complet par rapport à sa variante
-tronquée. Les autres architectures bénéficient aussi du code complet.
+Le CNN-BiLSTM complet présente ensuite le meilleur F1 moyen observé sur le test,
+avec une latence médiane environ 186 fois inférieure à celle de CodeT5. Cette
+observation ne doit pas devenir une nouvelle sélection faite sur le test.
+Les seuils calibrés pour un FPR cible de 10 % sont évalués séparément dans le
+rapport, qui affiche les FPR réellement obtenus.
 
-L'avantage moyen de l'hybride sur les réseaux seuls reste modeste : +1,40 point
-par rapport au CNN et +1,19 point par rapport au BiLSTM. Trois graines ne suffisent
-pas à établir une supériorité générale ; les intervalles des comparaisons finales
-restent à calculer.
+L'écart de F1 moyen entre CNN-BiLSTM et CodeT5 est de **+1,14 point**. L'intervalle
+bootstrap apparié à 95 % pour cet écart est d'environ **[−0,26 ; +2,69] points** :
+il inclut zéro. Une supériorité générale du CNN-BiLSTM n'est donc pas établie.
+Ce bootstrap rééchantillonne les groupes de contrats, conditionne sur les graines
+et la calibration exécutées, et ne corrige pas les comparaisons multiples.
 
-La référence classique obtient le meilleur rappel au point de fonctionnement
-FPR ≤ 10 % parmi les variantes terminées. Le deep learning n'est donc pas
-supérieur sur tous les critères. Le choix définitif suivra le critère fixé sur
-validation dans le protocole, après l'entraînement de tous les candidats.
+## Effet du code complet
 
-## Ce qui reste en cours
+Le F1 du CNN-BiLSTM passe de **74,85 %** avec les 512 premiers tokens lexicaux
+à **84,54 %** avec le code complet : **+9,69 points**, avec un intervalle bootstrap
+exploratoire de **[+7,20 ; +13,56] points**. Les cinq familles de modèles obtiennent
+un meilleur F1 moyen avec le code complet dans cette expérience.
 
-CodeT5-small utilise un encodeur préentraîné figé, à la révision
-`b1ee9570c289f21b5922b9c768a1ce12957bf968`, puis une tête dense entraînée :
-ce n'est pas un fine-tuning de l'encodeur. Son extraction sur CPU est en cours
-au moment de ce snapshot. Le runner enchaînera ensuite les six entraînements
-de têtes, la sélection sur validation, la calibration et l'évaluation commune.
+La troncature crée des collisions de préfixes pour 386 exemples du test. Sur le
+sous-ensemble commun de 1 323 exemples sans ces collisions, le F1 des variantes
+complètes est de 84,32 % pour CNN-BiLSTM et 83,32 % pour CodeT5. Ce diagnostic ne
+constitue pas un nouveau test indépendant et n'exclut pas tous les clones approximatifs.
 
-Les scores CodeT5, les résultats du test, les latences comparatives et le
-classement final ne sont pas encore disponibles dans cette publication.
-Le modèle V3 actif de SmartBug n'a pas été remplacé.
+## Conclusion pour le projet
 
-## Limites à conserver dans le mémoire
+Les résultats soutiennent la conservation du contexte complet et ne justifient
+pas le remplacement automatique du CNN-BiLSTM actif par CodeT5 figé. Le compromis
+entre performances observées et coût d'inférence favorise le maintien de
+l'architecture actuelle pendant la préparation d'une confirmation indépendante.
 
-Le test V3 a déjà été consulté : la comparaison sera exploratoire. Une nouvelle
-réserve indépendante sera nécessaire pour une confirmation. La troncature crée
-des collisions de préfixes pour 386 exemples du test ; un diagnostic commun sur
-les exemples sans ces collisions est prévu. Les labels historiques et les six
-seuls négatifs du holdout de source limitent aussi les conclusions.
+CodeT5 utilise un encodeur préentraîné **figé**, suivi d'une tête entraînée :
+cette étude ne mesure pas un fine-tuning de CodeT5 sur Solidity et ne permet pas
+de conclure que le préentraînement serait inutile en général.
 
-Les durées murales d'entraînement incluent de longues pauses de la machine.
-Elles ne doivent pas être assimilées à des temps de calcul purs. Les latences
-seront mesurées séparément.
+Les réseaux de comparaison ont été réentraînés sous PyTorch. Leurs scores moyens
+ne sont pas ceux du checkpoint TensorFlow actuellement actif dans SmartBug.
+**Le modèle V3 actif n'a pas été remplacé.**
 
-Pour les hyperparamètres, les partitions et les commandes de reprise, consulter
-le [protocole](protocole_comparaison_v1.md). Les caches locaux CodeT5 sont exclus
-de Git ; les poids des modèles terminés sont distribués via Git LFS.
+## Fichiers et reproduction
+
+- `completed.json`, `protocol.json`, `selection.json` : fin d'exécution, protocole et sélection.
+- `summary.csv`, `summary.json`, `paired_comparisons.json` : résultats et incertitude.
+- `comparison.png`, `comparison.svg` : graphiques partageables.
+- Chaque dossier de modèle : historique, calibration, évaluation et prédictions.
+- `models/comparison/comparison-v1-20260922/` : checkpoints et scalers via Git LFS.
+- `pretrained_manifest.json`, `pretrained_extraction.json` : révision CodeT5 et extraction.
+
+L'encodeur se télécharge depuis `Salesforce/codet5-small`, à la révision
+`b1ee9570c289f21b5922b9c768a1ce12957bf968`. Les six fichiers CodeT5 `.pt` versionnés
+contiennent uniquement les têtes entraînées ; les deux `scaler.pkl` contiennent
+la standardisation apprise sur train.
+
+Pour reconstruire le cache CodeT5 sur un clone, fixer d'abord la révision publiée
+depuis l'environnement de comparaison :
+
+```python
+import json
+from pathlib import Path
+from src.comparison_data import save_json
+
+run = Path("results/comparison/comparison-v1-20260922")
+manifest = json.loads((run / "pretrained_manifest.json").read_text())
+save_json(Path(".cache-comparison/codet5/revision.json"),
+          {key: manifest[key] for key in ("model_id", "revision")})
+```
+
+Puis `python -m src.comparison_pretrained` reconstruit les caractéristiques depuis
+les données V3. Le [protocole](protocole_comparaison_v1.md) décrit la chaîne complète.
+Les 34 tests du projet avaient passé avant publication ; les empreintes des 26
+checkpoints et évaluations ont aussi été vérifiées après calcul.
+
+Les labels historiques, les six seuls négatifs du holdout de source et le test
+déjà consulté limitent les conclusions. Les durées murales d'entraînement incluent
+des pauses et ne constituent pas des temps de calcul purs. Une confirmation sur
+des contrats indépendants, avec labels vérifiés, reste nécessaire.

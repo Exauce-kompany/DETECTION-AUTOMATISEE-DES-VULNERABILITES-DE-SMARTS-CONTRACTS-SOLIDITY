@@ -1,0 +1,126 @@
+{
+  "selected_variant": "codet5_frozen_full",
+  "criterion": "mean_validation_recall_at_fpr_0_10_then_f1_macro_then_log_loss",
+  "candidates": [
+    {
+      "variant": "codet5_frozen_full",
+      "validation_recall_at_fpr_mean": 0.7494061757719715,
+      "validation_f1_macro_mean": 0.8312521623257806,
+      "validation_auc_mean": 0.9111784157564101,
+      "validation_log_loss_mean": 0.3881396606180528,
+      "runs": [
+        "codet5_frozen_full/seed-42/run.json",
+        "codet5_frozen_full/seed-73/run.json",
+        "codet5_frozen_full/seed-101/run.json"
+      ]
+    },
+    {
+      "variant": "tfidf_full",
+      "validation_recall_at_fpr_mean": 0.7363420427553444,
+      "validation_f1_macro_mean": 0.7897861636091799,
+      "validation_auc_mean": 0.8961143210952118,
+      "validation_log_loss_mean": 0.45242930708416673,
+      "runs": [
+        "tfidf_full/run.json"
+      ]
+    },
+    {
+      "variant": "cnn_bilstm_full",
+      "validation_recall_at_fpr_mean": 0.7209026128266034,
+      "validation_f1_macro_mean": 0.8172915217875497,
+      "validation_auc_mean": 0.9063282804622013,
+      "validation_log_loss_mean": 0.4065494916791499,
+      "runs": [
+        "cnn_bilstm_full/seed-42/run.json",
+        "cnn_bilstm_full/seed-73/run.json",
+        "cnn_bilstm_full/seed-101/run.json"
+      ]
+    },
+    {
+      "variant": "cnn_full",
+      "validation_recall_at_fpr_mean": 0.718923198733175,
+      "validation_f1_macro_mean": 0.8033204208847216,
+      "validation_auc_mean": 0.9044059428997252,
+      "validation_log_loss_mean": 0.4168275508525407,
+      "runs": [
+        "cnn_full/seed-42/run.json",
+        "cnn_full/seed-73/run.json",
+        "cnn_full/seed-101/run.json"
+      ]
+    },
+    {
+      "variant": "bilstm_full",
+      "validation_recall_at_fpr_mean": 0.6868566904196358,
+      "validation_f1_macro_mean": 0.8054402151471723,
+      "validation_auc_mean": 0.8969225247734975,
+      "validation_log_loss_mean": 0.42474243567963404,
+      "runs": [
+        "bilstm_full/seed-42/run.json",
+        "bilstm_full/seed-73/run.json",
+        "bilstm_full/seed-101/run.json"
+      ]
+    },
+    {
+      "variant": "codet5_frozen_first512",
+      "validation_recall_at_fpr_mean": 0.630245447347585,
+      "validation_f1_macro_mean": 0.780365429375358,
+      "validation_auc_mean": 0.868225129929015,
+      "validation_log_loss_mean": 0.46210980014078595,
+      "runs": [
+        "codet5_frozen_first512/seed-42/run.json",
+        "codet5_frozen_first512/seed-73/run.json",
+        "codet5_frozen_first512/seed-101/run.json"
+      ]
+    },
+    {
+      "variant": "bilstm_first512",
+      "validation_recall_at_fpr_mean": 0.6167854315122724,
+      "validation_f1_macro_mean": 0.7594139448217933,
+      "validation_auc_mean": 0.8399213348419803,
+      "validation_log_loss_mean": 0.4959005871626176,
+      "runs": [
+        "bilstm_first512/seed-42/run.json",
+        "bilstm_first512/seed-73/run.json",
+        "bilstm_first512/seed-101/run.json"
+      ]
+    },
+    {
+      "variant": "cnn_bilstm_first512",
+      "validation_recall_at_fpr_mean": 0.6084718923198733,
+      "validation_f1_macro_mean": 0.7547960679319577,
+      "validation_auc_mean": 0.8370257282737045,
+      "validation_log_loss_mean": 0.49600979284910846,
+      "runs": [
+        "cnn_bilstm_first512/seed-42/run.json",
+        "cnn_bilstm_first512/seed-73/run.json",
+        "cnn_bilstm_first512/seed-101/run.json"
+      ]
+    },
+    {
+      "variant": "tfidf_first512",
+      "validation_recall_at_fpr_mean": 0.6057007125890737,
+      "validation_f1_macro_mean": 0.7027230024601205,
+      "validation_auc_mean": 0.8328395071875334,
+      "validation_log_loss_mean": 0.5449729319095807,
+      "runs": [
+        "tfidf_first512/run.json"
+      ]
+    },
+    {
+      "variant": "cnn_first512",
+      "validation_recall_at_fpr_mean": 0.6013460015835312,
+      "validation_f1_macro_mean": 0.7584519644709404,
+      "validation_auc_mean": 0.8349008831794092,
+      "validation_log_loss_mean": 0.49920147551080496,
+      "runs": [
+        "cnn_first512/seed-42/run.json",
+        "cnn_first512/seed-73/run.json",
+        "cnn_first512/seed-101/run.json"
+      ]
+    }
+  ],
+  "frozen_utc": "2026-09-23T13:07:42.357062+00:00",
+  "test_used_for_this_selection": false,
+  "historical_test_exposure": true,
+  "production_unchanged": true
+}

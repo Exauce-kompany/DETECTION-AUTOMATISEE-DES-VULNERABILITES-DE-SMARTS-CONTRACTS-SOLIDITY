@@ -93,12 +93,24 @@ La commande `python -u -m src.run_comparison` enchaîne la progression ; l'état
 les résultats sont écrits sous `results/comparison/`. Le test V3 étant déjà
 consulté, cette comparaison est exploratoire et demande une confirmation indépendante.
 
-État publié le 23 septembre 2026 : les 18 entraînements depuis zéro et les deux
-références TF-IDF sont terminés. CodeT5 et l'évaluation finale restent en cours.
-Voir la [conclusion provisoire](reports/comparaison_v1_etat.md) et le
-[tableau de validation](results/comparison/comparison-v1-20260922/validation_progress.md).
-Les résultats disponibles et leurs checkpoints sont sauvegardés ; le statut
-d'exécution du PC est local et n'est pas un suivi en direct sur GitHub.
+Comparaison terminée le 23 septembre 2026 : **26 entraînements et évaluations**
+(18 réseaux depuis zéro, six têtes CodeT5 et deux références TF-IDF).
+Voir la [conclusion finale de l'expérience](reports/comparaison_v1_etat.md), le
+[rapport complet](results/comparison/comparison-v1-20260922/report.md) et le
+[tableau des résultats](results/comparison/comparison-v1-20260922/summary.csv).
+
+CodeT5 complet est la variante sélectionnée selon le critère fixé sur validation.
+Sur le test exploratoire, le CNN-BiLSTM complet atteint **84,54 % de F1 macro**
+et **89,07 % de rappel**, contre **83,40 %** et **86,18 %** pour CodeT5 complet.
+Les latences médianes mesurées sont respectivement 3,00 ms et 558,48 ms par contrat.
+L'écart de F1 entre ces deux méthodes n'est pas établi de façon concluante par
+l'intervalle bootstrap exploratoire. La sélection sur validation reste enregistrée ;
+aucun nouveau modèle n'a été activé dans SmartBug.
+
+Les checkpoints, les têtes CodeT5 et leurs scalers sont sauvegardés via Git LFS.
+L'encodeur CodeT5 reste un téléchargement depuis Hugging Face à la révision
+enregistrée ; les caches locaux ne sont pas versionnés. Le rapport distingue
+les réseaux nouvellement entraînés pour la comparaison du modèle V3 actif.
 
 ## Archives et provenance
 

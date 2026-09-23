@@ -1,8 +1,11 @@
 {
-  "snapshot_utc": "2026-09-23T10:46:43.578718+00:00",
-  "status": "partial_comparison_validation_results_only",
+  "snapshot_utc": "2026-09-23T16:11:20.465947+00:00",
+  "status": "complete_exploratory_comparison",
+  "completed_utc": "2026-09-23T14:16:52.644094+00:00",
   "completed_neural_scratch_runs": 18,
+  "completed_pretrained_head_runs": 6,
   "completed_classical_baselines": 2,
+  "evaluated_runs": 26,
   "completed_runs": [
     "bilstm_first512/seed-101/run.json",
     "bilstm_first512/seed-42/run.json",
@@ -22,12 +25,22 @@
     "cnn_full/seed-101/run.json",
     "cnn_full/seed-42/run.json",
     "cnn_full/seed-73/run.json",
+    "codet5_frozen_first512/seed-101/run.json",
+    "codet5_frozen_first512/seed-42/run.json",
+    "codet5_frozen_first512/seed-73/run.json",
+    "codet5_frozen_full/seed-101/run.json",
+    "codet5_frozen_full/seed-42/run.json",
+    "codet5_frozen_full/seed-73/run.json",
     "tfidf_first512/run.json",
     "tfidf_full/run.json"
   ],
-  "pretrained_status": "feature_extraction_in_progress_on_local_machine",
-  "final_test_comparison_available": false,
-  "tests_passed": 34,
+  "selected_on_validation": "codet5_frozen_full",
+  "best_observed_test_f1_variant": "cnn_bilstm_full",
+  "test_previously_observed": true,
+  "final_test_comparison_available": true,
   "production_manifest_unchanged": true,
-  "publication_note": "This is a dated repository snapshot, not live execution status. CodeT5 results and final evaluation are pending."
+  "initial_snapshot_commit": "f0b52cb7e3712e27644d666bc9292740d61687d9",
+  "summary_sha256": "9c526e5566a4e7e8edcc5295a5ba40f4d66a70b413b4e58912b5a065e010b102",
+  "tests_passed_before_publication": 34,
+  "pretrained_encoder_storage": "Hugging Face revision pinned in pretrained_manifest.json; trained heads and scalers in Git LFS"
 }

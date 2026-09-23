@@ -1,0 +1,12 @@
+{
+  "verified_utc": "2026-09-23T16:11:20.465947+00:00",
+  "checkpoints_verified": 26,
+  "evaluations_verified": 26,
+  "prediction_archives_checked": 52,
+  "sample_order_and_labels_verified": true,
+  "reported_metrics_recomputed": true,
+  "summary_sha256_verified": true,
+  "frozen_source_hashes_verified": true,
+  "production_manifest_unchanged": true,
+  "figure_visually_inspected": true
+}

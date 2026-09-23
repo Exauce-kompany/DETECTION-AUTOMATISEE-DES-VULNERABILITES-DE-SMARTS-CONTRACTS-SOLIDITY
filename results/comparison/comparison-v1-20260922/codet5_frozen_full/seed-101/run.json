@@ -1,0 +1,140 @@
+{
+  "variant": "codet5_frozen_full",
+  "architecture": "codet5_frozen",
+  "input_mode": "full",
+  "encoder_revision": "b1ee9570c289f21b5922b9c768a1ce12957bf968",
+  "encoder_frozen": true,
+  "feature_manifest_sha256": "26f02429e9ab6f98c2217093dd3b7027b6f2306dfc43c97fa24081466fe008f7",
+  "seed": 101,
+  "parameters": 35349313,
+  "trainable_parameters": 32833,
+  "epochs_executed": 12,
+  "best_epoch": 10,
+  "training_seconds": 8.72849899996072,
+  "validation": {
+    "samples": 1709,
+    "accuracy": 0.8484493856056173,
+    "f1_macro": 0.8484361009099703,
+    "recall_vulnerable": 0.8705463182897862,
+    "confusion_matrix": [
+      [
+        717,
+        150
+      ],
+      [
+        109,
+        733
+      ]
+    ],
+    "classification_report": {
+      "no_annotated_vulnerability": {
+        "precision": 0.8680387409200968,
+        "recall": 0.8269896193771626,
+        "f1-score": 0.8470171293561725,
+        "support": 867.0
+      },
+      "vulnerability_annotated": {
+        "precision": 0.8301245753114382,
+        "recall": 0.8705463182897862,
+        "f1-score": 0.8498550724637681,
+        "support": 842.0
+      },
+      "accuracy": 0.8484493856056173,
+      "macro avg": {
+        "precision": 0.8490816581157675,
+        "recall": 0.8487679688334744,
+        "f1-score": 0.8484361009099703,
+        "support": 1709.0
+      },
+      "weighted avg": {
+        "precision": 0.8493589706202195,
+        "recall": 0.8484493856056173,
+        "f1-score": 0.8484153435730218,
+        "support": 1709.0
+      }
+    },
+    "roc_auc": 0.915241351535724,
+    "average_precision": 0.9080244153123144,
+    "brier_score": 0.11649411455645192,
+    "log_loss": 0.37722902040622996,
+    "ece_10_bins": 0.036904065966749645,
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 401,
+        "predicted_probability": 0.03877390997037084,
+        "observed_positive_rate": 0.04738154613466334
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 138,
+        "predicted_probability": 0.1485071559665378,
+        "observed_positive_rate": 0.13768115942028986
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 102,
+        "predicted_probability": 0.24683590280932335,
+        "observed_positive_rate": 0.17647058823529413
+      },
+      {
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 94,
+        "predicted_probability": 0.35028341707897936,
+        "observed_positive_rate": 0.23404255319148937
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 91,
+        "predicted_probability": 0.4442623022928404,
+        "observed_positive_rate": 0.34065934065934067
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 73,
+        "predicted_probability": 0.5454491080422645,
+        "observed_positive_rate": 0.5205479452054794
+      },
+      {
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 80,
+        "predicted_probability": 0.6561325115241432,
+        "observed_positive_rate": 0.6625
+      },
+      {
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 99,
+        "predicted_probability": 0.7546415551344875,
+        "observed_positive_rate": 0.7272727272727273
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 137,
+        "predicted_probability": 0.8558309503965325,
+        "observed_positive_rate": 0.7956204379562044
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 494,
+        "predicted_probability": 0.9682309477398685,
+        "observed_positive_rate": 0.9331983805668016
+      }
+    ],
+    "threshold": 0.5,
+    "single_class_subset": false
+  },
+  "model_path": "models/comparison/comparison-v1-20260922/codet5_frozen_full/seed-101.pt",
+  "model_sha256": "bd1b5b4cf6e251f6638cff6a5c6aac7c857f20672957c877d91f1dfd0f9d5d08",
+  "status": "complete",
+  "head_parameters": 32833
+}

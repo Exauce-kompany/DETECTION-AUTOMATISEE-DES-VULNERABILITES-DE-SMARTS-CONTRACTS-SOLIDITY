@@ -1,0 +1,5158 @@
+{
+  "variant": "cnn_full",
+  "seed": 101,
+  "model_sha256": "8f99d36eb73c0f74dfc9cf4a9ae0e37c5b3c0f05f7d40f59b5fa8a97584acb96",
+  "calibration_sha256": "c2f22b76d67113c731bf60fcd38580193c8ae146d9c575f11406319f1aba2862",
+  "evaluated_utc": "2026-09-23T14:15:07.585852+00:00",
+  "splits": {
+    "test": {
+      "all": {
+        "raw": {
+          "samples": 1709,
+          "accuracy": 0.8466939730836747,
+          "f1_macro": 0.8466935006738175,
+          "recall_vulnerable": 0.8610451306413301,
+          "confusion_matrix": [
+            [
+              722,
+              145
+            ],
+            [
+              117,
+              725
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.8605482717520858,
+              "recall": 0.8327566320645905,
+              "f1-score": 0.8464243845252052,
+              "support": 867.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.8333333333333334,
+              "recall": 0.8610451306413301,
+              "f1-score": 0.8469626168224299,
+              "support": 842.0
+            },
+            "accuracy": 0.8466939730836747,
+            "macro avg": {
+              "precision": 0.8469408025427096,
+              "recall": 0.8469008813529604,
+              "f1-score": 0.8466935006738175,
+              "support": 1709.0
+            },
+            "weighted avg": {
+              "precision": 0.8471398585580603,
+              "recall": 0.8466939730836747,
+              "f1-score": 0.846689563925008,
+              "support": 1709.0
+            }
+          },
+          "roc_auc": 0.9182947176355521,
+          "average_precision": 0.9077870641026967,
+          "brier_score": 0.11278445579107163,
+          "log_loss": 0.3582417877449894,
+          "ece_10_bins": 0.03988922563611105,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 512,
+              "predicted_probability": 0.04654220045722278,
+              "observed_positive_rate": 0.01953125
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 116,
+              "predicted_probability": 0.14816815765162308,
+              "observed_positive_rate": 0.16379310344827586
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 92,
+              "predicted_probability": 0.2500012181380501,
+              "observed_positive_rate": 0.41304347826086957
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 70,
+              "predicted_probability": 0.3496527209300047,
+              "observed_positive_rate": 0.45714285714285713
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 49,
+              "predicted_probability": 0.45505848684480854,
+              "observed_positive_rate": 0.3673469387755102
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 64,
+              "predicted_probability": 0.5443354016356967,
+              "observed_positive_rate": 0.640625
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 108,
+              "predicted_probability": 0.6499491956271312,
+              "observed_positive_rate": 0.7407407407407407
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 172,
+              "predicted_probability": 0.7552314589422889,
+              "observed_positive_rate": 0.7151162790697675
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 226,
+              "predicted_probability": 0.8532008151067177,
+              "observed_positive_rate": 0.8584070796460177
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 300,
+              "predicted_probability": 0.962206916841562,
+              "observed_positive_rate": 0.9566666666666667
+            }
+          ],
+          "threshold": 0.5,
+          "single_class_subset": false,
+          "false_positive_rate": 0.16724336793540945,
+          "precision_vulnerable": 0.8333333333333334
+        },
+        "calibrated": {
+          "samples": 1709,
+          "accuracy": 0.8367466354593329,
+          "f1_macro": 0.8365314894181608,
+          "recall_vulnerable": 0.8859857482185273,
+          "confusion_matrix": [
+            [
+              684,
+              183
+            ],
+            [
+              96,
+              746
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.8769230769230769,
+              "recall": 0.7889273356401384,
+              "f1-score": 0.8306010928961749,
+              "support": 867.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.8030139935414424,
+              "recall": 0.8859857482185273,
+              "f1-score": 0.8424618859401468,
+              "support": 842.0
+            },
+            "accuracy": 0.8367466354593329,
+            "macro avg": {
+              "precision": 0.8399685352322597,
+              "recall": 0.8374565419293328,
+              "f1-score": 0.8365314894181608,
+              "support": 1709.0
+            },
+            "weighted avg": {
+              "precision": 0.8405091224424823,
+              "recall": 0.8367466354593329,
+              "f1-score": 0.8364447369822043,
+              "support": 1709.0
+            }
+          },
+          "roc_auc": 0.9182947176355521,
+          "average_precision": 0.9077870641026967,
+          "brier_score": 0.11286603843390286,
+          "log_loss": 0.3600727784494856,
+          "ece_10_bins": 0.047441677578465985,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 483,
+              "predicted_probability": 0.05820543425754564,
+              "observed_positive_rate": 0.020703933747412008
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 120,
+              "predicted_probability": 0.14739613290143858,
+              "observed_positive_rate": 0.14166666666666666
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 95,
+              "predicted_probability": 0.24587981971835837,
+              "observed_positive_rate": 0.35789473684210527
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 82,
+              "predicted_probability": 0.3437391795435755,
+              "observed_positive_rate": 0.4268292682926829
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 59,
+              "predicted_probability": 0.45010669286849553,
+              "observed_positive_rate": 0.3559322033898305
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 75,
+              "predicted_probability": 0.5480284591435847,
+              "observed_positive_rate": 0.6533333333333333
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 129,
+              "predicted_probability": 0.653589377324493,
+              "observed_positive_rate": 0.7596899224806202
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 182,
+              "predicted_probability": 0.754549077028724,
+              "observed_positive_rate": 0.7142857142857143
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 227,
+              "predicted_probability": 0.8495609206783145,
+              "observed_positive_rate": 0.8898678414096917
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 257,
+              "predicted_probability": 0.9618814322528609,
+              "observed_positive_rate": 0.9571984435797666
+            }
+          ],
+          "threshold": 0.39927582818515894,
+          "single_class_subset": false,
+          "false_positive_rate": 0.21107266435986158,
+          "precision_vulnerable": 0.8030139935414424
+        },
+        "fpr_operating_point": {
+          "samples": 1709,
+          "accuracy": 0.7794031597425395,
+          "f1_macro": 0.7738415792719677,
+          "recall_vulnerable": 0.6318289786223278,
+          "confusion_matrix": [
+            [
+              800,
+              67
+            ],
+            [
+              310,
+              532
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.7207207207207207,
+              "recall": 0.922722029988466,
+              "f1-score": 0.8093070308548306,
+              "support": 867.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.8881469115191987,
+              "recall": 0.6318289786223278,
+              "f1-score": 0.7383761276891048,
+              "support": 842.0
+            },
+            "accuracy": 0.7794031597425395,
+            "macro avg": {
+              "precision": 0.8044338161199597,
+              "recall": 0.7772755043053969,
+              "f1-score": 0.7738415792719677,
+              "support": 1709.0
+            },
+            "weighted avg": {
+              "precision": 0.8032092243206729,
+              "recall": 0.7794031597425395,
+              "f1-score": 0.7743603834203419,
+              "support": 1709.0
+            }
+          },
+          "roc_auc": 0.9182947176355521,
+          "average_precision": 0.9077870641026967,
+          "brier_score": 0.11286603843390286,
+          "log_loss": 0.3600727784494856,
+          "ece_10_bins": 0.047441677578465985,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 483,
+              "predicted_probability": 0.05820543425754564,
+              "observed_positive_rate": 0.020703933747412008
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 120,
+              "predicted_probability": 0.14739613290143858,
+              "observed_positive_rate": 0.14166666666666666
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 95,
+              "predicted_probability": 0.24587981971835837,
+              "observed_positive_rate": 0.35789473684210527
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 82,
+              "predicted_probability": 0.3437391795435755,
+              "observed_positive_rate": 0.4268292682926829
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 59,
+              "predicted_probability": 0.45010669286849553,
+              "observed_positive_rate": 0.3559322033898305
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 75,
+              "predicted_probability": 0.5480284591435847,
+              "observed_positive_rate": 0.6533333333333333
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 129,
+              "predicted_probability": 0.653589377324493,
+              "observed_positive_rate": 0.7596899224806202
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 182,
+              "predicted_probability": 0.754549077028724,
+              "observed_positive_rate": 0.7142857142857143
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 227,
+              "predicted_probability": 0.8495609206783145,
+              "observed_positive_rate": 0.8898678414096917
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 257,
+              "predicted_probability": 0.9618814322528609,
+              "observed_positive_rate": 0.9571984435797666
+            }
+          ],
+          "threshold": 0.7442747283797105,
+          "single_class_subset": false,
+          "false_positive_rate": 0.07727797001153403,
+          "precision_vulnerable": 0.8881469115191987
+        },
+        "roc_recall_at_fpr_0_10": 0.6864608076009501,
+        "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+      },
+      "collision_free": {
+        "samples": 1323,
+        "raw": {
+          "samples": 1323,
+          "accuracy": 0.8571428571428571,
+          "f1_macro": 0.8571415512539757,
+          "recall_vulnerable": 0.8855799373040752,
+          "confusion_matrix": [
+            [
+              569,
+              116
+            ],
+            [
+              73,
+              565
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.8862928348909658,
+              "recall": 0.8306569343065694,
+              "f1-score": 0.8575734740015072,
+              "support": 685.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.8296622613803231,
+              "recall": 0.8855799373040752,
+              "f1-score": 0.8567096285064443,
+              "support": 638.0
+            },
+            "accuracy": 0.8571428571428571,
+            "macro avg": {
+              "precision": 0.8579775481356444,
+              "recall": 0.8581184358053223,
+              "f1-score": 0.8571415512539757,
+              "support": 1323.0
+            },
+            "weighted avg": {
+              "precision": 0.8589834577936187,
+              "recall": 0.8571428571428571,
+              "f1-score": 0.8571568954483324,
+              "support": 1323.0
+            }
+          },
+          "roc_auc": 0.9235727524426242,
+          "average_precision": 0.9103811453648137,
+          "brier_score": 0.10810511386920267,
+          "log_loss": 0.34524786344053354,
+          "ece_10_bins": 0.04172886868520708,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 397,
+              "predicted_probability": 0.04854042703606622,
+              "observed_positive_rate": 0.012594458438287154
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 90,
+              "predicted_probability": 0.14689681834403703,
+              "observed_positive_rate": 0.14444444444444443
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 73,
+              "predicted_probability": 0.24769498206853136,
+              "observed_positive_rate": 0.3698630136986301
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 48,
+              "predicted_probability": 0.35049597306631924,
+              "observed_positive_rate": 0.3541666666666667
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 34,
+              "predicted_probability": 0.45902792732878994,
+              "observed_positive_rate": 0.3235294117647059
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 47,
+              "predicted_probability": 0.5446275958481455,
+              "observed_positive_rate": 0.6382978723404256
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 87,
+              "predicted_probability": 0.6515959693520949,
+              "observed_positive_rate": 0.7586206896551724
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 125,
+              "predicted_probability": 0.753178751088007,
+              "observed_positive_rate": 0.664
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 171,
+              "predicted_probability": 0.8515067577422126,
+              "observed_positive_rate": 0.8538011695906432
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 251,
+              "predicted_probability": 0.9631923465405068,
+              "observed_positive_rate": 0.9561752988047809
+            }
+          ],
+          "threshold": 0.5,
+          "single_class_subset": false,
+          "false_positive_rate": 0.16934306569343066,
+          "precision_vulnerable": 0.8296622613803231
+        },
+        "calibrated": {
+          "samples": 1323,
+          "accuracy": 0.8458049886621315,
+          "f1_macro": 0.8456842923794712,
+          "recall_vulnerable": 0.9059561128526645,
+          "confusion_matrix": [
+            [
+              541,
+              144
+            ],
+            [
+              60,
+              578
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.9001663893510815,
+              "recall": 0.7897810218978102,
+              "f1-score": 0.8413685847589425,
+              "support": 685.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.8005540166204986,
+              "recall": 0.9059561128526645,
+              "f1-score": 0.85,
+              "support": 638.0
+            },
+            "accuracy": 0.8458049886621315,
+            "macro avg": {
+              "precision": 0.8503602029857901,
+              "recall": 0.8478685673752373,
+              "f1-score": 0.8456842923794712,
+              "support": 1323.0
+            },
+            "weighted avg": {
+              "precision": 0.8521295837561367,
+              "recall": 0.8458049886621315,
+              "f1-score": 0.8455309754798758,
+              "support": 1323.0
+            }
+          },
+          "roc_auc": 0.9235727524426242,
+          "average_precision": 0.9103811453648137,
+          "brier_score": 0.1083358194340141,
+          "log_loss": 0.3478991242188513,
+          "ece_10_bins": 0.058240698914866273,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 377,
+              "predicted_probability": 0.061049772297540224,
+              "observed_positive_rate": 0.013262599469496022
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 93,
+              "predicted_probability": 0.14947499145809084,
+              "observed_positive_rate": 0.11827956989247312
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 73,
+              "predicted_probability": 0.2452239559241118,
+              "observed_positive_rate": 0.3150684931506849
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 58,
+              "predicted_probability": 0.3429206978653102,
+              "observed_positive_rate": 0.3620689655172414
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 41,
+              "predicted_probability": 0.4529680160832904,
+              "observed_positive_rate": 0.3170731707317073
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 57,
+              "predicted_probability": 0.5497710150682259,
+              "observed_positive_rate": 0.6666666666666666
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 104,
+              "predicted_probability": 0.6559962619885318,
+              "observed_positive_rate": 0.7980769230769231
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 128,
+              "predicted_probability": 0.7542578722258145,
+              "observed_positive_rate": 0.640625
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 174,
+              "predicted_probability": 0.8472946429319286,
+              "observed_positive_rate": 0.8850574712643678
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 218,
+              "predicted_probability": 0.9623825056549253,
+              "observed_positive_rate": 0.9541284403669725
+            }
+          ],
+          "threshold": 0.39927582818515894,
+          "single_class_subset": false,
+          "false_positive_rate": 0.21021897810218979,
+          "precision_vulnerable": 0.8005540166204986
+        },
+        "fpr_operating_point": {
+          "samples": 1323,
+          "accuracy": 0.7891156462585034,
+          "f1_macro": 0.7835579649170128,
+          "recall_vulnerable": 0.6520376175548589,
+          "confusion_matrix": [
+            [
+              628,
+              57
+            ],
+            [
+              222,
+              416
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.7388235294117647,
+              "recall": 0.9167883211678832,
+              "f1-score": 0.8182410423452768,
+              "support": 685.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.879492600422833,
+              "recall": 0.6520376175548589,
+              "f1-score": 0.7488748874887489,
+              "support": 638.0
+            },
+            "accuracy": 0.7891156462585034,
+            "macro avg": {
+              "precision": 0.8091580649172988,
+              "recall": 0.7844129693613711,
+              "f1-score": 0.7835579649170128,
+              "support": 1323.0
+            },
+            "weighted avg": {
+              "precision": 0.8066594079492261,
+              "recall": 0.7891156462585034,
+              "f1-score": 0.7847900923842301,
+              "support": 1323.0
+            }
+          },
+          "roc_auc": 0.9235727524426242,
+          "average_precision": 0.9103811453648137,
+          "brier_score": 0.1083358194340141,
+          "log_loss": 0.3478991242188513,
+          "ece_10_bins": 0.058240698914866273,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 377,
+              "predicted_probability": 0.061049772297540224,
+              "observed_positive_rate": 0.013262599469496022
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 93,
+              "predicted_probability": 0.14947499145809084,
+              "observed_positive_rate": 0.11827956989247312
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 73,
+              "predicted_probability": 0.2452239559241118,
+              "observed_positive_rate": 0.3150684931506849
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 58,
+              "predicted_probability": 0.3429206978653102,
+              "observed_positive_rate": 0.3620689655172414
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 41,
+              "predicted_probability": 0.4529680160832904,
+              "observed_positive_rate": 0.3170731707317073
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 57,
+              "predicted_probability": 0.5497710150682259,
+              "observed_positive_rate": 0.6666666666666666
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 104,
+              "predicted_probability": 0.6559962619885318,
+              "observed_positive_rate": 0.7980769230769231
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 128,
+              "predicted_probability": 0.7542578722258145,
+              "observed_positive_rate": 0.640625
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 174,
+              "predicted_probability": 0.8472946429319286,
+              "observed_positive_rate": 0.8850574712643678
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 218,
+              "predicted_probability": 0.9623825056549253,
+              "observed_positive_rate": 0.9541284403669725
+            }
+          ],
+          "threshold": 0.7442747283797105,
+          "single_class_subset": false,
+          "false_positive_rate": 0.08321167883211679,
+          "precision_vulnerable": 0.879492600422833
+        },
+        "roc_recall_at_fpr_0_10": 0.6865203761755486,
+        "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+      },
+      "by_source": {
+        "dappscan": {
+          "samples": 45,
+          "raw": {
+            "samples": 45,
+            "accuracy": 0.9333333333333333,
+            "f1_macro": 0.4827586206896552,
+            "recall_vulnerable": 0.9333333333333333,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                42
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.9333333333333333,
+                "f1-score": 0.9655172413793104,
+                "support": 45.0
+              },
+              "accuracy": 0.9333333333333333,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.4666666666666667,
+                "f1-score": 0.4827586206896552,
+                "support": 45.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.9333333333333333,
+                "f1-score": 0.9655172413793104,
+                "support": 45.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.06081560338309968,
+            "log_loss": 0.21654235776592515,
+            "ece_10_bins": 0.08969131000535545,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 2,
+                "predicted_probability": 0.03259569054767322,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.36108317328960077,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.5104941921221723,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 3,
+                "predicted_probability": 0.752371234630035,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 1,
+                "predicted_probability": 0.8271383077004151,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 37,
+                "predicted_probability": 0.9984559538286856,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "calibrated": {
+            "samples": 45,
+            "accuracy": 0.9333333333333333,
+            "f1_macro": 0.4827586206896552,
+            "recall_vulnerable": 0.9333333333333333,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                42
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.9333333333333333,
+                "f1-score": 0.9655172413793104,
+                "support": 45.0
+              },
+              "accuracy": 0.9333333333333333,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.4666666666666667,
+                "f1-score": 0.4827586206896552,
+                "support": 45.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.9333333333333333,
+                "f1-score": 0.9655172413793104,
+                "support": 45.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.060382767959752046,
+            "log_loss": 0.204540600437837,
+            "ece_10_bins": 0.09140299221425104,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 2,
+                "predicted_probability": 0.04458077503226266,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.37403630412183286,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.5094696758260249,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 3,
+                "predicted_probability": 0.731687359084268,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 1,
+                "predicted_probability": 0.804177043174639,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 37,
+                "predicted_probability": 0.997701586484294,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "fpr_operating_point": {
+            "samples": 45,
+            "accuracy": 0.8666666666666667,
+            "f1_macro": 0.4642857142857143,
+            "recall_vulnerable": 0.8666666666666667,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                39
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.8666666666666667,
+                "f1-score": 0.9285714285714286,
+                "support": 45.0
+              },
+              "accuracy": 0.8666666666666667,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.43333333333333335,
+                "f1-score": 0.4642857142857143,
+                "support": 45.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.8666666666666667,
+                "f1-score": 0.9285714285714286,
+                "support": 45.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.060382767959752046,
+            "log_loss": 0.204540600437837,
+            "ece_10_bins": 0.09140299221425104,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 2,
+                "predicted_probability": 0.04458077503226266,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.37403630412183286,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.5094696758260249,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 3,
+                "predicted_probability": 0.731687359084268,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 1,
+                "predicted_probability": 0.804177043174639,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 37,
+                "predicted_probability": 0.997701586484294,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "roc_recall_at_fpr_0_10": null,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "scrawld": {
+          "samples": 165,
+          "raw": {
+            "samples": 165,
+            "accuracy": 0.9333333333333333,
+            "f1_macro": 0.4827586206896552,
+            "recall_vulnerable": 0.9333333333333333,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                11,
+                154
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.9333333333333333,
+                "f1-score": 0.9655172413793104,
+                "support": 165.0
+              },
+              "accuracy": 0.9333333333333333,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.4666666666666667,
+                "f1-score": 0.4827586206896552,
+                "support": 165.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.9333333333333333,
+                "f1-score": 0.9655172413793104,
+                "support": 165.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.07978595081608238,
+            "log_loss": 0.2806713635442874,
+            "ece_10_bins": 0.20559625841050425,
+            "reliability_bins": [
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 3,
+                "predicted_probability": 0.13835555555336754,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 6,
+                "predicted_probability": 0.25515493996274824,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 2,
+                "predicted_probability": 0.3514687409090361,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 9,
+                "predicted_probability": 0.5282371670315418,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 15,
+                "predicted_probability": 0.6570623601649259,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 33,
+                "predicted_probability": 0.7520367993292941,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 33,
+                "predicted_probability": 0.8572909629000591,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 64,
+                "predicted_probability": 0.9485905861669643,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "calibrated": {
+            "samples": 165,
+            "accuracy": 0.9393939393939394,
+            "f1_macro": 0.484375,
+            "recall_vulnerable": 0.9393939393939394,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                10,
+                155
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.9393939393939394,
+                "f1-score": 0.96875,
+                "support": 165.0
+              },
+              "accuracy": 0.9393939393939394,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.4696969696969697,
+                "f1-score": 0.484375,
+                "support": 165.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.9393939393939394,
+                "f1-score": 0.96875,
+                "support": 165.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.08308430032689444,
+            "log_loss": 0.29386209977264577,
+            "ece_10_bins": 0.2200846377324288,
+            "reliability_bins": [
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 3,
+                "predicted_probability": 0.16073089008622224,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 5,
+                "predicted_probability": 0.2698239648545212,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 2,
+                "predicted_probability": 0.3147205582838988,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 1,
+                "predicted_probability": 0.4041510516828074,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 11,
+                "predicted_probability": 0.5376132908683318,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 20,
+                "predicted_probability": 0.6649969523637856,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 31,
+                "predicted_probability": 0.7490508171828056,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 40,
+                "predicted_probability": 0.8577160681503873,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 52,
+                "predicted_probability": 0.9438120539587987,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "fpr_operating_point": {
+            "samples": 165,
+            "accuracy": 0.6545454545454545,
+            "f1_macro": 0.3956043956043956,
+            "recall_vulnerable": 0.6545454545454545,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                57,
+                108
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.6545454545454545,
+                "f1-score": 0.7912087912087912,
+                "support": 165.0
+              },
+              "accuracy": 0.6545454545454545,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.32727272727272727,
+                "f1-score": 0.3956043956043956,
+                "support": 165.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.6545454545454545,
+                "f1-score": 0.7912087912087912,
+                "support": 165.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.08308430032689444,
+            "log_loss": 0.29386209977264577,
+            "ece_10_bins": 0.2200846377324288,
+            "reliability_bins": [
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 3,
+                "predicted_probability": 0.16073089008622224,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 5,
+                "predicted_probability": 0.2698239648545212,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 2,
+                "predicted_probability": 0.3147205582838988,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 1,
+                "predicted_probability": 0.4041510516828074,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 11,
+                "predicted_probability": 0.5376132908683318,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 20,
+                "predicted_probability": 0.6649969523637856,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 31,
+                "predicted_probability": 0.7490508171828056,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 40,
+                "predicted_probability": 0.8577160681503873,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 52,
+                "predicted_probability": 0.9438120539587987,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "roc_recall_at_fpr_0_10": null,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "slither_audited_smart_contracts": {
+          "samples": 1329,
+          "raw": {
+            "samples": 1329,
+            "accuracy": 0.8457486832204665,
+            "f1_macro": 0.8399958419885161,
+            "recall_vulnerable": 0.8384615384615385,
+            "confusion_matrix": [
+              [
+                688,
+                121
+              ],
+              [
+                84,
+                436
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.8911917098445595,
+                "recall": 0.8504326328800988,
+                "f1-score": 0.8703352308665402,
+                "support": 809.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.7827648114901257,
+                "recall": 0.8384615384615385,
+                "f1-score": 0.8096564531104921,
+                "support": 520.0
+              },
+              "accuracy": 0.8457486832204665,
+              "macro avg": {
+                "precision": 0.8369782606673426,
+                "recall": 0.8444470856708186,
+                "f1-score": 0.8399958419885161,
+                "support": 1329.0
+              },
+              "weighted avg": {
+                "precision": 0.8487673402852626,
+                "recall": 0.8457486832204665,
+                "f1-score": 0.8465933464172212,
+                "support": 1329.0
+              }
+            },
+            "roc_auc": 0.9228724921555578,
+            "average_precision": 0.882770113831827,
+            "brier_score": 0.10929359814819654,
+            "log_loss": 0.34452889503993,
+            "ece_10_bins": 0.040246974642798514,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 494,
+                "predicted_probability": 0.04652694354656891,
+                "observed_positive_rate": 0.016194331983805668
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 106,
+                "predicted_probability": 0.1485795532036379,
+                "observed_positive_rate": 0.12264150943396226
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 74,
+                "predicted_probability": 0.24866758172626488,
+                "observed_positive_rate": 0.33783783783783783
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 55,
+                "predicted_probability": 0.3474015214133624,
+                "observed_positive_rate": 0.41818181818181815
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 43,
+                "predicted_probability": 0.4528237604854127,
+                "observed_positive_rate": 0.3488372093023256
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 42,
+                "predicted_probability": 0.5451117994373041,
+                "observed_positive_rate": 0.5476190476190477
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 69,
+                "predicted_probability": 0.6465397879520014,
+                "observed_positive_rate": 0.6231884057971014
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 111,
+                "predicted_probability": 0.759446087665926,
+                "observed_positive_rate": 0.6306306306306306
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 163,
+                "predicted_probability": 0.8544368599193429,
+                "observed_positive_rate": 0.8343558282208589
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 172,
+                "predicted_probability": 0.9622283481581532,
+                "observed_positive_rate": 0.9534883720930233
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": false,
+            "false_positive_rate": 0.14956736711990112,
+            "precision_vulnerable": 0.7827648114901257
+          },
+          "calibrated": {
+            "samples": 1329,
+            "accuracy": 0.8322046651617758,
+            "f1_macro": 0.8283165560312842,
+            "recall_vulnerable": 0.8711538461538462,
+            "confusion_matrix": [
+              [
+                653,
+                156
+              ],
+              [
+                67,
+                453
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.9069444444444444,
+                "recall": 0.8071693448702101,
+                "f1-score": 0.854153041203401,
+                "support": 809.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.7438423645320197,
+                "recall": 0.8711538461538462,
+                "f1-score": 0.8024800708591674,
+                "support": 520.0
+              },
+              "accuracy": 0.8322046651617758,
+              "macro avg": {
+                "precision": 0.8253934044882321,
+                "recall": 0.8391615955120282,
+                "f1-score": 0.8283165560312842,
+                "support": 1329.0
+              },
+              "weighted avg": {
+                "precision": 0.8431272273229541,
+                "recall": 0.8322046651617758,
+                "f1-score": 0.8339348737248446,
+                "support": 1329.0
+              }
+            },
+            "roc_auc": 0.9228724921555578,
+            "average_precision": 0.882770113831827,
+            "brier_score": 0.1091328722779907,
+            "log_loss": 0.3467899898783563,
+            "ece_10_bins": 0.03887499294033319,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 466,
+                "predicted_probability": 0.058206911897260925,
+                "observed_positive_rate": 0.017167381974248927
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 110,
+                "predicted_probability": 0.14641583393222132,
+                "observed_positive_rate": 0.1
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 81,
+                "predicted_probability": 0.2435847908986594,
+                "observed_positive_rate": 0.2962962962962963
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 63,
+                "predicted_probability": 0.3411108541945761,
+                "observed_positive_rate": 0.38095238095238093
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 52,
+                "predicted_probability": 0.44824823112528434,
+                "observed_positive_rate": 0.3269230769230769
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 48,
+                "predicted_probability": 0.5475704285229185,
+                "observed_positive_rate": 0.5625
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 80,
+                "predicted_probability": 0.6480097822566663,
+                "observed_positive_rate": 0.6375
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 121,
+                "predicted_probability": 0.7569739358788342,
+                "observed_positive_rate": 0.6611570247933884
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 162,
+                "predicted_probability": 0.8479717618867215,
+                "observed_positive_rate": 0.8518518518518519
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 146,
+                "predicted_probability": 0.9627830409071679,
+                "observed_positive_rate": 0.958904109589041
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": false,
+            "false_positive_rate": 0.19283065512978986,
+            "precision_vulnerable": 0.7438423645320197
+          },
+          "fpr_operating_point": {
+            "samples": 1329,
+            "accuracy": 0.8186606471030851,
+            "f1_macro": 0.7985402313816288,
+            "recall_vulnerable": 0.6423076923076924,
+            "confusion_matrix": [
+              [
+                754,
+                55
+              ],
+              [
+                186,
+                334
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.8021276595744681,
+                "recall": 0.9320148331273177,
+                "f1-score": 0.8622069754145226,
+                "support": 809.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.8586118251928021,
+                "recall": 0.6423076923076924,
+                "f1-score": 0.7348734873487349,
+                "support": 520.0
+              },
+              "accuracy": 0.8186606471030851,
+              "macro avg": {
+                "precision": 0.8303697423836351,
+                "recall": 0.7871612627175051,
+                "f1-score": 0.7985402313816288,
+                "support": 1329.0
+              },
+              "weighted avg": {
+                "precision": 0.8242283112836732,
+                "recall": 0.8186606471030851,
+                "f1-score": 0.8123849936280594,
+                "support": 1329.0
+              }
+            },
+            "roc_auc": 0.9228724921555578,
+            "average_precision": 0.882770113831827,
+            "brier_score": 0.1091328722779907,
+            "log_loss": 0.3467899898783563,
+            "ece_10_bins": 0.03887499294033319,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 466,
+                "predicted_probability": 0.058206911897260925,
+                "observed_positive_rate": 0.017167381974248927
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 110,
+                "predicted_probability": 0.14641583393222132,
+                "observed_positive_rate": 0.1
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 81,
+                "predicted_probability": 0.2435847908986594,
+                "observed_positive_rate": 0.2962962962962963
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 63,
+                "predicted_probability": 0.3411108541945761,
+                "observed_positive_rate": 0.38095238095238093
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 52,
+                "predicted_probability": 0.44824823112528434,
+                "observed_positive_rate": 0.3269230769230769
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 48,
+                "predicted_probability": 0.5475704285229185,
+                "observed_positive_rate": 0.5625
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 80,
+                "predicted_probability": 0.6480097822566663,
+                "observed_positive_rate": 0.6375
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 121,
+                "predicted_probability": 0.7569739358788342,
+                "observed_positive_rate": 0.6611570247933884
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 162,
+                "predicted_probability": 0.8479717618867215,
+                "observed_positive_rate": 0.8518518518518519
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 146,
+                "predicted_probability": 0.9627830409071679,
+                "observed_positive_rate": 0.958904109589041
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": false,
+            "false_positive_rate": 0.06798516687268233,
+            "precision_vulnerable": 0.8586118251928021
+          },
+          "roc_recall_at_fpr_0_10": 0.7403846153846154,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "smartbugs_curated": {
+          "samples": 9,
+          "raw": {
+            "samples": 9,
+            "accuracy": 0.7777777777777778,
+            "f1_macro": 0.4375,
+            "recall_vulnerable": 0.7777777777777778,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                7
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.875,
+                "support": 9.0
+              },
+              "accuracy": 0.7777777777777778,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.3888888888888889,
+                "f1-score": 0.4375,
+                "support": 9.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.875,
+                "support": 9.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.14689759144691666,
+            "log_loss": 0.431254486062794,
+            "ece_10_bins": 0.2948682044841555,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 1,
+                "predicted_probability": 0.27645169565434113,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.33169997761692804,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 2,
+                "predicted_probability": 0.6307226540734452,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 1,
+                "predicted_probability": 0.7626926625799539,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 4,
+                "predicted_probability": 0.9284741289111216,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "calibrated": {
+            "samples": 9,
+            "accuracy": 0.7777777777777778,
+            "f1_macro": 0.4375,
+            "recall_vulnerable": 0.7777777777777778,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                7
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.875,
+                "support": 9.0
+              },
+              "accuracy": 0.7777777777777778,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.3888888888888889,
+                "f1-score": 0.4375,
+                "support": 9.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.875,
+                "support": 9.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.14611096284749853,
+            "log_loss": 0.4350927636244991,
+            "ece_10_bins": 0.3042417617611991,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 1,
+                "predicted_probability": 0.29563365679280584,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.3470343479758827,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.5923363629366643,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 1,
+                "predicted_probability": 0.6447501553839599,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 1,
+                "predicted_probability": 0.7414446872206587,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 2,
+                "predicted_probability": 0.895486515490403,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 2,
+                "predicted_probability": 0.9248259514292152,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "fpr_operating_point": {
+            "samples": 9,
+            "accuracy": 0.4444444444444444,
+            "f1_macro": 0.3076923076923077,
+            "recall_vulnerable": 0.4444444444444444,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.4444444444444444,
+                "f1-score": 0.6153846153846154,
+                "support": 9.0
+              },
+              "accuracy": 0.4444444444444444,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.2222222222222222,
+                "f1-score": 0.3076923076923077,
+                "support": 9.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.4444444444444444,
+                "f1-score": 0.6153846153846154,
+                "support": 9.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.14611096284749853,
+            "log_loss": 0.4350927636244991,
+            "ece_10_bins": 0.3042417617611991,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 1,
+                "predicted_probability": 0.29563365679280584,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.3470343479758827,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.5923363629366643,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 1,
+                "predicted_probability": 0.6447501553839599,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 1,
+                "predicted_probability": 0.7414446872206587,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 2,
+                "predicted_probability": 0.895486515490403,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 2,
+                "predicted_probability": 0.9248259514292152,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "roc_recall_at_fpr_0_10": null,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "smartbugs_results": {
+          "samples": 111,
+          "raw": {
+            "samples": 111,
+            "accuracy": 0.7477477477477478,
+            "f1_macro": 0.7232905982905984,
+            "recall_vulnerable": 0.7837837837837838,
+            "confusion_matrix": [
+              [
+                25,
+                12
+              ],
+              [
+                16,
+                58
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.6097560975609756,
+                "recall": 0.6756756756756757,
+                "f1-score": 0.6410256410256411,
+                "support": 37.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.8285714285714286,
+                "recall": 0.7837837837837838,
+                "f1-score": 0.8055555555555556,
+                "support": 74.0
+              },
+              "accuracy": 0.7477477477477478,
+              "macro avg": {
+                "precision": 0.7191637630662021,
+                "recall": 0.7297297297297297,
+                "f1-score": 0.7232905982905984,
+                "support": 111.0
+              },
+              "weighted avg": {
+                "precision": 0.7556329849012776,
+                "recall": 0.7477477477477478,
+                "f1-score": 0.7507122507122507,
+                "support": 111.0
+              }
+            },
+            "roc_auc": 0.7436084733382031,
+            "average_precision": 0.7832023689502258,
+            "brier_score": 0.18964965497359648,
+            "log_loss": 0.6066653854380749,
+            "ece_10_bins": 0.15194346035968112,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 10,
+                "predicted_probability": 0.051504692701824874,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 7,
+                "predicted_probability": 0.14614385447750924,
+                "observed_positive_rate": 0.42857142857142855
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 8,
+                "predicted_probability": 0.25668306349492925,
+                "observed_positive_rate": 0.625
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 10,
+                "predicted_probability": 0.3611113582312754,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 6,
+                "predicted_probability": 0.47107402575381147,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 5,
+                "predicted_probability": 0.5460033404257655,
+                "observed_positive_rate": 0.8
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 15,
+                "predicted_probability": 0.6655454141721375,
+                "observed_positive_rate": 0.9333333333333333
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 15,
+                "predicted_probability": 0.7438341517745443,
+                "observed_positive_rate": 0.7333333333333333
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 20,
+                "predicted_probability": 0.8452046474357141,
+                "observed_positive_rate": 0.9
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 15,
+                "predicted_probability": 0.9549656657233989,
+                "observed_positive_rate": 0.7333333333333333
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": false,
+            "false_positive_rate": 0.32432432432432434,
+            "precision_vulnerable": 0.8285714285714286
+          },
+          "calibrated": {
+            "samples": 111,
+            "accuracy": 0.7477477477477478,
+            "f1_macro": 0.7122222222222223,
+            "recall_vulnerable": 0.8243243243243243,
+            "confusion_matrix": [
+              [
+                22,
+                15
+              ],
+              [
+                13,
+                61
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.6285714285714286,
+                "recall": 0.5945945945945946,
+                "f1-score": 0.6111111111111112,
+                "support": 37.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.8026315789473685,
+                "recall": 0.8243243243243243,
+                "f1-score": 0.8133333333333334,
+                "support": 74.0
+              },
+              "accuracy": 0.7477477477477478,
+              "macro avg": {
+                "precision": 0.7156015037593986,
+                "recall": 0.7094594594594594,
+                "f1-score": 0.7122222222222223,
+                "support": 111.0
+              },
+              "weighted avg": {
+                "precision": 0.7446115288220552,
+                "recall": 0.7477477477477478,
+                "f1-score": 0.745925925925926,
+                "support": 111.0
+              }
+            },
+            "roc_auc": 0.7436084733382031,
+            "average_precision": 0.7832023689502258,
+            "brier_score": 0.18892765946242582,
+            "log_loss": 0.5950203981992815,
+            "ece_10_bins": 0.17325450033386092,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 9,
+                "predicted_probability": 0.060891532450933115,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 7,
+                "predicted_probability": 0.1570859350528023,
+                "observed_positive_rate": 0.42857142857142855
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 6,
+                "predicted_probability": 0.24852150782692542,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 13,
+                "predicted_probability": 0.358770649348779,
+                "observed_positive_rate": 0.5384615384615384
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 6,
+                "predicted_probability": 0.4738726348406057,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 5,
+                "predicted_probability": 0.5415688810407006,
+                "observed_positive_rate": 0.8
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 20,
+                "predicted_probability": 0.6618235773026713,
+                "observed_positive_rate": 0.9
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 16,
+                "predicted_probability": 0.7561871203426865,
+                "observed_positive_rate": 0.6875
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 15,
+                "predicted_probability": 0.8409114554795974,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 14,
+                "predicted_probability": 0.9457288889912142,
+                "observed_positive_rate": 0.7142857142857143
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": false,
+            "false_positive_rate": 0.40540540540540543,
+            "precision_vulnerable": 0.8026315789473685
+          },
+          "fpr_operating_point": {
+            "samples": 111,
+            "accuracy": 0.5675675675675675,
+            "f1_macro": 0.5672514619883041,
+            "recall_vulnerable": 0.44594594594594594,
+            "confusion_matrix": [
+              [
+                30,
+                7
+              ],
+              [
+                41,
+                33
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.4225352112676056,
+                "recall": 0.8108108108108109,
+                "f1-score": 0.5555555555555556,
+                "support": 37.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.825,
+                "recall": 0.44594594594594594,
+                "f1-score": 0.5789473684210527,
+                "support": 74.0
+              },
+              "accuracy": 0.5675675675675675,
+              "macro avg": {
+                "precision": 0.6237676056338028,
+                "recall": 0.6283783783783784,
+                "f1-score": 0.5672514619883041,
+                "support": 111.0
+              },
+              "weighted avg": {
+                "precision": 0.6908450704225352,
+                "recall": 0.5675675675675675,
+                "f1-score": 0.571150097465887,
+                "support": 111.0
+              }
+            },
+            "roc_auc": 0.7436084733382031,
+            "average_precision": 0.7832023689502258,
+            "brier_score": 0.18892765946242582,
+            "log_loss": 0.5950203981992815,
+            "ece_10_bins": 0.17325450033386092,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 9,
+                "predicted_probability": 0.060891532450933115,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 7,
+                "predicted_probability": 0.1570859350528023,
+                "observed_positive_rate": 0.42857142857142855
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 6,
+                "predicted_probability": 0.24852150782692542,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 13,
+                "predicted_probability": 0.358770649348779,
+                "observed_positive_rate": 0.5384615384615384
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 6,
+                "predicted_probability": 0.4738726348406057,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 5,
+                "predicted_probability": 0.5415688810407006,
+                "observed_positive_rate": 0.8
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 20,
+                "predicted_probability": 0.6618235773026713,
+                "observed_positive_rate": 0.9
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 16,
+                "predicted_probability": 0.7561871203426865,
+                "observed_positive_rate": 0.6875
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 15,
+                "predicted_probability": 0.8409114554795974,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 14,
+                "predicted_probability": 0.9457288889912142,
+                "observed_positive_rate": 0.7142857142857143
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": false,
+            "false_positive_rate": 0.1891891891891892,
+            "precision_vulnerable": 0.825
+          },
+          "roc_recall_at_fpr_0_10": 0.08108108108108109,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "zeus": {
+          "samples": 50,
+          "raw": {
+            "samples": 50,
+            "accuracy": 0.74,
+            "f1_macro": 0.6961196820944366,
+            "recall_vulnerable": 0.9655172413793104,
+            "confusion_matrix": [
+              [
+                9,
+                12
+              ],
+              [
+                1,
+                28
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.9,
+                "recall": 0.42857142857142855,
+                "f1-score": 0.5806451612903226,
+                "support": 21.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.7,
+                "recall": 0.9655172413793104,
+                "f1-score": 0.8115942028985508,
+                "support": 29.0
+              },
+              "accuracy": 0.74,
+              "macro avg": {
+                "precision": 0.8,
+                "recall": 0.6970443349753694,
+                "f1-score": 0.6961196820944366,
+                "support": 50.0
+              },
+              "weighted avg": {
+                "precision": 0.784,
+                "recall": 0.74,
+                "f1-score": 0.7145956054230951,
+                "support": 50.0
+              }
+            },
+            "roc_auc": 0.7569786535303777,
+            "average_precision": 0.8078989590060635,
+            "brier_score": 0.18445737892007374,
+            "log_loss": 0.5415996901130897,
+            "ece_10_bins": 0.12121980209783849,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 6,
+                "predicted_probability": 0.04417636899657192,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 3,
+                "predicted_probability": 0.24595505918891492,
+                "observed_positive_rate": 0.3333333333333333
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.36177257232804716,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 7,
+                "predicted_probability": 0.5640178186832766,
+                "observed_positive_rate": 0.5714285714285714
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 7,
+                "predicted_probability": 0.6403865479770326,
+                "observed_positive_rate": 0.8571428571428571
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 9,
+                "predicted_probability": 0.7340846873556692,
+                "observed_positive_rate": 0.5555555555555556
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 9,
+                "predicted_probability": 0.8364825572387411,
+                "observed_positive_rate": 0.6666666666666666
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 8,
+                "predicted_probability": 0.9334687326779578,
+                "observed_positive_rate": 0.875
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": false,
+            "false_positive_rate": 0.5714285714285714,
+            "precision_vulnerable": 0.7
+          },
+          "calibrated": {
+            "samples": 50,
+            "accuracy": 0.74,
+            "f1_macro": 0.6961196820944366,
+            "recall_vulnerable": 0.9655172413793104,
+            "confusion_matrix": [
+              [
+                9,
+                12
+              ],
+              [
+                1,
+                28
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.9,
+                "recall": 0.42857142857142855,
+                "f1-score": 0.5806451612903226,
+                "support": 21.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.7,
+                "recall": 0.9655172413793104,
+                "f1-score": 0.8115942028985508,
+                "support": 29.0
+              },
+              "accuracy": 0.74,
+              "macro avg": {
+                "precision": 0.8,
+                "recall": 0.6970443349753694,
+                "f1-score": 0.6961196820944366,
+                "support": 50.0
+              },
+              "weighted avg": {
+                "precision": 0.784,
+                "recall": 0.74,
+                "f1-score": 0.7145956054230951,
+                "support": 50.0
+              }
+            },
+            "roc_auc": 0.7569786535303777,
+            "average_precision": 0.8078989590060635,
+            "brier_score": 0.18276738896014283,
+            "log_loss": 0.536516185338109,
+            "ece_10_bins": 0.16832777669408064,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 6,
+                "predicted_probability": 0.05860307669133738,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 2,
+                "predicted_probability": 0.24616614121283664,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 2,
+                "predicted_probability": 0.34104934905762896,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 9,
+                "predicted_probability": 0.5661508025723249,
+                "observed_positive_rate": 0.5555555555555556
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 8,
+                "predicted_probability": 0.6613857932016498,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 10,
+                "predicted_probability": 0.7478009755265428,
+                "observed_positive_rate": 0.4
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 7,
+                "predicted_probability": 0.8516341337090892,
+                "observed_positive_rate": 0.8571428571428571
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 6,
+                "predicted_probability": 0.925693710337816,
+                "observed_positive_rate": 0.8333333333333334
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": false,
+            "false_positive_rate": 0.5714285714285714,
+            "precision_vulnerable": 0.7
+          },
+          "fpr_operating_point": {
+            "samples": 50,
+            "accuracy": 0.6,
+            "f1_macro": 0.5993589743589745,
+            "recall_vulnerable": 0.4827586206896552,
+            "confusion_matrix": [
+              [
+                16,
+                5
+              ],
+              [
+                15,
+                14
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.5161290322580645,
+                "recall": 0.7619047619047619,
+                "f1-score": 0.6153846153846154,
+                "support": 21.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.7368421052631579,
+                "recall": 0.4827586206896552,
+                "f1-score": 0.5833333333333334,
+                "support": 29.0
+              },
+              "accuracy": 0.6,
+              "macro avg": {
+                "precision": 0.6264855687606112,
+                "recall": 0.6223316912972086,
+                "f1-score": 0.5993589743589745,
+                "support": 50.0
+              },
+              "weighted avg": {
+                "precision": 0.6441426146010187,
+                "recall": 0.6,
+                "f1-score": 0.5967948717948718,
+                "support": 50.0
+              }
+            },
+            "roc_auc": 0.7569786535303777,
+            "average_precision": 0.8078989590060635,
+            "brier_score": 0.18276738896014283,
+            "log_loss": 0.536516185338109,
+            "ece_10_bins": 0.16832777669408064,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 6,
+                "predicted_probability": 0.05860307669133738,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 2,
+                "predicted_probability": 0.24616614121283664,
+                "observed_positive_rate": 0.5
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 2,
+                "predicted_probability": 0.34104934905762896,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 9,
+                "predicted_probability": 0.5661508025723249,
+                "observed_positive_rate": 0.5555555555555556
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 8,
+                "predicted_probability": 0.6613857932016498,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 10,
+                "predicted_probability": 0.7478009755265428,
+                "observed_positive_rate": 0.4
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 7,
+                "predicted_probability": 0.8516341337090892,
+                "observed_positive_rate": 0.8571428571428571
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 6,
+                "predicted_probability": 0.925693710337816,
+                "observed_positive_rate": 0.8333333333333334
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": false,
+            "false_positive_rate": 0.23809523809523808,
+            "precision_vulnerable": 0.7368421052631579
+          },
+          "roc_recall_at_fpr_0_10": 0.3793103448275862,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        }
+      }
+    },
+    "source_holdout": {
+      "all": {
+        "raw": {
+          "samples": 1152,
+          "accuracy": 0.8107638888888888,
+          "f1_macro": 0.4566555027650129,
+          "recall_vulnerable": 0.8132635253054101,
+          "confusion_matrix": [
+            [
+              2,
+              4
+            ],
+            [
+              214,
+              932
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.009259259259259259,
+              "recall": 0.3333333333333333,
+              "f1-score": 0.018018018018018018,
+              "support": 6.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.9957264957264957,
+              "recall": 0.8132635253054101,
+              "f1-score": 0.8952929875120077,
+              "support": 1146.0
+            },
+            "accuracy": 0.8107638888888888,
+            "macro avg": {
+              "precision": 0.5024928774928775,
+              "recall": 0.5732984293193717,
+              "f1-score": 0.4566555027650129,
+              "support": 1152.0
+            },
+            "weighted avg": {
+              "precision": 0.9905886455365623,
+              "recall": 0.8107638888888888,
+              "f1-score": 0.8907238470458932,
+              "support": 1152.0
+            }
+          },
+          "roc_auc": 0.7406922629435719,
+          "average_precision": 0.9983585683011154,
+          "brier_score": 0.13941330977082286,
+          "log_loss": 0.43909186215621,
+          "ece_10_bins": 0.25405917742760836,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 43,
+              "predicted_probability": 0.06674554507105487,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 44,
+              "predicted_probability": 0.14773553249771246,
+              "observed_positive_rate": 0.9772727272727273
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 43,
+              "predicted_probability": 0.251518880187791,
+              "observed_positive_rate": 0.9767441860465116
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 53,
+              "predicted_probability": 0.3490897973244304,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 33,
+              "predicted_probability": 0.4446695760335616,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 52,
+              "predicted_probability": 0.5533459947592942,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 76,
+              "predicted_probability": 0.6515229199751463,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 112,
+              "predicted_probability": 0.7542999213776073,
+              "observed_positive_rate": 0.9732142857142857
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 240,
+              "predicted_probability": 0.8531327953972653,
+              "observed_positive_rate": 0.9958333333333333
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 456,
+              "predicted_probability": 0.9483312343965636,
+              "observed_positive_rate": 1.0
+            }
+          ],
+          "threshold": 0.5,
+          "single_class_subset": false,
+          "false_positive_rate": 0.6666666666666666,
+          "precision_vulnerable": 0.9957264957264957
+        },
+        "calibrated": {
+          "samples": 1152,
+          "accuracy": 0.8454861111111112,
+          "f1_macro": 0.4690474464272768,
+          "recall_vulnerable": 0.8481675392670157,
+          "confusion_matrix": [
+            [
+              2,
+              4
+            ],
+            [
+              174,
+              972
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.011363636363636364,
+              "recall": 0.3333333333333333,
+              "f1-score": 0.02197802197802198,
+              "support": 6.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.9959016393442623,
+              "recall": 0.8481675392670157,
+              "f1-score": 0.9161168708765316,
+              "support": 1146.0
+            },
+            "accuracy": 0.8454861111111112,
+            "macro avg": {
+              "precision": 0.5036326378539494,
+              "recall": 0.5907504363001745,
+              "f1-score": 0.4690474464272768,
+              "support": 1152.0
+            },
+            "weighted avg": {
+              "precision": 0.9907738372454049,
+              "recall": 0.8454861111111112,
+              "f1-score": 0.9114598977051851,
+              "support": 1152.0
+            }
+          },
+          "roc_auc": 0.7406922629435719,
+          "average_precision": 0.9983585683011154,
+          "brier_score": 0.13870379248274783,
+          "log_loss": 0.435580339141348,
+          "ece_10_bins": 0.2648036783791099,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 29,
+              "predicted_probability": 0.07112299454793168,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 50,
+              "predicted_probability": 0.14773523752681358,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 42,
+              "predicted_probability": 0.25247924264976934,
+              "observed_positive_rate": 0.9523809523809523
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 55,
+              "predicted_probability": 0.34862170329377673,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 40,
+              "predicted_probability": 0.4415885671316593,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 60,
+              "predicted_probability": 0.5544544132445004,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 86,
+              "predicted_probability": 0.6529886101308056,
+              "observed_positive_rate": 0.9883720930232558
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 146,
+              "predicted_probability": 0.7582218421315536,
+              "observed_positive_rate": 0.9794520547945206
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 249,
+              "predicted_probability": 0.854241679020996,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 395,
+              "predicted_probability": 0.939807890982193,
+              "observed_positive_rate": 1.0
+            }
+          ],
+          "threshold": 0.39927582818515894,
+          "single_class_subset": false,
+          "false_positive_rate": 0.6666666666666666,
+          "precision_vulnerable": 0.9959016393442623
+        },
+        "fpr_operating_point": {
+          "samples": 1152,
+          "accuracy": 0.6432291666666666,
+          "f1_macro": 0.40274212449684194,
+          "recall_vulnerable": 0.6422338568935427,
+          "confusion_matrix": [
+            [
+              5,
+              1
+            ],
+            [
+              410,
+              736
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.012048192771084338,
+              "recall": 0.8333333333333334,
+              "f1-score": 0.023752969121140142,
+              "support": 6.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.9986431478968792,
+              "recall": 0.6422338568935427,
+              "f1-score": 0.7817312798725438,
+              "support": 1146.0
+            },
+            "accuracy": 0.6432291666666666,
+            "macro avg": {
+              "precision": 0.5053456703339818,
+              "recall": 0.737783595113438,
+              "f1-score": 0.40274212449684194,
+              "support": 1152.0
+            },
+            "weighted avg": {
+              "precision": 0.9935046325055991,
+              "recall": 0.6432291666666666,
+              "f1-score": 0.7777834761707135,
+              "support": 1152.0
+            }
+          },
+          "roc_auc": 0.7406922629435719,
+          "average_precision": 0.9983585683011154,
+          "brier_score": 0.13870379248274783,
+          "log_loss": 0.435580339141348,
+          "ece_10_bins": 0.2648036783791099,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 29,
+              "predicted_probability": 0.07112299454793168,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 50,
+              "predicted_probability": 0.14773523752681358,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 42,
+              "predicted_probability": 0.25247924264976934,
+              "observed_positive_rate": 0.9523809523809523
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 55,
+              "predicted_probability": 0.34862170329377673,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 40,
+              "predicted_probability": 0.4415885671316593,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 60,
+              "predicted_probability": 0.5544544132445004,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 86,
+              "predicted_probability": 0.6529886101308056,
+              "observed_positive_rate": 0.9883720930232558
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 146,
+              "predicted_probability": 0.7582218421315536,
+              "observed_positive_rate": 0.9794520547945206
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 249,
+              "predicted_probability": 0.854241679020996,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 395,
+              "predicted_probability": 0.939807890982193,
+              "observed_positive_rate": 1.0
+            }
+          ],
+          "threshold": 0.7442747283797105,
+          "single_class_subset": false,
+          "false_positive_rate": 0.16666666666666666,
+          "precision_vulnerable": 0.9986431478968792
+        },
+        "roc_recall_at_fpr_0_10": 0.5776614310645725,
+        "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+      },
+      "collision_free": {
+        "samples": 1124,
+        "raw": {
+          "samples": 1124,
+          "accuracy": 0.8096085409252669,
+          "f1_macro": 0.4564649523206942,
+          "recall_vulnerable": 0.8121645796064401,
+          "confusion_matrix": [
+            [
+              2,
+              4
+            ],
+            [
+              210,
+              908
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.009433962264150943,
+              "recall": 0.3333333333333333,
+              "f1-score": 0.01834862385321101,
+              "support": 6.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.9956140350877193,
+              "recall": 0.8121645796064401,
+              "f1-score": 0.8945812807881773,
+              "support": 1118.0
+            },
+            "accuracy": 0.8096085409252669,
+            "macro avg": {
+              "precision": 0.5025239986759351,
+              "recall": 0.5727489564698867,
+              "f1-score": 0.4564649523206942,
+              "support": 1124.0
+            },
+            "weighted avg": {
+              "precision": 0.9903497286491592,
+              "recall": 0.8096085409252669,
+              "f1-score": 0.8899038822636135,
+              "support": 1124.0
+            }
+          },
+          "roc_auc": 0.7373285629099583,
+          "average_precision": 0.998291320511658,
+          "brier_score": 0.14104969864661482,
+          "log_loss": 0.44412562085835006,
+          "ece_10_bins": 0.25615204478022835,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 43,
+              "predicted_probability": 0.06674554507105487,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 44,
+              "predicted_probability": 0.14773553249771246,
+              "observed_positive_rate": 0.9772727272727273
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 43,
+              "predicted_probability": 0.251518880187791,
+              "observed_positive_rate": 0.9767441860465116
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 50,
+              "predicted_probability": 0.35082158128057306,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 32,
+              "predicted_probability": 0.44495722899928014,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 51,
+              "predicted_probability": 0.5527723265106683,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 76,
+              "predicted_probability": 0.6515229199751463,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 112,
+              "predicted_probability": 0.7542999213776073,
+              "observed_positive_rate": 0.9732142857142857
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 234,
+              "predicted_probability": 0.8529505365092487,
+              "observed_positive_rate": 0.9957264957264957
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 439,
+              "predicted_probability": 0.9483838502309262,
+              "observed_positive_rate": 1.0
+            }
+          ],
+          "threshold": 0.5,
+          "single_class_subset": false,
+          "false_positive_rate": 0.6666666666666666,
+          "precision_vulnerable": 0.9956140350877193
+        },
+        "calibrated": {
+          "samples": 1124,
+          "accuracy": 0.844306049822064,
+          "f1_macro": 0.46888222254023887,
+          "recall_vulnerable": 0.8470483005366727,
+          "confusion_matrix": [
+            [
+              2,
+              4
+            ],
+            [
+              171,
+              947
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.011560693641618497,
+              "recall": 0.3333333333333333,
+              "f1-score": 0.0223463687150838,
+              "support": 6.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.9957939011566772,
+              "recall": 0.8470483005366727,
+              "f1-score": 0.915418076365394,
+              "support": 1118.0
+            },
+            "accuracy": 0.844306049822064,
+            "macro avg": {
+              "precision": 0.5036772973991479,
+              "recall": 0.590190816935003,
+              "f1-score": 0.46888222254023887,
+              "support": 1124.0
+            },
+            "weighted avg": {
+              "precision": 0.9905399872375578,
+              "recall": 0.8443060498220641,
+              "f1-score": 0.9106507896697518,
+              "support": 1124.0
+            }
+          },
+          "roc_auc": 0.7373285629099583,
+          "average_precision": 0.998291320511658,
+          "brier_score": 0.14031305669440916,
+          "log_loss": 0.44027683090232544,
+          "ece_10_bins": 0.26686135107680714,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 29,
+              "predicted_probability": 0.07112299454793168,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 50,
+              "predicted_probability": 0.14773523752681358,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 42,
+              "predicted_probability": 0.25247924264976934,
+              "observed_positive_rate": 0.9523809523809523
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 52,
+              "predicted_probability": 0.3493293855681605,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 39,
+              "predicted_probability": 0.44158554810542644,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 59,
+              "predicted_probability": 0.554111883311769,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 86,
+              "predicted_probability": 0.6529886101308056,
+              "observed_positive_rate": 0.9883720930232558
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 145,
+              "predicted_probability": 0.7580817269922961,
+              "observed_positive_rate": 0.9793103448275862
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 239,
+              "predicted_probability": 0.8535752731195521,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 383,
+              "predicted_probability": 0.9395077226589875,
+              "observed_positive_rate": 1.0
+            }
+          ],
+          "threshold": 0.39927582818515894,
+          "single_class_subset": false,
+          "false_positive_rate": 0.6666666666666666,
+          "precision_vulnerable": 0.9957939011566772
+        },
+        "fpr_operating_point": {
+          "samples": 1124,
+          "accuracy": 0.6387900355871886,
+          "f1_macro": 0.40121137050722205,
+          "recall_vulnerable": 0.6377459749552773,
+          "confusion_matrix": [
+            [
+              5,
+              1
+            ],
+            [
+              405,
+              713
+            ]
+          ],
+          "classification_report": {
+            "no_annotated_vulnerability": {
+              "precision": 0.012195121951219513,
+              "recall": 0.8333333333333334,
+              "f1-score": 0.02403846153846154,
+              "support": 6.0
+            },
+            "vulnerability_annotated": {
+              "precision": 0.9985994397759104,
+              "recall": 0.6377459749552773,
+              "f1-score": 0.7783842794759825,
+              "support": 1118.0
+            },
+            "accuracy": 0.6387900355871886,
+            "macro avg": {
+              "precision": 0.505397280863565,
+              "recall": 0.7355396541443053,
+              "f1-score": 0.40121137050722205,
+              "support": 1124.0
+            },
+            "weighted avg": {
+              "precision": 0.9933339362999778,
+              "recall": 0.6387900355871886,
+              "f1-score": 0.7743575224407289,
+              "support": 1124.0
+            }
+          },
+          "roc_auc": 0.7373285629099583,
+          "average_precision": 0.998291320511658,
+          "brier_score": 0.14031305669440916,
+          "log_loss": 0.44027683090232544,
+          "ece_10_bins": 0.26686135107680714,
+          "reliability_bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 29,
+              "predicted_probability": 0.07112299454793168,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 50,
+              "predicted_probability": 0.14773523752681358,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.30000000000000004,
+              "count": 42,
+              "predicted_probability": 0.25247924264976934,
+              "observed_positive_rate": 0.9523809523809523
+            },
+            {
+              "lower": 0.30000000000000004,
+              "upper": 0.4,
+              "count": 52,
+              "predicted_probability": 0.3493293855681605,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 39,
+              "predicted_probability": 0.44158554810542644,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6000000000000001,
+              "count": 59,
+              "predicted_probability": 0.554111883311769,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.6000000000000001,
+              "upper": 0.7000000000000001,
+              "count": 86,
+              "predicted_probability": 0.6529886101308056,
+              "observed_positive_rate": 0.9883720930232558
+            },
+            {
+              "lower": 0.7000000000000001,
+              "upper": 0.8,
+              "count": 145,
+              "predicted_probability": 0.7580817269922961,
+              "observed_positive_rate": 0.9793103448275862
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 239,
+              "predicted_probability": 0.8535752731195521,
+              "observed_positive_rate": 1.0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 383,
+              "predicted_probability": 0.9395077226589875,
+              "observed_positive_rate": 1.0
+            }
+          ],
+          "threshold": 0.7442747283797105,
+          "single_class_subset": false,
+          "false_positive_rate": 0.16666666666666666,
+          "precision_vulnerable": 0.9985994397759104
+        },
+        "roc_recall_at_fpr_0_10": 0.5724508050089445,
+        "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+      },
+      "by_source": {
+        "CGT": {
+          "samples": 1110,
+          "raw": {
+            "samples": 1110,
+            "accuracy": 0.8162162162162162,
+            "f1_macro": 0.4494047619047619,
+            "recall_vulnerable": 0.8162162162162162,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                204,
+                906
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.8162162162162162,
+                "f1-score": 0.8988095238095238,
+                "support": 1110.0
+              },
+              "accuracy": 0.8162162162162162,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.4081081081081081,
+                "f1-score": 0.4494047619047619,
+                "support": 1110.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.8162162162162162,
+                "f1-score": 0.8988095238095238,
+                "support": 1110.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.13668113139092947,
+            "log_loss": 0.4337174811152266,
+            "ece_10_bins": 0.25609092525729016,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 43,
+                "predicted_probability": 0.06674554507105487,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 42,
+                "predicted_probability": 0.1465334578221026,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 38,
+                "predicted_probability": 0.2485540113174989,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 49,
+                "predicted_probability": 0.35111678745887404,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 32,
+                "predicted_probability": 0.4456726785603612,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 46,
+                "predicted_probability": 0.5514926684303816,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 75,
+                "predicted_probability": 0.6521223198609263,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 106,
+                "predicted_probability": 0.7546797847768069,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 235,
+                "predicted_probability": 0.8529774516458479,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 444,
+                "predicted_probability": 0.948377733125811,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "calibrated": {
+            "samples": 1110,
+            "accuracy": 0.8513513513513513,
+            "f1_macro": 0.45985401459854014,
+            "recall_vulnerable": 0.8513513513513513,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                165,
+                945
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.8513513513513513,
+                "f1-score": 0.9197080291970803,
+                "support": 1110.0
+              },
+              "accuracy": 0.8513513513513513,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.42567567567567566,
+                "f1-score": 0.45985401459854014,
+                "support": 1110.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.8513513513513513,
+                "f1-score": 0.9197080291970803,
+                "support": 1110.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.1361433295636748,
+            "log_loss": 0.4304475393731747,
+            "ece_10_bins": 0.26701524501675117,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 29,
+                "predicted_probability": 0.07112299454793168,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 49,
+                "predicted_probability": 0.14701364306054718,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 38,
+                "predicted_probability": 0.2511780985048885,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 49,
+                "predicted_probability": 0.3509733363423023,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 39,
+                "predicted_probability": 0.4421175738174371,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 53,
+                "predicted_probability": 0.5529150142880925,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 85,
+                "predicted_probability": 0.6525242373826583,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 140,
+                "predicted_probability": 0.7588496971364003,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 243,
+                "predicted_probability": 0.8540254713144549,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 385,
+                "predicted_probability": 0.9398067350997592,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "fpr_operating_point": {
+            "samples": 1110,
+            "accuracy": 0.6477477477477478,
+            "f1_macro": 0.39311098961180974,
+            "recall_vulnerable": 0.6477477477477478,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                391,
+                719
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.6477477477477478,
+                "f1-score": 0.7862219792236195,
+                "support": 1110.0
+              },
+              "accuracy": 0.6477477477477478,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.3238738738738739,
+                "f1-score": 0.39311098961180974,
+                "support": 1110.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.6477477477477478,
+                "f1-score": 0.7862219792236195,
+                "support": 1110.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.1361433295636748,
+            "log_loss": 0.4304475393731747,
+            "ece_10_bins": 0.26701524501675117,
+            "reliability_bins": [
+              {
+                "lower": 0.0,
+                "upper": 0.1,
+                "count": 29,
+                "predicted_probability": 0.07112299454793168,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 49,
+                "predicted_probability": 0.14701364306054718,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 38,
+                "predicted_probability": 0.2511780985048885,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 49,
+                "predicted_probability": 0.3509733363423023,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 39,
+                "predicted_probability": 0.4421175738174371,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 53,
+                "predicted_probability": 0.5529150142880925,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 85,
+                "predicted_probability": 0.6525242373826583,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 140,
+                "predicted_probability": 0.7588496971364003,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 243,
+                "predicted_probability": 0.8540254713144549,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 385,
+                "predicted_probability": 0.9398067350997592,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "roc_recall_at_fpr_0_10": null,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "scrawld": {
+          "samples": 5,
+          "raw": {
+            "samples": 5,
+            "accuracy": 1.0,
+            "f1_macro": 0.5,
+            "recall_vulnerable": 1.0,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 5.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.5,
+                "f1-score": 0.5,
+                "support": 5.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 5.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.04218751824908049,
+            "log_loss": 0.1873682559110449,
+            "ece_10_bins": 0.1588582855936376,
+            "reliability_bins": [
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.582603075439215,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 1,
+                "predicted_probability": 0.8779354104515295,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 3,
+                "predicted_probability": 0.9150566953803558,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "calibrated": {
+            "samples": 5,
+            "accuracy": 1.0,
+            "f1_macro": 0.5,
+            "recall_vulnerable": 1.0,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 5.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.5,
+                "f1-score": 0.5,
+                "support": 5.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 5.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.0469704544624696,
+            "log_loss": 0.2083768761366621,
+            "ece_10_bins": 0.1767766356227771,
+            "reliability_bins": [
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.574663679275664,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 3,
+                "predicted_probability": 0.8782540807576374,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 1,
+                "predicted_probability": 0.9066909003375382,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "fpr_operating_point": {
+            "samples": 5,
+            "accuracy": 0.8,
+            "f1_macro": 0.4444444444444444,
+            "recall_vulnerable": 0.8,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.8,
+                "f1-score": 0.8888888888888888,
+                "support": 5.0
+              },
+              "accuracy": 0.8,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.4,
+                "f1-score": 0.4444444444444444,
+                "support": 5.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.8,
+                "f1-score": 0.888888888888889,
+                "support": 5.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.0469704544624696,
+            "log_loss": 0.2083768761366621,
+            "ece_10_bins": 0.1767766356227771,
+            "reliability_bins": [
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 1,
+                "predicted_probability": 0.574663679275664,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 3,
+                "predicted_probability": 0.8782540807576374,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 1,
+                "predicted_probability": 0.9066909003375382,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "roc_recall_at_fpr_0_10": null,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "slither_audited_smart_contracts": {
+          "samples": 3,
+          "raw": {
+            "samples": 3,
+            "accuracy": 0.0,
+            "f1_macro": 0.0,
+            "recall_vulnerable": null,
+            "confusion_matrix": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 3.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "accuracy": 0.0,
+              "macro avg": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 3.0
+              },
+              "weighted avg": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 3.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": null,
+            "brier_score": 0.5651910448612669,
+            "log_loss": 1.4061926301157737,
+            "ece_10_bins": 0.7504307961038972,
+            "reliability_bins": [
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 2,
+                "predicted_probability": 0.7187875535443421,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 1,
+                "predicted_probability": 0.8137172812230077,
+                "observed_positive_rate": 0.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": true,
+            "false_positive_rate": 1.0,
+            "precision_vulnerable": 0.0
+          },
+          "calibrated": {
+            "samples": 3,
+            "accuracy": 0.0,
+            "f1_macro": 0.0,
+            "recall_vulnerable": null,
+            "confusion_matrix": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 3.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "accuracy": 0.0,
+              "macro avg": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 3.0
+              },
+              "weighted avg": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 3.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": null,
+            "brier_score": 0.5351282806913396,
+            "log_loss": 1.3243049000279568,
+            "ece_10_bins": 0.7302406063045357,
+            "reliability_bins": [
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 1,
+                "predicted_probability": 0.6924602937233275,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 2,
+                "predicted_probability": 0.7491307625951398,
+                "observed_positive_rate": 0.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": true,
+            "false_positive_rate": 1.0,
+            "precision_vulnerable": 0.0
+          },
+          "fpr_operating_point": {
+            "samples": 3,
+            "accuracy": 0.6666666666666666,
+            "f1_macro": 0.4,
+            "recall_vulnerable": null,
+            "confusion_matrix": [
+              [
+                2,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 1.0,
+                "recall": 0.6666666666666666,
+                "f1-score": 0.8,
+                "support": 3.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "accuracy": 0.6666666666666666,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.3333333333333333,
+                "f1-score": 0.4,
+                "support": 3.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.6666666666666666,
+                "f1-score": 0.8000000000000002,
+                "support": 3.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": null,
+            "brier_score": 0.5351282806913396,
+            "log_loss": 1.3243049000279568,
+            "ece_10_bins": 0.7302406063045357,
+            "reliability_bins": [
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 1,
+                "predicted_probability": 0.6924602937233275,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 2,
+                "predicted_probability": 0.7491307625951398,
+                "observed_positive_rate": 0.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": true,
+            "false_positive_rate": 0.3333333333333333,
+            "precision_vulnerable": 0.0
+          },
+          "roc_recall_at_fpr_0_10": null,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "smartbugs_curated": {
+          "samples": 16,
+          "raw": {
+            "samples": 16,
+            "accuracy": 0.8125,
+            "f1_macro": 0.4482758620689655,
+            "recall_vulnerable": 0.8125,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                3,
+                13
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.8125,
+                "f1-score": 0.896551724137931,
+                "support": 16.0
+              },
+              "accuracy": 0.8125,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.40625,
+                "f1-score": 0.4482758620689655,
+                "support": 16.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.8125,
+                "f1-score": 0.896551724137931,
+                "support": 16.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.14924763390803603,
+            "log_loss": 0.4420709100086514,
+            "ece_10_bins": 0.29431663310969924,
+            "reliability_bins": [
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 1,
+                "predicted_probability": 0.16011485001301168,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.3195934419724433,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 1,
+                "predicted_probability": 0.41257029517597565,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 3,
+                "predicted_probability": 0.5527724500294009,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.6000000000000001,
+                "upper": 0.7000000000000001,
+                "count": 1,
+                "predicted_probability": 0.6065679285416485,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 1,
+                "predicted_probability": 0.7755964674215302,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 3,
+                "predicted_probability": 0.8701723556316271,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 5,
+                "predicted_probability": 0.9495312940274238,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "calibrated": {
+            "samples": 16,
+            "accuracy": 0.875,
+            "f1_macro": 0.4666666666666667,
+            "recall_vulnerable": 0.875,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                14
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.875,
+                "f1-score": 0.9333333333333333,
+                "support": 16.0
+              },
+              "accuracy": 0.875,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.4375,
+                "f1-score": 0.4666666666666667,
+                "support": 16.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.875,
+                "f1-score": 0.9333333333333333,
+                "support": 16.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.14865714886486744,
+            "log_loss": 0.4436440704275901,
+            "ece_10_bins": 0.3030656591921717,
+            "reliability_bins": [
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 1,
+                "predicted_probability": 0.18309336637386714,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.335848243042381,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 1,
+                "predicted_probability": 0.42095730638632034,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 4,
+                "predicted_probability": 0.5598716156971808,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 1,
+                "predicted_probability": 0.7538180750027921,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 3,
+                "predicted_probability": 0.8477421015141905,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 5,
+                "predicted_probability": 0.9349039389577195,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "fpr_operating_point": {
+            "samples": 16,
+            "accuracy": 0.5625,
+            "f1_macro": 0.36,
+            "recall_vulnerable": 0.5625,
+            "confusion_matrix": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                9
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 0.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 0.5625,
+                "f1-score": 0.72,
+                "support": 16.0
+              },
+              "accuracy": 0.5625,
+              "macro avg": {
+                "precision": 0.5,
+                "recall": 0.28125,
+                "f1-score": 0.36,
+                "support": 16.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 0.5625,
+                "f1-score": 0.72,
+                "support": 16.0
+              }
+            },
+            "roc_auc": null,
+            "average_precision": 1.0,
+            "brier_score": 0.14865714886486744,
+            "log_loss": 0.4436440704275901,
+            "ece_10_bins": 0.3030656591921717,
+            "reliability_bins": [
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 1,
+                "predicted_probability": 0.18309336637386714,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 1,
+                "predicted_probability": 0.335848243042381,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.4,
+                "upper": 0.5,
+                "count": 1,
+                "predicted_probability": 0.42095730638632034,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 4,
+                "predicted_probability": 0.5598716156971808,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 1,
+                "predicted_probability": 0.7538180750027921,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.8,
+                "upper": 0.9,
+                "count": 3,
+                "predicted_probability": 0.8477421015141905,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 5,
+                "predicted_probability": 0.9349039389577195,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": true,
+            "false_positive_rate": null,
+            "precision_vulnerable": 1.0
+          },
+          "roc_recall_at_fpr_0_10": null,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "smartbugs_results": {
+          "samples": 12,
+          "raw": {
+            "samples": 12,
+            "accuracy": 0.3333333333333333,
+            "f1_macro": 0.25,
+            "recall_vulnerable": 0.36363636363636365,
+            "confusion_matrix": [
+              [
+                0,
+                1
+              ],
+              [
+                7,
+                4
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 1.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.8,
+                "recall": 0.36363636363636365,
+                "f1-score": 0.5,
+                "support": 11.0
+              },
+              "accuracy": 0.3333333333333333,
+              "macro avg": {
+                "precision": 0.4,
+                "recall": 0.18181818181818182,
+                "f1-score": 0.25,
+                "support": 12.0
+              },
+              "weighted avg": {
+                "precision": 0.7333333333333334,
+                "recall": 0.3333333333333333,
+                "f1-score": 0.4583333333333333,
+                "support": 12.0
+              }
+            },
+            "roc_auc": 0.18181818181818182,
+            "average_precision": 0.8845566050111504,
+            "brier_score": 0.37382843160457946,
+            "log_loss": 0.9611646425087259,
+            "ece_10_bins": 0.5018300904127293,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 4,
+                "predicted_probability": 0.27713739089790884,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 3,
+                "predicted_probability": 0.3258144102458476,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 2,
+                "predicted_probability": 0.5822042770791624,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 3,
+                "predicted_probability": 0.7574541444800849,
+                "observed_positive_rate": 0.6666666666666666
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": false,
+            "false_positive_rate": 1.0,
+            "precision_vulnerable": 0.8
+          },
+          "calibrated": {
+            "samples": 12,
+            "accuracy": 0.3333333333333333,
+            "f1_macro": 0.25,
+            "recall_vulnerable": 0.36363636363636365,
+            "confusion_matrix": [
+              [
+                0,
+                1
+              ],
+              [
+                7,
+                4
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 1.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.8,
+                "recall": 0.36363636363636365,
+                "f1-score": 0.5,
+                "support": 11.0
+              },
+              "accuracy": 0.3333333333333333,
+              "macro avg": {
+                "precision": 0.4,
+                "recall": 0.18181818181818182,
+                "f1-score": 0.25,
+                "support": 12.0
+              },
+              "weighted avg": {
+                "precision": 0.7333333333333334,
+                "recall": 0.3333333333333333,
+                "f1-score": 0.4583333333333333,
+                "support": 12.0
+              }
+            },
+            "roc_auc": 0.18181818181818182,
+            "average_precision": 0.8845566050111504,
+            "brier_score": 0.3597826337348222,
+            "log_loss": 0.9272148996008552,
+            "ece_10_bins": 0.4875941193319036,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 2,
+                "predicted_probability": 0.284475733627798,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 5,
+                "predicted_probability": 0.3281303914685053,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 2,
+                "predicted_probability": 0.5743094476683701,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 3,
+                "predicted_probability": 0.7364505839725687,
+                "observed_positive_rate": 0.6666666666666666
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": false,
+            "false_positive_rate": 1.0,
+            "precision_vulnerable": 0.8
+          },
+          "fpr_operating_point": {
+            "samples": 12,
+            "accuracy": 0.08333333333333333,
+            "f1_macro": 0.07692307692307693,
+            "recall_vulnerable": 0.0,
+            "confusion_matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                11,
+                0
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 0.08333333333333333,
+                "recall": 1.0,
+                "f1-score": 0.15384615384615385,
+                "support": 1.0
+              },
+              "vulnerability_annotated": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 11.0
+              },
+              "accuracy": 0.08333333333333333,
+              "macro avg": {
+                "precision": 0.041666666666666664,
+                "recall": 0.5,
+                "f1-score": 0.07692307692307693,
+                "support": 12.0
+              },
+              "weighted avg": {
+                "precision": 0.006944444444444444,
+                "recall": 0.08333333333333333,
+                "f1-score": 0.012820512820512822,
+                "support": 12.0
+              }
+            },
+            "roc_auc": 0.18181818181818182,
+            "average_precision": 0.8845566050111504,
+            "brier_score": 0.3597826337348222,
+            "log_loss": 0.9272148996008552,
+            "ece_10_bins": 0.4875941193319036,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 2,
+                "predicted_probability": 0.284475733627798,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.30000000000000004,
+                "upper": 0.4,
+                "count": 5,
+                "predicted_probability": 0.3281303914685053,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.5,
+                "upper": 0.6000000000000001,
+                "count": 2,
+                "predicted_probability": 0.5743094476683701,
+                "observed_positive_rate": 1.0
+              },
+              {
+                "lower": 0.7000000000000001,
+                "upper": 0.8,
+                "count": 3,
+                "predicted_probability": 0.7364505839725687,
+                "observed_positive_rate": 0.6666666666666666
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": false,
+            "false_positive_rate": 0.0,
+            "precision_vulnerable": 0.0
+          },
+          "roc_recall_at_fpr_0_10": 0.18181818181818182,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        },
+        "zeus": {
+          "samples": 6,
+          "raw": {
+            "samples": 6,
+            "accuracy": 1.0,
+            "f1_macro": 1.0,
+            "recall_vulnerable": 1.0,
+            "confusion_matrix": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 2.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 4.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 6.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 6.0
+              }
+            },
+            "roc_auc": 1.0,
+            "average_precision": 1.0,
+            "brier_score": 0.01794382740723885,
+            "log_loss": 0.107481954317774,
+            "ece_10_bins": 0.09684173084692949,
+            "reliability_bins": [
+              {
+                "lower": 0.1,
+                "upper": 0.2,
+                "count": 1,
+                "predicted_probability": 0.18584335135802693,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 1,
+                "predicted_probability": 0.26170985441841815,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 4,
+                "predicted_probability": 0.966625705173717,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.5,
+            "single_class_subset": false,
+            "false_positive_rate": 0.0,
+            "precision_vulnerable": 1.0
+          },
+          "calibrated": {
+            "samples": 6,
+            "accuracy": 1.0,
+            "f1_macro": 1.0,
+            "recall_vulnerable": 1.0,
+            "confusion_matrix": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 2.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 4.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 6.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 6.0
+              }
+            },
+            "roc_auc": 1.0,
+            "average_precision": 1.0,
+            "brier_score": 0.021921670567396245,
+            "log_loss": 0.1253498306316821,
+            "ece_10_bins": 0.11218260856935472,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 2,
+                "predicted_probability": 0.24520449042447823,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 4,
+                "predicted_probability": 0.954328332358207,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.39927582818515894,
+            "single_class_subset": false,
+            "false_positive_rate": 0.0,
+            "precision_vulnerable": 1.0
+          },
+          "fpr_operating_point": {
+            "samples": 6,
+            "accuracy": 1.0,
+            "f1_macro": 1.0,
+            "recall_vulnerable": 1.0,
+            "confusion_matrix": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "no_annotated_vulnerability": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 2.0
+              },
+              "vulnerability_annotated": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 4.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 6.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 6.0
+              }
+            },
+            "roc_auc": 1.0,
+            "average_precision": 1.0,
+            "brier_score": 0.021921670567396245,
+            "log_loss": 0.1253498306316821,
+            "ece_10_bins": 0.11218260856935472,
+            "reliability_bins": [
+              {
+                "lower": 0.2,
+                "upper": 0.30000000000000004,
+                "count": 2,
+                "predicted_probability": 0.24520449042447823,
+                "observed_positive_rate": 0.0
+              },
+              {
+                "lower": 0.9,
+                "upper": 1.0,
+                "count": 4,
+                "predicted_probability": 0.954328332358207,
+                "observed_positive_rate": 1.0
+              }
+            ],
+            "threshold": 0.7442747283797105,
+            "single_class_subset": false,
+            "false_positive_rate": 0.0,
+            "precision_vulnerable": 1.0
+          },
+          "roc_recall_at_fpr_0_10": 1.0,
+          "roc_point_note": "descriptive_test_curve_not_a_deployable_test_fitted_threshold"
+        }
+      }
+    }
+  }
+}

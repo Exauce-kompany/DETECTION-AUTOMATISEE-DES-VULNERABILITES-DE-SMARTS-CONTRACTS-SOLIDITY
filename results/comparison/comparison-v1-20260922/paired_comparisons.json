@@ -1,0 +1,173 @@
+[
+  {
+    "left": "cnn_full",
+    "right": "cnn_first512",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.08399507157649833,
+      "ci95": [
+        0.058136162863944726,
+        0.12319652273242676
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": 0.011876484560570222,
+      "ci95": [
+        -0.01716721604867179,
+        0.0397039789119849
+      ]
+    }
+  },
+  {
+    "left": "bilstm_full",
+    "right": "bilstm_first512",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.08420395475157794,
+      "ci95": [
+        0.06098439804070767,
+        0.1204535451559236
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": 0.01187648456057,
+      "ci95": [
+        -0.016454552362827835,
+        0.03881562805397882
+      ]
+    }
+  },
+  {
+    "left": "cnn_bilstm_full",
+    "right": "cnn_bilstm_first512",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.09687902449715602,
+      "ci95": [
+        0.07201850323872579,
+        0.13560174785682957
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": 0.009501187648456089,
+      "ci95": [
+        -0.010676615786974071,
+        0.03162822006933128
+      ]
+    }
+  },
+  {
+    "left": "codet5_frozen_full",
+    "right": "codet5_frozen_first512",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.05257189178953714,
+      "ci95": [
+        0.03249067829326932,
+        0.08140012625338515
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": -0.004354711005542189,
+      "ci95": [
+        -0.024738183837905596,
+        0.017351074947745543
+      ]
+    }
+  },
+  {
+    "left": "tfidf_full",
+    "right": "tfidf_first512",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.06943543058292367,
+      "ci95": [
+        0.039648335186080685,
+        0.11441849454245781
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": -0.0332541567695962,
+      "ci95": [
+        -0.07326357072435188,
+        0.0023097410087029426
+      ]
+    }
+  },
+  {
+    "left": "cnn_bilstm_full",
+    "right": "cnn_full",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.01173015549697598,
+      "ci95": [
+        -0.00048565051485012484,
+        0.026547449192044166
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": 0.011084718923198733,
+      "ci95": [
+        -0.00840804660157395,
+        0.03415000356179447
+      ]
+    }
+  },
+  {
+    "left": "cnn_bilstm_full",
+    "right": "bilstm_full",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.014326511881124437,
+      "ci95": [
+        0.0019925293522768486,
+        0.02934347785572004
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": 0.009105304829770566,
+      "ci95": [
+        -0.010213593382947986,
+        0.031010608917585607
+      ]
+    }
+  },
+  {
+    "left": "codet5_frozen_full",
+    "right": "cnn_bilstm_full",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": -0.011390566874818098,
+      "ci95": [
+        -0.026936443030222253,
+        0.00264718443616817
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": -0.02889944576405379,
+      "ci95": [
+        -0.049859669282764106,
+        -0.008615256447406518
+      ]
+    }
+  },
+  {
+    "left": "codet5_frozen_full",
+    "right": "tfidf_full",
+    "interpretation": "left minus right; exploratory paired group bootstrap, seeds fixed, no multiple-comparison correction",
+    "f1_macro": {
+      "difference": 0.020088970916197546,
+      "ci95": [
+        -0.0017256206276714784,
+        0.04586778422223222
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": 0.019794140934283555,
+      "ci95": [
+        -0.014006885308307822,
+        0.060727129072785775
+      ]
+    }
+  }
+]

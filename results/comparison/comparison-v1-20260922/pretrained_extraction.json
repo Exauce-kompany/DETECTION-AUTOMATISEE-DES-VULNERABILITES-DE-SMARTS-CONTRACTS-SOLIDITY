@@ -1,0 +1,62 @@
+{
+  "train": {
+    "completed": 11959,
+    "seconds": 20257.63318659994,
+    "computed_chunks": 150017,
+    "sample_ids_sha256": "65f880271b66b53939ba1674190692d3a77b1678b2c3163e0ec8948894ad144a",
+    "manifest_sha256": "26f02429e9ab6f98c2217093dd3b7027b6f2306dfc43c97fa24081466fe008f7",
+    "sha256": {
+      "train_full.npy": "525726612c086f38735ee264eae52404e42442a6b8276fc1e9f341f12703ea8f",
+      "train_first512.npy": "feaa52ded5ca090e7a6c82be39b78a0393e3fe671741fef175b6eb9681598f42",
+      "train_counts.npy": "be9b59452378e8221e29ed220ae8f866f23ec5b2d92017c1339ddec8eb3b980c"
+    }
+  },
+  "validation": {
+    "completed": 1709,
+    "seconds": 1429.1429787997622,
+    "computed_chunks": 22106,
+    "sample_ids_sha256": "3974023e7bd62d8025edfd2001dd73816dd983bce2ca642fee831f0a375b61bd",
+    "manifest_sha256": "26f02429e9ab6f98c2217093dd3b7027b6f2306dfc43c97fa24081466fe008f7",
+    "sha256": {
+      "validation_full.npy": "b4a4aa0d81b9dc0893de3b9e12cfe1e323e117204e88d88d39f82e2cad6fc422",
+      "validation_first512.npy": "25e03bd63fde18d096c3c1473d25d25ab7d9bf0c39905e73f5edd6f82dca3a67",
+      "validation_counts.npy": "eb2763f1591fa5c0e1768f6a26faa1172e8112f174c99463d1e91886d6a66450"
+    }
+  },
+  "calibration": {
+    "completed": 1709,
+    "seconds": 1398.960123899742,
+    "computed_chunks": 20502,
+    "sample_ids_sha256": "82925703d2db0fe8b321d01f609a82b6d041169c1ae8a7170839a828e6dbee86",
+    "manifest_sha256": "26f02429e9ab6f98c2217093dd3b7027b6f2306dfc43c97fa24081466fe008f7",
+    "sha256": {
+      "calibration_full.npy": "ab2da18efe351be6c26c236a06989e91249c099b297e92c02f7bf9963f7d7d77",
+      "calibration_first512.npy": "23a8a7c7d649ff809d6803a8c20b5ef2f2fb97909e5d24565dbe66cbf4afef63",
+      "calibration_counts.npy": "89f7686ac2c930344af4d934f96b3efcdf0a60ac412c47c88bc01c3889a7c809"
+    }
+  },
+  "test": {
+    "completed": 1709,
+    "seconds": 1565.5298348998185,
+    "computed_chunks": 21176,
+    "sample_ids_sha256": "a95aa05aff0fc358544bf5f6bdafb003b80b965cf0c1785339e6a9948f18a7fa",
+    "manifest_sha256": "26f02429e9ab6f98c2217093dd3b7027b6f2306dfc43c97fa24081466fe008f7",
+    "sha256": {
+      "test_full.npy": "24312fbbaa981026407e5a6e8115038829bcaede40e92280d5a84de9ac25e290",
+      "test_first512.npy": "2559cf1cfb765920bf5376c8173df5992b2ad78db4652449961c7fbbeb86dab7",
+      "test_counts.npy": "5027e218e9f0a0cc582a661f0002955c0fea887960edb1e60c6f37541dd324ac"
+    }
+  },
+  "source_holdout": {
+    "completed": 1152,
+    "seconds": 985.454883300059,
+    "computed_chunks": 12517,
+    "sample_ids_sha256": "5fad910223eff1390b5e575002a2d801dfb897fc3f5df702e8ec6be7ffee4e0e",
+    "manifest_sha256": "26f02429e9ab6f98c2217093dd3b7027b6f2306dfc43c97fa24081466fe008f7",
+    "sha256": {
+      "source_holdout_full.npy": "f02dcd893da527145c7e1552a99719edeb70deb16beb3177320488084e008766",
+      "source_holdout_first512.npy": "3c92db4aa14a021db7846a7eedd8169d5c91cccd6ce970e519897904fd14e70a",
+      "source_holdout_counts.npy": "2e4773718722de785a8cd5eb65ea999736887ee5962f7f496aad4144c167260e"
+    }
+  }
+}
