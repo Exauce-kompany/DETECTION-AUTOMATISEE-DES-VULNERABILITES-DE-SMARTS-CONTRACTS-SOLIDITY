@@ -1,0 +1,72 @@
+[
+  {
+    "epoch": 1,
+    "loss": 0.5855962214171413,
+    "validation_log_loss": 0.7558484137829032,
+    "validation_roc_auc": 0.829696416781048,
+    "validation_f1_macro": 0.42819360036392007,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 103.89885030000005
+  },
+  {
+    "epoch": 2,
+    "loss": 0.4966367054126334,
+    "validation_log_loss": 0.5330830362807696,
+    "validation_roc_auc": 0.8793269718114994,
+    "validation_f1_macro": 0.7467619705634008,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 206.61184539998067
+  },
+  {
+    "epoch": 3,
+    "loss": 0.4601784185626333,
+    "validation_log_loss": 0.45475134672802053,
+    "validation_roc_auc": 0.8861076636886416,
+    "validation_f1_macro": 0.7953462443737871,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 309.88180389997433
+  },
+  {
+    "epoch": 4,
+    "loss": 0.4322588308017727,
+    "validation_log_loss": 0.4384583972165993,
+    "validation_roc_auc": 0.8908020942064124,
+    "validation_f1_macro": 0.8014451924081682,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 413.04927219997626
+  },
+  {
+    "epoch": 5,
+    "loss": 0.40956385474122803,
+    "validation_log_loss": 0.4466492511270133,
+    "validation_roc_auc": 0.895126668803612,
+    "validation_f1_macro": 0.8053444757689302,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 514.621056199976
+  },
+  {
+    "epoch": 6,
+    "loss": 0.3981427107933156,
+    "validation_log_loss": 0.43989993033410013,
+    "validation_roc_auc": 0.9018498275375539,
+    "validation_f1_macro": 0.7991813250313812,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 616.3047556999954
+  },
+  {
+    "epoch": 7,
+    "loss": 0.3795929612664755,
+    "validation_log_loss": 0.4620665359289478,
+    "validation_roc_auc": 0.9016621599037826,
+    "validation_f1_macro": 0.7987456324345592,
+    "learning_rate": 0.0005,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 719.0828792999964
+  }
+]

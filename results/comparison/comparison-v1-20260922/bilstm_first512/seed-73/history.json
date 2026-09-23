@@ -1,0 +1,92 @@
+[
+  {
+    "epoch": 1,
+    "loss": 0.6086399292420539,
+    "validation_log_loss": 0.6623557706714323,
+    "validation_roc_auc": 0.7793877925628823,
+    "validation_f1_macro": 0.5054900512489229,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 28.637242600001628
+  },
+  {
+    "epoch": 2,
+    "loss": 0.5395870463028133,
+    "validation_log_loss": 0.6996965049387578,
+    "validation_roc_auc": 0.7904184029347382,
+    "validation_f1_macro": 0.5390698612109133,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 57.003113400016446
+  },
+  {
+    "epoch": 3,
+    "loss": 0.5099802546135228,
+    "validation_log_loss": 0.5866079222196561,
+    "validation_roc_auc": 0.8107844507091645,
+    "validation_f1_macro": 0.6736626424214565,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 85.71761069999775
+  },
+  {
+    "epoch": 4,
+    "loss": 0.4849353330307197,
+    "validation_log_loss": 0.5158645453447012,
+    "validation_roc_auc": 0.8225040889626775,
+    "validation_f1_macro": 0.7518288243103095,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 114.27755040000193
+  },
+  {
+    "epoch": 5,
+    "loss": 0.4763146143539642,
+    "validation_log_loss": 0.5893002808818031,
+    "validation_roc_auc": 0.8285306857128767,
+    "validation_f1_macro": 0.6757907372819474,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 142.2588469000184
+  },
+  {
+    "epoch": 6,
+    "loss": 0.4586487060925346,
+    "validation_log_loss": 0.4995827586110113,
+    "validation_roc_auc": 0.8356784938371045,
+    "validation_f1_macro": 0.758552248960288,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 170.51437680001254
+  },
+  {
+    "epoch": 7,
+    "loss": 0.4533170481590994,
+    "validation_log_loss": 0.5360400435256504,
+    "validation_roc_auc": 0.8386969290999898,
+    "validation_f1_macro": 0.7457263726619494,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 198.96682410000358
+  },
+  {
+    "epoch": 8,
+    "loss": 0.4435532513710904,
+    "validation_log_loss": 0.5558087755853331,
+    "validation_roc_auc": 0.8296429931480765,
+    "validation_f1_macro": 0.7339474511704152,
+    "learning_rate": 0.001,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 227.3674990000145
+  },
+  {
+    "epoch": 9,
+    "loss": 0.4255035624988343,
+    "validation_log_loss": 0.5286888939940885,
+    "validation_roc_auc": 0.8383099502201328,
+    "validation_f1_macro": 0.7431327467640316,
+    "learning_rate": 0.0005,
+    "contracts_seen": 11959,
+    "elapsed_seconds": 256.15605660001165
+  }
+]

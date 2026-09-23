@@ -1,0 +1,136 @@
+{
+  "variant": "bilstm_full",
+  "architecture": "bilstm",
+  "input_mode": "full",
+  "seed": 101,
+  "parameters": 270273,
+  "trainable_parameters": 270273,
+  "epochs_executed": 10,
+  "best_epoch": 7,
+  "training_seconds": 1013.637413599994,
+  "validation": {
+    "samples": 1709,
+    "accuracy": 0.8139262726740784,
+    "f1_macro": 0.8139185635631523,
+    "recall_vulnerable": 0.832541567695962,
+    "confusion_matrix": [
+      [
+        690,
+        177
+      ],
+      [
+        141,
+        701
+      ]
+    ],
+    "classification_report": {
+      "no_annotated_vulnerability": {
+        "precision": 0.8303249097472925,
+        "recall": 0.7958477508650519,
+        "f1-score": 0.8127208480565371,
+        "support": 867.0
+      },
+      "vulnerability_annotated": {
+        "precision": 0.7984054669703873,
+        "recall": 0.832541567695962,
+        "f1-score": 0.8151162790697675,
+        "support": 842.0
+      },
+      "accuracy": 0.8139262726740784,
+      "macro avg": {
+        "precision": 0.8143651883588399,
+        "recall": 0.8141946592805069,
+        "f1-score": 0.8139185635631523,
+        "support": 1709.0
+      },
+      "weighted avg": {
+        "precision": 0.8145986541486065,
+        "recall": 0.8139262726740784,
+        "f1-score": 0.813901042856502,
+        "support": 1709.0
+      }
+    },
+    "roc_auc": 0.9034251397918396,
+    "average_precision": 0.9068599756364392,
+    "brier_score": 0.12716838113847323,
+    "log_loss": 0.39679305016296734,
+    "ece_10_bins": 0.02935027328379638,
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 349,
+        "predicted_probability": 0.05379148387190231,
+        "observed_positive_rate": 0.04871060171919771
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 181,
+        "predicted_probability": 0.14375634346433355,
+        "observed_positive_rate": 0.1270718232044199
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 116,
+        "predicted_probability": 0.24479548771246198,
+        "observed_positive_rate": 0.23275862068965517
+      },
+      {
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 94,
+        "predicted_probability": 0.35427608465254806,
+        "observed_positive_rate": 0.3191489361702128
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 91,
+        "predicted_probability": 0.4549080600513918,
+        "observed_positive_rate": 0.4835164835164835
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 103,
+        "predicted_probability": 0.5473837552676235,
+        "observed_positive_rate": 0.5339805825242718
+      },
+      {
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 75,
+        "predicted_probability": 0.6545262786637557,
+        "observed_positive_rate": 0.56
+      },
+      {
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 119,
+        "predicted_probability": 0.7594940529249504,
+        "observed_positive_rate": 0.5462184873949579
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 152,
+        "predicted_probability": 0.8508366304787239,
+        "observed_positive_rate": 0.8618421052631579
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 429,
+        "predicted_probability": 0.9569749971531732,
+        "observed_positive_rate": 0.951048951048951
+      }
+    ],
+    "threshold": 0.5,
+    "single_class_subset": false
+  },
+  "model_path": "models/comparison/comparison-v1-20260922/bilstm_full/seed-101.pt",
+  "model_sha256": "67b147fb6ac373487c9920d348551331596788a0d2262ace3680b811ccca3367",
+  "status": "complete"
+}

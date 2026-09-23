@@ -1,0 +1,33 @@
+{
+  "snapshot_utc": "2026-09-23T10:46:43.578718+00:00",
+  "status": "partial_comparison_validation_results_only",
+  "completed_neural_scratch_runs": 18,
+  "completed_classical_baselines": 2,
+  "completed_runs": [
+    "bilstm_first512/seed-101/run.json",
+    "bilstm_first512/seed-42/run.json",
+    "bilstm_first512/seed-73/run.json",
+    "bilstm_full/seed-101/run.json",
+    "bilstm_full/seed-42/run.json",
+    "bilstm_full/seed-73/run.json",
+    "cnn_bilstm_first512/seed-101/run.json",
+    "cnn_bilstm_first512/seed-42/run.json",
+    "cnn_bilstm_first512/seed-73/run.json",
+    "cnn_bilstm_full/seed-101/run.json",
+    "cnn_bilstm_full/seed-42/run.json",
+    "cnn_bilstm_full/seed-73/run.json",
+    "cnn_first512/seed-101/run.json",
+    "cnn_first512/seed-42/run.json",
+    "cnn_first512/seed-73/run.json",
+    "cnn_full/seed-101/run.json",
+    "cnn_full/seed-42/run.json",
+    "cnn_full/seed-73/run.json",
+    "tfidf_first512/run.json",
+    "tfidf_full/run.json"
+  ],
+  "pretrained_status": "feature_extraction_in_progress_on_local_machine",
+  "final_test_comparison_available": false,
+  "tests_passed": 34,
+  "production_manifest_unchanged": true,
+  "publication_note": "This is a dated repository snapshot, not live execution status. CodeT5 results and final evaluation are pending."
+}

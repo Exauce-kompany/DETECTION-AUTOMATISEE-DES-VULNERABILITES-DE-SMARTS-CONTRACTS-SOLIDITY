@@ -1,0 +1,71 @@
+{
+  "generated_utc": "2026-09-23T07:06:48.633848+00:00",
+  "partition": "validation_only",
+  "final_selection": false,
+  "rows": [
+    {
+      "variant": "bilstm_first512",
+      "completed_runs": 3,
+      "f1_macro_mean": 0.7594139448217931,
+      "f1_macro_std": 0.003734752383433842,
+      "roc_auc_mean": 0.8399213348419803,
+      "recall_at_fpr_0_10_mean": 0.6167854315122724
+    },
+    {
+      "variant": "bilstm_full",
+      "completed_runs": 3,
+      "f1_macro_mean": 0.8054402151471723,
+      "f1_macro_std": 0.007346523248235973,
+      "roc_auc_mean": 0.8969225247734975,
+      "recall_at_fpr_0_10_mean": 0.6868566904196358
+    },
+    {
+      "variant": "cnn_bilstm_first512",
+      "completed_runs": 3,
+      "f1_macro_mean": 0.7547960679319577,
+      "f1_macro_std": 0.0090902532167447,
+      "roc_auc_mean": 0.8370257282737045,
+      "recall_at_fpr_0_10_mean": 0.6084718923198734
+    },
+    {
+      "variant": "cnn_bilstm_full",
+      "completed_runs": 3,
+      "f1_macro_mean": 0.8172915217875497,
+      "f1_macro_std": 0.019963475758539607,
+      "roc_auc_mean": 0.9063282804622013,
+      "recall_at_fpr_0_10_mean": 0.7209026128266034
+    },
+    {
+      "variant": "cnn_first512",
+      "completed_runs": 3,
+      "f1_macro_mean": 0.7584519644709404,
+      "f1_macro_std": 0.01319133727843603,
+      "roc_auc_mean": 0.8349008831794094,
+      "recall_at_fpr_0_10_mean": 0.6013460015835312
+    },
+    {
+      "variant": "cnn_full",
+      "completed_runs": 3,
+      "f1_macro_mean": 0.8033204208847217,
+      "f1_macro_std": 0.014812159316338254,
+      "roc_auc_mean": 0.9044059428997252,
+      "recall_at_fpr_0_10_mean": 0.718923198733175
+    },
+    {
+      "variant": "tfidf_first512",
+      "completed_runs": 1,
+      "f1_macro_mean": 0.7027230024601205,
+      "f1_macro_std": 0.0,
+      "roc_auc_mean": 0.8328395071875334,
+      "recall_at_fpr_0_10_mean": 0.6057007125890737
+    },
+    {
+      "variant": "tfidf_full",
+      "completed_runs": 1,
+      "f1_macro_mean": 0.7897861636091799,
+      "f1_macro_std": 0.0,
+      "roc_auc_mean": 0.8961143210952118,
+      "recall_at_fpr_0_10_mean": 0.7363420427553444
+    }
+  ]
+}

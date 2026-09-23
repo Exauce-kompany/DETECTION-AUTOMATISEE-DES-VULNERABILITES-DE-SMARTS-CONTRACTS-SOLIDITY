@@ -82,6 +82,24 @@ Zéro recouvrement détecté entre les cinq partitions selon les six critères d
 
 L'ancien score V2 de 85,87 % utilisait un autre test avec recouvrements. Il ne constitue pas une comparaison directe avec V3.
 
+## Comparaison expérimentale après V3
+
+Le [protocole de comparaison](reports/protocole_comparaison_v1.md) couvre CNN,
+BiLSTM, CNN-BiLSTM, CodeT5-small figé et TF-IDF, avec entrées complètes ou tronquées.
+Les expériences sont isolées de l'application et n'activent aucun nouveau modèle.
+Elles utilisent `config/comparison_v1.json` et un environnement dédié avec les
+dépendances de `requirements-comparison.txt`, en complément de `requirements.txt`.
+La commande `python -u -m src.run_comparison` enchaîne la progression ; l'état et
+les résultats sont écrits sous `results/comparison/`. Le test V3 étant déjà
+consulté, cette comparaison est exploratoire et demande une confirmation indépendante.
+
+État publié le 23 septembre 2026 : les 18 entraînements depuis zéro et les deux
+références TF-IDF sont terminés. CodeT5 et l'évaluation finale restent en cours.
+Voir la [conclusion provisoire](reports/comparaison_v1_etat.md) et le
+[tableau de validation](results/comparison/comparison-v1-20260922/validation_progress.md).
+Les résultats disponibles et leurs checkpoints sont sauvegardés ; le statut
+d'exécution du PC est local et n'est pas un suivi en direct sur GitHub.
+
 ## Archives et provenance
 
 Les scripts `*_v2.py` restent historiques. `build_dataset_v2.py` assemble les données et n'entraîne pas le réseau ; sa reconstruction nécessite les dépôts voisins et chemins CGT de l'expérience d'origine. V3 utilise les partitions V2 présentes dans ce dépôt et ne dépend plus de ces chemins externes pour reconstruire son benchmark.

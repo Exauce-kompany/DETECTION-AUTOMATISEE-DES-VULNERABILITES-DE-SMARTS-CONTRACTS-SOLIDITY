@@ -5,6 +5,10 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .venv/
+.venv-comparison/
+.cache-comparison/
+# Live process status belongs to the local machine; publication snapshots are tracked.
+results/comparison/**/execution_status.json
 venv/
 env/
 

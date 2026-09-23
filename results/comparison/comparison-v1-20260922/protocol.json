@@ -1,0 +1,77 @@
+{
+  "run_id": "comparison-v1-20260922",
+  "created_utc": "2026-09-22T17:18:41.473606+00:00",
+  "config": {
+    "study": "comparison-v1",
+    "dataset_dir": "dataset/v3",
+    "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7",
+    "seeds": [
+      42,
+      73,
+      101
+    ],
+    "architectures": [
+      "cnn",
+      "bilstm",
+      "cnn_bilstm"
+    ],
+    "input_modes": [
+      "full",
+      "first512"
+    ],
+    "window_size": 256,
+    "embedding_dim": 32,
+    "convolution_filters": 24,
+    "convolution_kernel": 5,
+    "lstm_units": 24,
+    "dense_units": 32,
+    "dropout": 0.3,
+    "batch_size": 32,
+    "batch_token_budget": 65536,
+    "epochs": 12,
+    "early_stopping_patience": 3,
+    "learning_rate": 0.001,
+    "cpu_threads": 6,
+    "target_recall": 0.9,
+    "target_fpr": 0.1,
+    "bootstrap_repetitions": 1000,
+    "bootstrap_seed": 20260922,
+    "latency_samples": 50,
+    "pretrained": {
+      "model_id": "Salesforce/codet5-small",
+      "strategy": "frozen_encoder_with_trained_classification_head",
+      "chunk_subtokens": 256,
+      "batch_size": 16,
+      "pooling": "token_mean_and_token_max_over_all_chunks",
+      "input_modes": [
+        "full",
+        "first512"
+      ],
+      "normalize_embeddings": "standard_scaler_fit_on_train_only"
+    },
+    "selection": "mean_validation_recall_at_fpr_0_10_then_f1_macro_then_log_loss",
+    "threshold_fit_split": "calibration",
+    "test_role": "previously_observed_exploratory_comparison_not_fresh_confirmation",
+    "production_activation": false
+  },
+  "source_sha256": {
+    "comparison_data.py": "3f875a7aeae5cc06aa599df0d372a11038cc52c8ad1d207d53cc9b0507afe621",
+    "comparison_metrics.py": "f3c0d718ee7b0ae24149808c302065ed2679e912732e300de5e0546211715827",
+    "comparison_models.py": "f3e12d8ab1b4ec3ad33af5d3c605794fc554b4e8909049aabf3c8d1f64aeb0dc",
+    "comparison_pretrained.py": "f185729453109e3381f8e7b86450e7431126547334c9f8cdeedddc5060f5e6a0",
+    "compare_models.py": "d49015dc51d3c3b1a823621b2128e785db50a2428d9a3c704bd68ab445f50cbf"
+  },
+  "git_revision": "7466b38e673e7ea9718d3c163804354c00367cc9",
+  "environment": {
+    "torch": "2.14.0",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "transformers": "4.57.6"
+  },
+  "production_manifest_sha256": "ec505732b9610900baaf8dd3e5ea340ac909ad7afc1fbcb92c7664b8da3bef5c",
+  "test_previously_observed": true,
+  "pretrained_fine_tuning": false,
+  "framework": "PyTorch for all newly trained neural variants, no reuse of V3 weights",
+  "protocol_id": "8f171a53a047454ad92a866b70486844757056ea3eaf550c1afe284c43ed06f5"
+}

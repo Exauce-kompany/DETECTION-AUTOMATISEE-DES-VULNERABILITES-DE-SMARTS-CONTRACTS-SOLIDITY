@@ -1,0 +1,23 @@
+{
+  "model_id": "Salesforce/codet5-small",
+  "revision": "b1ee9570c289f21b5922b9c768a1ce12957bf968",
+  "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7",
+  "strategy": "frozen_encoder_with_trained_classification_head",
+  "config": {
+    "model_id": "Salesforce/codet5-small",
+    "strategy": "frozen_encoder_with_trained_classification_head",
+    "chunk_subtokens": 256,
+    "batch_size": 16,
+    "pooling": "token_mean_and_token_max_over_all_chunks",
+    "input_modes": [
+      "full",
+      "first512"
+    ],
+    "normalize_embeddings": "standard_scaler_fit_on_train_only"
+  },
+  "encoder_parameters": 35316480,
+  "feature_dimension": 1024,
+  "input": "space-joined normalized V3 lexical tokens, first512 cut before BPE",
+  "special_tokens_excluded_from_pooling": true,
+  "no_trainable_encoder_parameters": true
+}
