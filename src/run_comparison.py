@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 from .comparison_data import save_json
-from .preprocessing_v3 import ROOT
+from .preprocessing import ROOT
 
 
 def main():

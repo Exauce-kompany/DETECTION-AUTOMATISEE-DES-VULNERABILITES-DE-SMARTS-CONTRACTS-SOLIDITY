@@ -3,8 +3,8 @@
   "created_utc": "2026-09-22T17:18:41.473606+00:00",
   "config": {
     "study": "comparison-v1",
-    "dataset_dir": "dataset/v3",
-    "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7",
+    "dataset_dir": "dataset/benchmark",
+    "dataset_id": "69395a7f7f7d66a9066687445aca249e9d67a994a12b1466920fb4e64102b465",
     "seeds": [
       42,
       73,
@@ -55,11 +55,11 @@
     "production_activation": false
   },
   "source_sha256": {
-    "comparison_data.py": "3f875a7aeae5cc06aa599df0d372a11038cc52c8ad1d207d53cc9b0507afe621",
-    "comparison_metrics.py": "f3c0d718ee7b0ae24149808c302065ed2679e912732e300de5e0546211715827",
+    "comparison_data.py": "f519a1c3c415ed3b79c3d87759a598c2cd7857391ec14431b94b0af9b8439051",
+    "comparison_metrics.py": "42430ce21c0074dcf536e070a0940ff8236bfbb1e638849bc1777cbdbb4e9cf2",
     "comparison_models.py": "f3e12d8ab1b4ec3ad33af5d3c605794fc554b4e8909049aabf3c8d1f64aeb0dc",
-    "comparison_pretrained.py": "f185729453109e3381f8e7b86450e7431126547334c9f8cdeedddc5060f5e6a0",
-    "compare_models.py": "d49015dc51d3c3b1a823621b2128e785db50a2428d9a3c704bd68ab445f50cbf"
+    "comparison_pretrained.py": "1d5e7dc36d8a20df92bfc6584d03c04f91ec0ba58847132603f58a9256b6a573",
+    "compare_models.py": "87a80d6902a8f208303316f5b76f55be7f98bc10a5ecdb2adea6318b1bfb85eb"
   },
   "git_revision": "7466b38e673e7ea9718d3c163804354c00367cc9",
   "environment": {
@@ -69,9 +69,23 @@
     "scikit-learn": "1.9.0",
     "transformers": "4.57.6"
   },
-  "production_manifest_sha256": "ec505732b9610900baaf8dd3e5ea340ac909ad7afc1fbcb92c7664b8da3bef5c",
+  "production_manifest_sha256": "b653941f194550f72963b5804b97afe0ce86d5e4b7fafa926360206dbad9c618",
   "test_previously_observed": true,
   "pretrained_fine_tuning": false,
-  "framework": "PyTorch for all newly trained neural variants, no reuse of V3 weights",
-  "protocol_id": "8f171a53a047454ad92a866b70486844757056ea3eaf550c1afe284c43ed06f5"
+  "framework": "PyTorch for all newly trained neural variants, no reuse of SMART BUG weights",
+  "original_source_sha256": {
+    "comparison_data.py": "3f875a7aeae5cc06aa599df0d372a11038cc52c8ad1d207d53cc9b0507afe621",
+    "comparison_metrics.py": "f3c0d718ee7b0ae24149808c302065ed2679e912732e300de5e0546211715827",
+    "comparison_models.py": "f3e12d8ab1b4ec3ad33af5d3c605794fc554b4e8909049aabf3c8d1f64aeb0dc",
+    "comparison_pretrained.py": "f185729453109e3381f8e7b86450e7431126547334c9f8cdeedddc5060f5e6a0",
+    "compare_models.py": "d49015dc51d3c3b1a823621b2128e785db50a2428d9a3c704bd68ab445f50cbf"
+  },
+  "metadata_migration": {
+    "kind": "naming_only",
+    "date": "2026-09-27",
+    "original_commit": "0874cd5d37c0fc7d0305364e7715613a2767186b",
+    "scientific_values_unchanged": true,
+    "original_protocol_id": "8f171a53a047454ad92a866b70486844757056ea3eaf550c1afe284c43ed06f5"
+  },
+  "protocol_id": "c6dda1eb9ff64df04ae1c3162d85e7e50eb8dbffba34261880cbdfe668be09f1"
 }

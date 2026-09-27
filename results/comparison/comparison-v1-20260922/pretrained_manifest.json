@@ -1,7 +1,7 @@
 {
   "model_id": "Salesforce/codet5-small",
   "revision": "b1ee9570c289f21b5922b9c768a1ce12957bf968",
-  "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7",
+  "dataset_id": "69395a7f7f7d66a9066687445aca249e9d67a994a12b1466920fb4e64102b465",
   "strategy": "frozen_encoder_with_trained_classification_head",
   "config": {
     "model_id": "Salesforce/codet5-small",
@@ -17,7 +17,7 @@
   },
   "encoder_parameters": 35316480,
   "feature_dimension": 1024,
-  "input": "space-joined normalized V3 lexical tokens, first512 cut before BPE",
+  "input": "space-joined normalized SMART BUG lexical tokens, first512 cut before BPE",
   "special_tokens_excluded_from_pooling": true,
   "no_trainable_encoder_parameters": true
 }

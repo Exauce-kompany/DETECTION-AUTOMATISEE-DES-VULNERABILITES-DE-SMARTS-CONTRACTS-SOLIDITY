@@ -11,8 +11,8 @@ os.environ.setdefault("HF_HUB_DOWNLOAD_TIMEOUT", "180")
 import numpy as np
 import torch
 from .comparison_data import SPLITS, load_study_config, save_json
-from .experiment_v3 import read_jsonl
-from .preprocessing_v3 import ROOT, file_digest, digest
+from .experiment import read_jsonl
+from .preprocessing import ROOT, file_digest, digest
 
 
 class FrozenCodeEncoder:
@@ -36,7 +36,7 @@ class FrozenCodeEncoder:
         self.model.requires_grad_(False)
         self.dimension = self.model.config.d_model
         self.capacity = self.config["chunk_subtokens"] - self.tokenizer.num_special_tokens_to_add(pair=False)
-        manifest = {"model_id": self.config["model_id"], "revision": revision, "dataset_id": config["dataset_id"], "strategy": self.config["strategy"], "config": self.config, "encoder_parameters": sum(p.numel() for p in self.model.parameters()), "feature_dimension": self.dimension * 2, "input": "space-joined normalized V3 lexical tokens, first512 cut before BPE", "special_tokens_excluded_from_pooling": True, "no_trainable_encoder_parameters": True}
+        manifest = {"model_id": self.config["model_id"], "revision": revision, "dataset_id": config["dataset_id"], "strategy": self.config["strategy"], "config": self.config, "encoder_parameters": sum(p.numel() for p in self.model.parameters()), "feature_dimension": self.dimension * 2, "input": "space-joined normalized SMART BUG lexical tokens, first512 cut before BPE", "special_tokens_excluded_from_pooling": True, "no_trainable_encoder_parameters": True}
         if previous and previous != manifest:
             raise ValueError("Pretrained cache does not match this protocol")
         if not previous:

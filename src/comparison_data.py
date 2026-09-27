@@ -5,8 +5,8 @@ from pathlib import Path
 
 import numpy as np
 
-from .experiment_v3 import load_arrays, read_jsonl, training_weights, verify_dataset
-from .preprocessing_v3 import ROOT, digest, encode
+from .experiment import load_arrays, read_jsonl, training_weights, verify_dataset
+from .preprocessing import ROOT, digest, encode
 
 SPLITS = ("train", "validation", "calibration", "test", "source_holdout")
 

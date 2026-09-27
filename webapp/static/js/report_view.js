@@ -711,7 +711,7 @@ function showReportsView() {
                         </strong>
 
                         <p>
-                            Le modèle CNN + BiLSTM V3 réalise uniquement
+                            Le modèle CNN + BiLSTM SMART BUG réalise uniquement
                             une classification binaire :
                             <b>vulnerable</b> ou
                             <b>non_vulnerable</b>.
@@ -965,7 +965,7 @@ function showReportsView() {
                     </span>
 
                     <span>
-                        CNN + BiLSTM V3 · Classification binaire
+                        CNN + BiLSTM SMART BUG · Classification binaire
                     </span>
 
                 </footer>

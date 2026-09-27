@@ -11,7 +11,7 @@ IMPORTANT :
 - il fournit des indicateurs statiques utiles pour identifier
   des zones potentiellement coûteuses ou complexes.
 
-Le moteur est indépendant du modèle CNN + BiLSTM V3.
+Le moteur est indépendant du modèle CNN + BiLSTM SMART BUG.
 """
 
 from __future__ import annotations

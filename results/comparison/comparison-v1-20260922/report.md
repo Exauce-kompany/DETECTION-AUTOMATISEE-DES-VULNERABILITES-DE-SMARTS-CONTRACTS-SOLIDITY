@@ -1,8 +1,8 @@
 # Comparaison exploratoire des modèles
 
-Exécution : `comparison-v1-20260922`. Variante retenue **sur validation** : **codet5_frozen_full**. Aucun remplacement automatique de V3.
+Exécution : `comparison-v1-20260922`. Variante retenue **sur validation** : **codet5_frozen_full**. Aucun remplacement automatique de SMART BUG.
 
-## Résultats sur le test V3 déjà consulté
+## Résultats sur le test SMART BUG déjà consulté
 
 Moyennes sur trois graines pour les réseaux ; une seule estimation déterministe pour TF-IDF. Seuils ajustés exclusivement sur la calibration. Ces résultats ne constituent pas une confirmation sur un nouveau jeu indépendant.
 
@@ -40,10 +40,10 @@ Différences gauche moins droite de F1 macro, avec intervalle bootstrap à 95 % 
 ## Protocole et limites
 
 - Test : 1709 contrats ; 386 présentent un préfixe de 512 tokens identique à celui d'un exemple d'entraînement, validation ou calibration. Les scores du sous-ensemble commun sans ces collisions figurent dans `summary.csv` et chaque `evaluation.json`.
-- Les partitions, le vocabulaire et les poids d'échantillons proviennent de V3. Le vocabulaire et les scalers sont ajustés sur l'entraînement uniquement. Tous les contrats de la partition train sont vus à chaque époque.
+- Les partitions, le vocabulaire et les poids d'échantillons proviennent de SMART BUG. Le vocabulaire et les scalers sont ajustés sur l'entraînement uniquement. Tous les contrats de la partition train sont vus à chaque époque.
 - CNN, BiLSTM et CNN-BiLSTM sont entraînés de zéro sous PyTorch, avec embeddings 32, fenêtres CNN 256, filtres 24, noyau 5, unités LSTM 24 par direction, dense 32, dropout 0.3, Adam lr 0.001, maximum 12 époques, arrêt anticipé 3 sur log-loss validation, gradient clip 1.0. Batches ≤ 32 contrats et budget 65536 positions remplies, sauf contrat individuel plus long.
 - CNN : convolution par fenêtre, moyenne/max par fenêtre puis sur toutes les fenêtres. BiLSTM : récurrence bidirectionnelle sur tous les tokens. CNN-BiLSTM : récurrence sur les représentations des fenêtres CNN. Les variantes complètes conservent tous les tokens ; les variantes tronquées gardent 512 tokens lexicaux avant encodage sans perte.
-- CodeT5-small : encodeur préentraîné figé, sans fine-tuning ; tous les sous-tokens sont répartis en fenêtres de 256 positions spéciales incluses. Moyenne pondérée et maximum global des états, standardisation sur train, tête dense entraînée. La normalisation des identifiants V3 diffère du code naturel vu au préentraînement. Ce résultat ne mesure donc pas le potentiel d'un CodeT5 finement ajusté au Solidity.
+- CodeT5-small : encodeur préentraîné figé, sans fine-tuning ; tous les sous-tokens sont répartis en fenêtres de 256 positions spéciales incluses. Moyenne pondérée et maximum global des états, standardisation sur train, tête dense entraînée. La normalisation des identifiants SMART BUG diffère du code naturel vu au préentraînement. Ce résultat ne mesure donc pas le potentiel d'un CodeT5 finement ajusté au Solidity.
 - TF-IDF 1–2 grammes, 20 000 caractéristiques maximum, min_df=2, TF sous-linéaire et régression logistique C=1, liblinear. C'est une référence classique ; les réseaux ne sont pas présumés meilleurs.
 - Budget comparable en passages sur les données et hyperparamètres communs, pas en FLOPs ni temps mural. Les architectures ont des nombres de paramètres différents. Les trois graines CodeT5 ne réentraînent que la tête.
 - Température et deux seuils appris sur calibration : rappel cible 90 %, et FPR cible 10 %. Le choix de variante privilégie le rappel sur la ROC validation à FPR ≤ 10 %, puis F1 macro et log-loss validation.

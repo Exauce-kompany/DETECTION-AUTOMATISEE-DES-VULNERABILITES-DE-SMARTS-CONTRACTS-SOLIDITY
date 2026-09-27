@@ -6,19 +6,19 @@
 *.pkl filter=lfs diff=lfs merge=lfs -text
 *.npz filter=lfs diff=lfs merge=lfs -text
 *.pt filter=lfs diff=lfs merge=lfs -text
-dataset/v3/*.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+dataset/benchmark/*.jsonl.gz filter=lfs diff=lfs merge=lfs -text
 
 # Preserve byte-level manifest hashes for generated experiment artifacts.
-dataset/v3/*.json -text whitespace=cr-at-eol
-models/v3/**/*.json -text whitespace=cr-at-eol
-results/v3/**/*.json -text whitespace=cr-at-eol
-results/v3/**/*.csv -text whitespace=cr-at-eol
+dataset/benchmark/*.json -text whitespace=cr-at-eol
+models/trained/**/*.json -text whitespace=cr-at-eol
+results/training/**/*.json -text whitespace=cr-at-eol
+results/training/**/*.csv -text whitespace=cr-at-eol
 results/comparison/**/*.csv -text whitespace=cr-at-eol
 # Matplotlib emits SVG path whitespace; preserve the generated export verbatim.
 results/comparison/**/*.svg -text -whitespace
 
-# Raw sources required to reproduce V3; preserve their original bytes.
+# Raw sources required to reproduce SMART BUG; preserve their original bytes.
 dataset/sources/train.json filter=lfs diff=lfs merge=lfs -text
 dataset/sources/val.json filter=lfs diff=lfs merge=lfs -text
 dataset/sources/test.json filter=lfs diff=lfs merge=lfs -text
-results/v3/**/*.svg -text -whitespace
+results/training/**/*.svg -text -whitespace

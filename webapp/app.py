@@ -247,7 +247,7 @@ async def api_status():
         "success": True,
         "application": "SMART BUG",
         "status": "online",
-        "model": "CNN + BiLSTM hiérarchique V3",
+        "model": "CNN + BiLSTM hiérarchique SMART BUG",
         "model_ready": predictor.manifest_path.is_file(),
         "risk_engine": (
             "SMART BUG Static Risk Analyzer v1"
@@ -360,7 +360,7 @@ async def analyze_contract(
 
 
     # ========================================================
-    # 1. PRÉDICTION IA V3 SUR LE CODE COMPLET
+    # 1. PRÉDICTION IA SMART BUG SUR LE CODE COMPLET
     # ========================================================
 
     try:
@@ -886,7 +886,7 @@ async def analyze_contract(
         "analysis_capabilities"
     ] = {
         "ai_model": {
-            "name": "CNN + BiLSTM hiérarchique V3",
+            "name": "CNN + BiLSTM hiérarchique SMART BUG",
             "type": "binary_classification",
             "classes": [
                 "non_vulnerable",

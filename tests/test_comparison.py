@@ -100,7 +100,7 @@ class ComparisonTests(unittest.TestCase):
         model = ContractClassifier("cnn", 300, config)
         # Use a project-local temporary directory: model paths in provenance are
         # deliberately relative to the repository.
-        from src.preprocessing_v3 import ROOT
+        from src.preprocessing import ROOT
         (ROOT / ".cache-comparison").mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=ROOT / ".cache-comparison") as directory:
             path = Path(directory)

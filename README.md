@@ -1,12 +1,12 @@
 # SMART BUG — Détection de vulnérabilités Solidity
 
-Le modèle actif **V3** est un CNN + BiLSTM hiérarchique, entraîné **depuis zéro** avec TensorFlow/Keras. Il traite toutes les fenêtres du code et prédit un label binaire issu des annotations du corpus. Aucun modèle pré-entraîné n'est utilisé et aucun fine-tuning n'est réalisé. L'analyse statique et les indications de performance sont des moteurs heuristiques distincts.
+Le modèle actif **SMART BUG** est un CNN + BiLSTM hiérarchique, entraîné **depuis zéro** avec TensorFlow/Keras. Il traite toutes les fenêtres du code et prédit un label binaire issu des annotations du corpus. Aucun modèle pré-entraîné n'est utilisé et aucun fine-tuning n'est réalisé. L'analyse statique et les indications de performance sont des moteurs heuristiques distincts.
 
-Le dossier de travail conserve uniquement le protocole V3 et la comparaison expérimentale menée sur ses données. Les corrections et leurs limites sont détaillées dans [le rapport V3](reports/corrections_v3.md). Le [bilan du nettoyage](reports/nettoyage_final_v3.md) décrit les suppressions et la provenance conservée.
+Le dossier de travail conserve uniquement le protocole SMART BUG et la comparaison expérimentale menée sur ses données. Les corrections et leurs limites sont détaillées dans [le rapport SMART BUG](reports/methodologie.md). Le [bilan du nettoyage](reports/rapport_final.md) décrit les suppressions et la provenance conservée.
 
 ## Rapport final
 
-La [synthèse du mémoire en PDF](output/pdf/Synthese_memoire_SmartContractSecurity.pdf) et sa [version Word modifiable](output/documents/Synthese_memoire_SmartContractSecurity.docx) présentent le sujet, la méthodologie, les architectures, les résultats et leurs limites. Le [bilan final V3](reports/nettoyage_final_v3.md) détaille le nettoyage et les vérifications ; les résultats scientifiques complets figurent dans le [rapport comparatif](results/comparison/comparison-v1-20260922/report.md).
+La [synthèse du mémoire en PDF](output/pdf/Synthese_memoire_SmartContractSecurity.pdf) et sa [version Word modifiable](output/documents/Synthese_memoire_SmartContractSecurity.docx) présentent le sujet, la méthodologie, les architectures, les résultats et leurs limites. Le [bilan final SMART BUG](reports/rapport_final.md) détaille le nettoyage et les vérifications ; les résultats scientifiques complets figurent dans le [rapport comparatif](results/comparison/comparison-v1-20260922/report.md).
 
 ## Installation
 
@@ -31,20 +31,20 @@ Pour un clone existant : `git submodule update --init --recursive`, puis `git lf
 
 | Fichier | Rôle |
 |---|---|
-| `config/v3.json` | Configuration des données, hyperparamètres et graines |
-| `src/preprocessing_v3.py` | Analyse lexicale, retrait des commentaires, normalisation, vocabulaire et fenêtres complètes |
-| `src/build_dataset_v3.py` | Quarantaine, déduplication, regroupement, partitionnement et manifestes |
-| `src/audit_dataset_v3.py` | Audit indépendant des fichiers, encodages, labels et recouvrements |
-| `src/model_v3.py` | Architecture CNN + BiLSTM hiérarchique et masquage |
-| `src/experiment_v3.py` | Lots, pondérations, métriques et calibration |
-| `src/train_v3.py` | Entraînement sur trois graines, validation, référence TF-IDF, calibration et test final |
-| `src/predictor_v3.py` | Inférence partagée par le web et la commande CLI |
-| `src/predict_v3.py` | `python -m src.predict_v3 chemin/contrat.sol` |
-| `src/plot_results_v3.py` | Export des cinq graphiques du modèle actif en PNG et SVG |
+| `config/model.json` | Configuration des données, hyperparamètres et graines |
+| `src/preprocessing.py` | Analyse lexicale, retrait des commentaires, normalisation, vocabulaire et fenêtres complètes |
+| `src/build_dataset.py` | Quarantaine, déduplication, regroupement, partitionnement et manifestes |
+| `src/audit_dataset.py` | Audit indépendant des fichiers, encodages, labels et recouvrements |
+| `src/model.py` | Architecture CNN + BiLSTM hiérarchique et masquage |
+| `src/experiment.py` | Lots, pondérations, métriques et calibration |
+| `src/train.py` | Entraînement sur trois graines, validation, référence TF-IDF, calibration et test final |
+| `src/predictor.py` | Inférence partagée par le web et la commande CLI |
+| `src/predict.py` | `python -m src.predict chemin/contrat.sol` |
+| `src/plot_results.py` | Export des cinq graphiques du modèle actif en PNG et SVG |
 | `dataset/sources/` | Sources brutes nécessaires à la reconstruction, avec empreintes et correspondance des chemins |
-| `dataset/v3/` | Partitions complètes, entrées encodées, quarantaines et audit |
-| `models/v3/<run>/` | Meilleurs modèles par graine, référence et manifeste du modèle sélectionné |
-| `results/v3/<run>/` | Historiques, environnement, métriques et prédictions |
+| `dataset/benchmark/` | Partitions complètes, entrées encodées, quarantaines et audit |
+| `models/trained/<run>/` | Meilleurs modèles par graine, référence et manifeste du modèle sélectionné |
+| `results/training/<run>/` | Historiques, environnement, métriques et prédictions |
 | `tests/` | Régressions des données, du modèle et de l'API |
 
 ## Reproduire et vérifier
@@ -52,8 +52,8 @@ Pour un clone existant : `git submodule update --init --recursive`, puis `git lf
 Les données et poids sont déjà fournis. Pour vérifier le dataset puis entraîner une nouvelle expérience indépendante :
 
 ```powershell
-python -m src.audit_dataset_v3
-python -m src.train_v3
+python -m src.audit_dataset
+python -m src.train
 python -m unittest discover -s tests -v
 ```
 
@@ -62,17 +62,17 @@ Chaque entraînement écrit un nouveau dossier et active son modèle uniquement 
 Pour reconstruire les données depuis les sources brutes conservées dans `dataset/sources/`, sans écraser le snapshot distribué :
 
 ```powershell
-python -m src.build_dataset_v3 --output dataset/v3_rebuilt
-python -m src.audit_dataset_v3 --dataset dataset/v3_rebuilt
+python -m src.build_dataset --output dataset/benchmark_rebuilt
+python -m src.audit_dataset --dataset dataset/benchmark_rebuilt
 ```
 
 Le constructeur refuse un dossier de destination non vide. Pour entraîner sur un autre dossier, utiliser une copie de la configuration dont `dataset_dir` pointe vers ce dossier, et fournir la même configuration à la construction et à l'entraînement via `--config`.
 
 Les dépendances de l'expérience sont enregistrées dans `experiment.json` et `requirements.txt`. Le déterminisme est activé ; l'identité bit à bit entre systèmes, versions de bibliothèques et processeurs différents n'est pas garantie.
 
-## Résultats V3
+## Résultats SMART BUG
 
-Expérience : `v3-403bb881-20260922T101754Z`. Modèle sélectionné sur validation : graine **73**, époque **3**, **277 017 paramètres**. Température : **0,936841** ; seuil choisi sur la calibration : **0,269474**.
+Expérience : `smartbug-403bb881-20260922T101754Z`. Modèle sélectionné sur validation : graine **73**, époque **3**, **277 017 paramètres**. Température : **0,936841** ; seuil choisi sur la calibration : **0,269474**.
 
 | Modèle / décision | Exactitude test | F1 macro test | Rappel positif test |
 |---|---:|---:|---:|
@@ -88,24 +88,24 @@ Zéro recouvrement détecté entre les cinq partitions selon les six critères d
 
 Les scores de ce tableau concernent le modèle TensorFlow actif, et doivent être distingués de ceux des réseaux PyTorch entraînés pour la comparaison ci-dessous.
 
-## Graphiques du modèle V3 actif
+## Graphiques du modèle SMART BUG actif
 
-Les cinq figures (exactitude, perte, matrice de confusion, métriques globales et métriques par classe) sont disponibles dans [`results/v3/v3-403bb881-20260922T101754Z/plots/`](results/v3/v3-403bb881-20260922T101754Z/plots/), en PNG et SVG. Elles sont calculées à partir des résultats enregistrés ; aucun réentraînement n’est nécessaire. Le manifeste des figures précise leurs fichiers sources et leurs empreintes.
+Les cinq figures (exactitude, perte, matrice de confusion, métriques globales et métriques par classe) sont disponibles dans [`results/training/smartbug-403bb881-20260922T101754Z/plots/`](results/training/smartbug-403bb881-20260922T101754Z/plots/), en PNG et SVG. Elles sont calculées à partir des résultats enregistrés ; aucun réentraînement n’est nécessaire. Le manifeste des figures précise leurs fichiers sources et leurs empreintes.
 
 ```powershell
-python -m src.plot_results_v3
+python -m src.plot_results
 ```
 
-## Comparaison expérimentale après V3
+## Comparaison expérimentale après SMART BUG
 
 Le [protocole de comparaison](reports/protocole_comparaison_v1.md) couvre CNN,
 BiLSTM, CNN-BiLSTM, CodeT5-small figé et TF-IDF, avec entrées complètes ou tronquées.
 Les expériences sont isolées de l'application et n'activent aucun nouveau modèle.
-Le suffixe `v1` de cette expérience désigne la première version du protocole comparatif sur V3, et non le modèle historique V1. Ces identifiants sont conservés pour respecter les manifestes figés.
+Le suffixe `v1` de cette expérience désigne la première version du protocole comparatif sur SMART BUG, et non le modèle historique V1. Ces identifiants sont conservés pour respecter les manifestes figés.
 Elles utilisent `config/comparison_v1.json` et un environnement dédié avec les
 dépendances de `requirements-comparison.txt`, en complément de `requirements.txt`.
 La commande `python -u -m src.run_comparison` enchaîne la progression ; l'état et
-les résultats sont écrits sous `results/comparison/`. Le test V3 étant déjà
+les résultats sont écrits sous `results/comparison/`. Le test SMART BUG étant déjà
 consulté, cette comparaison est exploratoire et demande une confirmation indépendante.
 
 Comparaison terminée le 23 septembre 2026 : **26 entraînements et évaluations**
@@ -125,14 +125,14 @@ aucun nouveau modèle n'a été activé dans SmartBug.
 Les checkpoints, les têtes CodeT5 et leurs scalers sont sauvegardés via Git LFS.
 L'encodeur CodeT5 reste un téléchargement depuis Hugging Face à la révision
 enregistrée ; les caches locaux ne sont pas versionnés. Le rapport distingue
-les réseaux nouvellement entraînés pour la comparaison du modèle V3 actif.
+les réseaux nouvellement entraînés pour la comparaison du modèle SMART BUG actif.
 
 ## Sources et provenance
 
 Les scripts, modèles et résultats historiques V1/V2 ont été retirés du dossier de travail. Ils restent accessibles dans l’historique Git, qui n’a pas été réécrit.
 
-Les trois JSON bruts utilisés par V3 ont été déplacés vers `dataset/sources/`, sans modifier leurs octets. `dataset/sources/manifest.json` enregistre leurs SHA-256 et la correspondance avec leurs anciens chemins. `src/source_paths.py` résout ces références et vérifie les empreintes lors de la reconstruction. Les mentions de l’ancien chemin dans les configurations et manifestes figés documentent l’expérience d’origine ; elles ne désignent pas une dépendance à un ancien modèle. La configuration scientifique et les artefacts du modèle actif restent inchangés.
+Les trois JSON bruts utilisés par SMART BUG ont été déplacés vers `dataset/sources/`, sans modifier leurs octets. `dataset/sources/manifest.json` enregistre leurs SHA-256 et la correspondance avec leurs anciens chemins. `src/source_paths.py` résout ces références et vérifie les empreintes lors de la reconstruction. Les mentions de l’ancien chemin dans les configurations et manifestes figés documentent l’expérience d’origine ; elles ne désignent pas une dépendance à un ancien modèle. Les hyperparamètres, les poids numériques et les résultats du modèle actif restent inchangés.
 
-Le constructeur V3 a été adapté à cette résolution de chemins ; son empreinte actuelle diffère donc de celle enregistrée lors de l’expérience initiale. Les sources de prétraitement, d’entraînement et d’inférence restent inchangées. Une reconstruction produit un nouveau manifeste, sans remplacer le snapshot distribué.
+Les modules, les chemins et les métadonnées utilisent désormais le nom SMART BUG. Le renommage a entraîné une mise à jour explicite des empreintes et des identifiants des manifestes, sans recalcul des résultats ni changement des données. Les champs `metadata_migration` renvoient au commit d’origine. Le [rapport final](reports/rapport_final.md) documente cette opération et ses vérifications. Une nouvelle reconstruction produit son propre manifeste.
 
 Le sous-module `dataset/raw/smartbugs-curated` est conservé comme source tierce, avec sa révision, son README et sa licence. Les droits sur les sources Solidity restent ceux de leurs auteurs respectifs.

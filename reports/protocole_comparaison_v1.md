@@ -1,9 +1,9 @@
-# Progression expérimentale après V3
+# Progression expérimentale après SMART BUG
 
 Cette étude répond aux quatre étapes : architectures seules et combinées, code
 complet contre entrée tronquée, concurrent préentraîné, comparaison selon plusieurs
-critères. Le modèle actif et les partitions V3 sont conservés. Les résultats de
-cette étude sont exploratoires : le test V3 a déjà servi à des évaluations.
+critères. Le modèle actif et les partitions SMART BUG sont conservés. Les résultats de
+cette étude sont exploratoires : le test SMART BUG a déjà servi à des évaluations.
 
 ## Matrice des expériences
 
@@ -29,11 +29,11 @@ normalisées du projet, pas un modèle préentraîné spécifiquement sur Solidi
 ## Données et budget
 
 Les 11 959 contrats d'entraînement, 1 709 de validation, 1 709 de calibration,
-1 709 de test et 1 152 du holdout de source proviennent du snapshot V3 identifié
+1 709 de test et 1 152 du holdout de source proviennent du snapshot SMART BUG identifié
 dans `config/comparison_v1.json`. Chaque époque parcourt tous les contrats de train.
 Les poids d'échantillonnage par source et classe sont communs. Les variantes sont
 entraînées sous PyTorch pour éviter de confondre architecture et framework. Les
-poids de V3 ne sont pas repris : la variante CNN-BiLSTM est une nouvelle expérience.
+poids de SMART BUG ne sont pas repris : la variante CNN-BiLSTM est une nouvelle expérience.
 
 Les réseaux partagent embeddings 32, dense 32, dropout 0,3, Adam à 0,001,
 gradient limité à une norme de 1, maximum 12 époques et patience 3 sur la log-loss

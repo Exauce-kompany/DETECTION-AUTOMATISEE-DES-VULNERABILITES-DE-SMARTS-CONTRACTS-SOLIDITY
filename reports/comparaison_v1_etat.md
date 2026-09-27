@@ -1,4 +1,4 @@
-# Comparaison sur V3 : résultats finaux de l’expérience
+# Comparaison sur SMART BUG : résultats finaux de l’expérience
 
 Expérience `comparison-v1-20260922`, terminée le 23 septembre 2026 à 14 h 16 UTC
 (15 h 16, heure locale). Les **26 entraînements et évaluations** sont achevés :
@@ -13,7 +13,7 @@ appariées. Les valeurs détaillées figurent dans
 
 Moyennes sur trois graines pour les réseaux, une estimation pour TF-IDF.
 Les seuils du tableau sont ajustés exclusivement sur calibration avec un objectif
-de rappel de 90 %, qui n'est pas garanti sur le test. Les 1 709 contrats du test V3
+de rappel de 90 %, qui n'est pas garanti sur le test. Les 1 709 contrats du test SMART BUG
 avaient déjà été consultés lors de travaux antérieurs.
 
 | Modèle, code complet | F1 macro | Rappel | Taux de faux positifs | Latence médiane |
@@ -71,7 +71,7 @@ de conclure que le préentraînement serait inutile en général.
 
 Les réseaux de comparaison ont été réentraînés sous PyTorch. Leurs scores moyens
 ne sont pas ceux du checkpoint TensorFlow actuellement actif dans SmartBug.
-**Le modèle V3 actif n'a pas été remplacé.**
+**Le modèle SMART BUG actif n'a pas été remplacé.**
 
 ## Fichiers et reproduction
 
@@ -102,7 +102,7 @@ save_json(Path(".cache-comparison/codet5/revision.json"),
 ```
 
 Puis `python -m src.comparison_pretrained` reconstruit les caractéristiques depuis
-les données V3. Le [protocole](protocole_comparaison_v1.md) décrit la chaîne complète.
+les données SMART BUG. Le [protocole](protocole_comparaison_v1.md) décrit la chaîne complète.
 Les 34 tests du projet avaient passé avant publication ; les empreintes des 26
 checkpoints et évaluations ont aussi été vérifiées après calcul.
 

@@ -1,5 +1,5 @@
 {
-  "purpose": "Raw source relocation for V3; source bytes and original experiment manifests are unchanged.",
+  "purpose": "Raw source relocation for SMART BUG; source bytes and original experiment manifests are unchanged.",
   "files": [
     {
       "original_path": "dataset/v2/raw/train.json",

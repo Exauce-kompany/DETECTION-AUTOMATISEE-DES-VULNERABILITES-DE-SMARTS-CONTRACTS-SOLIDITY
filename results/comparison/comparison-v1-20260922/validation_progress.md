@@ -17,6 +17,6 @@ F1 macro au seuil brut 0,5 ; rappel calculé sur la courbe ROC de validation à 
 | tfidf_first512 | 1 | 70.27 % ± 0.00 | 0.8328 | 60.57 % |
 | tfidf_full | 1 | 78.98 % ± 0.00 | 0.8961 | 73.63 % |
 
-Le choix final sera figé après l'entraînement de tous les candidats, sur validation. Température et seuils seront ensuite ajustés exclusivement sur calibration. Les résultats du test V3 déjà consulté seront présentés comme exploratoires, avec un diagnostic commun excluant les collisions de préfixes induites par la troncature.
+Le choix final sera figé après l'entraînement de tous les candidats, sur validation. Température et seuils seront ensuite ajustés exclusivement sur calibration. Les résultats du test SMART BUG déjà consulté seront présentés comme exploratoires, avec un diagnostic commun excluant les collisions de préfixes induites par la troncature.
 
 `full` conserve tous les tokens ; `first512` conserve les 512 premiers tokens lexicaux normalisés, avant encodage. Les résultats de validation reflètent les labels historiques et ne prouvent pas une généralisation à de nouveaux projets.

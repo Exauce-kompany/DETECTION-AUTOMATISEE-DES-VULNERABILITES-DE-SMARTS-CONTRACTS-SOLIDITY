@@ -32,7 +32,7 @@ def plot_comparison(rows, destination):
             axis.axhline(.1, color="#444444", linewidth=1, linestyle="--")
     axes[0, 0].legend(frameon=False, fontsize=9)
     figure.suptitle("Détection de vulnérabilités Solidity · comparaison exploratoire", fontsize=16)
-    figure.supxlabel("Test V3 déjà consulté · barres d'erreur : écart-type entre graines · CodeT5 : encodeur figé + tête entraînée", fontsize=9)
+    figure.supxlabel("Test SMART BUG déjà consulté · barres d'erreur : écart-type entre graines · CodeT5 : encodeur figé + tête entraînée", fontsize=9)
     for extension in ("png", "svg"):
         figure.savefig(destination / ("comparison." + extension), dpi=160, facecolor="white")
     plt.close(figure)

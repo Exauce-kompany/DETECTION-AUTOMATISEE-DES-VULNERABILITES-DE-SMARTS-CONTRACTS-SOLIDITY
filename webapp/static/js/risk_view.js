@@ -263,7 +263,7 @@ function renderRiskEmptyState(
 
                     <p>
                         Cette section présente séparément le score du modèle
-                        CNN + BiLSTM V3 et l'analyse statique heuristique.
+                        CNN + BiLSTM SMART BUG et l'analyse statique heuristique.
                     </p>
 
                 </div>
@@ -740,7 +740,7 @@ function showRiskSummaryView() {
                     </div>
 
                     <small>
-                        Classification binaire CNN + BiLSTM V3
+                        Classification binaire CNN + BiLSTM SMART BUG
                     </small>
 
                 </article>
@@ -812,7 +812,7 @@ function showRiskSummaryView() {
                     mlScore,
                     data.ml_risk_level,
                     "ai",
-                    "Score IA V3 calibré sur un jeu dédié"
+                    "Score IA SMART BUG calibré sur un jeu dédié"
                 )}
 
                 ${riskScoreCard(
@@ -1005,7 +1005,7 @@ function showRiskSummaryView() {
                         riskEscapeHtml(
                             riskAnalysis.disclaimer
                             ||
-                            "Le CNN + BiLSTM V3 effectue uniquement une classification binaire. Les catégories de risques proviennent du moteur statique heuristique."
+                            "Le CNN + BiLSTM SMART BUG effectue uniquement une classification binaire. Les catégories de risques proviennent du moteur statique heuristique."
                         )
                     }
                 </p>

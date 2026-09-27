@@ -3,7 +3,7 @@ import numpy as np
 from scipy.special import expit
 from sklearn.metrics import roc_curve
 
-from .experiment_v3 import calculate_metrics, fit_calibration
+from .experiment import calculate_metrics, fit_calibration
 
 
 def fit_operating_points(labels, logits, config):

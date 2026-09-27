@@ -22,8 +22,8 @@ import torch
 from .comparison_data import SPLITS, batches, collate, load_study_config, prepare_inputs, save_json, study_arrays
 from .comparison_metrics import evaluate_logits, fit_operating_points
 from .comparison_models import ContractClassifier, FeatureClassifier
-from .experiment_v3 import calculate_metrics, read_jsonl
-from .preprocessing_v3 import ROOT, digest, file_digest
+from .experiment import calculate_metrics, read_jsonl
+from .preprocessing import ROOT, digest, file_digest
 
 
 def seed_everything(seed):
@@ -51,7 +51,7 @@ def initialize(config, run_id):
             if file_digest(Path(__file__).with_name(name)) != expected:
                 raise ValueError(f"Study source changed after freezing: {name}. Use a new run.")
     else:
-        protocol = {"run_id": run_id, "created_utc": datetime.now(timezone.utc).isoformat(), "config": config, "source_sha256": sources, "git_revision": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True, cwd=ROOT).strip(), "environment": {name: metadata.version(name) for name in ("torch", "numpy", "scipy", "scikit-learn", "transformers")}, "production_manifest_sha256": file_digest(ROOT / "models/active_model.json"), "test_previously_observed": True, "pretrained_fine_tuning": False, "framework": "PyTorch for all newly trained neural variants, no reuse of V3 weights"}
+        protocol = {"run_id": run_id, "created_utc": datetime.now(timezone.utc).isoformat(), "config": config, "source_sha256": sources, "git_revision": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True, cwd=ROOT).strip(), "environment": {name: metadata.version(name) for name in ("torch", "numpy", "scipy", "scikit-learn", "transformers")}, "production_manifest_sha256": file_digest(ROOT / "models/active_model.json"), "test_previously_observed": True, "pretrained_fine_tuning": False, "framework": "PyTorch for all newly trained neural variants, no reuse of SMART BUG weights"}
         protocol["protocol_id"] = digest(protocol)
         save_json(path, protocol)
     return result, model_dir

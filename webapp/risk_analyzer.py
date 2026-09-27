@@ -4,7 +4,7 @@ SMART BUG - Static Risk Analyzer v1
 Analyse heuristique du code Solidity.
 
 IMPORTANT:
-- Le modèle CNN + BiLSTM V3 reste un classifieur BINAIRE:
+- Le modèle CNN + BiLSTM SMART BUG reste un classifieur BINAIRE:
   vulnerable / non_vulnerable.
 - Les catégories affichées ici proviennent d'une analyse
   statique heuristique distincte du modèle IA.
@@ -251,7 +251,7 @@ def analyze_contract_risks(
     code:
         Code source Solidity.
     probability_vulnerable:
-        Probabilité fournie par le CNN + BiLSTM V3.
+        Probabilité fournie par le CNN + BiLSTM SMART BUG.
         Peut être au format 0..1 ou 0..100.
 
     Returns
@@ -768,7 +768,7 @@ def analyze_contract_risks(
         "disclaimer": (
             "Les catégories de vulnérabilité affichées dans cette section "
             "proviennent d'une analyse statique heuristique distincte du "
-            "modèle CNN + BiLSTM hiérarchique V3. Le modèle IA réalise une "
+            "modèle CNN + BiLSTM hiérarchique SMART BUG. Le modèle IA réalise une "
             "classification binaire selon les annotations apprises ; une absence "
             "de signal ne constitue pas une certification de sécurité."
         ),

@@ -1,7 +1,7 @@
 {
   "study": "comparison-v1",
-  "dataset_dir": "dataset/v3",
-  "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7",
+  "dataset_dir": "dataset/benchmark",
+  "dataset_id": "69395a7f7f7d66a9066687445aca249e9d67a994a12b1466920fb4e64102b465",
   "seeds": [42, 73, 101],
   "architectures": ["cnn", "bilstm", "cnn_bilstm"],
   "input_modes": ["full", "first512"],

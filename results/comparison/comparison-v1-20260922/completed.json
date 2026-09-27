@@ -2,6 +2,13 @@
   "completed_utc": "2026-09-23T14:16:52.644094+00:00",
   "selected_variant": "codet5_frozen_full",
   "production_manifest_unchanged": true,
-  "evaluator_sha256": "5110cc1c85c8a780340fbd7caead545afe973c71d67727958da0726967b9c14d",
-  "summary_sha256": "9c526e5566a4e7e8edcc5295a5ba40f4d66a70b413b4e58912b5a065e010b102"
+  "evaluator_sha256": "1a99082b98769b1bf7daf4318452136b8a7c318ce610dc4824c0e1bb11191670",
+  "summary_sha256": "9c526e5566a4e7e8edcc5295a5ba40f4d66a70b413b4e58912b5a065e010b102",
+  "original_evaluator_sha256": "5110cc1c85c8a780340fbd7caead545afe973c71d67727958da0726967b9c14d",
+  "metadata_migration": {
+    "kind": "naming_only",
+    "date": "2026-09-27",
+    "original_commit": "0874cd5d37c0fc7d0305364e7715613a2767186b",
+    "scientific_values_unchanged": true
+  }
 }

@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 from sklearn.metrics import roc_curve
 from .comparison_data import save_json
-from .preprocessing_v3 import ROOT
+from .preprocessing import ROOT
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
     lines = ["# Comparaison provisoire sur validation", "", f"Mise à jour UTC : {state['generated_utc']}. Exécution `{args.run_id}`.", "", "Ce tableau utilise uniquement les checkpoints terminés et les 1 709 contrats de validation. CodeT5 et l'évaluation finale peuvent encore être en cours. Il ne constitue pas le classement final et ne présente aucun résultat du test.", "", "F1 macro au seuil brut 0,5 ; rappel calculé sur la courbe ROC de validation à FPR ≤ 10 %. Les deux colonnes n'utilisent donc pas le même seuil. Moyenne ± écart-type entre graines pour les réseaux ; TF-IDF a un seul ajustement déterministe.", "", "| Variante | Entraînements terminés | F1 macro validation | AUC validation | Rappel validation à FPR ≤ 10 % |", "|---|---:|---:|---:|---:|"]
     for row in records:
         lines.append(f"| {row['variant']} | {row['completed_runs']} | {100*row['f1_macro_mean']:.2f} % ± {100*row['f1_macro_std']:.2f} | {row['roc_auc_mean']:.4f} | {100*row['recall_at_fpr_0_10_mean']:.2f} % |")
-    lines += ["", "Le choix final sera figé après l'entraînement de tous les candidats, sur validation. Température et seuils seront ensuite ajustés exclusivement sur calibration. Les résultats du test V3 déjà consulté seront présentés comme exploratoires, avec un diagnostic commun excluant les collisions de préfixes induites par la troncature.", "", "`full` conserve tous les tokens ; `first512` conserve les 512 premiers tokens lexicaux normalisés, avant encodage. Les résultats de validation reflètent les labels historiques et ne prouvent pas une généralisation à de nouveaux projets.", ""]
+    lines += ["", "Le choix final sera figé après l'entraînement de tous les candidats, sur validation. Température et seuils seront ensuite ajustés exclusivement sur calibration. Les résultats du test SMART BUG déjà consulté seront présentés comme exploratoires, avec un diagnostic commun excluant les collisions de préfixes induites par la troncature.", "", "`full` conserve tous les tokens ; `first512` conserve les 512 premiers tokens lexicaux normalisés, avant encodage. Les résultats de validation reflètent les labels historiques et ne prouvent pas une généralisation à de nouveaux projets.", ""]
     (result / "validation_progress.md").write_text("\n".join(lines), encoding="utf-8", newline="\n")
     print(result / "validation_progress.md")
 
