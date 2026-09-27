@@ -1,0 +1,20 @@
+{
+  "purpose": "Raw source relocation for V3; source bytes and original experiment manifests are unchanged.",
+  "files": [
+    {
+      "original_path": "dataset/v2/raw/train.json",
+      "current_path": "dataset/sources/train.json",
+      "sha256": "193ccf3b9e3f265ad389353f2caa26fc96cf22786e561a0058a18730743f9292"
+    },
+    {
+      "original_path": "dataset/v2/raw/val.json",
+      "current_path": "dataset/sources/val.json",
+      "sha256": "eab37c88499a43d66f7671fba49aa481d6f74ea9d5ad78b76a54dc7b1b9c18d5"
+    },
+    {
+      "original_path": "dataset/v2/raw/test.json",
+      "current_path": "dataset/sources/test.json",
+      "sha256": "614ae6ee4b8de5148960f9b61a187a805c053fe4d462f9177394c3b6a2872e9b"
+    }
+  ]
+}

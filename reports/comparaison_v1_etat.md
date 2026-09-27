@@ -1,4 +1,4 @@
-# Comparaison V1 : résultats finaux de l'expérience
+# Comparaison sur V3 : résultats finaux de l’expérience
 
 Expérience `comparison-v1-20260922`, terminée le 23 septembre 2026 à 14 h 16 UTC
 (15 h 16, heure locale). Les **26 entraînements et évaluations** sont achevés :

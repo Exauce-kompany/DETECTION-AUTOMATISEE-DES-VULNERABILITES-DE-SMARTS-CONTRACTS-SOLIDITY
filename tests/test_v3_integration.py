@@ -9,44 +9,11 @@ import tempfile
 import time
 import unittest
 
-import numpy as np
-import pandas as pd
 import requests
-from unittest.mock import patch
 
-from src import build_dataset_v2, prepare_data_v2
-from src.audit_dataset_v2_official import audit_internal, build_indexes, compare_one_hash_type
 from src.experiment_v3 import read_jsonl
 from src.preprocessing_v3 import ROOT, code_from_sample
-
-
-class LegacyRegressionTests(unittest.TestCase):
-    def test_dynamic_dataset_sizes_are_accepted(self):
-        x = np.zeros((2, 512), dtype=np.int32)
-        y = np.asarray([0, 1], dtype=np.int32)
-        prepare_data_v2.final_checks(x, y, x, y, x, y, {"<PAD>": 0, "<UNK>": 1})
-        with self.assertRaises(ValueError):
-            prepare_data_v2.final_checks(x, y[:1], x, y, x, y, {"<PAD>": 0, "<UNK>": 1})
-
-    def test_missing_cgt_file_is_not_silently_skipped(self):
-        with tempfile.TemporaryDirectory() as directory:
-            frame = pd.DataFrame([{"source_path": str(Path(directory) / "absent.sol")}])
-            with self.assertRaises(FileNotFoundError):
-                build_dataset_v2.convert_cgt_to_v1_format(frame)
-
-    def test_invalid_csv_labels_are_rejected(self):
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "bad.csv"
-            path.write_text("label,n_assessed_types,n_assessments,fp_sol,normalized_hash,source_path\n2,7,7,a,b,c.sol\n", encoding="utf-8")
-            with patch.object(build_dataset_v2, "CGT_CANDIDATES_FILE", path), self.assertRaises(ValueError):
-                build_dataset_v2.load_cgt_candidates()
-
-    def test_internal_conflicts_are_serialized(self):
-        rows = [{"context": "contract C {}", "has_vulnerability": label} for label in (0, 1)]
-        report = audit_internal(build_indexes(rows), "test")
-        self.assertEqual(report["context"]["conflicting_groups"], 1)
-        common, conflicts = compare_one_hash_type(build_indexes(rows)["context"], build_indexes(rows)["context"])
-        self.assertEqual((common, conflicts), (1, 1))
+from src.source_paths import resolve_source_path
 
 
 @unittest.skipUnless((ROOT / "models/active_model.json").exists(), "Train V3 first")
@@ -97,7 +64,7 @@ class ProductionTests(unittest.TestCase):
         bundle = json.loads((ROOT / "models/active_model.json").read_text(encoding="utf-8"))
         record = read_jsonl(ROOT / bundle["dataset_path"] / "test.jsonl.gz")[0]
         reference = record["source_refs"][0]
-        raw = json.loads((ROOT / "dataset/v2/raw" / (reference["split"] + ".json")).read_text(encoding="utf-8"))[reference["index"]]
+        raw = json.loads(resolve_source_path(Path(bundle["config"]["input_dir"]) / (reference["split"] + ".json")).read_text(encoding="utf-8"))[reference["index"]]
         expected = json.loads((ROOT / bundle["results_path"] / "test_predictions.json").read_text(encoding="utf-8"))[0]
         code = code_from_sample(raw)
         response = self.analyze(code)

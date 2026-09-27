@@ -1,4 +1,4 @@
-"""Build a quarantined, grouped benchmark without altering the V1/V2 evidence."""
+"""Build the quarantined, grouped V3 benchmark from preserved raw sources."""
 import argparse
 from collections import Counter, defaultdict
 import gzip
@@ -11,8 +11,10 @@ import numpy as np
 from sklearn.model_selection import StratifiedGroupKFold
 
 try:
+    from .source_paths import resolve_source_path
     from .preprocessing_v3 import ROOT, VERSION, build_vocabulary, code_from_sample, digest, encode, file_digest, load_config, structural_tokens, tokenize
 except ImportError:
+    from source_paths import resolve_source_path
     from preprocessing_v3 import ROOT, VERSION, build_vocabulary, code_from_sample, digest, encode, file_digest, load_config, structural_tokens, tokenize
 
 
@@ -204,8 +206,9 @@ def build(config, output=None):
         raise FileExistsError(f"Refusing to replace dataset artifacts: {destination}. Use a new --output directory.")
     records, quarantine, source_hashes = [], [], {}
     for split in ("train", "val", "test"):
-        path = ROOT / config["input_dir"] / (split + ".json")
-        source_hashes[str(path.relative_to(ROOT))] = file_digest(path)
+        logical_path = Path(config["input_dir"]) / (split + ".json")
+        path = resolve_source_path(logical_path)
+        source_hashes[str(logical_path)] = file_digest(path)
         samples = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(samples, list):
             raise ValueError(f"Invalid input partition: {path}")

@@ -1,0 +1,23 @@
+{
+  "run_id": "v3-403bb881-20260922T101754Z",
+  "dataset_id": "403bb88190a299381be57635f48aba7053ee48257ed7df1a6312b883f7428ae7",
+  "selected_seed": 73,
+  "source_sha256": {
+    "models/active_model.json": "ec505732b9610900baaf8dd3e5ea340ac909ad7afc1fbcb92c7664b8da3bef5c",
+    "results/v3/v3-403bb881-20260922T101754Z/evaluation.json": "b600a32bdbb9c585246a7b4e71f98e43f52ca774d8583e62bf5804c2b259d009",
+    "results/v3/v3-403bb881-20260922T101754Z/seed-73-history.json": "093be27c4ce3e11f5f280cbc38f38ea3b500c7f0d9b3c235beb9a092772ddbf1"
+  },
+  "generator_sha256": "4c94836acacf4aef57a3fc89e9e65c325f07bb2edbda765c5ee1175e87f41d85",
+  "files": {
+    "accuracy.png": "b13c6d0200f63d787edde47c3802e7f79abfa8891b58c31835c5cc76513f0fda",
+    "accuracy.svg": "4a8412b7d98a42f6e2ae86839f669e993cc5fba1244d5309ad7ef69edc2ddb74",
+    "loss.png": "d79678fff95b25a34038dbc1df50df935004b4d1fd78e5f3a59c4440af431066",
+    "loss.svg": "b3e54faa5d92d065e2a48250d638119acf7e1984bbad2209861f610b7e38ecd6",
+    "confusion_matrix.png": "4f92b1f9f4ec24fb77885061e80511269da9a923683451d528264da009a26b39",
+    "confusion_matrix.svg": "368858f739b9a0731fafe5225e8e35e84186f61d5a4d9d467334166bfa69b236",
+    "global_metrics.png": "ee6ea6fc38c20eb9f611686ea6b90cafe6448d9d4127846775b22808e3a77dc0",
+    "global_metrics.svg": "35304ceb8d0b2480d12334f7019af957f45323c6aeb936d9ada397c0056d14fb",
+    "class_metrics.png": "170a6624cb699e60efd40f40495cbf4e8fefd210bbea2d52ff3e0e8e9bf5f808",
+    "class_metrics.svg": "df55ad461822a4ba416a37b8806742bdb3850ddaed8626c2c7d6888890cb826e"
+  }
+}

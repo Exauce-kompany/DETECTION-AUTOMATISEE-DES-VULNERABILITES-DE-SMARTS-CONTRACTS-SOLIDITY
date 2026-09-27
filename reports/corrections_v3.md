@@ -1,6 +1,6 @@
 # Corrections de l'audit — 22 septembre 2026
 
-Le protocole actif est V3. Le modèle a été réellement réentraîné, calibré, évalué et raccordé à l'application. Les artefacts V2 sont conservés comme preuves historiques ; leurs métriques ne sont plus présentées comme celles du modèle actif.
+Le protocole actif est V3. Le modèle a été réellement réentraîné, calibré, évalué et raccordé à l'application. Le dossier final conserve les artefacts V3 et sa comparaison expérimentale ; les anciens artefacts ont été retirés du dossier de travail. Leur historique reste accessible dans Git.
 
 ## Les dix chantiers
 
@@ -12,12 +12,12 @@ Le rapport initial détaillait douze constats ; les deux derniers (robustesse de
 | 2 | Labels contradictoires | 796 exemples exclus en quarantaine quand le code canonique ou les tokens d'entrée portent des labels opposés | Une expertise des sources est nécessaire pour les réintégrer ; aucun label n'a été inventé |
 | 3 | Code tronqué à 512 tokens | Toutes les fenêtres de 256 tokens sont encodées par un CNN puis agrégées par un BiLSTM ; une cible par contrat | Le réseau reste une représentation apprise, sans analyse sémantique complète ni garantie de localiser la faille |
 | 4 | Commentaires révélant les annotations | Suppression lexicale des commentaires en respectant les chaînes ; normalisation des identifiants ; vocabulaire appris sur le train uniquement | Les indices de style/provenance ne peuvent pas tous être éliminés |
-| 5 | Audits et construction fragiles | Audit bloquant des représentations complètes, labels, groupes et empreintes ; manifestes ; audit V2 sérialise ses conflits internes et corrige l'union des labels ; exceptions pour CSV/sources invalides et dimensions dynamiques | Les anciens scripts V2 restent des archives et ne doivent pas servir à valider le protocole V3 |
+| 5 | Audits et construction fragiles | Audit bloquant des représentations complètes, labels, groupes et empreintes ; manifestes et vérification des données sources déplacées | La validation repose sur les scripts et les tests du protocole V3 |
 | 6 | Hashes de sens différents | SHA-256 du texte brut, du code canonique, des tokens, de la structure et de l'encodage calculés séparément ; références d'origine conservées | Une empreinte commune ne prouve pas l'identité sémantique de deux contrats |
 | 7 | Classe « non vulnérable » trop absolue | Exclusion des 503 négatifs CGT dont la couverture des sept familles est incomplète ; définition et affichage d'une absence de signal/annotation | Les autres labels hérités restent partiellement non vérifiés ; leur provenance est indiquée |
 | 8 | Biais de source et fonctions sans contexte | Exclusion de 1 141 fonctions sans contrat parent ; groupes, pondérations source/label sur le train, métriques par source/granularité/confiance d'annotation ; CGT réservé avec toutes ses familles liées | Manque de négatifs comparables, surtout dans la source réservée ; le biais n'est pas prétendu supprimé |
 | 9 | Confiance non calibrée et combinaison 70/30 | Température et seuil ajustés sur une partition de calibration dédiée ; Brier, ECE et classes de fiabilité ; suppression du score combiné ; scores IA/statique séparés | L'ECE augmente fortement hors source ; la calibration n'est pas une garantie individuelle |
-| 10 | Prétraitements et versions incohérents | Même prédicteur CLI/web, correction du tokenizer V1, configuration versionnée, graines 42/73/101, déterminisme TF, hashes et identifiant d'expérience ; UI lit les artefacts actifs ; baseline TF-IDF | Résultats bit à bit dépendants de l'environnement ; contrôle visuel de l'interface encore à effectuer |
+| 10 | Prétraitements et versions incohérents | Même prédicteur CLI/web, tokenisation partagée, configuration versionnée, graines 42/73/101, déterminisme TF, hashes et identifiant d'expérience ; UI lit les artefacts actifs ; baseline TF-IDF | Résultats bit à bit dépendants de l'environnement ; contrôle visuel de l'interface encore à effectuer |
 
 ## Architecture et hyperparamètres
 
@@ -35,7 +35,7 @@ La configuration exacte est dans `config/v3.json`. `src/train_v3.py` orchestre e
 
 ## Données et indépendance
 
-26 134 exemples V2 initiaux ; 2 440 exclusions en quarantaine et 5 456 doublons retirés, avec conservation des références. Restent **18 238 contrats/représentations de contrats**.
+26 134 exemples sources initiaux ; 2 440 exclusions en quarantaine et 5 456 doublons retirés, avec conservation des références. Restent **18 238 contrats/représentations de contrats**.
 
 | Partition | Total | Groupes | Label 0 | Label 1 | Usage |
 |---|---:|---:|---:|---:|---|
@@ -67,15 +67,15 @@ Matrice de confusion active : lignes = labels réels [0,1], colonnes = prédicti
 
 Sur `source_holdout`, rappel positif 89,01 %, F1 macro 47,73 %, ECE 29,84 %. Cet ensemble comporte seulement six négatifs ; sa précision globale de 88,63 % est moins élevée que celle d'une règle toujours positive (99,48 %). La forte asymétrie des classes rend l'exactitude et l'aire précision-rappel peu informatives pour juger ce transfert. **Le biais de source et la qualité des annotations restent des limites de recherche, pas des points déclarés résolus par le seul code.**
 
-Les prédictions individuelles, résultats par source/granularité/confiance d'annotation et classes du diagramme de fiabilité sont dans `results/v3/<run>/`. Le modèle ne peut pas être comparé directement au 85,87 % historique V2 : les partitions, exclusions et représentations ont changé.
+Les prédictions individuelles, résultats par source/granularité/confiance d'annotation et classes du diagramme de fiabilité sont dans `results/v3/<run>/`. Les scores du modèle actif sont distincts des résultats de la comparaison expérimentale PyTorch.
 
 ## Vérifications et reproduction
 
-- `python -m unittest discover -s tests -v` : 25 tests réussis, dont tests HTTP avec base SQLite temporaire, concordance d'une prédiction du test avec le modèle actif, invariance aux annotations dans les commentaires, conservation des tokens finaux, masquage, sauvegarde/rechargement et refus des données invalides.
+- La suite `python -m unittest discover -s tests -v` couvre notamment les tests HTTP avec base SQLite temporaire, la concordance d'une prédiction du test avec le modèle actif, l'invariance aux annotations dans les commentaires, la conservation des tokens finaux, le masquage, la sauvegarde/rechargement et le refus des données invalides.
 - `python -m src.audit_dataset_v3` : intégrité et encodages complets vérifiés indépendamment, zéro recouvrement.
-- Syntaxe de 35 fichiers Python et des 8 scripts JavaScript vérifiée. Les écrans web n'ont pas pu être inspectés visuellement : aucun navigateur connecté n'était disponible.
+- Le bilan de vérification du dossier final figure dans [nettoyage_final_v3.md](nettoyage_final_v3.md).
 - Les avertissements Keras sur la cardinalité inconnue du générateur ne signifient pas ici une perte de contrats : un test vérifie le passage de tous les contrats à chaque itération, et les prédictions sauvegardées couvrent les partitions attendues. Les historiques des trois graines sont conservés.
-- Les fichiers Python de l'expérience correspondent aux hashes de `experiment.json` ; les artefacts sont protégés par des manifestes SHA-256. Git conserve les sources en LF et les artefacts générés octet pour octet afin que les contrôles restent valides après clonage.
+- Les artefacts sont protégés par des manifestes SHA-256. Le constructeur a été adapté après l’expérience pour résoudre les sources déplacées ; son empreinte diffère de celle enregistrée dans `experiment.json`. Les autres sources enregistrées de l’expérience restent inchangées. Git conserve les sources en LF et les artefacts générés octet pour octet afin que les contrôles restent valides après clonage.
 
 Pour une nouvelle expérience : `python -m src.train_v3`. Pour reconstruire sans écraser l'archive : `python -m src.build_dataset_v3 --output dataset/v3_rebuilt`. Ne pas réutiliser le test comme critère d'ajustement après avoir lu ces résultats.
 

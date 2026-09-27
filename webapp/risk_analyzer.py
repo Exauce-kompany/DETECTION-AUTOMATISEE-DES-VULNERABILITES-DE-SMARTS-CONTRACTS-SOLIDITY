@@ -768,8 +768,9 @@ def analyze_contract_risks(
         "disclaimer": (
             "Les catégories de vulnérabilité affichées dans cette section "
             "proviennent d'une analyse statique heuristique distincte du "
-            "modèle BiLSTM. Le modèle IA V2 réalise uniquement une "
-            "classification binaire : vulnérable ou non vulnérable."
+            "modèle CNN + BiLSTM hiérarchique V3. Le modèle IA réalise une "
+            "classification binaire selon les annotations apprises ; une absence "
+            "de signal ne constitue pas une certification de sécurité."
         ),
     }
 

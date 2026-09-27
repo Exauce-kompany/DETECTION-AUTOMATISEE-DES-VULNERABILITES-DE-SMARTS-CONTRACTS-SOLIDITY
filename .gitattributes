@@ -17,7 +17,8 @@ results/comparison/**/*.csv -text whitespace=cr-at-eol
 # Matplotlib emits SVG path whitespace; preserve the generated export verbatim.
 results/comparison/**/*.svg -text -whitespace
 
-# Raw V2 partitions exceed ordinary GitHub file-size recommendations
-dataset/v2/raw/train.json filter=lfs diff=lfs merge=lfs -text
-dataset/v2/raw/val.json filter=lfs diff=lfs merge=lfs -text
-dataset/v2/raw/test.json filter=lfs diff=lfs merge=lfs -text
+# Raw sources required to reproduce V3; preserve their original bytes.
+dataset/sources/train.json filter=lfs diff=lfs merge=lfs -text
+dataset/sources/val.json filter=lfs diff=lfs merge=lfs -text
+dataset/sources/test.json filter=lfs diff=lfs merge=lfs -text
+results/v3/**/*.svg -text -whitespace
