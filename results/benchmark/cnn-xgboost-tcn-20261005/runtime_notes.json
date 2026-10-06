@@ -1,0 +1,24 @@
+{
+  "recorded_local": "2026-10-06T00:41:48.7330098+01:00",
+  "action": "temporary_above_normal_priority_for_TCN_training_only",
+  "child_pid": 25820,
+  "previous_priority": "Normal",
+  "priority": "AboveNormal",
+  "compute_threads": 6,
+  "reason": "CPU competition from an independent training job; scheduling-only adjustment without stopping either training process.",
+  "limitation": "Elapsed timings include pauses and competing processes and cannot establish a fair speed ranking.",
+  "user_requested_pause": {
+    "recorded_utc": "2026-10-05T23:50:03.399729+00:00",
+    "stopped_child_pid": 25820,
+    "seed": 101,
+    "completed_epochs": 2,
+    "durable_batch": 800,
+    "optimizer_steps": 3200,
+    "checkpoint_path": "models/benchmark/cnn-xgboost-tcn-20261005/tcn/seed-101/resume.pt",
+    "checkpoint_sha256": "78d0ab4c3d7728119b3ddd23723a3ff4b4d785a00b7c379e1eb8457619248660",
+    "checkpoint_readback_verified": true,
+    "optimizer_and_rng_preserved": true,
+    "priority_adjustment_ended_with_process": true,
+    "resume_command": ".venv-comparison/Scripts/python.exe -u -m src.run_model_benchmark --stage tcn"
+  }
+}

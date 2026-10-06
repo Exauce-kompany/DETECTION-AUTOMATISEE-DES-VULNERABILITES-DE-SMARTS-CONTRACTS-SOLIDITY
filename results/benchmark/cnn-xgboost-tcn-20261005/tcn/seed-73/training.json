@@ -1,0 +1,158 @@
+{
+  "seed": 73,
+  "status": "complete",
+  "architecture": "tcn",
+  "initialization": "from_scratch",
+  "input_mode": "full",
+  "truncation": false,
+  "loss_unit": "contract",
+  "pooling": "masked_global_mean_and_max",
+  "activation": "relu",
+  "padding": "causal_left_padding_and_mask_after_each_sublayer",
+  "dropout_placement": "after_each_convolution_relu_and_before_dense_head",
+  "receptive_field_encoded_tokens": 2045,
+  "receptive_field_note": "Positions are losslessly encoded vocabulary/byte-escape IDs, not lexical tokens. Global pooling includes every position, but direct temporal interactions are limited to this receptive field.",
+  "parameters": 290505,
+  "trainable_parameters": 290505,
+  "epochs_executed": 5,
+  "best_epoch": 2,
+  "training_seconds": 20241.98901190015,
+  "optimizer_steps": 6000,
+  "training_contracts": 11959,
+  "validation_contracts": 1709,
+  "training_encoded_tokens": 17529956,
+  "validation_encoded_tokens": 2580700,
+  "training_weights_mean": 0.9999999812473889,
+  "training_weights_sha256": "a2e325971f95a8358676ffa8f1e71c7d62b9d61293724fb81fc449d8efb742f1",
+  "validation": {
+    "samples": 1709,
+    "accuracy": 0.8033937975424225,
+    "f1_macro": 0.8031591937474291,
+    "recall_vulnerable": 0.7802850356294537,
+    "confusion_matrix": [
+      [
+        716,
+        151
+      ],
+      [
+        185,
+        657
+      ]
+    ],
+    "classification_report": {
+      "no_annotated_vulnerability": {
+        "precision": 0.7946725860155383,
+        "recall": 0.825836216839677,
+        "f1-score": 0.8099547511312217,
+        "support": 867.0
+      },
+      "vulnerability_annotated": {
+        "precision": 0.8131188118811881,
+        "recall": 0.7802850356294537,
+        "f1-score": 0.7963636363636364,
+        "support": 842.0
+      },
+      "accuracy": 0.8033937975424225,
+      "macro avg": {
+        "precision": 0.8038956989483632,
+        "recall": 0.8030606262345654,
+        "f1-score": 0.8031591937474291,
+        "support": 1709.0
+      },
+      "weighted avg": {
+        "precision": 0.8037607792155835,
+        "recall": 0.8033937975424225,
+        "f1-score": 0.8032586021351381,
+        "support": 1709.0
+      }
+    },
+    "roc_auc": 0.8669778935746438,
+    "average_precision": 0.8668147438412002,
+    "brier_score": 0.15024948628075827,
+    "log_loss": 0.463125498854974,
+    "ece_10_bins": 0.07908082211263226,
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 114,
+        "predicted_probability": 0.07841328888023127,
+        "observed_positive_rate": 0.043859649122807015
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 181,
+        "predicted_probability": 0.14274081263500019,
+        "observed_positive_rate": 0.11049723756906077
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 206,
+        "predicted_probability": 0.25295101128058295,
+        "observed_positive_rate": 0.2087378640776699
+      },
+      {
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 241,
+        "predicted_probability": 0.3506278742737517,
+        "observed_positive_rate": 0.21991701244813278
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 159,
+        "predicted_probability": 0.4460887258675482,
+        "observed_positive_rate": 0.4025157232704403
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 138,
+        "predicted_probability": 0.5503342671432235,
+        "observed_positive_rate": 0.5144927536231884
+      },
+      {
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 265,
+        "predicted_probability": 0.6599765676858109,
+        "observed_positive_rate": 0.879245283018868
+      },
+      {
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 112,
+        "predicted_probability": 0.752921549019314,
+        "observed_positive_rate": 0.7857142857142857
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 135,
+        "predicted_probability": 0.8458943589683342,
+        "observed_positive_rate": 0.7925925925925926
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 158,
+        "predicted_probability": 0.9752169231967986,
+        "observed_positive_rate": 1.0
+      }
+    ],
+    "threshold": 0.5,
+    "single_class_subset": false
+  },
+  "model_path": "models/benchmark/cnn-xgboost-tcn-20261005/tcn/seed-73/weights.pt",
+  "model_sha256": "76830d73e6cb9d5e69e4e2ac062b080575ce9e72538b51b22272ba9e1127253c",
+  "input_fingerprint": "d59190e54f7bf6e3be1ee3af5709c99fd375d13cde035eaf0c2f66be2f6fbe31",
+  "sources_sha256": {
+    "benchmark_tcn.py": "b29268d0dce5d0aec886f157b04614c2d9934b16d49617893e90b138aacc73db",
+    "comparison_data.py": "f519a1c3c415ed3b79c3d87759a598c2cd7857391ec14431b94b0af9b8439051",
+    "experiment.py": "d77ce9422d81fd861f3567475a414eadea5d15d28c9442c724cca3594f49c045",
+    "preprocessing.py": "e2dd1215457a708bd381fe61db3d36f5f4e0dc6aaccd1dbf68034583a8abacc4"
+  }
+}

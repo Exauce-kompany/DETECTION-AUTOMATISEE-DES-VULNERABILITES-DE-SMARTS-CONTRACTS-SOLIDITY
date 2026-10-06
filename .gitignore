@@ -7,8 +7,21 @@ __pycache__/
 .venv/
 .venv-comparison/
 .cache-comparison/
+# Memoire sources are published; generated staging and runtime caches stay local.
+docs/memoire/before_tcn_models/
+docs/memoire/tcn_staging/
+docs/memoire/tcn_integration_ready/
+docs/memoire/draft_documents/
+docs/memoire/render/
+docs/memoire/python_packages/
 # Live process status belongs to the local machine; publication snapshots are tracked.
 results/comparison/**/execution_status.json
+models/benchmark/**/resume.pt
+models/benchmark/**/*.resume.pt
+# Published part 1 includes the unfinished seed's verified restart state.
+!models/benchmark/cnn-xgboost-tcn-20261005/tcn/seed-101/resume.pt
+results/benchmark/**/execution_status.json
+results/benchmark/**/progress.json
 venv/
 env/
 

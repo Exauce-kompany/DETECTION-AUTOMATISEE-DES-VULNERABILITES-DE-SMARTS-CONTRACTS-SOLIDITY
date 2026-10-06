@@ -1,0 +1,24 @@
+{
+  "source_run": "results/benchmark/cnn-xgboost-codebert-20261005",
+  "source_protocol_sha256": "1d4ec81d6760fb697536117959dbb5ba197b6138c0ffe6ac405d2b34d3672a58",
+  "source_snapshot": "results/benchmark/cnn-xgboost-codebert-20261005/source_snapshot",
+  "files_sha256": {
+    "xgboost/calibration.json": "9e17b2c8dcac0a6375921bff1dbf282089c867e7e687dac88d9db3fa0dc578c0",
+    "xgboost/evaluation.json": "40384de1806d2df708e75166ebe2930f50637c4c497f6b0affe1ee771062fbdf",
+    "xgboost/selection.json": "e7d6244e095a9d6c344d6239f8801a231b46f179e2049acce8fa7943f1163ab7",
+    "xgboost/source_holdout_logits.npy": "d0bc82e5cb4cb43d9f5fbeb22bffaaf647f70d1578850ee64717e2d5e081e188",
+    "xgboost/source_holdout_sample_ids.json": "c62992a72b3c83c882512379f9a95ffc0497d5f0c837b0e87057867935f7cdd2",
+    "xgboost/test_logits.npy": "1388d299e79640d982e4e0f7f4a628c69cdef8c8487942efeb2c89c0ec7277a0",
+    "xgboost/test_sample_ids.json": "5f41374f7f5644064c8c3e2ed2479dc23bf33c00d677c023d111c12e9eaf17ea",
+    "xgboost/seed-101/history.json": "75d94e777d1c8b2aa7efa967a0a9f9c784b1a7c223259d113770cf5a12f7bbdb",
+    "xgboost/seed-101/training.json": "7b3eb5f90d931f9d48d347698ea21162c31cd45a4e4626aaad0486f3cdc22629",
+    "xgboost/seed-101/validation_logits.npy": "5da6a39d65d350d8ee58fbc07e9114f7450d063348c78fc1630a975f889f102a",
+    "xgboost/seed-42/history.json": "078570c25b80fa4670995313b2b3caaac19f6a4e28dcefb60cfa893c75ff386c",
+    "xgboost/seed-42/training.json": "1622366ad7a33101455a3835f6895dd9bc59669e10dc298d0e4e920713ca1ef8",
+    "xgboost/seed-42/validation_logits.npy": "90622639b396bef2356b32663c75c4cb503988760c6af2158f326fbf94edf885",
+    "xgboost/seed-73/history.json": "b8d8c9c76292f7dd9db764f42adfe664607b847600d31b2edee244fa82895d09",
+    "xgboost/seed-73/training.json": "5c3bea2113906b2185cafb8fcd4de336ec0ea21f22d8fc1179a44f4cd391d7aa",
+    "xgboost/seed-73/validation_logits.npy": "af6742e15b4b6e53caf73d4e411458393bc51da2c7b2f8a81425efde266ea858"
+  },
+  "reason": "Reuse completed XGBoost computation after reporting/provenance/atomic JSON corrections; all XGBoost weights, logits and metrics unchanged."
+}

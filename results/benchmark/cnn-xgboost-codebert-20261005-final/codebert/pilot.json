@@ -1,0 +1,29 @@
+{
+  "status": "pilot_complete",
+  "seed": 42,
+  "final_training_started": false,
+  "representative_contract_indices": [
+    8,
+    13
+  ],
+  "representative_window_counts": [
+    9,
+    22
+  ],
+  "measured_training_seconds": 31.81788610003423,
+  "measured_forward_seconds": 7.434492799919099,
+  "measured_training_seconds_per_window": 1.0263834225817494,
+  "measured_forward_seconds_per_window": 0.23982234838448704,
+  "training_windows": 140510,
+  "validation_windows": 20723,
+  "training_window_count_quantiles": {
+    "0.5": 9.0,
+    "0.9": 22.0,
+    "0.99": 57.0
+  },
+  "estimated_training_and_validation_seconds_per_seed": 447560.91969759995,
+  "estimated_training_and_validation_seconds_all_seeds": 1342682.7590927999,
+  "estimate_scope": "linear window-count extrapolation; excludes download, tokenization, checkpoint I/O, test evaluation and pauses; early stopping can shorten training",
+  "trainable_parameters": 124055809,
+  "parameters": 124055809
+}

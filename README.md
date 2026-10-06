@@ -6,7 +6,9 @@ Le dossier de travail conserve uniquement le protocole SMART BUG et la comparais
 
 ## Rapport final
 
-La [synthèse du mémoire en PDF](output/pdf/Synthese_memoire_SmartContractSecurity.pdf) et sa [version Word modifiable](output/documents/Synthese_memoire_SmartContractSecurity.docx) présentent le sujet, la méthodologie, les architectures, les résultats et leurs limites. Le [bilan final SMART BUG](reports/rapport_final.md) détaille le nettoyage et les vérifications ; les résultats scientifiques complets figurent dans le [rapport comparatif](results/comparison/comparison-v1-20260922/report.md).
+Le [rapport final — partie 1](reports/rapport_final_partie_1.md) sauvegarde l'état du travail au 6 octobre 2026 : résultats CNN–BiLSTM/XGBoost, implémentation TCN et reprise de son entraînement en pause.
+
+Le [mémoire en PDF](output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf) et sa [version Word modifiable](output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx) sont en cours de révision pour intégrer la comparaison principale CNN–BiLSTM / XGBoost / TCN. Ils seront remplacés après les mesures finales du TCN. Le [rapport des calculs](results/benchmark/cnn-xgboost-tcn-20261005/report.md) distingue les résultats obtenus de ceux encore manquants. Le [bilan du nettoyage](reports/rapport_final.md) et la [synthèse antérieure](output/pdf/Synthese_memoire_SmartContractSecurity.pdf) documentent l'état précédent du projet.
 
 ## Installation
 
@@ -96,7 +98,23 @@ Les cinq figures (exactitude, perte, matrice de confusion, métriques globales e
 python -m src.plot_results
 ```
 
-## Comparaison expérimentale après SMART BUG
+## Comparaison principale : CNN–BiLSTM, XGBoost et TCN
+
+Le [protocole](reports/protocole_cnn_xgboost_tcn.md) compare le **CNN–BiLSTM actif**, **TF-IDF + XGBoost** et un **TCN entraîné depuis zéro** sur les mêmes partitions. Le TCN analyse tous les tokens encodés par des convolutions causales dilatées résiduelles, puis une agrégation globale. La revue de littérature reste qualitative ; les scores d'autres publications ne servent pas à classer ces modèles.
+
+Réglages : `config/benchmark_models.json`. Exécution : `src/run_model_benchmark.py`, avec `src/benchmark_tcn.py` pour le TCN. Installer `requirements-benchmark.txt` dans l'environnement scientifique dédié.
+
+```powershell
+python -m src.run_model_benchmark --stage import-baselines
+python -m src.run_model_benchmark --stage tcn-pilot
+python -m src.run_model_benchmark --stage tcn
+python -m src.run_model_benchmark --stage report
+python -m src.plot_model_benchmark
+```
+
+Le [rapport des calculs](results/benchmark/cnn-xgboost-tcn-20261005/report.md) précise les étapes terminées et les résultats manquants. Le pilote TCN estime sa durée ; il n'est pas un entraînement final. Le test conserve son rôle exploratoire. Les calculs CNN et XGBoost antérieurs sont réutilisés avec leurs empreintes et sans dupliquer leurs poids. Le pilote CodeBERT reste une archive ; il a été remplacé pour son coût sur CPU. Le [mémoire PDF](output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf) et sa [version Word](output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx) sont conservés dans leur édition précédente ; leur révision TCN attend les mesures finales.
+
+## Archive de l'expérience CNN/BiLSTM/CodeT5/TF-IDF
 
 Le [protocole de comparaison](reports/protocole_comparaison_v1.md) couvre CNN,
 BiLSTM, CNN-BiLSTM, CodeT5-small figé et TF-IDF, avec entrées complètes ou tronquées.

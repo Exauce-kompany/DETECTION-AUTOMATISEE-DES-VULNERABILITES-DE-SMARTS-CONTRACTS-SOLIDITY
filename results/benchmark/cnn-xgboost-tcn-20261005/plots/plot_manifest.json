@@ -1,0 +1,107 @@
+{
+  "created_utc": "2026-10-05T23:14:03.656775+00:00",
+  "run_id": "cnn-xgboost-tcn-20261005",
+  "dataset_id": "69395a7f7f7d66a9066687445aca249e9d67a994a12b1466920fb4e64102b465",
+  "protocol_id": "c4023c1ba2a9291feabd2eb120a7891bd456070119ad375ea36199db88f0aeb4",
+  "test_role": "previously_observed_exploratory_test",
+  "exploratory": true,
+  "selection": "minimum_unweighted_validation_log_loss_then_seed",
+  "threshold_fit_split": "calibration",
+  "generator": {
+    "path": "src/plot_model_benchmark.py",
+    "sha256": "615e279de9f307166ecd2e44dd19add91d49299de4c91ace0b9587acd7be3359"
+  },
+  "frozen_sources_sha256": {
+    "run_model_benchmark.py": "c5f0bed724970a6970e481707b887f9cd24f23ca2b8bc1e77d08ab7d9d7f0174",
+    "comparison_metrics.py": "42430ce21c0074dcf536e070a0940ff8236bfbb1e638849bc1777cbdbb4e9cf2",
+    "experiment.py": "d77ce9422d81fd861f3567475a414eadea5d15d28c9442c724cca3594f49c045",
+    "preprocessing.py": "e2dd1215457a708bd381fe61db3d36f5f4e0dc6aaccd1dbf68034583a8abacc4",
+    "model.py": "08f7c40843b4bbbcc58962cb4b0318ba8c0622e0988d3a3a670e862a233740bf",
+    "benchmark_tcn.py": "b29268d0dce5d0aec886f157b04614c2d9934b16d49617893e90b138aacc73db",
+    "comparison_data.py": "f519a1c3c415ed3b79c3d87759a598c2cd7857391ec14431b94b0af9b8439051"
+  },
+  "palette": {
+    "cnn_bilstm": "#0072B2",
+    "xgboost": "#009E73",
+    "tcn": "#E69F00"
+  },
+  "environment": {
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.2"
+  },
+  "status": "architecture_only",
+  "test_labels_read": false,
+  "plots": {
+    "architecture_tcn": {
+      "files": [
+        {
+          "path": "results/benchmark/cnn-xgboost-tcn-20261005/plots/architecture_tcn.png",
+          "sha256": "ca8103aa1f33abb456f57b59645fd450f2881e2e5911bd165a4dc1f6d1313296",
+          "format": "png",
+          "dpi": 300
+        },
+        {
+          "path": "results/benchmark/cnn-xgboost-tcn-20261005/plots/architecture_tcn.svg",
+          "sha256": "5289193a17a317a0f5ac8efdb676bd75e95d0ab13b587820ee29e29b6c428350",
+          "format": "svg"
+        }
+      ],
+      "uses_test": false,
+      "canvas_inches": [
+        14.2,
+        4.1
+      ],
+      "fixed_canvas": false
+    }
+  },
+  "skipped": {
+    "metriques_principales": "Option --architecture-only.",
+    "matrices_confusion": "Option --architecture-only.",
+    "courbe_roc": "Option --architecture-only.",
+    "courbe_precision_rappel": "Option --architecture-only.",
+    "ecarts_f1_ic95": "Option --architecture-only.",
+    "pertes_tcn_selectionne": "Option --architecture-only.",
+    "logloss_validation_tcn": "Option --architecture-only."
+  },
+  "sources_sha256": {
+    "config/benchmark_models.json": "a0fac4b23b886dd923069229be431e6e73f2a60f8c883e45a8f38a5e82fd6d62",
+    "results/benchmark/cnn-xgboost-tcn-20261005/protocol.json": "4abe1d9b251b63c963893b497d1ca0e0fbbfdbf8c89ca03dda0b5dc593904079"
+  },
+  "architecture": {
+    "settings": {
+      "strategy": "from_scratch_causal_dilated_residual_convolutions",
+      "input": "all_losslessly_encoded_normalized_lexical_tokens",
+      "embedding_dim": 32,
+      "channels": 24,
+      "kernel_size": 3,
+      "dilations": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "convolutions_per_block": 2,
+      "pooling": "masked_mean_and_max_over_all_encoded_tokens",
+      "dense_units": 32,
+      "batch_size": 32,
+      "batch_token_budget": 16384,
+      "loss_unit": "contract",
+      "epochs": 12,
+      "early_stopping_patience": 3,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0,
+      "dropout": 0.2,
+      "cpu_threads": 6,
+      "checkpoint_every_batches": 100
+    },
+    "receptive_field_encoded_positions": 2045,
+    "initialization": "from_scratch",
+    "truncation": false
+  }
+}

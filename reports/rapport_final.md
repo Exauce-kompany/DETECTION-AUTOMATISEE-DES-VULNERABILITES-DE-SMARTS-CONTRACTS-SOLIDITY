@@ -1,5 +1,7 @@
 # Dossier final SMART BUG — nettoyage du 27 septembre 2026
 
+Mise à jour du 5 octobre 2026 : la comparaison principale du mémoire porte désormais sur CNN–BiLSTM, XGBoost et TCN, selon le [nouveau protocole](protocole_cnn_xgboost_tcn.md). Le présent rapport conserve le compte rendu du nettoyage de septembre ; les [nouveaux calculs](../results/benchmark/cnn-xgboost-tcn-20261005/report.md) ont leur propre état d'avancement. Le pilote CodeBERT est archivé après le choix du TCN.
+
 Le dossier de travail contient désormais le modèle actif SMART BUG, son jeu de données, ses résultats et la comparaison expérimentale CNN/BiLSTM/CNN-BiLSTM/CodeT5/TF-IDF réalisée sur les partitions SMART BUG.
 
 ## Suppressions

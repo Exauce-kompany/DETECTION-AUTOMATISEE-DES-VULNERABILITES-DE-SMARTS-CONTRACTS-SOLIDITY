@@ -1,0 +1,133 @@
+{
+  "status": "pilot_complete",
+  "seed": 42,
+  "architecture": "tcn",
+  "final_training_started": false,
+  "input_mode": "full",
+  "truncation": false,
+  "initialization": "from_scratch",
+  "receptive_field_encoded_tokens": 2045,
+  "measured_batches": {
+    "training": [
+      {
+        "contract_indices": [
+          9116,
+          2795,
+          8435,
+          8537,
+          7442,
+          291,
+          8475,
+          187
+        ],
+        "contracts": 8,
+        "maximum_encoded_length": 2025,
+        "encoded_tokens": 16183,
+        "padded_encoded_positions": 16200,
+        "representative_quantile": 0.5,
+        "warmup_batches": 1,
+        "timed_batches": 3,
+        "seconds": [
+          0.09862249996513128,
+          0.10446170007344335,
+          0.1026833999203518
+        ],
+        "median_seconds": 0.1026833999203518,
+        "q90_seconds": 0.10410604004282505
+      },
+      {
+        "contract_indices": [
+          8984,
+          1640
+        ],
+        "contracts": 2,
+        "maximum_encoded_length": 6479,
+        "encoded_tokens": 12957,
+        "padded_encoded_positions": 12958,
+        "representative_quantile": 0.9,
+        "warmup_batches": 1,
+        "timed_batches": 3,
+        "seconds": [
+          0.08258610009215772,
+          0.08204449992626905,
+          0.07953009998891503
+        ],
+        "median_seconds": 0.08204449992626905,
+        "q90_seconds": 0.08247778005897999
+      }
+    ],
+    "validation": [
+      {
+        "contract_indices": [
+          1184,
+          1398,
+          1249,
+          1499,
+          781,
+          443,
+          1111
+        ],
+        "contracts": 7,
+        "maximum_encoded_length": 2047,
+        "encoded_tokens": 14276,
+        "padded_encoded_positions": 14329,
+        "representative_quantile": 0.5,
+        "warmup_batches": 1,
+        "timed_batches": 3,
+        "seconds": [
+          0.018482499988749623,
+          0.012065200018696487,
+          0.008282899972982705
+        ],
+        "median_seconds": 0.012065200018696487,
+        "q90_seconds": 0.017199039994738995
+      },
+      {
+        "contract_indices": [
+          956
+        ],
+        "contracts": 1,
+        "maximum_encoded_length": 8286,
+        "encoded_tokens": 8286,
+        "padded_encoded_positions": 8286,
+        "representative_quantile": 0.9,
+        "warmup_batches": 1,
+        "timed_batches": 3,
+        "seconds": [
+          0.010147899971343577,
+          0.011258300044573843,
+          0.011270999908447266
+        ],
+        "median_seconds": 0.011258300044573843,
+        "q90_seconds": 0.01126845993567258
+      }
+    ]
+  },
+  "representative_batch_selection": "median_and_q90_of_actual_batch_maximum_encoded_lengths",
+  "training_batches_per_epoch": 1200,
+  "validation_batches_per_epoch": 177,
+  "training_contracts": 11959,
+  "validation_contracts": 1709,
+  "training_encoded_tokens": 17529956,
+  "validation_encoded_tokens": 2580700,
+  "training_encoded_length_quantiles": {
+    "0.5": 1096.0,
+    "0.9": 2842.0,
+    "0.99": 7117.960000000006,
+    "1.0": 27444.0
+  },
+  "estimated_training_seconds_per_epoch": 111.2490888368107,
+  "estimated_validation_seconds_per_epoch": 2.475523838033483,
+  "maximum_epochs_per_seed": 12,
+  "seeds": [
+    42,
+    73,
+    101
+  ],
+  "estimated_training_and_validation_seconds_per_seed": 1364.6953520981301,
+  "estimated_training_and_validation_seconds_all_seeds": 4094.0860562943903,
+  "estimate_scope": "Representative median/q90 actual batches after warm-up; interpolate time per padded encoded position by batch maximum length. Maximum-epoch estimate excludes checkpoint I/O, metric calculation, test evaluation and pauses; extreme lengths can cost more and early stopping can shorten training.",
+  "parameters": 290505,
+  "trainable_parameters": 290505,
+  "input_fingerprint": "6f3c3ca8b773e6214c21505d480d3c431081e012cc0f4c29c357290929a66b64"
+}

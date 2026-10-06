@@ -1,0 +1,3 @@
+# Add to the existing scientific stack in an isolated environment.
+-r requirements-comparison.txt
+xgboost==3.4.1

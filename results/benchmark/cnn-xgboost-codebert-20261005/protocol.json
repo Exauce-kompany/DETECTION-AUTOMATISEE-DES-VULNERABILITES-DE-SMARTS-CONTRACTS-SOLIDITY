@@ -1,0 +1,90 @@
+{
+  "created_utc": "2026-10-05T13:36:05.826858+00:00",
+  "config": {
+    "study": "cnn-xgboost-codebert",
+    "dataset_dir": "dataset/benchmark",
+    "dataset_id": "69395a7f7f7d66a9066687445aca249e9d67a994a12b1466920fb4e64102b465",
+    "models": [
+      "cnn_bilstm",
+      "xgboost",
+      "codebert"
+    ],
+    "seeds": [
+      42,
+      73,
+      101
+    ],
+    "cpu_threads": 6,
+    "target_recall": 0.9,
+    "target_fpr": 0.1,
+    "selection": "minimum_unweighted_validation_log_loss_then_seed",
+    "threshold_fit_split": "calibration",
+    "test_role": "previously_observed_exploratory_test",
+    "production_activation": false,
+    "cnn_bilstm": {
+      "manifest": "models/active_model.json",
+      "strategy": "reuse_existing_tensorflow_checkpoint_selected_on_validation",
+      "selected_seed": 73
+    },
+    "tfidf": {
+      "ngram_range": [
+        1,
+        2
+      ],
+      "max_features": 20000,
+      "min_df": 2,
+      "sublinear_tf": true,
+      "fit_split": "train",
+      "input": "all_normalized_lexical_tokens"
+    },
+    "xgboost": {
+      "n_estimators": 600,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 2,
+      "reg_lambda": 1,
+      "tree_method": "hist",
+      "objective": "binary:logistic",
+      "eval_metric": "logloss",
+      "early_stopping_rounds": 40
+    },
+    "codebert": {
+      "model_id": "microsoft/codebert-base",
+      "revision": "3b0952feddeffad0063f274080e3c23d75e7eb39",
+      "strategy": "full_encoder_and_head_fine_tuning",
+      "input": "all_normalized_lexical_tokens",
+      "chunk_subtokens": 256,
+      "chunk_batch_size": 4,
+      "effective_batch_size": 8,
+      "pooling": "mean_of_cls_window_logits_per_contract",
+      "loss_unit": "contract",
+      "epochs": 3,
+      "early_stopping_patience": 2,
+      "learning_rate": 2e-05,
+      "weight_decay": 0.01,
+      "dropout": 0,
+      "cpu_threads": 6,
+      "checkpoint_every_steps": 50
+    }
+  },
+  "sources_sha256": {
+    "run_model_benchmark.py": "fa9748bc00862295899d7f4020c433433acbf1805b8b03783ae5fdea024f2c91",
+    "comparison_metrics.py": "42430ce21c0074dcf536e070a0940ff8236bfbb1e638849bc1777cbdbb4e9cf2",
+    "experiment.py": "d77ce9422d81fd861f3567475a414eadea5d15d28c9442c724cca3594f49c045",
+    "preprocessing.py": "e2dd1215457a708bd381fe61db3d36f5f4e0dc6aaccd1dbf68034583a8abacc4"
+  },
+  "active_manifest_sha256": "b653941f194550f72963b5804b97afe0ce86d5e4b7fafa926360206dbad9c618",
+  "environment": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "torch": "2.14.0",
+    "transformers": "4.57.6"
+  },
+  "test_previously_observed": true,
+  "production_activation": false,
+  "protocol_id": "1d7160b8492021cbff616a8177e9a35741306c0eaee4ac9bcac9ce8f6b0c48d6"
+}

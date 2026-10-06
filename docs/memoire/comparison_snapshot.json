@@ -1,0 +1,139 @@
+{
+  "run_id": "cnn-xgboost-codebert-20261005-final",
+  "status": "cnn_and_xgboost_evaluated_codebert_incomplete",
+  "source": "results/benchmark/cnn-xgboost-codebert-20261005-final/xgboost/evaluation.json",
+  "source_sha256": "40384de1806d2df708e75166ebe2930f50637c4c497f6b0affe1ee771062fbdf",
+  "summary_source": "results/benchmark/cnn-xgboost-codebert-20261005-final/summary.json",
+  "summary_sha256_at_import": "e9186d6650de5fe5a70cd1f5a814a116a04aa9433fcd5ed67db93d8d972997e9",
+  "metrics": {
+    "samples": 1709,
+    "accuracy": 0.8940901111761264,
+    "f1_macro": 0.8940725574336252,
+    "recall_vulnerable": 0.8942992874109263,
+    "confusion_matrix": [
+      [
+        775,
+        92
+      ],
+      [
+        89,
+        753
+      ]
+    ],
+    "classification_report": {
+      "no_annotated_vulnerability": {
+        "precision": 0.8969907407407407,
+        "recall": 0.8938869665513264,
+        "f1-score": 0.8954361640670133,
+        "support": 867.0
+      },
+      "vulnerability_annotated": {
+        "precision": 0.8911242603550296,
+        "recall": 0.8942992874109263,
+        "f1-score": 0.8927089508002372,
+        "support": 842.0
+      },
+      "accuracy": 0.8940901111761264,
+      "macro avg": {
+        "precision": 0.8940575005478851,
+        "recall": 0.8940931269811263,
+        "f1-score": 0.8940725574336252,
+        "support": 1709.0
+      },
+      "weighted avg": {
+        "precision": 0.8941004092692552,
+        "recall": 0.8940901111761264,
+        "f1-score": 0.8940925048682857,
+        "support": 1709.0
+      }
+    },
+    "roc_auc": 0.956922059029005,
+    "average_precision": 0.953369066501294,
+    "brier_score": 0.0819366027677601,
+    "log_loss": 0.2782055522401531,
+    "ece_10_bins": 0.047630653352711015,
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 430,
+        "predicted_probability": 0.052730052306001814,
+        "observed_positive_rate": 0.01627906976744186
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 145,
+        "predicted_probability": 0.14237304206685378,
+        "observed_positive_rate": 0.034482758620689655
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 98,
+        "predicted_probability": 0.24795507781548476,
+        "observed_positive_rate": 0.07142857142857142
+      },
+      {
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 63,
+        "predicted_probability": 0.3489897058742496,
+        "observed_positive_rate": 0.2857142857142857
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 73,
+        "predicted_probability": 0.4486664303797275,
+        "observed_positive_rate": 0.3013698630136986
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 60,
+        "predicted_probability": 0.5521042603873326,
+        "observed_positive_rate": 0.55
+      },
+      {
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 84,
+        "predicted_probability": 0.6511182568445839,
+        "observed_positive_rate": 0.7142857142857143
+      },
+      {
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 95,
+        "predicted_probability": 0.7575514236763372,
+        "observed_positive_rate": 0.6947368421052632
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 174,
+        "predicted_probability": 0.8609949414694953,
+        "observed_positive_rate": 0.8908045977011494
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 487,
+        "predicted_probability": 0.9660320061456642,
+        "observed_positive_rate": 0.9630390143737166
+      }
+    ],
+    "threshold": 0.5938727049051085,
+    "single_class_subset": false,
+    "false_positive_rate": 0.1061130334486736,
+    "precision_vulnerable": 0.8911242603550296
+  },
+  "selected_seed": 101,
+  "best_iteration": 597,
+  "validation_log_losses": {
+    "42": 0.32442139774071893,
+    "73": 0.32709861885630914,
+    "101": 0.319669257096825
+  }
+}

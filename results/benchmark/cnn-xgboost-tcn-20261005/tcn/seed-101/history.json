@@ -1,0 +1,22 @@
+[
+  {
+    "epoch": 1,
+    "loss": 0.588909087713043,
+    "validation_log_loss": 0.6588274403070149,
+    "validation_f1_macro": 0.614173646616898,
+    "validation_roc_auc": 0.8488700216708173,
+    "contracts_seen": 11959,
+    "optimizer_steps": 1200,
+    "learning_rate": 0.001
+  },
+  {
+    "epoch": 2,
+    "loss": 0.5033908228538311,
+    "validation_log_loss": 0.4841931448308345,
+    "validation_f1_macro": 0.7707739715174478,
+    "validation_roc_auc": 0.8946157196985264,
+    "contracts_seen": 11959,
+    "optimizer_steps": 2400,
+    "learning_rate": 0.001
+  }
+]

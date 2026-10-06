@@ -1,0 +1,18 @@
+{
+  "pages": 44,
+  "figures": 15,
+  "tables": 8,
+  "acknowledgments_verbatim": true,
+  "acknowledgments_source_exact": true,
+  "pagination_checked": true,
+  "caption_page_references_checked": true,
+  "bibliography_entries": 13,
+  "abbreviations": 44,
+  "source_words": 7196,
+  "comparison_status": "cnn_and_xgboost_evaluated_codebert_incomplete",
+  "benchmark_run_id": "cnn-xgboost-codebert-20261005-final",
+  "comparison_table_matches_saved_summary": true,
+  "xgboost_selected_seed": 101,
+  "third_model_status": "undecided_codebert_candidate_not_trained",
+  "pdf_sha256": "f8c2b1226153bb4bcd6e1b5c4ccea2baa76b0f7f1d16baec01e1dff39b4c5721"
+}

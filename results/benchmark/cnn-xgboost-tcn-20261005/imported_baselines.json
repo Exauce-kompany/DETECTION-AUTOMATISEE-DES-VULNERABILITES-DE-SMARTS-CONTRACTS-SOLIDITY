@@ -1,0 +1,31 @@
+{
+  "source_run": "results/benchmark/cnn-xgboost-codebert-20261005-final",
+  "source_protocol_sha256": "f4c58c557dd10917442ceecb260079e923f021be9ddf98c1d5c595a74bce06f1",
+  "files_sha256": {
+    "cnn_bilstm/calibration.json": "742437acaa76427d00e2406b33b32cb6d2d0db0026bc7f14a885277fba187e75",
+    "cnn_bilstm/evaluation.json": "9a82fbc9dbac2e29b2025d7a6c0e705640ce607cfc844f3e038897fcce34e783",
+    "cnn_bilstm/selection.json": "3327e3b1fa92352553ae2820930d29fecca78e92f63ebd04544f87a567c517c0",
+    "cnn_bilstm/source_holdout_logits.npy": "21b8981beac2a81638bbae80f2610267b145ca423edb1793525903daf53b9c60",
+    "cnn_bilstm/source_holdout_sample_ids.json": "ab885588a93e63405768f3753197a7832cf54a9f1094b3df98b1e95c3d46b92d",
+    "cnn_bilstm/test_logits.npy": "41653c9fe59a53191ffd975859cf924323ede4346c12ac3d1b35b0c34182846a",
+    "cnn_bilstm/test_sample_ids.json": "5dea13f71d7636f54a607e97a0c5ab268f807a634dc87c0eb8c2c14868fb965e",
+    "xgboost/calibration.json": "9e17b2c8dcac0a6375921bff1dbf282089c867e7e687dac88d9db3fa0dc578c0",
+    "xgboost/evaluation.json": "40384de1806d2df708e75166ebe2930f50637c4c497f6b0affe1ee771062fbdf",
+    "xgboost/seed-101/history.json": "75d94e777d1c8b2aa7efa967a0a9f9c784b1a7c223259d113770cf5a12f7bbdb",
+    "xgboost/seed-101/training.json": "7b3eb5f90d931f9d48d347698ea21162c31cd45a4e4626aaad0486f3cdc22629",
+    "xgboost/seed-101/validation_logits.npy": "5da6a39d65d350d8ee58fbc07e9114f7450d063348c78fc1630a975f889f102a",
+    "xgboost/seed-42/history.json": "078570c25b80fa4670995313b2b3caaac19f6a4e28dcefb60cfa893c75ff386c",
+    "xgboost/seed-42/training.json": "1622366ad7a33101455a3835f6895dd9bc59669e10dc298d0e4e920713ca1ef8",
+    "xgboost/seed-42/validation_logits.npy": "90622639b396bef2356b32663c75c4cb503988760c6af2158f326fbf94edf885",
+    "xgboost/seed-73/history.json": "b8d8c9c76292f7dd9db764f42adfe664607b847600d31b2edee244fa82895d09",
+    "xgboost/seed-73/training.json": "5c3bea2113906b2185cafb8fcd4de336ec0ea21f22d8fc1179a44f4cd391d7aa",
+    "xgboost/seed-73/validation_logits.npy": "af6742e15b4b6e53caf73d4e411458393bc51da2c7b2f8a81425efde266ea858",
+    "xgboost/selection.json": "e7d6244e095a9d6c344d6239f8801a231b46f179e2049acce8fa7943f1163ab7",
+    "xgboost/source_holdout_logits.npy": "d0bc82e5cb4cb43d9f5fbeb22bffaaf647f70d1578850ee64717e2d5e081e188",
+    "xgboost/source_holdout_sample_ids.json": "c62992a72b3c83c882512379f9a95ffc0497d5f0c837b0e87057867935f7cdd2",
+    "xgboost/test_logits.npy": "1388d299e79640d982e4e0f7f4a628c69cdef8c8487942efeb2c89c0ec7277a0",
+    "xgboost/test_sample_ids.json": "5f41374f7f5644064c8c3e2ed2479dc23bf33c00d677c023d111c12e9eaf17ea"
+  },
+  "weights_duplicated": false,
+  "reason": "Third model changed to TCN; CNN and XGBoost settings, scores and weights unchanged."
+}

@@ -1,0 +1,25 @@
+{
+  "comparison": "xgboost_minus_active_cnn_bilstm",
+  "method": "paired_cluster_bootstrap_by_group_id",
+  "repetitions": 1000,
+  "seed": 20261005,
+  "conditioned_on_selected_checkpoints": true,
+  "test_role": "exploratory_previously_observed",
+  "method_source_sha256": "42430ce21c0074dcf536e070a0940ff8236bfbb1e638849bc1777cbdbb4e9cf2",
+  "results": {
+    "f1_macro": {
+      "difference": 0.0730810554821133,
+      "ci95": [
+        0.04937325344859331,
+        0.10799342799664287
+      ]
+    },
+    "recall_vulnerable": {
+      "difference": 0.004750593824228044,
+      "ci95": [
+        -0.020336827317179652,
+        0.028974422951679384
+      ]
+    }
+  }
+}
