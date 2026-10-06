@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys, json
 HERE=Path(__file__).resolve().parent
-sys.path.insert(0,str(HERE/'python_packages'))
+# Use matplotlib from the authorised bundled runtime.
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -34,8 +34,8 @@ def diagram(name,boxes,edges,size=(9,4)):
         ax.annotate('',xy=end,xytext=start,arrowprops=dict(arrowstyle='->',color=GREY,lw=1.4,shrinkA=4,shrinkB=4))
     save(fig,name)
 diagram('lifecycle',{'a':(.2,4,2.6,1.1,'Code Solidity\nétat et fonctions'),'b':(3.7,4,2.6,1.1,'Compilation\net déploiement'),'c':(7.2,4,2.6,1.1,'Exécution EVM\ntransactions'),'d':(3.7,1.2,2.6,1.1,'Audit en amont\nSMART BUG')},[('a','b'),('b','c'),('a','d')],(9,3.6))
-diagram('approaches',{'a':(.2,4,2.7,1.2,'Règles statiques\nmotifs et alertes'),'b':(3.65,4,2.7,1.2,'Réseaux séquentiels\nCNN / BiLSTM'),'c':(7.1,4,2.7,1.2,'Représentations riches\ngraphes / CodeBERT'),'d':(3.65,1,2.7,1.4,'Décision et validation\nannotations, seuils,\ncontrats indépendants')},[('a','d'),('b','d'),('c','d')],(9,3.5))
-diagram('pipeline',{'a':(.2,4.5,2.5,1,'Sources de contrats\net annotations'),'b':(3.7,4.5,2.5,1,'Nettoyage, groupes\net cinq partitions'),'c':(7.2,4.5,2.5,1,'Apprentissage\nvalidation / calibration'),'d':(7.2,1.3,2.5,1.3,'Modèle actif\nvocabulaire et seuil'),'e':(3.7,1.3,2.5,1.3,'Prédicteur commun\nAPI et ligne de commande'),'f':(.2,1.3,2.5,1.3,'Interface SMART BUG\nrapport et historique')},[('a','b'),('b','c'),('c','d'),('d','e'),('e','f')],(9,4))
+diagram('approaches',{'a':(.2,4,2.7,1.2,'Règles statiques\nmotifs et alertes'),'b':(3.65,4,2.7,1.2,'Réseaux séquentiels\nCNN / BiLSTM / TCN'),'c':(7.1,4,2.7,1.2,'Représentations riches\ngraphes / préentraînement'),'d':(3.65,1,2.7,1.4,'Décision et validation\nannotations, seuils,\ncontrats indépendants')},[('a','d'),('b','d'),('c','d')],(9,3.5))
+diagram('pipeline',{'a':(.2,4.5,2.5,1,'Sources de contrats\net annotations'),'b':(3.7,4.5,2.5,1,'Nettoyage, groupes\net cinq partitions'),'c':(7.2,4.5,2.5,1,'Apprentissage\nvalidation / calibration'),'d':(7.2,1.3,2.5,1.3,'Modèle actif\nvocabulaire et seuil'),'e':(3.7,1.3,2.5,1.3,'Prédicteur commun\nAPI et commande'),'f':(.2,1.3,2.5,1.3,'Interface SMART BUG\nrapport et historique')},[('a','b'),('b','c'),('c','d'),('d','e'),('e','f')],(9,4))
 # Runtime arrows are drawn separately in a clear left-to-right conceptual flow.
 diagram('network',{'a':(.1,4.3,2.7,1.2,'Tokens normalisés\nvocabulaire 8 000\nfenêtres de 256'),'b':(3.65,4.3,2.7,1.2,'Embedding 32\nCNN : 24 × noyau 5\nmoyenne + maximum'),'c':(7.15,4.3,2.7,1.2,'Vecteur de fenêtre\n48 dimensions\nmasquage du remplissage'),'d':(7.15,1,2.7,1.4,'BiLSTM : 24 + 24\nsur les fenêtres\npooling global : 96'),'e':(3.65,1,2.7,1.4,'Dropout 0,30\nDense 32 ReLU\nlogit scalaire'),'f':(.1,1,2.7,1.4,'Température 0,93684\nseuil 0,26947\nune décision par contrat')},[('a','b'),('b','c'),('c','d'),('d','e'),('e','f')],(9,4.1))
 # Correct reverse-direction links on second row.
@@ -81,8 +81,8 @@ diagram('comparison',{
 'a':(3.5,4.8,3,0.8,'Mêmes contrats Solidity\nannotations et groupes'),
 'b':(.15,2.5,2.9,1.35,'CNN–BiLSTM actif\napprentissage depuis zéro\ncheckpoint 73 validé'),
 'c':(3.55,2.5,2.9,1.35,'TF-IDF + XGBoost\narbres appris depuis zéro\ncheckpoint 101 retenu'),
-'d':(6.95,2.5,2.9,1.35,'CodeBERT-base (candidat)\nfine-tuning encodeur + tête\nnon entraîné'),
-'e':(3.5,.3,3,0.95,'Une décision par contrat\nTroisième modèle à choisir')},[('a','b'),('a','c'),('a','d'),('b','e'),('c','e'),('d','e')],(9,4.5))
+'d':(6.95,2.5,2.9,1.35,'TCN causal et dilaté\napprentissage depuis zéro\ncheckpoint validé'),
+'e':(3.5,.3,3,0.95,'Une décision par contrat\ncalibration séparée')},[('a','b'),('a','c'),('a','d'),('b','e'),('c','e'),('d','e')],(9,4.5))
 diagram('ablation',{
 'a':(.1,4.6,3,1.05,'Entraînement : 11 959\napprendre les poids / arbres'),
 'b':(3.5,4.6,3,1.05,'Validation : 1 709\nsélectionner les états'),
@@ -90,9 +90,62 @@ diagram('ablation',{
 'd':(1.25,1.3,3.2,1.2,'Test : 1 709\nmesures communes\ndéjà consulté : exploratoire'),
 'e':(5.55,1.3,3.2,1.2,'Source réservée : 1 152\ntransfert hors source\nseulement six négatifs')},[('a','b'),('b','c'),('c','d'),('c','e')],(9,4.1))
 diagram('latency',{
-'a':(.1,4.6,3,1.05,'Code complet\ntoutes les fenêtres\naucune fin supprimée'),
-'b':(3.5,4.6,3,1.05,'CodeBERT + tête CLS\nlogit de chaque fenêtre\nencodeur adapté'),
-'c':(6.9,4.6,3,1.05,'Moyenne des logits\nun logit par contrat\nune seule perte'),
+'a':(.1,4.6,3,1.05,'Séquence encodée complète\ntoutes les positions\naucune fin supprimée'),
+'b':(3.5,4.6,3,1.05,'TCN : 9 blocs résiduels\n2 convolutions par bloc\ndilatations 1 à 256'),
+'c':(6.9,4.6,3,1.05,'Pooling moyen + maximum\nPAD masqués\nun logit et une perte'),
 'd':(6.9,1.3,3,1.2,'Température\net seuil sur calibration\nchaque modèle séparément'),
 'e':(3.5,1.3,3,1.2,'Test commun\nF1, rappel, précision, FPR\ncalibration et coût')},[('a','b'),('b','c'),('c','d'),('d','e')],(9,4.1))
 print('15 figures created in',OUT)
+
+# Replace protocol placeholders only after all measured outputs exist.
+from matplotlib.ticker import PercentFormatter
+snapshot=json.loads((HERE/'comparison_snapshot.json').read_text(encoding='utf-8'))
+run=ROOT/'results/benchmark'/snapshot['run_id']
+summary=json.loads((run/'summary.json').read_text(encoding='utf-8'))
+import hashlib
+assert summary['complete']
+assert hashlib.sha256((run/'summary.json').read_bytes()).hexdigest()==snapshot['summary_sha256_at_import']
+models=['cnn_bilstm','xgboost','tcn'];labels=['CNN–BiLSTM','XGBoost','TCN'];colors=['#0072B2','#009E73','#E69F00']
+keys=['f1_macro','recall_vulnerable','false_positive_rate','average_precision']
+fig,ax=plt.subplots(figsize=(9,4.3))
+for i,(model,label,color) in enumerate(zip(models,labels,colors)):
+    values=[100*summary['models'][model]['metrics'][key] for key in keys]
+    positions=[j+(i-1)*.24 for j in range(4)]
+    bars=ax.bar(positions,values,width=.23,color=color,label=label)
+    ax.bar_label(bars,labels=[f'{v:.1f}'.replace('.',',') for v in values],padding=3,fontsize=8)
+ax.set(xticks=range(4),xticklabels=['F1 macro','Rappel positif','FPR','PR-AUC (AP)'],ylim=(0,110),ylabel='Pourcentage')
+ax.yaxis.set_major_formatter(PercentFormatter(100));ax.grid(axis='y',alpha=.15);ax.set_axisbelow(True)
+ax.legend(loc='upper center',bbox_to_anchor=(.5,1.16),ncol=3,frameon=False,fontsize=10)
+fig.tight_layout();save(fig,'comparison')
+names={'cnn_bilstm':'CNN','xgboost':'XGBoost','tcn':'TCN'}
+pairs=summary['paired_comparisons']['pairs']
+fig,ax=plt.subplots(figsize=(9,4.1))
+for i,pair in enumerate(pairs):
+    delta=pair['f1_macro'];value=100*delta['difference'];low,high=[100*v for v in delta['ci95']]
+    ax.plot([low,high],[i,i],color=colors[i],lw=2.5);ax.plot(value,i,'o',color=colors[i],ms=8)
+    ax.annotate(f'{value:+.2f} [{low:+.2f} ; {high:+.2f}]'.replace('.',','),(value,i),xytext=(0,14),textcoords='offset points',ha='center',fontsize=10)
+ax.axvline(0,color=GREY,ls=':');ax.set(yticks=range(len(pairs)),yticklabels=[names[p['left']]+' − '+names[p['right']] for p in pairs],ylim=(-.55,len(pairs)-.35),xlabel='Différence de F1 macro (points) et IC à 95 %')
+ax.invert_yaxis();ax.grid(axis='x',alpha=.15);fig.tight_layout();save(fig,'ablation')
+selected=summary['models']['tcn']['selected'];seed=selected['seed']
+history=json.loads((run/'tcn'/f'seed-{seed}'/'history.json').read_text(encoding='utf-8'))
+fig,ax=plt.subplots(figsize=(9,4.1))
+epochs=[row['epoch'] for row in history]
+ax.plot(epochs,[row['loss'] for row in history],'-o',color=BLUE,label='Entraînement : BCE pondérée')
+ax.plot(epochs,[row['validation_log_loss'] for row in history],'--s',color=ORANGE,label='Validation : log-loss non pondérée')
+ax.axvline(selected['best_epoch'],color=GREY,ls=':',label='Époque retenue')
+ax.set(xlabel='Époque',ylabel='Perte',xticks=epochs);ax.grid(alpha=.15);ax.legend(fontsize=10);fig.tight_layout();save(fig,'latency')
+
+# Reuse fixed-size benchmark exports when pinned to the same saved summary.
+exports=run/'plots'
+manifest_path=exports/'plot_manifest.json'
+if manifest_path.exists():
+    import shutil
+    import hashlib
+    plot_manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+    assert plot_manifest['status']=='complete'
+    summary_key=(run/'summary.json').relative_to(ROOT).as_posix()
+    assert plot_manifest['sources_sha256'][summary_key]==hashlib.sha256((run/'summary.json').read_bytes()).hexdigest()
+    for plot,target in [('ecarts_f1_ic95','ablation'),('pertes_tcn_selectionne','latency')]:
+        exported=exports/(plot+'.png')
+        assert exported.exists()
+        shutil.copy2(exported,HERE/'figures'/(target+'.png'))

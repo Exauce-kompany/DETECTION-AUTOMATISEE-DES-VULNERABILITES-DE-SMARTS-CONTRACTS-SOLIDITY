@@ -65,6 +65,13 @@ def save_json(path, value):
     os.replace(temporary, path)
 
 
+def contrast_text(color):
+    rgb = np.asarray(to_rgba(color)[:3])
+    linear = np.where(rgb <= 0.04045, rgb / 12.92, ((rgb + 0.055) / 1.055) ** 2.4)
+    luminance = float(linear @ np.asarray([0.2126, 0.7152, 0.0722]))
+    return "white" if 1.05 / (luminance + 0.05) > (luminance + 0.05) / 0.05 else "#000000"
+
+
 def configure_style():
     for color in COLORS.values():
         to_rgba(color)
@@ -397,8 +404,9 @@ def draw_confusion(ax, name, matrix, calibration, maximum):
     ax.imshow(matrix, cmap=cmap, vmin=0, vmax=maximum)
     for (row, column), value in np.ndenumerate(matrix):
         symbol = (("VN", "FP"), ("FN", "VP"))[row][column]
+        text_color = contrast_text(cmap(float(value) / maximum))
         ax.text(column, row, f"{symbol}\n{value}", ha="center", va="center", fontsize=13,
-                color="white" if value > 0.6 * maximum else "#222222")
+                color=text_color)
     ax.set_xticks([0, 1], classes, fontsize=8)
     ax.set_yticks([0, 1], classes, fontsize=8)
     ax.set(xlabel="Classe prédite", ylabel="Annotation réelle")
@@ -418,7 +426,7 @@ def plot_test(config, output, manifest, labels, probabilities, evaluations, mode
             high = value > 0.94
             ax.text(bar.get_x() + bar.get_width() / 2, value - 0.055 if high else value + 0.013,
                     f"{value:.3f}", ha="center", va="center" if high else "bottom", fontsize=8,
-                    color="white" if high else "#333333")
+                    color=contrast_text(COLORS[name]) if high else "#333333")
     ax.set_xticks(x, ["F1 macro ↑", "Précision\npositive ↑", "Rappel\npositif ↑", "FPR ↓", "PR-AUC\n(AP) ↑"])
     ax.set(ylim=(0, 1), ylabel="Valeur", title="Comparaison des checkpoints sélectionnés sur le même test")
     ax.grid(axis="y", alpha=0.2)

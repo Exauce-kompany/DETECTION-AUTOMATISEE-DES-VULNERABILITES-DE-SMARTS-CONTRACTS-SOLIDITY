@@ -50,15 +50,15 @@
       "26"
     ],
     [
-      "3.5 Deux modèles évalués et un candidat supplémentaire.",
+      "3.5 Indicateurs mesurés des trois checkpoints sur le test.",
       "27"
     ],
     [
-      "3.6 Rôle des cinq partitions dans la comparaison.",
+      "3.6 Différences de F1 macro et intervalles bootstrap par groupes.",
       "28"
     ],
     [
-      "3.7 Agrégation par contrat et calibration des décisions.",
+      "3.7 Pertes du TCN retenu, graine 42.",
       "29"
     ]
   ],
@@ -92,7 +92,7 @@
       "26"
     ],
     [
-      "3.3 État de la comparaison à trois modèles.",
+      "3.3 Résultats comparatifs des trois checkpoints.",
       "27"
     ]
   ],
@@ -283,7 +283,7 @@
       2
     ],
     [
-      "3.2.3 Comparaison du CNN–BiLSTM, de XGBoost et de CodeBERT",
+      "3.2.3 Comparaison du CNN–BiLSTM, de XGBoost et du TCN",
       "27",
       2
     ],
@@ -293,7 +293,7 @@
       2
     ],
     [
-      "3.2.5 Fine-tuning, calibration et coût de calcul",
+      "3.2.5 Architecture TCN, calibration et coût de calcul",
       "29",
       2
     ],
@@ -318,8 +318,8 @@
       0
     ]
   ],
-  "words": 7196,
-  "bibliography_entries": 13,
+  "words": 7275,
+  "bibliography_entries": 14,
   "abbreviations": 44,
-  "comparison_status": "cnn_and_xgboost_evaluated_codebert_incomplete"
+  "comparison_status": "cnn_xgboost_tcn_evaluated"
 }

@@ -1,0 +1,234 @@
+{
+  "edition": "final_cnn_xgboost_tcn_20261006",
+  "status": "all_pages_visually_reviewed",
+  "pages": 44,
+  "review_method": "Full-resolution page PNG inspection; final short correction re-rendered canonically, page 39 re-inspected, 43 other page hashes unchanged.",
+  "renderer": "documents/26.813.12317/skills/documents/render_docx.py --emit_pdf; LibreOffice 26.8.0.3 and bundled Poppler",
+  "docx_sha256": "20de3443ea77f4d7141505f37e5388e8b6cbae8ba3644079d117b1c92e5d5625",
+  "pdf_sha256": "dcbf21c12c4acb690defedc0d218bba40ebf4e0513baeb2ccfc18bb83713bd4e",
+  "summary_sha256": "e57fbd61a9eda9998da21402fe559e8748e6addad30d80846c296aef2efdc0cd",
+  "reviewed_utc": "2026-10-06T18:37:30.458986+00:00",
+  "findings": [],
+  "page_reviews": [
+    {
+      "page": 1,
+      "sha256": "64f1a57e92f561c939b2f5a85487151a2be68516df9f0a382ccff683a09cdd39",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 2,
+      "sha256": "18380fa34b8b4c743b33b55dbac3f190a3384699b9d81f09cbfea83e0838f120",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 3,
+      "sha256": "fa2903ab1a509ae6818456a99fafef78f0b801cb395e18c8facf39fcc63fff63",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 4,
+      "sha256": "09f8d511ab2330605b9cc1d6cfbb412dcb2934f31d0db7aecbbbde95f38aa9c8",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 5,
+      "sha256": "ec5653834ee681c3f813d66fe4c336b4309fd1ca25573ff3294dd39b20f25330",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 6,
+      "sha256": "477b5b3d7639d098bee0439bfd32c005099493109df3ead2ff4652f858f2e1c9",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 7,
+      "sha256": "f2bc4e946f857f6ad7f9977a1176af1cf804052dfca2d7b4538d6a173547e151",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 8,
+      "sha256": "f3c10837ed67bba634c30b5877ce264300eb53883ed8917e5b2fa5418a49a141",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 9,
+      "sha256": "536b03a41ea18fca53b7843c639be3dbb2e49f7c8b67e8bdd042c006247d8f26",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 10,
+      "sha256": "2e6378c866d97ae560626cb04bd69f92a4465c0f31dd14fce06db6e7301e3020",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 11,
+      "sha256": "672c3d3c43d3c1072502216e726568152a7c31a38a5bdab1a0157fbc9187e5ec",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 12,
+      "sha256": "42c283032606c1ab6dce372008940fab4342247361ff2dfb77134fa933d9185a",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 13,
+      "sha256": "ea8e6c541282f7d93231bdb4ba716ad7a216d2974361855ff58f84f917dcad7e",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 14,
+      "sha256": "4ef3b273cc22274fae1855ee35ca9b30dae56f9a6cd27b0fc9869e70e7947990",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 15,
+      "sha256": "38b19ac2712107ff79a2747f0dbcfd0f0ac295f190c160373926758a2c0ab274",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 16,
+      "sha256": "3696cf6aba9f810db95b89f3bc9370a27b72710b937ae7123abdee61a6d5159b",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 17,
+      "sha256": "cf3904e03e7781dc06fd3cffba937bc6f25738b223b5e9ac0827dcba4b33dc37",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 18,
+      "sha256": "113dd6da5c790dd502f2192e1560ce9b11754e418c8cfd76bd94ed29f9095c9d",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 19,
+      "sha256": "4ac2f9b24a4e071371cf0e2ec3055446448ecd3d5d2224250d6bbbea04b949d5",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 20,
+      "sha256": "8cbe18b8f4c4594f29a1afbd7ee63477dd6bcfe5ef3fa86f60b180651f2e448d",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 21,
+      "sha256": "a44c68888db88a8e986dd39025340254b3b9caa72277e76946b2bf4da97163d1",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 22,
+      "sha256": "bcefb06e4b0fb64639f540fa0fb9e600dde00b04ff2b04d4f87972b8d3ff9318",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 23,
+      "sha256": "7afb9788f8f0a0eb5ee48030fa4816c7735217481c34ae5ac40dec777b9bfb58",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 24,
+      "sha256": "8037e5c5aef8016032cd7b0f9a79118f426028cb45841640a12d5e1131040443",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 25,
+      "sha256": "bf5bd618f1eca407fcdbd179165679a6edd0e88908d3f7429d4b2aee105900f7",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 26,
+      "sha256": "9257f46060e66c9caa29a6ae204bc0e1c1933cc6ac36ef7cedc31fb61e419027",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 27,
+      "sha256": "5ee9aba8d51b595d61c6066436f040c699053fcc9343d64c8d68a558a7b3805b",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 28,
+      "sha256": "37b062eed9e6fa9feefe22bd96aadc6a377ac981f97b3eb15d85017c020e3c25",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 29,
+      "sha256": "f78b7980d25fad735aa4dc60620420397a6a2f6ecbd75fedadba04c0d69df4ea",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 30,
+      "sha256": "957b6753f398b4c8b2c6c4c61a2b75a4216b3872921720f8129c047b885e9a0c",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 31,
+      "sha256": "6deab2cc19cfb01048c9175e65e7742f83288eecff318374c6f99a49fd988ad6",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 32,
+      "sha256": "f353a64dc0105908db015c99698ee53854dc99b9751cf186f893327473752762",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 33,
+      "sha256": "e4dcd0689badb78b30c421f1aeb030ede7be8c8edfe5e904f3a5461b6841b78e",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 34,
+      "sha256": "dbd9852d64a5cdbe8f9adc56887bbf5b119d392f9aa233575387b97ea0a93370",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 35,
+      "sha256": "8a7e2e4e9f9cec52182eef7880251550962fc77bf504742b15dc45c9e13f3cff",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 36,
+      "sha256": "b6be1a920f734dd12ba2cad1d61f83920d3ca290cb170bd7603930e65cf11155",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 37,
+      "sha256": "fcd20404a3ec2467918cef51da4657a97ab23b1350d8382afce04b11a63d04c7",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 38,
+      "sha256": "2178cf38a975b1adb5f5713bbc82b14df467c043344822540fac396f780a3512",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 39,
+      "sha256": "62cddb645f0ff99f908bfeba46d3ba7e3a66a4c94d9b79206307551382b0ed19",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 40,
+      "sha256": "52d74a236cf108e5989e1918121c36ed48fd1580bc43b7d0f85d5667c8192a19",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 41,
+      "sha256": "22caccf752b54e816ebfc2b54f3c209a01f19238b566c47bff338a5ec4717233",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 42,
+      "sha256": "c0938f8261f47051d335fc07b9b830d62b65dfb868d45647f4fce552d24c1d78",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 43,
+      "sha256": "17aca56864ae57ad48a963756d3d18542014e636f27d0ed4864df67194ec5b0e",
+      "reviewed_at_full_resolution": true
+    },
+    {
+      "page": 44,
+      "sha256": "19f3767b75ed56e1120bd550664fbd8b282dae4eefb14f7f85522f765f43db11",
+      "reviewed_at_full_resolution": true
+    }
+  ]
+}

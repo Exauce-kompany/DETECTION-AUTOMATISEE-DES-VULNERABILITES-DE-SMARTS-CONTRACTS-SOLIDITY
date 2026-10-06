@@ -1,6 +1,6 @@
 # CNN–BiLSTM actif, TF-IDF + XGBoost, TCN depuis zéro
 
-**État : comparaison incomplète ; aucun classement final.**
+**État : trois modèles évalués.**
 
 Les résultats proviennent des mêmes partitions SMART BUG. Le test a déjà été consulté ; cette étude reste exploratoire. Aucun score publié d'un autre corpus n'entre dans ce tableau.
 
@@ -10,7 +10,7 @@ Un checkpoint par famille est sélectionné sur validation. Le CNN est le checkp
 |---|---|---:|---:|---:|---:|---:|
 | CNN–BiLSTM actif | Évalué | 0.8210 | 0.7794 | 0.8895 | 0.2445 | 0.8967 |
 | TF-IDF + XGBoost | Évalué | 0.8941 | 0.8911 | 0.8943 | 0.1061 | 0.9534 |
-| TCN depuis zéro | En pause à la demande de l’utilisateur ; deux graines terminées sur trois | — | — | — | — | — |
+| TCN depuis zéro | Évalué | 0.8477 | 0.8156 | 0.8931 | 0.1961 | 0.9234 |
 
 Les températures et les seuils sont ajustés exclusivement sur calibration, avec une cible de rappel de 90 %. La cible ne garantit pas 90 % sur le test. Le seuil alternatif visant FPR ≤ 10 % sur calibration figure dans les JSON d'évaluation.
 
@@ -25,6 +25,19 @@ Les scores ci-dessous sont ceux de validation avant calibration ; ils documenten
 | TF-IDF + XGBoost | 42 | 0.3244 | 0.8665 |
 | TF-IDF + XGBoost | 73 | 0.3271 | 0.8712 |
 | TF-IDF + XGBoost | 101 | 0.3197 | 0.8682 |
+| TCN depuis zéro | 42 | 0.3924 | 0.8089 |
+| TCN depuis zéro | 73 | 0.4631 | 0.8032 |
+| TCN depuis zéro | 101 | 0.4011 | 0.8036 |
+
+## Différences sur les mêmes contrats
+
+Bootstrap apparié par groupe (1 000 rééchantillonnages), conditionné aux checkpoints sélectionnés. Ces intervalles ne mesurent pas toute la variabilité d'un nouvel entraînement et ne sont pas corrigés pour les comparaisons multiples.
+
+| Différence (gauche − droite) | F1 macro, points | IC 95 % du F1, points |
+|---|---:|---:|
+| TF-IDF + XGBoost − CNN–BiLSTM actif | +7.31 | [+4.87, +10.65] |
+| TCN depuis zéro − CNN–BiLSTM actif | +2.67 | [+0.27, +5.60] |
+| TCN depuis zéro − TF-IDF + XGBoost | -4.64 | [-7.43, -2.61] |
 
 ## Limites
 

@@ -1,27 +1,45 @@
-# Sources du mémoire — sauvegarde partie 1
+# Sources du mémoire — édition finale CNN–BiLSTM / XGBoost / TCN
 
-Les fichiers de ce dossier sauvegardent les sources et les scripts de l'édition Word/PDF conservée au 6 octobre 2026, ainsi que la préparation de sa révision TCN. Ils proviennent du dossier de travail local `.cache-comparison/memoire` ; leurs sources scientifiques et les résultats correspondants restent dans le dépôt.
+Ce dossier contient les sources de l'édition finale Word/PDF du 6 octobre 2026. La comparaison principale présente les trois checkpoints réellement évalués : CNN–BiLSTM 82,10 %, XGBoost 89,41 % et TCN 84,77 % de F1 macro sur le même test. Le TCN retenu est la graine 42, époque 7, choisie sur la log-loss de validation. La comparaison demeure exploratoire ; les expériences CNN et XGBoost sont réutilisées avec leur provenance.
 
-L'édition publiée dans `output/` présente CNN–BiLSTM et XGBoost et conserve CodeBERT comme candidat non entraîné. **Elle n'est pas encore la révision finale avec les résultats TCN.** Le brouillon `drafts/tcn_content_pending.md` prépare cette révision, sans scores TCN. Ses rapports QA décrivent la préparation inspectée avant la mise en pause et ne valident pas un nouveau mémoire final.
+Les résultats proviennent de `results/benchmark/cnn-xgboost-tcn-20261005/summary.json`, complet. Les trois IC bootstrap utilisent les 1 000 tirages par groupes enregistrés, graine 42. `PR-AUC` désigne `average precision` (AP). Les durées murales peuvent comprendre attentes, suspensions et concurrence CPU ; la pause avec processus arrêté est exclue. Elles ne fondent aucun classement de vitesse.
 
-## Fichiers conservés
+## Sources et contrôles
 
-- `content.md`, `build_memoire.py`, `make_figures.py` et `figures/` : texte, construction Word et figures de l'édition publiée.
-- `comparison_snapshot.json`, `document_index.json`, `qa.json` et `artifact.md` : valeurs importées, pagination et vérifications de cette édition.
-- `pages.json` : uniquement les deux textes de remerciements nécessaires au contrôle d'identité, aux positions 3 et 4 attendues par le vérificateur. Le reste du mémoire PDF de référence n'est pas reproduit ici.
-- `update_tcn_models.py`, `check_tcn_memoire.py`, `render_tcn_revision.ps1` et `integration_readiness.json` : préparation, rendu et contrôles de la révision TCN.
-- `drafts/` : brouillon TCN et rapports de vérification de sa préparation.
+- `content.md`, `build_memoire.py`, `make_figures.py`, `figures/` : texte, constructeur Word et 15 figures de l'édition finale.
+- `comparison_snapshot.json`, `document_index.json`, `artifact.md` : métriques importées avec SHA-256, pagination et contrat de mise en page.
+- `qa.json`, `visual_inspection_final.json` : contrôle de 44 pages, 8 tableaux, 14 références et 44 abréviations ; inspection complète des pages ; hashes des livrables et images inspectées.
+- `pages.json` : les deux textes de remerciements de référence, aux positions 3 et 4 attendues par le contrôleur. Les autres pages du PDF modèle ne sont pas reproduites ici.
+- `check_tcn_memoire.py` : contrôles numériques, pagination, références et identité textuelle/pixel des remerciements.
+- `drafts/` : archives datées de partie 1 et de préparation TCN du 5–6 octobre 2026. Les anciens statuts de pause ou d'incomplétude concernent uniquement ces archives.
 
-## Reprise ultérieure
+## Régénérer directement l'édition finale
 
-L'entraînement TCN reste en pause. **Ne lancer aucun rendu final avant que les trois modèles soient évalués** et que `summary.complete` vaille `true`. Le script de rendu vérifie cette condition, ainsi que les métriques et les trois comparaisons appariées enregistrées.
+Depuis la racine du dépôt, utiliser les sources finales sans réexécuter le préparateur de migration. Les constructeurs résolvent la racine du dépôt depuis leur emplacement et ne relancent aucun modèle. Ils vérifient les empreintes des résultats importés.
 
-Après la fin de l'expérience et l'export des graphiques, la commande prévue depuis la racine du projet est :
+Exemple avec le runtime documentaire de cette machine :
 
 ```powershell
-pwsh -NoProfile -File docs/memoire/render_tcn_revision.ps1
+$artifactPython = 'C:/Users/Exauce/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
+$artifactRenderer = 'C:/Users/Exauce/.codex/plugins/cache/openai-primary-runtime/documents/26.813.12317/skills/documents/render_docx.py'
+$env:PATH = 'C:/Program Files/LibreOffice/program;C:/Users/Exauce/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin;' + $env:PATH
+& $artifactPython docs/memoire/make_figures.py
+& $artifactPython docs/memoire/build_memoire.py
+& $artifactPython $artifactRenderer output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx --output_dir .cache-comparison/memoire/final_render --emit_pdf
 ```
 
-Les chemins du Python documentaire, du renderer, de LibreOffice et de Poppler sont ceux de la machine d'Exauce et devront être adaptés sur une autre machine. Les fichiers générés, sauvegardes locales, environnements et dépendances installées ne sont pas publiés. Le préparateur reconstruira sa référence locale `before_tcn_models` à partir des sources de cette édition et des fichiers Word/PDF de partie 1 ; conserver ces références lors de la première intégration.
+Adapter ces chemins sur une autre machine. Dépendances documentaires : `python-docx`, `matplotlib`, `Pillow`, `pdf2image`, `pdfplumber`, `pypdf`, LibreOffice et Poppler. Elles sont installées dans le runtime documentaire, distinct de l'environnement ML. Les figures d'IC et de pertes sont reprises des exports complets du benchmark, après contrôle de l'empreinte de son résumé.
 
-Le rendu et les contrôles produisent un staging. L'inspection de toutes les pages, tableaux, figures et remerciements précède la copie vers `output/`. Le script ne publie pas automatiquement un nouveau mémoire.
+Le PDF rendu se trouve dans `.cache-comparison/memoire/final_render/`. Inspecter les 44 PNG courants avant de recopier ce PDF dans `output/pdf/`. Une reproduction doit refaire ses propres contrôles ; le QA publié décrit uniquement les hashes des fichiers de l'édition vérifiée.
+
+Pour vérifier aussi l'identité des remerciements en pixels, conserver la référence locale originale, puis exécuter :
+
+```powershell
+& $artifactPython docs/memoire/check_tcn_memoire.py --stage docs/memoire --docx output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx --pdf .cache-comparison/memoire/final_render/Memoire_SMART_BUG_Exauce_Kompani.pdf --baseline .cache-comparison/memoire/before_tcn_models --report .cache-comparison/memoire/reproduction_qa.json --require-complete
+```
+
+`--poppler` permet d'adapter le chemin du binaire. La référence contient le `content.md` et le PDF de partie 1, antérieurs à l'intégration TCN. Elle reste locale et ignorée ; sur un nouveau clone, restaurer cette référence originale à partir de la sauvegarde partie 1 (commit `008981d`) avant ce contrôle. Ne pas prendre les livrables finaux comme leur propre référence.
+
+## Préparateur historique
+
+`update_tcn_models.py` et `render_tcn_revision.ps1` documentent la migration à partir des anciens repères CodeBERT et de la référence locale `before_tcn_models`. Ils ne sont pas idempotents sur les sources finales. Le préparateur refuse de recréer sa référence depuis une édition déjà marquée finale. Leur staging reste une étape locale de migration ; la régénération normale de cette édition utilise directement `content.md`, `make_figures.py` et `build_memoire.py` ci-dessus.

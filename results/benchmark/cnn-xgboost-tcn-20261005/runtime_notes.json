@@ -20,5 +20,44 @@
     "optimizer_and_rng_preserved": true,
     "priority_adjustment_ended_with_process": true,
     "resume_command": ".venv-comparison/Scripts/python.exe -u -m src.run_model_benchmark --stage tcn"
+  },
+  "user_requested_resumes": [
+    {
+      "recorded_utc": "2026-10-06T17:54:22.690357+00:00",
+      "started_local": "2026-10-06T18:52:04.6432527+01:00",
+      "wrapper_pid": 21900,
+      "child_pid": 9680,
+      "resume_seed": 101,
+      "completed_epochs_at_resume": 2,
+      "next_batch_at_resume": 800,
+      "optimizer_steps_at_resume": 3200,
+      "pause_checkpoint_sha256": "78d0ab4c3d7728119b3ddd23723a3ff4b4d785a00b7c379e1eb8457619248660",
+      "resumed_marker_verified": true,
+      "compute_threads": 6,
+      "priority": "Normal",
+      "command": ".venv-comparison/Scripts/python.exe -u -m src.run_model_benchmark --stage tcn",
+      "settings_and_environment_unchanged": true,
+      "timing_note": "User pause while the process was stopped is excluded from accumulated training time. Active segments may include earlier CPU contention and OS suspensions; no speed ranking."
+    }
+  ],
+  "training_completion": {
+    "recorded_utc": "2026-10-06T18:23:18.341957+00:00",
+    "completed_seeds": [
+      42,
+      73,
+      101
+    ],
+    "resumed_seed_epochs_executed": 10,
+    "resumed_seed_best_epoch": 7,
+    "resumed_seed_optimizer_steps": 12000,
+    "selected_seed": 42,
+    "selected_best_epoch": 7,
+    "selected_model_sha256": "d890df0a05cb22f6988216f721364d8e65cbc86a94bc4b2c164307d4fc8fdfcb",
+    "final_resume_checkpoint_sha256": "3c70802cf173a7cec9ba08dd4c2cd9e0ce47aff745b028a6811cf79df04f1920",
+    "final_report_complete_marker_verified": true,
+    "training_processes_stopped_verified": true,
+    "stderr_empty": true,
+    "summary_sha256": "e57fbd61a9eda9998da21402fe559e8748e6addad30d80846c296aef2efdc0cd",
+    "timing_note": "Stopped user-pause interval excluded from seed 101 accumulated training; earlier active segments and other seeds may include contention or OS suspension. No fair training-speed ranking."
   }
 }

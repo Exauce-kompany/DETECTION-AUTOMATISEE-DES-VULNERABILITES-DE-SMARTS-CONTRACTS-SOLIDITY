@@ -4,7 +4,7 @@
 @PAGE i
 @MAJOR Résumé
 
-Ce mémoire étudie la détection automatisée des vulnérabilités des smart contracts Solidity par apprentissage profond. SMART BUG associe un réseau convolutif et un réseau récurrent bidirectionnel pour analyser le code complet. Le corpus nettoyé comprend 18 238 contrats ou représentations de contrats, répartis par groupes entre apprentissage, validation, calibration, test et source réservée. Le CNN–BiLSTM actif, entraîné depuis zéro, obtient un F1 macro de 82,10 % et un rappel positif de 88,95 % sur le test. Sur les mêmes contrats, XGBoost atteint un F1 macro de 89,41 %. CodeBERT a été étudié comme candidat supplémentaire, sans entraînement complet ni score. La comparaison reste incomplète : le troisième modèle définitif n’est pas encore choisi. Ces résultats soutiennent une aide au tri des contrats à auditer, sous réserve des annotations et d’une validation indépendante.
+Ce mémoire étudie la détection automatisée des vulnérabilités des smart contracts Solidity par apprentissage profond. SMART BUG associe un réseau convolutif et un réseau récurrent bidirectionnel pour analyser le code complet. Le corpus nettoyé comprend 18 238 contrats ou représentations de contrats, répartis par groupes entre apprentissage, validation, calibration, test et source réservée. Le CNN–BiLSTM actif obtient un F1 macro de 82,10 % et un rappel positif de 88,95 % sur le test. Sur les mêmes contrats, XGBoost atteint 89,41 % de F1 macro. Le TCN atteint 84,77 % de F1 macro, 89,31 % de rappel et 19,61 % de faux positifs. La comparaison reste exploratoire, car le test a déjà été observé. Ces résultats soutiennent une aide au tri des contrats à auditer, sous réserve des annotations et d’une validation indépendante.
 
 Mots clés : smart contracts, Solidity, vulnérabilités, apprentissage profond, CNN–BiLSTM, calibration.
 
@@ -70,11 +70,11 @@ La problématique de ce mémoire est la suivante : dans quelle mesure un modèle
 @PAGE 2
 @HEADER INTRODUCTION
 
-L’objectif général consiste à concevoir et évaluer SMART BUG, un système de classification binaire associé à une application d’analyse. Les objectifs spécifiques sont de constituer un corpus traçable, de limiter les recouvrements entre partitions, de traiter les contrats sans supprimer leur fin et de calibrer les scores sur des données dédiées. La comparaison prévue oppose le CNN–BiLSTM actif à XGBoost et à CodeBERT sur les mêmes contrats.
+L’objectif général consiste à concevoir et évaluer SMART BUG, un système de classification binaire associé à une application d’analyse. Les objectifs spécifiques sont de constituer un corpus traçable, de limiter les recouvrements entre partitions, de traiter les contrats sans supprimer leur fin et de calibrer les scores sur des données dédiées. La comparaison principale oppose le CNN–BiLSTM actif à XGBoost et à un TCN sur les mêmes contrats.
 
-Trois hypothèses guident la comparaison. Le CNN–BiLSTM pourrait apprendre des régularités locales et séquentielles utiles à la détection. XGBoost pourrait fournir une référence classique compétitive à partir des fréquences lexicales. CodeBERT, adapté par fine-tuning, pourrait bénéficier de représentations préentraînées. Ces hypothèses demandent des mesures communes ; la supériorité d’une méthode n’est pas présumée.
+Trois hypothèses guident la comparaison. Le CNN–BiLSTM pourrait apprendre des régularités locales et séquentielles utiles à la détection. XGBoost pourrait fournir une référence classique compétitive à partir des fréquences lexicales. Le TCN pourrait exploiter des dépendances de portée croissante grâce aux convolutions dilatées. Ces hypothèses demandent des mesures communes ; la supériorité d’une méthode n’est pas présumée.
 
-La démarche associe une revue de littérature ciblée, la préparation des données et une évaluation quantitative. L’entraînement apprend les poids ; la validation sélectionne les états ; la calibration règle les probabilités et les seuils. Le test et une source réservée servent à l’évaluation. Le CNN–BiLSTM et XGBoost sont évalués ; les résultats de CodeBERT restent à compléter. La comparaison reste exploratoire, car le test avait déjà été consulté pendant le développement.
+La démarche associe une revue de littérature ciblée, la préparation des données et une évaluation quantitative. L’entraînement apprend les poids ; la validation sélectionne les états ; la calibration règle les probabilités et les seuils. Le test et une source réservée servent à l’évaluation. Les trois modèles ont été évalués. La comparaison reste exploratoire, car le test avait déjà été consulté pendant le développement.
 
 Le périmètre est celui du code source Solidity et d’un verdict global par contrat. Le réseau ne localise pas directement une ligne fautive et ne prédit pas une catégorie de vulnérabilité. Les alertes détaillées de l’application proviennent d’un moteur statique distinct. Cette séparation évite de présenter une règle experte comme une explication produite par le réseau.
 
@@ -138,7 +138,7 @@ Un réseau LSTM maintient un état récurrent régulé par des portes. Sa varian
 
 L’association CNN–BiLSTM vise donc à articuler motifs locaux et relations entre portions du contrat. Elle ne construit ni arbre syntaxique ni graphe explicite de dépendances. Le code complet est fourni sous une forme normalisée, mais la compression des représentations peut perdre des informations utiles. La conservation de l’entrée et la compréhension sémantique exhaustive sont deux propriétés différentes.
 
-Les poids du modèle actif sont initialisés puis appris sur le corpus du projet. Un modèle préentraîné commence avec des paramètres issus d’une tâche antérieure. Le fine-tuning modifie ces paramètres pour la nouvelle tâche ; il est prévu ici pour l’encodeur et la tête de CodeBERT. Entraîner seulement une tête sur un encodeur figé serait une autre stratégie de transfert et ne serait pas présenté comme un fine-tuning complet.
+Les poids du modèle actif et du TCN sont appris depuis zéro. Un TCN combine des convolutions causales dilatées et des connexions résiduelles (BAI, KOLTER et KOLTUN, 2018). Les dilations élargissent les voisinages accessibles à chaque position. Dans notre adaptation, le pooling global agrège toutes les positions valides du contrat ; conserver toute l’entrée ne signifie pas que chaque caractéristique locale couvre tout le contrat.
 
 @PAGE 8
 @HEADER CHAPITRE 1. CONCEPTS THÉORIQUES DE BASE
@@ -162,7 +162,7 @@ La matrice de confusion distingue les vrais positifs (VP), faux positifs (FP), v
 
 @TABLE metrics
 
-Le F1 macro est la moyenne du F1 calculé pour chacune des deux classes. Il donne le même poids aux classes, même lorsque leurs effectifs diffèrent. La ROC AUC mesure la capacité de classement sur l’ensemble des seuils ; elle ne décrit pas à elle seule la qualité du seuil utilisé dans l’application.
+Le F1 macro est la moyenne du F1 calculé pour chacune des deux classes. Il donne le même poids aux classes, même lorsque leurs effectifs diffèrent. La ROC AUC mesure le classement sur l’ensemble des seuils. La PR-AUC est calculée ici par average precision ; elle résume la précision en fonction du rappel. Ces indicateurs ne décrivent pas à eux seuls le seuil utilisé.
 
 Le score de Brier est la moyenne des erreurs quadratiques entre probabilités et labels. L’ECE estime l’écart entre probabilités moyennes et fréquences positives dans des intervalles de scores. Le projet utilise dix intervalles. Ces mesures complètent la discrimination ; une bonne séparation des classes peut coexister avec des probabilités mal calibrées.
 
@@ -176,7 +176,7 @@ Les travaux retenus illustrent plusieurs familles de solutions. TANN et al. (201
 
 @TABLE literature
 
-CodeBERT est un encodeur préentraîné sur du code et du langage naturel (FENG et al., 2020). Les six langages de son préentraînement sont Python, Java, JavaScript, PHP, Ruby et Go ; Solidity n’en fait pas partie. Son adaptation doit donc être vérifiée sur notre corpus. XGBoost apprend un ensemble d’arbres par boosting (CHEN et GUESTRIN, 2016) ; il fournit une référence d’apprentissage classique.
+BAI, KOLTER et KOLTUN (2018) étudient le TCN pour la modélisation de séquences. GOPALI et al. (2022) l’appliquent à des séquences d’opcodes EVM pour détecter les contrats vulnérables. Notre adaptation utilise des tokens source Solidity normalisés et un protocole propre ; les scores de ces publications ne sont pas repris. XGBoost apprend des arbres par boosting (CHEN et GUESTRIN, 2016) et fournit une référence classique.
 
 SmartBugs fournit un cadre pour exécuter et comparer des outils d’analyse de contrats (FERREIRA et al., 2020). Il faut distinguer ce projet externe de SMART BUG, nom de l’application développée dans ce mémoire. Le corpus du présent travail conserve certaines provenances liées à SmartBugs ; notre réseau n’est pas une version de son framework.
 
@@ -190,7 +190,7 @@ Les publications emploient des jeux de données, des unités d’analyse et des 
 
 La qualité de la séparation des données mérite une attention particulière. Deux contrats peuvent partager une structure ou une provenance tout en différant par quelques noms. Une partition aléatoire naïve peut ainsi placer des variantes très proches dans l’entraînement et dans le test. Le regroupement par familles et les empreintes contrôlées réduisent ce risque, sans garantir la détection de tous les clones approximatifs.
 
-Trois choix définissent le positionnement de SMART BUG : conserver le contexte complet, séparer calibration et validation, et préparer une comparaison commune du CNN–BiLSTM actif avec XGBoost et CodeBERT. La revue de littérature présente les démarches existantes. Le classement expérimental reposera exclusivement sur les prédictions mesurées des trois modèles sur les mêmes contrats.
+Trois choix définissent le positionnement de SMART BUG : conserver le contexte complet, séparer calibration et validation, et comparer le CNN–BiLSTM actif avec XGBoost et le TCN. La revue de littérature présente les démarches existantes. Les conclusions expérimentales reposent exclusivement sur les prédictions effectivement mesurées sur les mêmes contrats ; les architectures, représentations et budgets ne sont pas identiques.
 
 Une supériorité générale de l’architecture hybride ne peut pas être supposée : les différences entre méthodes peuvent être faibles et les annotations imparfaites. Le chapitre suivant décrit les mécanismes retenus pour interpréter les résultats et les reproduire. L’étude mesure la classification globale des contrats et précise les erreurs de chaque méthode.
 
@@ -251,7 +251,7 @@ Le réseau actif comporte 277 017 paramètres entraînables. Chaque fenêtre pas
 
 Le BiLSTM possède 24 unités par direction et traite la séquence de ces vecteurs. Une seconde agrégation par moyenne et maximum produit 96 caractéristiques. Un dropout de 0,30 précède une couche dense de 32 unités ReLU et une sortie scalaire. Cette sortie est le logit utilisé par la perte binaire, puis par la calibration.
 
-Les poids sont appris depuis zéro : aucun embedding ni encodeur préentraîné n’intervient dans le CNN–BiLSTM actif. L’ordre des fenêtres est disponible pour la récurrence, mais les agrégations compressent leur contenu. Le modèle estime une propriété globale du contrat et ne fournit pas directement une localisation. Son protocole de comparaison avec XGBoost et CodeBERT est présenté au troisième chapitre.
+Les poids sont appris depuis zéro : aucun embedding ni encodeur préentraîné n’intervient dans le CNN–BiLSTM actif. L’ordre des fenêtres est disponible pour la récurrence, mais les agrégations compressent leur contenu. Le modèle estime une propriété globale du contrat et ne fournit pas directement une localisation. Son protocole de comparaison avec XGBoost et le TCN est présenté au troisième chapitre.
 
 @PAGE 17
 @HEADER CHAPITRE 2. ARCHITECTURE ET MODÉLISATION
@@ -300,9 +300,9 @@ Le tableau 2.2 relie les opérations aux principaux fichiers. Il précise notamm
 
 @TABLE files
 
-Les résultats actifs sont archivés dans results/training ; la comparaison cnn-xgboost-codebert-20261005-final, dans results/benchmark. Les historiques, prédictions individuelles et manifestes permettent de recalculer les indicateurs. Les poids actifs sont désignés par models/active_model.json ; le chargement vérifie leur empreinte SHA-256 ainsi que celle du vocabulaire.
+Les résultats actifs sont archivés dans results/training ; la comparaison cnn-xgboost-tcn-20261005, dans results/benchmark. Les résultats CNN et XGBoost sont réutilisés avec leur provenance et leurs empreintes. Les historiques, prédictions et manifestes permettent de recalculer les indicateurs. Les poids actifs sont désignés par models/active_model.json ; leur empreinte SHA-256 et celle du vocabulaire sont vérifiées.
 
-La reproductibilité repose sur les configurations, les graines 42, 73 et 101, les partitions conservées et les versions de l’environnement enregistrées. Des bibliothèques ou matériels différents peuvent modifier certains calculs. Le commit 2df2580 documente l’expérience du modèle actif. La préparation comparative d’octobre 2026 possède sa configuration et ses manifestes distincts ; elle ne modifie pas les preuves historiques.
+La reproductibilité repose sur les graines 42, 73 et 101, les partitions, les configurations et les versions archivées. Des bibliothèques ou matériels différents peuvent modifier les calculs. Le commit 2df2580 décrit le CNN historique ; la comparaison TCN conserve ses propres manifestes et ne réécrit pas ces preuves.
 
 @PAGE 21
 @CHAPTER 3|Investigation expérimentale
@@ -310,21 +310,21 @@ La reproductibilité repose sur les configurations, les graines 42, 73 et 101, l
 
 SMART BUG est une application locale d’aide à l’analyse de sécurité des smart contracts Solidity. L’utilisateur fournit un fichier .sol ; l’application affiche une probabilité calibrée, un verdict global et des alertes issues de règles statiques. Les informations sur le modèle, le jeu de données et l’historique complètent le rapport.
 
-L’expérimentation conserve le CNN–BiLSTM actif sous TensorFlow, dont le checkpoint a été sélectionné sur validation. Elle ajoute XGBoost, appris depuis zéro sur TF-IDF et évalué sur les mêmes partitions. CodeBERT a été envisagé comme troisième modèle, mais son entraînement complet n’a pas été réalisé. Les résultats publiés proviennent uniquement des calculs achevés.
+L’expérimentation conserve le CNN–BiLSTM actif sous TensorFlow, dont le checkpoint a été sélectionné sur validation. Elle réutilise XGBoost, appris depuis zéro sur TF-IDF avec les mêmes partitions. Le troisième modèle retenu est un TCN entraîné depuis zéro sur les tokens normalisés. Son checkpoint a été sélectionné avant calibration et test.
 
-Les observations du modèle actif proviennent des expériences archivées de septembre 2026 ; XGBoost a été entraîné et évalué en octobre 2026. Les métriques reprennent les fichiers sauvegardés. Les trois schémas comparatifs décrivent le protocole commun et le fine-tuning prévu de CodeBERT ; ils ne représentent aucune mesure simulée.
+Les observations du modèle actif proviennent des expériences de septembre 2026 ; XGBoost a été entraîné et évalué en octobre 2026. Ces résultats sont réutilisés, avec provenance, dans la comparaison TCN. Les graphiques comparatifs proviennent des sorties archivées : indicateurs du test, différences bootstrap et pertes du TCN sélectionné. Les schémas décrivent le système et les architectures.
 
 @PAGE 22
 @HEADER CHAPITRE 3. INVESTIGATION EXPÉRIMENTALE
 ### 3.1.1 Technologies utilisées et hyperparamètres
 
-Python porte la préparation des données. TensorFlow/Keras implémente le CNN–BiLSTM actif ; XGBoost entraîne les arbres et PyTorch adapte CodeBERT. Scikit-learn fournit TF-IDF et des métriques. FastAPI expose les services ; HTML, CSS et JavaScript constituent l’interface, et SQLite conserve les analyses. Le protocole documente le matériel effectivement utilisé pour chaque calcul.
+Python porte la préparation des données. TensorFlow/Keras implémente le CNN–BiLSTM actif ; XGBoost entraîne les arbres et PyTorch implémente le TCN. Scikit-learn fournit TF-IDF et les métriques. FastAPI expose les services ; HTML, CSS et JavaScript constituent l’interface, et SQLite conserve les analyses. Le protocole documente le matériel effectivement utilisé pour chaque calcul.
 
 @TABLE hyperparameters
 
 XGBoost utilise au plus 600 arbres, profondeur 6, taux 0,05, sous-échantillonnages des lignes et colonnes à 0,80, poids minimal d’enfant 2 et régularisation L2 de 1. La méthode hist et une patience de 40 itérations sur validation ont été appliquées. La graine 101 est retenue selon la log-loss de validation ; la prédiction utilise ses 598 premières itérations, sélectionnées sans consulter le test.
 
-TF-IDF emploie unigrammes et bigrammes, au plus 20 000 caractéristiques, une fréquence minimale de deux documents et une fréquence de terme sous-linéaire. Son vocabulaire est appris sur l’entraînement uniquement. XGBoost a été entraîné avec les graines 42, 73 et 101 ; CodeBERT suit les mêmes graines prévues. Le CNN comparé reste le checkpoint actif de graine 73, sélectionné auparavant sur validation.
+TF-IDF emploie unigrammes et bigrammes, au plus 20 000 caractéristiques, une fréquence minimale de deux documents et une fréquence de terme sous-linéaire. Son vocabulaire est appris sur l’entraînement uniquement. XGBoost a été entraîné avec les graines 42, 73 et 101 ; le TCN suit ces mêmes graines. Le CNN comparé reste le checkpoint actif de graine 73, sélectionné auparavant sur validation.
 
 @PAGE 23
 @HEADER CHAPITRE 3. INVESTIGATION EXPÉRIMENTALE
@@ -348,7 +348,7 @@ La courbe d’exactitude complète la lecture de la perte. L’exactitude de val
 
 L’application et la commande de prédiction utilisent src/predictor.py. Elles appliquent le même nettoyage, le même vocabulaire et le même découpage. La température retenue vaut 0,9368407 et le seuil 0,2694744. Un score inférieur à 0,5 peut donc conduire à une alerte positive si le seuil actif est dépassé ; ce comportement traduit l’objectif de rappel, et non une incohérence de l’interface.
 
-Les contrôles logiciels couvrent notamment le traitement des tokens finaux, le masquage, le rechargement du modèle et la concordance d’une prédiction avec les résultats archivés. La suite du projet comptait 32 tests réussis lors de la vérification finale du code. Ce contrôle logiciel est distinct de la validité des labels et de la généralisation à de nouveaux projets.
+Les contrôles logiciels couvrent notamment le traitement des tokens finaux, le masquage, le rechargement du modèle et la concordance d’une prédiction avec les résultats archivés. La vérification historique du modèle actif comptait 32 tests réussis. Les contrôles propres au TCN portent notamment sur les convolutions causales, le masquage et la reprise des poids. Ce contrôle logiciel est distinct de la validité des labels et de la généralisation à de nouveaux projets.
 
 @PAGE 25
 @HEADER CHAPITRE 3. INVESTIGATION EXPÉRIMENTALE
@@ -377,15 +377,15 @@ Le diagramme confronte la probabilité moyenne prédite à la fréquence positiv
 
 @PAGE 27
 @HEADER CHAPITRE 3. INVESTIGATION EXPÉRIMENTALE
-### 3.2.3 Comparaison du CNN–BiLSTM, de XGBoost et de CodeBERT
+### 3.2.3 Comparaison du CNN–BiLSTM, de XGBoost et du TCN
 
-Le tableau présente les résultats du CNN–BiLSTM actif et du checkpoint XGBoost sélectionné sur validation. CodeBERT est un candidat non entraîné ; les cases à compléter indiquent une absence de résultat. Chaque ligne mesurée représente un checkpoint choisi avant l’évaluation du test, avec son seuil ajusté sur calibration.
+Le tableau présente les résultats du CNN–BiLSTM actif et du checkpoint XGBoost sélectionné sur validation. La troisième ligne rapporte le checkpoint TCN retenu. Chaque ligne mesurée représente un checkpoint choisi sur validation, avec son seuil ajusté sur calibration.
 
 @TABLE comparison
 
-@FIG comparison|3.5|Deux modèles évalués et un candidat supplémentaire.
+@FIG comparison|3.5|Indicateurs mesurés des trois checkpoints sur le test.
 
-Les modèles classent chacun le contrat complet. XGBoost exploite TF-IDF ; CodeBERT emploiera toutes les fenêtres. La log-loss de validation de XGBoost vaut 42 : 0,3244 ; 73 : 0,3271 ; 101 : 0,3197. Cette variabilité concerne la validation avant calibration ; le tableau n’est pas une moyenne des trois graines sur le test.
+Le TCN est retenu avec la graine 42, selon la log-loss de validation : 42 : 0,3924 ; 73 : 0,4631 ; 101 : 0,4011. XGBoost conserve la graine 101 et le CNN la graine 73. Ces sélections portent sur la validation avant calibration ; les scores du tableau ne sont pas des moyennes des trois graines sur le test.
 
 @PAGE 28
 @HEADER CHAPITRE 3. INVESTIGATION EXPÉRIMENTALE
@@ -393,35 +393,35 @@ Les modèles classent chacun le contrat complet. XGBoost exploite TF-IDF ; CodeB
 
 Les cinq partitions et leurs identifiants restent identiques : 11 959 exemples d’entraînement, puis 1 709 pour chacun des ensembles de validation, calibration et test. La source réservée contient 1 152 exemples. Aucun modèle ne doit recevoir les annotations du test pour ajuster ses poids ou ses seuils.
 
-@FIG ablation|3.6|Rôle des cinq partitions dans la comparaison.
+@FIG ablation|3.6|Différences de F1 macro et intervalles bootstrap par groupes.
 
-La validation choisit les arbres ou le checkpoint CodeBERT. La calibration ajuste la température et les seuils visant 90 % de rappel ou 10 % de faux positifs. Les taux effectivement observés sur test doivent aussi être rapportés. Un objectif fixé sur calibration n’est pas une garantie sur de nouveaux contrats.
+La validation choisit les arbres ou le checkpoint TCN selon la log-loss non pondérée. La calibration ajuste la température et les seuils visant 90 % de rappel ou 10 % de faux positifs. Les taux observés sur test doivent aussi être rapportés. Un objectif fixé sur calibration n’est pas une garantie sur de nouveaux contrats.
 
-Le protocole est décrit dans reports/protocole_cnn_xgboost_codebert.md et config/benchmark_models.json. Le script src/run_model_benchmark.py pilote les calculs. Leur existence ne prouve pas que les entraînements soient terminés. Les résultats et les incertitudes ne seront ajoutés qu’après vérification des sorties.
+La figure 3.6 montre les écarts de F1 macro entre checkpoints sélectionnés, avec 1 000 rééchantillonnages par groupe, graine 42, et un IC à 95 %. Les intervalles sont exploratoires, conditionnés aux poids retenus et non corrigés pour comparaisons multiples. Le protocole et les sorties détaillées figurent dans reports/protocole_cnn_xgboost_tcn.md et results/benchmark/cnn-xgboost-tcn-20261005.
 
 @PAGE 29
 @HEADER CHAPITRE 3. INVESTIGATION EXPÉRIMENTALE
-### 3.2.5 Fine-tuning, calibration et coût de calcul
+### 3.2.5 Architecture TCN, calibration et coût de calcul
 
-Le protocole CodeBERT-base prévoit AdamW, taux 0,00002, décroissance des poids 0,01, dropout 0 et au plus trois époques. Les fenêtres ont 256 sous-tokens, marqueurs compris. Une tête linéaire lit les états CLS ; la moyenne des logits de toutes les fenêtres produit un seul logit et une seule perte par contrat.
+Le TCN comporte un embedding 32, neuf blocs résiduels de deux convolutions causales, 24 canaux, noyau 3 et dilations 1, 2, 4, 8, 16, 32, 64, 128 et 256. Une projection adapte 32 à 24 dimensions. Son champ réceptif est de 2 045 positions encodées : 1 + 2 × (3 − 1) × 511. Cette adaptation s’inspire de BAI, KOLTER et KOLTUN (2018).
 
-@FIG latency|3.7|Agrégation par contrat et calibration des décisions.
+@FIG latency|3.7|Pertes du TCN retenu, graine 42.
 
-Le lot effectif prévu contient huit contrats ; quatre fenêtres sont traitées à la fois pour maîtriser la mémoire. L’encodeur et la tête reçoivent les gradients. Les trois graines serviront à mesurer la variabilité du fine-tuning. Le découpage conserve la fin du contrat sans attribuer automatiquement son label à chaque fenêtre.
+Le pooling moyen et maximum masqué agrège toutes les positions valides, sans tronquer la fin du contrat. Une couche dense 32 puis un logit scalaire produisent une seule perte binaire par contrat. Le dropout élémentaire vaut 0,20, après les convolutions et avant la tête ; la weight normalization n’est pas utilisée. AdamW utilise un taux de 0,001 et une décroissance des poids de 0,0001 ; douze époques au plus et une patience de trois sont prévues pour les graines 42, 73 et 101. Les lots regroupent au plus 32 contrats : budget 16 384 positions, sauf contrat plus long ; clipping 1,0.
 
-Le pilote CPU de CodeBERT extrapole environ 5,2 jours par graine, soit 15,5 jours pour trois graines, hors entrées-sorties et évaluation. Ce candidat n’a pas été entraîné complètement et n’a aucun score. Ce coût motive la recherche d’une alternative, encore non choisie. Le rapport final devra aussi comparer calibration, latence et coût sur les mêmes contrats. Aucune comparaison des vitesses n’est encore établie.
+La figure 3.7 oppose la BCE pondérée d’entraînement à la log-loss non pondérée de validation. La graine 42 a exécuté 10 époques ; l’époque 7 est retenue. Les durées sont murales par segments actifs ; attentes, suspensions et concurrence CPU peuvent y contribuer. La pause utilisateur, processus arrêté, est exclue. Les budgets différents et la réutilisation de deux expériences historiques empêchent d’isoler un effet architectural ou de comparer les vitesses.
 
 @PAGE 30
 @HEADER CHAPITRE 3. INVESTIGATION EXPÉRIMENTALE
 ## 3.3 Discussion
 
-Le CNN–BiLSTM actif obtient 82,10 % de F1 macro, 88,95 % de rappel et 24,45 % de faux positifs. XGBoost atteint respectivement 89,41 %, 89,43 % et 10,61 % sur les mêmes contrats. Le gain de F1 est de 7,31 points ; un bootstrap par groupes (1 000 réplications) donne un IC à 95 % de [4,94 ; 10,80] points, conditionné aux checkpoints choisis. Ce test déjà observé reste exploratoire ; CodeBERT n’est pas évalué, et les scores XGBoost ne sont pas une moyenne des graines sur test.
+Les écarts de F1 macro et leurs IC à 95 %, en points, sont : XGBoost − CNN : +7,31 [+4,87 ; +10,65] ; TCN − CNN : +2,67 [+0,27 ; +5,60] ; TCN − XGBoost : -4,64 [-7,43 ; -2,61]. Ils décrivent le test déjà observé et les checkpoints sélectionnés. Ces mesures ne prouvent pas une supériorité générale ni une stabilité à chaque nouvel entraînement ; les conclusions doivent être confirmées sur un corpus indépendant.
 
 Le transfert à la source réservée constitue une limite majeure. Pour le modèle actif, le rappel positif y atteint 89,01 %, mais le F1 macro n’est que de 47,73 % et l’ECE de 29,84 %. Les 1 152 exemples comprennent 1 146 positifs et seulement six négatifs. L’exactitude de 88,63 % est inférieure à celle d’une règle prédisant toujours positif, soit 99,48 %. Le taux de faux positifs ne peut pas être estimé de manière stable sur six négatifs.
 
 La validité interne reste limitée par les labels hérités, les variantes de contrats et les indices de provenance. La mise en quarantaine et l’audit réduisent des incohérences connues, mais n’établissent pas une vérité terrain exhaustive. Un modèle peut apprendre des régularités propres à une source plutôt que les seuls mécanismes des vulnérabilités.
 
-La validité externe demande un corpus indépendant représentatif des contrats futurs. Le test actuel a déjà été observé ; les comparaisons à venir seront donc exploratoires. La normalisation des identifiants peut affecter le transfert de CodeBERT. Des représentations et des coûts différents sont autorisés, mais doivent être décrits : une différence de score ne mesurerait pas uniquement l’effet du préentraînement.
+La validité externe demande un corpus indépendant représentatif des contrats futurs. Le test actuel a déjà été observé ; la comparaison demeure exploratoire. La normalisation des identifiants et le champ réceptif fini du TCN peuvent affecter le transfert. Les représentations, optimiseurs et budgets diffèrent ; un écart de score ne mesurerait donc pas uniquement l’effet de l’architecture.
 
 Enfin, la validité du construit dépend du sens du verdict. Le réseau mesure une association à des annotations binaires, tandis que l’audit de sécurité vise des comportements exploitables et leur contexte. SMART BUG est utile pour prioriser l’examen de contrats ; ses probabilités et ses alertes doivent être examinées conjointement par un évaluateur compétent.
 
@@ -433,7 +433,7 @@ La première priorité concerne les données. Il faut réexaminer les cas placé
 
 Un nouveau test devrait être constitué avant tout ajustement supplémentaire, avec séparation par projets, familles et, si possible, période de publication. Les critères de sélection et les seuils seraient fixés sans le consulter. Un ensemble hors source comprenant suffisamment de contrats de chaque classe permettrait de mieux estimer les faux positifs et la stabilité de la calibration.
 
-Sur le plan expérimental, la priorité est de choisir et d’entraîner un troisième modèle dans les ressources disponibles, puis d’évaluer le checkpoint retenu sur validation avec le même protocole. CodeBERT reste un candidat non entraîné. Les critères, les seuils de calibration, le coût et la variabilité doivent rester documentés. Une étude ultérieure pourrait examiner les graphes ou réentraîner les modèles dans une nouvelle campagne commune, accompagnée d’un test indépendant.
+Sur le plan expérimental, la priorité est de reproduire la comparaison avec de nouveaux entraînements communs et un test indépendant. Les critères, seuils, coûts et variabilités doivent rester documentés. Une étude ultérieure pourrait examiner les graphes ou le préentraînement, accompagnés d’une évaluation indépendante.
 
 La localisation des vulnérabilités constitue une autre extension. Elle demande des labels au niveau des lignes ou des fonctions et une évaluation propre de la localisation. Une carte d’attention ou une activation élevée ne doit pas être assimilée sans vérification à une explication causale du défaut. L’interface pourrait afficher plus explicitement les désaccords entre règles et réseau.
 
@@ -444,7 +444,7 @@ Enfin, une étude d’usage permettrait de mesurer le temps d’audit économis�
 
 Ce mémoire a étudié une approche d’apprentissage profond pour la détection automatisée des vulnérabilités des smart contracts Solidity. SMART BUG associe un CNN par fenêtres et un BiLSTM hiérarchique afin de traiter le code complet. Le corpus a été nettoyé, regroupé et réparti entre cinq usages distincts. Le prétraitement commun, les manifestes et la calibration dédiée rendent la chaîne expérimentale traçable.
 
-Le modèle actif est entraîné depuis zéro. Sur 1 709 exemples de test, il obtient un F1 macro de 82,10 % et un rappel positif de 88,95 %, avec 93 faux négatifs et 212 faux positifs. XGBoost, évalué sur le même test, atteint un F1 macro de 89,41 %. La comparaison principale confronte ces deux modèles ; CodeBERT a été étudié comme candidat non entraîné. Le troisième modèle définitif reste à choisir : le classement final et la généralisation à d’autres corpus ne sont pas établis.
+Le modèle actif est entraîné depuis zéro. Sur 1 709 exemples de test, il obtient un F1 macro de 82,10 % et un rappel positif de 88,95 %, avec 93 faux négatifs et 212 faux positifs. XGBoost atteint 89,41 % de F1 macro sur le même test. La comparaison principale confronte le CNN–BiLSTM, XGBoost et le TCN. Le TCN atteint 84,77 % de F1 macro, 89,31 % de rappel et 19,61 % de faux positifs. La généralisation à d’autres corpus demande une validation indépendante.
 
 La réponse à la problématique est donc nuancée : l’apprentissage profond peut aider à prioriser l’audit, à condition d’en préciser le périmètre et les erreurs. Les annotations imparfaites, le déséquilibre hors source et l’absence d’un nouveau test indépendant limitent les conclusions. Les perspectives prioritaires sont l’enrichissement des données vérifiées, une évaluation indépendante et l’étude de la localisation. Le système réalisé constitue une base expérimentale reproductible pour poursuivre ces travaux.
 

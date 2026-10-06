@@ -6,9 +6,9 @@ Le dossier de travail conserve uniquement le protocole SMART BUG et la comparais
 
 ## Rapport final
 
-Le [rapport final — partie 1](reports/rapport_final_partie_1.md) sauvegarde l'état du travail au 6 octobre 2026 : résultats CNN–BiLSTM/XGBoost, implémentation TCN et reprise de son entraînement en pause.
+Le [rapport final — partie 1](reports/rapport_final_partie_1.md) conserve l'état sauvegardé pendant la pause du TCN. Le [rapport final — partie 2](reports/rapport_final_partie_2.md) présente l'entraînement achevé et la comparaison des trois modèles.
 
-Le [mémoire en PDF](output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf) et sa [version Word modifiable](output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx) sont en cours de révision pour intégrer la comparaison principale CNN–BiLSTM / XGBoost / TCN. Ils seront remplacés après les mesures finales du TCN. Le [rapport des calculs](results/benchmark/cnn-xgboost-tcn-20261005/report.md) distingue les résultats obtenus de ceux encore manquants. Le [bilan du nettoyage](reports/rapport_final.md) et la [synthèse antérieure](output/pdf/Synthese_memoire_SmartContractSecurity.pdf) documentent l'état précédent du projet.
+Le [mémoire en PDF](output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf) et sa [version Word modifiable](output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx) intègrent la comparaison finale CNN–BiLSTM / XGBoost / TCN : **44 pages, 15 figures, 8 tableaux et 14 références**, avec les remerciements conservés à l'identique. Les [sources et contrôles du mémoire](docs/memoire/README.md) permettent d'en retrouver les valeurs et de le régénérer. Le [rapport des calculs](results/benchmark/cnn-xgboost-tcn-20261005/report.md) contient les trois évaluations complètes. Le [bilan du nettoyage](reports/rapport_final.md) et la [synthèse antérieure](output/pdf/Synthese_memoire_SmartContractSecurity.pdf) documentent l'état précédent du projet.
 
 ## Installation
 
@@ -112,15 +112,27 @@ python -m src.run_model_benchmark --stage report
 python -m src.plot_model_benchmark
 ```
 
-Les graphiques des modèles déjà évalués peuvent être générés pendant la pause du TCN :
+Les trois modèles sont désormais évalués sur les mêmes **1 709 contrats de test**. Chaque ligne rapporte le checkpoint sélectionné sur validation, avec une température et un seuil ajustés sur calibration ; il ne s'agit pas d'une moyenne de graines sur test.
+
+| Modèle | F1 macro | Précision positive | Rappel positif | FPR | AP |
+|---|---:|---:|---:|---:|---:|
+| CNN–BiLSTM actif | 82,10 % | 77,94 % | 88,95 % | 24,45 % | 89,67 % |
+| TF-IDF + XGBoost | **89,41 %** | **89,11 %** | **89,43 %** | **10,61 %** | **95,34 %** |
+| TCN depuis zéro | 84,77 % | 81,56 % | 89,31 % | 19,61 % | 92,34 % |
+
+Le TCN retenu est celui de la **graine 42, époque 7**, avec **290 505 paramètres**. Ses trois graines ont terminé 10, 5 et 10 époques. XGBoost obtient le meilleur F1 macro sur ce test exploratoire. Le TCN dépasse le CNN de 2,67 points, avec un IC bootstrap à 95 % de [0,27 ; 5,60] points, et reste 4,64 points sous XGBoost. Ces intervalles sont conditionnés aux checkpoints retenus et ne mesurent pas toute la variabilité des réentraînements. Les budgets diffèrent et les labels sont en partie issus d'analyseurs statiques : ces résultats demandent une confirmation indépendante.
+
+Les [matrices de confusion des trois modèles](results/benchmark/cnn-xgboost-tcn-20261005/plots/matrices_confusion.png), [métriques](results/benchmark/cnn-xgboost-tcn-20261005/plots/metriques_principales.png), [courbes ROC](results/benchmark/cnn-xgboost-tcn-20261005/plots/courbe_roc.png), [précision–rappel](results/benchmark/cnn-xgboost-tcn-20261005/plots/courbe_precision_rappel.png) et [écarts de F1 avec intervalles](results/benchmark/cnn-xgboost-tcn-20261005/plots/ecarts_f1_ic95.png) sont disponibles en couleur, en PNG et SVG. Le [manifeste des onze figures](results/benchmark/cnn-xgboost-tcn-20261005/plots/plot_manifest.json) précise les sources, empreintes, seuils et matrices. L'indicateur AP est l'**average precision**, également noté PR-AUC (AP) dans les graphiques ; ce n'est pas une intégration trapézoïdale de la courbe.
+
+Le mode suivant trace tous les modèles dont l'évaluation est terminée, même pour une autre campagne encore incomplète :
 
 ```powershell
 python -m src.plot_model_benchmark --available-models
 ```
 
-Les [matrices de confusion CNN–BiLSTM/XGBoost](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/matrices_confusion.png), [métriques](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/metriques_principales.png), [courbes ROC](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/courbe_roc.png) et [précision–rappel](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/courbe_precision_rappel.png) sont disponibles en PNG et SVG. Les matrices individuelles et leur provenance figurent dans le [dossier des graphiques](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/README.md). Ce mode conserve les checkpoints et seuils enregistrés ; il ne relance ni entraînement ni calibration et n'attribue aucun score au TCN en pause.
+Les [graphiques partiels CNN–BiLSTM/XGBoost de partie 1](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/README.md) restent une archive de la pause. La commande principale sans option produit les figures finales dans le dossier parent. Les commandes de tracé utilisent les checkpoints et seuils enregistrés.
 
-Le [rapport des calculs](results/benchmark/cnn-xgboost-tcn-20261005/report.md) précise les étapes terminées et les résultats manquants. Le pilote TCN estime sa durée ; il n'est pas un entraînement final. Le test conserve son rôle exploratoire. Les calculs CNN et XGBoost antérieurs sont réutilisés avec leurs empreintes et sans dupliquer leurs poids. Le pilote CodeBERT reste une archive ; il a été remplacé pour son coût sur CPU. Le [mémoire PDF](output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf) et sa [version Word](output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx) sont conservés dans leur édition précédente ; leur révision TCN attend les mesures finales.
+Le [rapport des calculs](results/benchmark/cnn-xgboost-tcn-20261005/report.md) contient les résultats complets ; le [rapport d'analyse](reports/comparaison_cnn_xgboost_tcn.md) en explique les écarts et les limites. Le test conserve son rôle exploratoire. Les calculs CNN et XGBoost antérieurs sont réutilisés avec leurs empreintes et sans dupliquer leurs poids. Le pilote CodeBERT reste une archive de l'option remplacée pour son coût sur CPU. Les pauses et la concurrence CPU sont consignées dans les notes d'exécution ; les durées ne permettent pas un classement équitable des vitesses. L'application SMART BUG conserve son modèle actif désigné par `models/active_model.json`.
 
 ## Archive de l'expérience CNN/BiLSTM/CodeT5/TF-IDF
 

@@ -21,29 +21,38 @@ TABLES={
 'metrics':('1.2','Définition des indicateurs issus de la confusion.',['Indicateur','Expression'],[
 ['Exactitude','(VP + VN) / (VP + VN + FP + FN)'],['Précision positive','VP / (VP + FP)'],['Rappel positif','VP / (VP + FN)'],['F1 positif','2 × précision × rappel / (précision + rappel)'],['FPR','FP / (FP + VN)']],[35,65]),
 'literature':('1.3','Démarches des travaux connexes.',['Travail','Représentation / démarche'],[
-['Tann et al. (2018)','Apprentissage séquentiel LSTM'],['Zhuang et al. (2020)','Réseau neuronal sur graphe'],['Zhang et al. (2022)','CBGRU, modèle hybride'],['Feng et al. (2020)','CodeBERT, encodeur préentraîné'],['Chen et Guestrin (2016)','XGBoost, arbres par boosting'],['Ferreira et al. (2020)','Framework SmartBugs']],[38,62]),
+['Tann et al. (2018)','Apprentissage séquentiel LSTM'],['Zhuang et al. (2020)','Réseau neuronal sur graphe'],['Zhang et al. (2022)','CBGRU, modèle hybride'],['Bai et al. (2018)','TCN causal, dilaté et résiduel'],['Chen et Guestrin (2016)','XGBoost, arbres par boosting'],['Gopali et al. (2022)','TCN sur séquences d’opcodes EVM']],[38,62]),
 'partitions':('2.1','Composition du corpus final par partition.',['Partition','Total','Label 0','Label 1','Groupes'],[
 ['Entraînement','11 959','6 072','5 887','9 196'],['Validation','1 709','867','842','1 310'],['Calibration','1 709','868','841','1 235'],['Test','1 709','867','842','1 295'],['Source réservée','1 152','6','1 146','1 054'],['Total','18 238','8 680','9 558','14 090']],[32,17,17,17,17]),
 'files':('2.2','Principaux fichiers et responsabilités.',['Fichier ou dossier','Rôle'],[
-['src/build_dataset.py','Nettoyage, groupes et partitions'],['src/audit_dataset.py','Audit indépendant des représentations'],['src/preprocessing.py','Tokenisation et encodage communs'],['src/model.py','Construction du CNN–BiLSTM actif'],['src/train.py','Entraînement, validation, calibration et test'],['src/experiment.py','Lots et calcul des métriques'],['config/model.json','Hyperparamètres du modèle actif'],['src/predictor.py','Inférence commune au web et à la commande'],['src/run_model_benchmark.py','Comparaison CNN–BiLSTM / XGBoost / CodeBERT'],['config/benchmark_models.json','Réglages des concurrents et protocole']],[50,50]),
+['src/build_dataset.py','Nettoyage, groupes et partitions'],['src/audit_dataset.py','Audit indépendant des représentations'],['src/preprocessing.py','Tokenisation et encodage communs'],['src/model.py','Construction du CNN–BiLSTM actif'],['src/train.py','Entraînement, validation, calibration et test'],['src/experiment.py','Lots et calcul des métriques'],['config/model.json','Hyperparamètres du modèle actif'],['src/predictor.py','Inférence commune au web et à la commande'],['src/benchmark_tcn.py','TCN, pilote, entraînement et reprise'],['src/run_model_benchmark.py','Comparaison CNN–BiLSTM / XGBoost / TCN'],['config/benchmark_models.json','Réglages des concurrents et protocole']],[50,50]),
 'hyperparameters':('3.1','Réglages du CNN–BiLSTM actif.',['Paramètre','Valeur'],[
 ['Graines initiales / retenue','42, 73, 101 / 73'],['Embedding / filtres','32 / 24'],['Noyau / unités BiLSTM','5 / 24 par sens'],['Dropout / dense','0,30 / 32'],['Optimiseur / taux','Adam / 0,001'],['Époques max. / patience','12 / 3'],['Lot de référence','32, réduit selon longueur'],['Threads CPU','4']],[45,55]),
 'active_results':('3.2','Résultats du test pour le CNN–BiLSTM actif.',['Méthode','Exact. (%)','F1 macro (%)','Rappel (%)'],[],[37,21,21,21]),
-'comparison':('3.3','État de la comparaison à trois modèles.',['Méthode','F1 macro (%)','Rappel (%)','FPR (%)'],[],[34,26,20,20]),
+'comparison':('3.3','Résultats comparatifs des trois checkpoints.',['Méthode','F1 macro (%)','Rappel (%)','FPR (%)','PR-AUC (AP, %)'],[],[29,21,17,14,19]),
 }
 for name,k in [('CNN–BiLSTM brut','neural_raw'),('CNN–BiLSTM calibré','neural_calibrated')]:
     r=ev['test'][k]; TABLES['active_results'][3].append([name,pct(r['accuracy']),pct(r['f1_macro']),pct(r['recall_vulnerable'])])
 r=ev['test']['neural_calibrated'];tn,fp,fn,tp=[n for row in r['confusion_matrix'] for n in row]
-TABLES['comparison'][3].append(['CNN–BiLSTM actif',pct(r['f1_macro']),pct(r['recall_vulnerable']),pct(fp/(tn+fp))])
+TABLES['comparison'][3].append(['CNN–BiLSTM actif',pct(r['f1_macro']),pct(r['recall_vulnerable']),pct(fp/(tn+fp)),pct(r['average_precision'])])
 snapshot=json.loads((HERE/'comparison_snapshot.json').read_text(encoding='utf-8'))
 source=ROOT/snapshot['source']
 import hashlib
 assert hashlib.sha256(source.read_bytes()).hexdigest()==snapshot['source_sha256'],'Changed XGBoost evaluation'
-r=snapshot['metrics']
-TABLES['comparison'][3].append(['XGBoost / TF-IDF',pct(r['f1_macro']),pct(r['recall_vulnerable']),pct(r['false_positive_rate'])])
-TABLES['comparison'][3].append(['CodeBERT (candidat)','Calcul à compléter','Calcul à compléter','Calcul à compléter'])
 
-ABBREVS=[('API','Application Programming Interface : interface de programmation'),('AUC','Area Under the Curve : aire sous la courbe'),('BiLSTM','Bidirectional Long Short-Term Memory : LSTM bidirectionnel'),('CBGRU','Nom du modèle hybride de Zhang et al. (2022)'),('CGT','Consolidated Ground Truth : vérité terrain consolidée'),('CNN','Convolutional Neural Network : réseau neuronal convolutif'),('CodeBERT','Encodeur préentraîné pour le code et le langage naturel'),('CPU','Central Processing Unit : processeur central'),('CSS','Cascading Style Sheets : feuilles de style en cascade'),('ECE','Expected Calibration Error : erreur de calibration estimée'),('EVM','Ethereum Virtual Machine : machine virtuelle Ethereum'),('F1','Moyenne harmonique de la précision et du rappel'),('FN','Faux négatif'),('FP','Faux positif'),('FPR','False Positive Rate : taux de faux positifs'),('HTML','HyperText Markup Language : langage de balisage hypertexte'),('IA','Intelligence artificielle'),('IC','Intervalle de confiance'),('JSON','JavaScript Object Notation : format de données structurées'),('LSTM','Long Short-Term Memory : mémoire récurrente à long et court terme'),('ReLU','Rectified Linear Unit : unité linéaire rectifiée'),('ROC','Receiver Operating Characteristic : courbe rappel / faux positifs'),('SHA-256','Secure Hash Algorithm, empreinte cryptographique de 256 bits'),('SQL','Structured Query Language : langage de requêtes structurées'),('TF-IDF','Term Frequency–Inverse Document Frequency : pondération lexicale'),('UML','Unified Modeling Language : langage de modélisation unifié'),('UTF-8','Unicode Transformation Format, encodage en unités de 8 bits'),('VN','Vrai négatif'),('VP','Vrai positif')]
+summary_path=ROOT/snapshot['summary_source']
+assert hashlib.sha256(summary_path.read_bytes()).hexdigest()==snapshot['summary_sha256_at_import'],'Changed measured summary'
+summary=json.loads(summary_path.read_text(encoding='utf-8'))
+assert summary['complete'] and summary['models']['tcn']['metrics']==snapshot['tcn_metrics']
+r=snapshot['metrics']
+TABLES['comparison'][3].append(['XGBoost / TF-IDF',pct(r['f1_macro']),pct(r['recall_vulnerable']),pct(r['false_positive_rate']),pct(r['average_precision'])])
+tcn_metrics=snapshot.get('tcn_metrics')
+if tcn_metrics:
+    TABLES['comparison'][3].append(['TCN / tokens',pct(tcn_metrics['f1_macro']),pct(tcn_metrics['recall_vulnerable']),pct(tcn_metrics['false_positive_rate']),pct(tcn_metrics['average_precision'])])
+else:
+    TABLES['comparison'][3].append(['TCN (en préparation)']+['Calcul à compléter']*4)
+
+ABBREVS=[('API','Application Programming Interface : interface de programmation'),('AUC','Area Under the Curve : aire sous la courbe'),('BiLSTM','Bidirectional Long Short-Term Memory : LSTM bidirectionnel'),('CBGRU','Nom du modèle hybride de Zhang et al. (2022)'),('CGT','Consolidated Ground Truth : vérité terrain consolidée'),('CNN','Convolutional Neural Network : réseau neuronal convolutif'),('CPU','Central Processing Unit : processeur central'),('CSS','Cascading Style Sheets : feuilles de style en cascade'),('ECE','Expected Calibration Error : erreur de calibration estimée'),('EVM','Ethereum Virtual Machine : machine virtuelle Ethereum'),('F1','Moyenne harmonique de la précision et du rappel'),('FN','Faux négatif'),('FP','Faux positif'),('FPR','False Positive Rate : taux de faux positifs'),('HTML','HyperText Markup Language : langage de balisage hypertexte'),('IA','Intelligence artificielle'),('IC','Intervalle de confiance'),('JSON','JavaScript Object Notation : format de données structurées'),('LSTM','Long Short-Term Memory : mémoire récurrente à long et court terme'),('ReLU','Rectified Linear Unit : unité linéaire rectifiée'),('ROC','Receiver Operating Characteristic : courbe rappel / faux positifs'),('SHA-256','Secure Hash Algorithm, empreinte cryptographique de 256 bits'),('SQL','Structured Query Language : langage de requêtes structurées'),('TF-IDF','Term Frequency–Inverse Document Frequency : pondération lexicale'),('UML','Unified Modeling Language : langage de modélisation unifié'),('UTF-8','Unicode Transformation Format, encodage en unités de 8 bits'),('VN','Vrai négatif'),('VP','Vrai positif')]
 BIB=[
 ('Livres',[
 ('GOODFELLOW, I., BENGIO, Y. et COURVILLE, A. (2016). Deep Learning. MIT Press.','https://www.deeplearningbook.org/','deeplearningbook.org'),]),
@@ -54,16 +63,19 @@ BIB=[
 ('KIM, Y. (2014). Convolutional Neural Networks for Sentence Classification. EMNLP, 1746–1751. DOI : 10.3115/v1/D14-1181.','https://aclanthology.org/D14-1181/','aclanthology.org/D14-1181'),
 ('TANN, W. J.-W., HAN, X. J., SEN GUPTA, S. et ONG, Y.-S. (2018). Towards Safer Smart Contracts: A Sequence Learning Approach to Detecting Security Threats. Prépublication arXiv:1811.06632, révisée en 2019.','https://arxiv.org/abs/1811.06632','arxiv.org/abs/1811.06632'),]),
 ('Articles et communications (suite)',[
-('FENG, Z. et al. (2020). CodeBERT: A Pre-Trained Model for Programming and Natural Languages. Findings of EMNLP, 1536–1547. DOI : 10.18653/v1/2020.findings-emnlp.139.','https://aclanthology.org/2020.findings-emnlp.139/','aclanthology.org/2020.findings-emnlp.139'),
+('BAI, S., KOLTER, J. Z. et KOLTUN, V. (2018). An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling. arXiv:1803.01271.','https://arxiv.org/abs/1803.01271','arxiv.org/abs/1803.01271'),
+('GOPALI, S., KHAN, Z. A., CHHETRI, B., KARKI, B. et NAMIN, A. S. (2022). Vulnerability Detection in Smart Contracts Using Deep Learning. COMPSAC, 1249–1255. DOI : 10.1109/COMPSAC54236.2022.00197.','https://doi.org/10.1109/COMPSAC54236.2022.00197','doi.org/10.1109/COMPSAC54236.2022.00197'),
 ('CHEN, T. et GUESTRIN, C. (2016). XGBoost: A Scalable Tree Boosting System. KDD, 785–794. DOI : 10.1145/2939672.2939785.','https://arxiv.org/abs/1603.02754','arxiv.org/abs/1603.02754'),
 ('ZHANG, L. et al. (2022). CBGRU: A Detection Method of Smart Contract Vulnerability Based on a Hybrid Model. Sensors, 22(9), 3577. DOI : 10.3390/s22093577.','https://doi.org/10.3390/s22093577','doi.org/10.3390/s22093577'),
 ('ZHUANG, Y., LIU, Z., QIAN, P., LIU, Q., WANG, X. et HE, Q. (2020). Smart Contract Vulnerability Detection using Graph Neural Network. IJCAI, 3283–3290. DOI : 10.24963/ijcai.2020/454.','https://www.ijcai.org/Proceedings/2020/454','ijcai.org/Proceedings/2020/454'),]),
 ('Documentation et ressources du projet',[
 ('SALZER, G. et contributeurs (s. d.). Consolidated Ground Truth (CGT) for Weaknesses of Ethereum Smart Contracts. Dépôt de données.','https://github.com/gsalzer/cgt','github.com/gsalzer/cgt'),
 ('SOLIDITY (s. d.). Security Considerations. Documentation officielle.','https://docs.soliditylang.org/en/latest/security-considerations.html','docs.soliditylang.org — Security Considerations'),
-('KOMPANI KIPANGU, E. (2026). SMART BUG : code, configurations, corpus préparé et résultats expérimentaux. Dépôt du mémoire, commit 2df2580.','https://github.com/Exauce-kompany/DETECTION-AUTOMATISEE-DES-VULNERABILITES-DE-SMARTS-CONTRACTS-SOLIDITY/tree/2df2580cf206bc46cb23864fda32d6db6c1c09c6','GitHub — dépôt SMART BUG, état étudié'),])]
-ABBREVS += [('AdamW','Adam avec décroissance des poids découplée'),('BERT','Bidirectional Encoder Representations from Transformers'),('BPE','Byte Pair Encoding : encodage en sous-tokens'),('CLS','Classification token : marqueur de représentation de fenêtre'),('L2','Régularisation quadratique'),('PR-AUC','Precision–Recall Area Under the Curve : aire précision-rappel'),('XGBoost','eXtreme Gradient Boosting : boosting d’arbres'),('DOI','Digital Object Identifier : identifiant pérenne d’une publication'),('EMNLP','Empirical Methods in Natural Language Processing'),('IJCAI','International Joint Conference on Artificial Intelligence'),('MIT','Massachusetts Institute of Technology'),('PMLR','Proceedings of Machine Learning Research'),('s. d.','Sans date de publication précisée'),('WETSEB','Workshop on Emerging Trends in Software Engineering for Blockchain')]
+('KOMPANI KIPANGU, E. (2026). SMART BUG : code et corpus de base, commit 2df2580 ; comparaison TCN du 5 octobre 2026, archives locales results/benchmark.','https://github.com/Exauce-kompany/DETECTION-AUTOMATISEE-DES-VULNERABILITES-DE-SMARTS-CONTRACTS-SOLIDITY/tree/2df2580cf206bc46cb23864fda32d6db6c1c09c6','GitHub — dépôt SMART BUG, état étudié'),])]
+ABBREVS += [('AdamW','Adam avec décroissance des poids découplée'),('L2','Régularisation quadratique'),('PR-AUC','Precision–Recall Area Under the Curve ; mesurée ici par AP'),('XGBoost','eXtreme Gradient Boosting : boosting d’arbres'),('DOI','Digital Object Identifier : identifiant pérenne d’une publication'),('EMNLP','Empirical Methods in Natural Language Processing'),('IJCAI','International Joint Conference on Artificial Intelligence'),('MIT','Massachusetts Institute of Technology'),('PMLR','Proceedings of Machine Learning Research'),('s. d.','Sans date de publication précisée'),('WETSEB','Workshop on Emerging Trends in Software Engineering for Blockchain')]
 ABBREVS += [('KDD','Knowledge Discovery and Data Mining : conférence sur l’analyse des données')]
+ABBREVS += [('TCN','Temporal Convolutional Network : réseau convolutif temporel'),('PAD','Padding : remplissage masqué des séquences'),('AP','Average precision : précision moyenne'),('COMPSAC','Computer Software and Applications Conference'),('EVM','Ethereum Virtual Machine : machine virtuelle Ethereum')]
+ABBREVS=list(dict(ABBREVS).items())
 ABBREVS.sort(key=lambda pair:pair[0].casefold())
 
 doc=Document();WIDTH=398;FONT='Palatino Linotype'
@@ -139,13 +151,13 @@ def table(key):
             run=par.add_run(v);run.font.size=Pt(9.5);run.bold=i==0
     source=p('Source : '+('élaboration personnelle à partir des références citées.' if key in ['vulnerabilities','metrics','literature'] else 'configuration, données et résultats archivés de SMART BUG.'),'Small');source.paragraph_format.space_after=Pt(10)
     if key=='comparison':
-        run=source.add_run('\nCNN et XGBoost : checkpoints sélectionnés sur validation. CodeBERT : candidat non entraîné.');run.font.size=Pt(9)
+        run=source.add_run('\nCNN et XGBoost : checkpoints réutilisés ; TCN : checkpoint sélectionné sur validation.');run.font.size=Pt(9)
 def figure(name,n,caption):
     par=p();par.paragraph_format.first_line_indent=Pt(0);par.paragraph_format.space_after=Pt(4);par.paragraph_format.keep_with_next=True;par.paragraph_format.line_spacing=1.0
     par.alignment=WD_ALIGN_PARAGRAPH.CENTER
     par.add_run().add_picture(str(HERE/'figures'/f'{name}.png'),width=Pt(275 if name=='confusion' else WIDTH))
     c=p('Figure '+n+' – '+caption,'Caption');c.paragraph_format.alignment=WD_ALIGN_PARAGRAPH.CENTER
-    r=c.add_run('\nSource : '+('élaboration personnelle d’après le système implémenté.' if n.startswith('2.') else 'élaboration personnelle.' if n.startswith('1.') else 'protocole comparatif ; évaluation CodeBERT à compléter.' if name in ['comparison','ablation','latency'] else 'résultats expérimentaux archivés de SMART BUG.'));r.font.size=Pt(9)
+    r=c.add_run('\nSource : '+('élaboration personnelle d’après le système implémenté.' if n.startswith('2.') else 'élaboration personnelle.' if n.startswith('1.') else 'résultats expérimentaux archivés, comparaison CNN / XGBoost / TCN.' if name in ['comparison','ablation','latency'] else 'résultats expérimentaux archivés de SMART BUG.'));r.font.size=Pt(9)
 
 pages=re.split(r'^@PAGE ',text,flags=re.M)[1:]
 figlist=[];tablelist=[];toc=[]
@@ -209,5 +221,5 @@ for block in pages:
         else:p(para.replace('\n',' '))
 
 path=OUT/'Memoire_SMART_BUG_Exauce_Kompani.docx';doc.save(path)
-(HERE/'document_index.json').write_text(json.dumps({'pages':len(pages),'figures':figlist,'tables':tablelist,'toc':toc,'words':len(text.split()),'bibliography_entries':sum(len(entries) for _,entries in BIB),'abbreviations':len(ABBREVS),'comparison_status':'cnn_and_xgboost_evaluated_codebert_incomplete'},ensure_ascii=False,indent=2),encoding='utf-8')
+(HERE/'document_index.json').write_text(json.dumps({'pages':len(pages),'figures':figlist,'tables':tablelist,'toc':toc,'words':len(text.split()),'bibliography_entries':sum(len(entries) for _,entries in BIB),'abbreviations':len(ABBREVS),'comparison_status':snapshot['status']},ensure_ascii=False,indent=2),encoding='utf-8')
 print(path);print('Pages planned:',len(pages),'Figures:',len(figlist),'Tables:',len(tablelist),'Words:',len(text.split()))

@@ -1,0 +1,63 @@
+{
+  "evaluations_id": "915332159f80b3e67045f6da47f62496426863b43def2a25270dcdebe0879eb7",
+  "repetitions": 1000,
+  "seed": 42,
+  "sampling_unit": "group_id",
+  "interpretation": "left minus right; selected checkpoints fixed; exploratory; no multiple-comparison correction",
+  "pairs": [
+    {
+      "left": "xgboost",
+      "right": "cnn_bilstm",
+      "f1_macro": {
+        "difference": 0.0730810554821133,
+        "ci95": [
+          0.04867800700531343,
+          0.10651906964226983
+        ]
+      },
+      "recall_vulnerable": {
+        "difference": 0.004750593824228044,
+        "ci95": [
+          -0.02155850461239684,
+          0.028487552665268284
+        ]
+      }
+    },
+    {
+      "left": "tcn",
+      "right": "cnn_bilstm",
+      "f1_macro": {
+        "difference": 0.02671501314142566,
+        "ci95": [
+          0.002716597116629693,
+          0.05602272349217854
+        ]
+      },
+      "recall_vulnerable": {
+        "difference": 0.0035629453681710332,
+        "ci95": [
+          -0.03567731163984912,
+          0.03652511694854267
+        ]
+      }
+    },
+    {
+      "left": "tcn",
+      "right": "xgboost",
+      "f1_macro": {
+        "difference": -0.04636604234068764,
+        "ci95": [
+          -0.07426859774382631,
+          -0.02608392458330744
+        ]
+      },
+      "recall_vulnerable": {
+        "difference": -0.001187648456057011,
+        "ci95": [
+          -0.03759544209360616,
+          0.029820501397047484
+        ]
+      }
+    }
+  ]
+}

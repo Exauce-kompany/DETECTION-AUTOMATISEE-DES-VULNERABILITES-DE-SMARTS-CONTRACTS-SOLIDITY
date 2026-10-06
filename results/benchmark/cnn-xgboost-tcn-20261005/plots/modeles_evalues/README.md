@@ -1,6 +1,6 @@
-# Graphiques des modèles déjà évalués
+# Archive des graphiques — partie 1
 
-**CNN–BiLSTM actif et TF-IDF + XGBoost**, sur les mêmes **1 709 contrats de test**. Le TCN reste en pause et n'apparaît pas dans ces graphiques. Cette comparaison partielle conserve les checkpoints sélectionnés sur validation, ainsi que les températures et seuils ajustés sur calibration.
+**CNN–BiLSTM actif et TF-IDF + XGBoost**, sur les mêmes **1 709 contrats de test**. Ces graphiques ont été sauvegardés pendant la pause du TCN, dans le commit `72034bd`, et conservent cet état historique à deux modèles. Le TCN est maintenant terminé : les [matrices finales des trois modèles](../matrices_confusion.png) et les autres figures se trouvent dans le dossier parent. Cette archive conserve les checkpoints sélectionnés sur validation, ainsi que les températures et seuils ajustés sur calibration.
 
 ![Matrices de confusion CNN–BiLSTM et XGBoost](matrices_confusion.png)
 
@@ -17,10 +17,10 @@ Les lignes correspondent aux annotations réelles et les colonnes aux classes pr
 
 PNG à 300 dpi ; SVG vectoriels. Les sources, empreintes, matrices et seuils exacts figurent dans [plot_manifest.json](plot_manifest.json). Les métriques ont été recalculées à partir des logits archivés et comparées aux évaluations enregistrées avant l'export. Les six PNG ont été inspectés visuellement.
 
-Pour les régénérer depuis la racine, dans l'environnement scientifique :
+La commande utilisée pour cet export partiel était :
 
 ```powershell
 python -m src.plot_model_benchmark --available-models
 ```
 
-Aucun entraînement, choix de graine ni ajustement de seuil n'est effectué par cette commande. Le mode sans cette option attend les trois évaluations pour les graphiques finaux. Le test a déjà été consulté : les comparaisons restent exploratoires.
+Depuis la fin du TCN, cette option inclurait les trois modèles évalués et remplacerait les graphiques de ce sous-dossier. Pour générer les figures finales dans le dossier parent, utiliser `python -m src.plot_model_benchmark`. Le manifeste de cette archive référence les sources de partie 1 conservées dans l'historique Git ; les résultats actuels ont leur propre manifeste dans le dossier parent. Le test a déjà été consulté : les comparaisons restent exploratoires.
