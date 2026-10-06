@@ -10,7 +10,7 @@ Cette partie sauvegarde le travail disponible et la reprise de l'entraînement. 
 - Configuration et hyperparamètres : `config/benchmark_models.json` ; [protocole détaillé](protocole_cnn_xgboost_tcn.md).
 - Résultats CNN–BiLSTM et XGBoost, provenance des calculs réutilisés et sources figées.
 - Historiques et poids des deux entraînements TCN terminés, ainsi que la sauvegarde du troisième avec optimiseur et états aléatoires.
-- Générateur de graphiques et schéma TCN en couleurs. Les graphiques comparatifs finaux attendent l'évaluation du TCN.
+- Générateur de graphiques, schéma TCN en couleurs et [graphiques des deux modèles évalués](../results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/README.md) : matrices de confusion, métriques, ROC et précision–rappel. Les graphiques comparatifs finaux à trois modèles attendent l'évaluation du TCN.
 - [Mémoire Word](../output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx) et [PDF](../output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf), conservés dans leur édition précédente. La révision intégrant les résultats TCN n'est pas encore publiée.
 - [Sources et préparation du mémoire](../docs/memoire/README.md), avec les scripts, figures et contrôles nécessaires à la reprise de la rédaction.
 - Tests du protocole et du moteur TCN. Les environnements Python, dépendances locales et journaux temporaires restent hors du dépôt.

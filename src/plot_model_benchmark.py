@@ -1,8 +1,9 @@
 """Export French benchmark figures without training, selection or recalibration.
 
-Test labels and predictions are opened only after summary.json declares the
-three evaluations complete. Incomplete runs export architecture and any saved
-validation histories, and explicitly skip every comparative test figure.
+The default mode requires all three evaluations before exporting test figures.
+--available-models exports only families already declared evaluated, after
+verifying their saved checkpoints, calibration and predictions. It does not
+train, select a checkpoint, calibrate again or fabricate pending model scores.
 """
 import argparse
 from datetime import datetime, timezone
@@ -83,6 +84,8 @@ def footer(config, *, test=False):
 
 def export(fig, output, name, config, manifest, *, test=False, note=None, fixed_canvas=False):
     text = footer(config, test=test)
+    if test and manifest.get("excluded_models"):
+        text += "\nModèles non évalués omis : " + ", ".join(NAMES[name] for name in manifest["excluded_models"]) + "."
     if note:
         text += "\n" + note
     fig.text(0.5, 0.025, text, ha="center", va="bottom", fontsize=8, color="#444444")
@@ -178,31 +181,44 @@ def plot_validation(config, result, output, sources, manifest):
     export(fig, output, "logloss_validation_tcn", config, manifest, note=note)
 
 
-def completion_gate(summary, result):
+def evaluated_models(summary):
+    """Eligibility depends on saved evaluation status, never on test scores."""
+    if summary is None:
+        return ()
+    return tuple(name for name in MODELS if summary.get("models", {}).get(name, {}).get("status") == "evaluated")
+
+
+def completion_gate(summary, result, models=MODELS, *, require_complete=True):
     """This gate must run before opening any test labels, IDs or logits."""
     reasons = []
-    if summary is None or summary.get("complete") is not True:
+    if require_complete and (summary is None or summary.get("complete") is not True):
         reasons.append("summary.json ne déclare pas les trois évaluations terminées.")
-    for name in MODELS:
-        if summary is not None and summary.get("models", {}).get(name, {}).get("status") != "evaluated":
+    if not models:
+        reasons.append("Aucun modèle n'est déclaré évalué.")
+    for name in models:
+        entry = (summary or {}).get("models", {}).get(name, {})
+        if entry.get("status") != "evaluated":
             reasons.append(NAMES[name] + " n'est pas déclaré évalué.")
+        if not entry.get("metrics") or not entry.get("selected"):
+            reasons.append(NAMES[name] + " n'a pas de métriques et checkpoint enregistrés dans le résumé.")
         for filename in ("evaluation.json", "selection.json", "calibration.json", "test_sample_ids.json", "test_logits.npy"):
             if not (result / name / filename).is_file():
                 reasons.append(f"Fichier manquant : {name}/{filename}.")
     return reasons
 
 
-def load_complete_test(config, result, summary, sources, manifest):
+def load_complete_test(config, result, summary, sources, manifest, models=MODELS):
     """Validate stored selection/calibration, then load the identical test set."""
     from scipy.special import expit
     from sklearn.metrics import average_precision_score, confusion_matrix, f1_score, precision_score, recall_score, roc_auc_score
 
     evaluations = {}
-    for name in MODELS:
+    for name in models:
         evaluation = read_json(result / name / "evaluation.json", sources)
         selection = read_json(result / name / "selection.json", sources)
         calibration = read_json(result / name / "calibration.json", sources)
-        if evaluation.get("model") != name or evaluation["selected"] != selection["selected"]:
+        if (evaluation.get("model") != name or evaluation["selected"] != selection["selected"]
+                or evaluation["selected"] != summary["models"][name]["selected"]):
             raise ValueError(f"Checkpoint sélectionné incohérent : {name}.")
         if selection.get("fit_split") != "validation":
             raise ValueError(f"La sélection de {name} n'est pas issue de validation.")
@@ -218,6 +234,15 @@ def load_complete_test(config, result, summary, sources, manifest):
             value = float(point[key])
             if not np.isfinite(value) or not 0 <= value <= 1 or not np.isclose(value, summary["models"][name]["metrics"][key], rtol=0, atol=1e-12):
                 raise ValueError(f"Métrique ou résumé incohérent : {name}/{key}.")
+        for artifact in ("model", "vectorizer"):
+            selected = evaluation["selected"]
+            if artifact + "_path" not in selected:
+                continue
+            path = ROOT / selected[artifact + "_path"]
+            actual = file_hash(path)
+            if actual != selected[artifact + "_sha256"]:
+                raise ValueError(f"Artefact sélectionné modifié : {name}/{artifact}.")
+            sources[relative(path)] = actual
         evaluations[name] = evaluation
     dataset = ROOT / config["dataset_dir"]
     dataset_manifest = read_json(dataset / "manifest.json", sources)
@@ -265,7 +290,7 @@ def load_complete_test(config, result, summary, sources, manifest):
         manifest["metrics"][name] = {key: float(point[key]) for key in (*METRICS, "roc_auc")}
         manifest["metrics"][name]["confusion_matrix"] = matrix.tolist()
     manifest["test"] = {"samples": len(labels), "sample_ids_sha256": hashlib.sha256(json.dumps(sample_ids, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).hexdigest(),
-                        "order_verified_for": list(MODELS), "prediction_rule": "sigmoid(logit / temperature) >= calibration_threshold"}
+                        "order_verified_for": list(models), "prediction_rule": "sigmoid(logit / temperature) >= calibration_threshold"}
     return labels, probabilities, evaluations
 
 
@@ -366,14 +391,29 @@ def plot_selected_loss(config, result, output, sources, manifest, evaluations):
                                   "validation_loss": "unweighted_log_loss_in_evaluation_mode"}
 
 
-def plot_test(config, output, manifest, labels, probabilities, evaluations):
+def draw_confusion(ax, name, matrix, calibration, maximum):
+    classes = ["Sans vulnérabilité\nannotée (0)", "Vulnérabilité\nannotée (1)"]
+    cmap = LinearSegmentedColormap.from_list(name, ["#FFFFFF", COLORS[name]])
+    ax.imshow(matrix, cmap=cmap, vmin=0, vmax=maximum)
+    for (row, column), value in np.ndenumerate(matrix):
+        symbol = (("VN", "FP"), ("FN", "VP"))[row][column]
+        ax.text(column, row, f"{symbol}\n{value}", ha="center", va="center", fontsize=13,
+                color="white" if value > 0.6 * maximum else "#222222")
+    ax.set_xticks([0, 1], classes, fontsize=8)
+    ax.set_yticks([0, 1], classes, fontsize=8)
+    ax.set(xlabel="Classe prédite", ylabel="Annotation réelle")
+    ax.set_title(NAMES[name] + f"\nT = {calibration['temperature']:.3f} · seuil = {calibration['threshold']:.3f}", fontsize=11)
+    ax.tick_params(length=0)
+
+
+def plot_test(config, output, manifest, labels, probabilities, evaluations, models=MODELS):
     from sklearn.metrics import precision_recall_curve, roc_curve
 
     fig, ax = plt.subplots(figsize=(10.5, 6.0))
-    x, width = np.arange(len(METRICS)), 0.24
-    for index, name in enumerate(MODELS):
+    x, width = np.arange(len(METRICS)), 0.24 if len(models) == 3 else 0.32
+    for index, name in enumerate(models):
         values = [manifest["metrics"][name][key] for key in METRICS]
-        bars = ax.bar(x + (index - 1) * width, values, width, color=COLORS[name], label=legend_name(name, evaluations[name]))
+        bars = ax.bar(x + (index - (len(models) - 1) / 2) * width, values, width, color=COLORS[name], label=legend_name(name, evaluations[name]))
         for bar, value in zip(bars, values):
             high = value > 0.94
             ax.text(bar.get_x() + bar.get_width() / 2, value - 0.055 if high else value + 0.013,
@@ -383,35 +423,29 @@ def plot_test(config, output, manifest, labels, probabilities, evaluations):
     ax.set(ylim=(0, 1), ylabel="Valeur", title="Comparaison des checkpoints sélectionnés sur le même test")
     ax.grid(axis="y", alpha=0.2)
     ax.set_axisbelow(True)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.18), ncol=3, fontsize=9)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.18), ncol=len(models), fontsize=9)
     fig.subplots_adjust(bottom=0.25, top=0.77)
     export(fig, output, "metriques_principales", config, manifest, test=True,
            note="↑ : plus haut = meilleur · FPR ↓ : plus bas = meilleur · PR-AUC = average precision (AP).")
 
-    fig, axes = plt.subplots(1, 3, figsize=(13.0, 5.1))
-    matrices = [np.asarray(manifest["metrics"][name]["confusion_matrix"]) for name in MODELS]
+    fig, axes = plt.subplots(1, len(models), figsize=(4.4 * len(models) + 0.3, 5.1), squeeze=False)
+    matrices = [np.asarray(manifest["metrics"][name]["confusion_matrix"]) for name in models]
     maximum = max(matrix.max() for matrix in matrices)
-    classes = ["Sans vulnérabilité\nannotée (0)", "Vulnérabilité\nannotée (1)"]
-    for ax, name, matrix in zip(axes, MODELS, matrices):
-        cmap = LinearSegmentedColormap.from_list(name, ["#FFFFFF", COLORS[name]])
-        ax.imshow(matrix, cmap=cmap, vmin=0, vmax=maximum)
-        for (row, column), value in np.ndenumerate(matrix):
-            symbol = (("VN", "FP"), ("FN", "VP"))[row][column]
-            ax.text(column, row, f"{symbol}\n{value}", ha="center", va="center", fontsize=13,
-                    color="white" if value > 0.6 * maximum else "#222222")
-        ax.set_xticks([0, 1], classes, fontsize=8)
-        ax.set_yticks([0, 1], classes, fontsize=8)
-        ax.set(xlabel="Classe prédite", ylabel="Annotation réelle")
-        calibration = evaluations[name]["calibration"]
-        ax.set_title(NAMES[name] + f"\nT = {calibration['temperature']:.3f} · seuil = {calibration['threshold']:.3f}", fontsize=11)
-        ax.tick_params(length=0)
+    for ax, name, matrix in zip(axes.ravel(), models, matrices):
+        draw_confusion(ax, name, matrix, evaluations[name]["calibration"], maximum)
     fig.suptitle("Matrices de confusion — effectifs de contrats", fontsize=14)
     fig.subplots_adjust(bottom=0.25, top=0.79, wspace=0.55)
-    export(fig, output, "matrices_confusion", config, manifest, test=True)
+    confusion_note = f"{len(labels):,} contrats · VN/VP : vrais négatifs/positifs · FP/FN : faux positifs/négatifs.".replace(",", " ")
+    export(fig, output, "matrices_confusion", config, manifest, test=True, note=confusion_note)
+    for name, matrix in zip(models, matrices):
+        fig, ax = plt.subplots(figsize=(6.5, 6.0))
+        draw_confusion(ax, name, matrix, evaluations[name]["calibration"], maximum)
+        fig.subplots_adjust(left=0.25, right=0.96, bottom=0.27, top=0.87)
+        export(fig, output, "matrice_confusion_" + name, config, manifest, test=True, note=confusion_note)
 
     for kind in ("roc", "pr"):
         fig, ax = plt.subplots(figsize=(7.8, 6.4))
-        for name in MODELS:
+        for name in models:
             point = manifest["metrics"][name]
             if kind == "roc":
                 fpr, recall, _ = roc_curve(labels, probabilities[name])
@@ -444,7 +478,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", default=DEFAULT_RUN, help="Dossier sous results/benchmark ; défaut : %(default)s")
     parser.add_argument("--config", type=Path, default=ROOT / "config/benchmark_models.json", help="Configuration du protocole")
-    parser.add_argument("--architecture-only", action="store_true", help="Exporter uniquement le schéma, sans lire les évaluations ni le test")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--architecture-only", action="store_true", help="Exporter uniquement le schéma, sans lire les évaluations ni le test")
+    mode.add_argument("--available-models", action="store_true", help="Exporter dans plots/modeles_evalues les modèles déjà évalués, même si le TCN est en pause")
     args = parser.parse_args()
     if Path(args.run_id).name != args.run_id or args.run_id in (".", ".."):
         parser.error("--run-id doit être un seul nom de dossier.")
@@ -459,8 +495,8 @@ def main():
     if protocol["config"] != config:
         raise ValueError("La configuration diffère du protocole figé de ce run.")
     configure_style()
-    output = result / "plots"
-    output.mkdir(exist_ok=True)
+    output = result / "plots" / "modeles_evalues" if args.available_models else result / "plots"
+    output.mkdir(parents=True, exist_ok=True)
     manifest = {"created_utc": datetime.now(timezone.utc).isoformat(), "run_id": args.run_id,
                 "dataset_id": config["dataset_id"], "protocol_id": protocol.get("protocol_id"),
                 "test_role": config["test_role"], "exploratory": True,
@@ -470,11 +506,27 @@ def main():
                 "palette": COLORS, "environment": {"matplotlib": matplotlib.__version__, "numpy": np.__version__},
                 "status": "architecture_only" if args.architecture_only else "incomplete",
                 "test_labels_read": False, "plots": {}, "skipped": {}, "sources_sha256": sources}
-    plot_architecture(config, output, manifest)
-    if args.architecture_only:
+    if args.available_models:
+        summary_path = result / "summary.json"
+        summary = read_json(summary_path, sources) if summary_path.exists() else None
+        models = evaluated_models(summary)
+        reasons = completion_gate(summary, result, models, require_complete=False)
+        if reasons:
+            raise ValueError("Impossible de tracer les modèles évalués : " + " ".join(reasons))
+        manifest.update({"status": "evaluated_models_only", "compared_models": list(models),
+                         "final_comparison": bool(summary.get("complete") and models == MODELS),
+                         "excluded_models": {name: summary.get("models", {}).get(name, {}).get("status", "not_evaluated") for name in MODELS if name not in models}})
+        labels, probabilities, evaluations = load_complete_test(config, result, summary, sources, manifest, models)
+        manifest["test_labels_read"] = True
+        plot_test(config, output, manifest, labels, probabilities, evaluations, models)
+        for name in EXTRA_PLOTS:
+            manifest["skipped"][name] = "Mode modèles évalués uniquement ; graphiques finaux à trois modèles exclus."
+    elif args.architecture_only:
+        plot_architecture(config, output, manifest)
         for name in (*TEST_PLOTS, *EXTRA_PLOTS, "logloss_validation_tcn"):
             manifest["skipped"][name] = "Option --architecture-only."
     else:
+        plot_architecture(config, output, manifest)
         plot_validation(config, result, output, sources, manifest)
         summary_path = result / "summary.json"
         summary = read_json(summary_path, sources) if summary_path.exists() else None

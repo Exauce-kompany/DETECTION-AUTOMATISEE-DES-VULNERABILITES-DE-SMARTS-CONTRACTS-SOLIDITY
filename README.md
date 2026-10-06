@@ -112,6 +112,14 @@ python -m src.run_model_benchmark --stage report
 python -m src.plot_model_benchmark
 ```
 
+Les graphiques des modèles déjà évalués peuvent être générés pendant la pause du TCN :
+
+```powershell
+python -m src.plot_model_benchmark --available-models
+```
+
+Les [matrices de confusion CNN–BiLSTM/XGBoost](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/matrices_confusion.png), [métriques](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/metriques_principales.png), [courbes ROC](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/courbe_roc.png) et [précision–rappel](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/courbe_precision_rappel.png) sont disponibles en PNG et SVG. Les matrices individuelles et leur provenance figurent dans le [dossier des graphiques](results/benchmark/cnn-xgboost-tcn-20261005/plots/modeles_evalues/README.md). Ce mode conserve les checkpoints et seuils enregistrés ; il ne relance ni entraînement ni calibration et n'attribue aucun score au TCN en pause.
+
 Le [rapport des calculs](results/benchmark/cnn-xgboost-tcn-20261005/report.md) précise les étapes terminées et les résultats manquants. Le pilote TCN estime sa durée ; il n'est pas un entraînement final. Le test conserve son rôle exploratoire. Les calculs CNN et XGBoost antérieurs sont réutilisés avec leurs empreintes et sans dupliquer leurs poids. Le pilote CodeBERT reste une archive ; il a été remplacé pour son coût sur CPU. Le [mémoire PDF](output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf) et sa [version Word](output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx) sont conservés dans leur édition précédente ; leur révision TCN attend les mesures finales.
 
 ## Archive de l'expérience CNN/BiLSTM/CodeT5/TF-IDF
