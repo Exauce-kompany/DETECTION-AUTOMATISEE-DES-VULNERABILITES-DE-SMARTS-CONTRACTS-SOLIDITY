@@ -1,0 +1,16 @@
+{
+  "moved": 1256,
+  "compatibility_copies": 12,
+  "bytes": 1844939983,
+  "all_archive_hashes_verified": true,
+  "failures": [],
+  "retired_tests": 15,
+  "active_tests_passed": 77,
+  "final_integrity_checks_passed": 194,
+  "local_cache_gitignored": true,
+  "published_to_github": false,
+  "recreated_by_validation": [
+    ".ruff_cache/.gitignore",
+    ".ruff_cache/CACHEDIR.TAG"
+  ]
+}

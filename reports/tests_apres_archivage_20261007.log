@@ -1,0 +1,165 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791388449.209418   14952 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791388456.722072   14952 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+test_delegatecall_evidence_keeps_the_original_signature (test_analysis.FindingEvidenceTests.test_delegatecall_evidence_keeps_the_original_signature) ... ok
+test_loop_call_evidence_keeps_original_literal (test_analysis.FindingEvidenceTests.test_loop_call_evidence_keeps_original_literal) ... ok
+test_reentrancy_evidence_keeps_call_and_mutation_literals (test_analysis.FindingEvidenceTests.test_reentrancy_evidence_keeps_call_and_mutation_literals) ... ok
+test_call_after_loop_is_not_reported_as_inside_it (test_analysis.LoopPerformanceTests.test_call_after_loop_is_not_reported_as_inside_it) ... ok
+test_literals_and_comments_cannot_fake_a_loop_body_call (test_analysis.LoopPerformanceTests.test_literals_and_comments_cannot_fake_a_loop_body_call) ... ok
+test_long_comment_does_not_hide_call_inside_loop (test_analysis.LoopPerformanceTests.test_long_comment_does_not_hide_call_inside_loop) ... ok
+test_nested_parentheses_and_blocks_stay_inside_loop (test_analysis.LoopPerformanceTests.test_nested_parentheses_and_blocks_stay_inside_loop) ... ok
+test_absent_probability_stays_absent (test_analysis.ProbabilityUnitsTests.test_absent_probability_stays_absent) ... ok
+test_invalid_probability_is_rejected_instead_of_clamped (test_analysis.ProbabilityUnitsTests.test_invalid_probability_is_rejected_instead_of_clamped) ... ok
+test_low_percentages_are_not_rescaled (test_analysis.ProbabilityUnitsTests.test_low_percentages_are_not_rescaled) ... ok
+test_numeric_percentage_text_keeps_its_unit (test_analysis.ProbabilityUnitsTests.test_numeric_percentage_text_keeps_its_unit) ... ok
+test_comment_markers_inside_literals_do_not_hide_following_code (test_analysis.SolidityLexicalTests.test_comment_markers_inside_literals_do_not_hide_following_code) ... ok
+test_comments_preserve_positions_whitespace_and_token_boundaries (test_analysis.SolidityLexicalTests.test_comments_preserve_positions_whitespace_and_token_boundaries) ... ok
+test_equality_checks_are_not_counted_as_state_writes (test_analysis.SolidityLexicalTests.test_equality_checks_are_not_counted_as_state_writes) ... ok
+test_escaped_quotes_keep_comment_markers_inside_literals (test_analysis.SolidityLexicalTests.test_escaped_quotes_keep_comment_markers_inside_literals) ... ok
+test_literals_and_comments_do_not_create_executable_findings (test_analysis.SolidityLexicalTests.test_literals_and_comments_do_not_create_executable_findings) ... ok
+test_multiline_comments_keep_finding_line_numbers (test_analysis.SolidityLexicalTests.test_multiline_comments_keep_finding_line_numbers) ... ok
+test_dataset_and_metric_modules_do_not_depend_on_experiment_runners (test_architecture.ModuleBoundaryTests.test_dataset_and_metric_modules_do_not_depend_on_experiment_runners) ... ok
+test_scientific_modules_do_not_depend_on_the_web_application (test_architecture.ModuleBoundaryTests.test_scientific_modules_do_not_depend_on_the_web_application) ... ok
+test_shared_imports_do_not_load_model_frameworks (test_architecture.ModuleBoundaryTests.test_shared_imports_do_not_load_model_frameworks) ... ok
+test_benchmark_resume_rejects_changed_shared_source (test_architecture.SourceProvenanceTests.test_benchmark_resume_rejects_changed_shared_source) ... ok
+test_registered_sources_resolve_to_existing_project_files (test_architecture.SourceProvenanceTests.test_registered_sources_resolve_to_existing_project_files) ... ok
+test_causal_convolution_residual_and_full_tcn_cannot_read_future (test_benchmark_tcn.TCNBenchmarkTests.test_causal_convolution_residual_and_full_tcn_cannot_read_future) ... ok
+test_default_receptive_field_counts_encoded_positions (test_benchmark_tcn.TCNBenchmarkTests.test_default_receptive_field_counts_encoded_positions) ... ok
+{"stage": "tcn_training_start", "seed": 42, "resumed": false, "epoch": 1, "next_batch": 0, "training_contracts": 6, "training_encoded_tokens": 54, "receptive_field_encoded_tokens": 29}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 1}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 2}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 3}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 1, "loss": 0.6915997465451559, "validation_log_loss": 0.6813543093390205, "validation_f1_macro": 0.3333333333333333, "validation_roc_auc": 0.7777777777777778, "contracts_seen": 6, "optimizer_steps": 3, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 4}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 5}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 6}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 2, "loss": 0.6467354496320089, "validation_log_loss": 0.6755680328158512, "validation_f1_macro": 0.3333333333333333, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 6, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 7}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 8}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 9}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 3, "loss": 0.6368041038513184, "validation_log_loss": 0.6652570249104653, "validation_f1_macro": 0.3333333333333333, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 9, "learning_rate": 0.01}
+{"stage": "tcn_training_start", "seed": 42, "resumed": false, "epoch": 1, "next_batch": 0, "training_contracts": 6, "training_encoded_tokens": 54, "receptive_field_encoded_tokens": 29}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 1}
+{"stage": "tcn_training_start", "seed": 42, "resumed": true, "epoch": 1, "next_batch": 1, "training_contracts": 6, "training_encoded_tokens": 54, "receptive_field_encoded_tokens": 29}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 2}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 3}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 1, "loss": 0.6915997465451559, "validation_log_loss": 0.6813543093390205, "validation_f1_macro": 0.3333333333333333, "validation_roc_auc": 0.7777777777777778, "contracts_seen": 6, "optimizer_steps": 3, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 4}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 5}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 6}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 2, "loss": 0.6467354496320089, "validation_log_loss": 0.6755680328158512, "validation_f1_macro": 0.3333333333333333, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 6, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 7}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 8}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 9}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 3, "loss": 0.6368041038513184, "validation_log_loss": 0.6652570249104653, "validation_f1_macro": 0.3333333333333333, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 9, "learning_rate": 0.01}
+{"stage": "tcn_training_start", "seed": 42, "resumed": true, "epoch": 4, "next_batch": 0, "training_contracts": 6, "training_encoded_tokens": 54, "receptive_field_encoded_tokens": 29}
+test_interrupted_resume_matches_exact_weights_history_and_best_logits (test_benchmark_tcn.TCNBenchmarkTests.test_interrupted_resume_matches_exact_weights_history_and_best_logits) ... ok
+{"stage": "tcn_training_start", "seed": 42, "resumed": false, "epoch": 1, "next_batch": 0, "training_contracts": 6, "training_encoded_tokens": 54, "receptive_field_encoded_tokens": 29}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 1}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 2}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 3}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 1, "loss": 0.70689857006073, "validation_log_loss": 0.6811971554227334, "validation_f1_macro": 0.625, "validation_roc_auc": 0.7777777777777778, "contracts_seen": 6, "optimizer_steps": 3, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 4}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 5}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 6}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 2, "loss": 0.6754230459531149, "validation_log_loss": 0.6747680930562637, "validation_f1_macro": 0.625, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 6, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 7}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 8}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 9}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 3, "loss": 0.6777900656064352, "validation_log_loss": 0.663782212393525, "validation_f1_macro": 0.625, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 9, "learning_rate": 0.01}
+test_invalid_arrays_and_incompatible_artifacts_are_rejected (test_benchmark_tcn.TCNBenchmarkTests.test_invalid_arrays_and_incompatible_artifacts_are_rejected) ... ok
+test_length_batches_retain_all_long_contracts_deterministically (test_benchmark_tcn.TCNBenchmarkTests.test_length_batches_retain_all_long_contracts_deterministically) ... ok
+test_padding_batch_composition_and_prediction_order_invariance (test_benchmark_tcn.TCNBenchmarkTests.test_padding_batch_composition_and_prediction_order_invariance) ... ok
+{"stage": "tcn_pilot_measurement", "phase": "training", "seed": 42, "representative_quantile": 0.5, "contract_indices": [2, 3], "contracts": 2, "maximum_encoded_length": 10, "encoded_tokens": 18, "padded_encoded_positions": 20}
+{"stage": "tcn_pilot_batch_complete", "phase": "training", "seed": 42, "contract_indices": [2, 3], "contracts": 2, "maximum_encoded_length": 10, "encoded_tokens": 18, "padded_encoded_positions": 20, "representative_quantile": 0.5, "warmup_batches": 1, "timed_batches": 3, "seconds": [0.012646600021980703, 0.012282699928618968, 0.012044699979014695], "median_seconds": 0.012282699928618968, "q90_seconds": 0.012573820003308357}
+{"stage": "tcn_pilot_measurement", "phase": "training", "seed": 42, "representative_quantile": 0.9, "contract_indices": [4, 5], "contracts": 2, "maximum_encoded_length": 14, "encoded_tokens": 26, "padded_encoded_positions": 28}
+{"stage": "tcn_pilot_batch_complete", "phase": "training", "seed": 42, "contract_indices": [4, 5], "contracts": 2, "maximum_encoded_length": 14, "encoded_tokens": 26, "padded_encoded_positions": 28, "representative_quantile": 0.9, "warmup_batches": 1, "timed_batches": 3, "seconds": [0.01306309993378818, 0.012539700022898614, 0.011001499951817095], "median_seconds": 0.012539700022898614, "q90_seconds": 0.012958419951610267}
+{"stage": "tcn_pilot_measurement", "phase": "validation", "seed": 42, "representative_quantile": 0.5, "contract_indices": [2, 3], "contracts": 2, "maximum_encoded_length": 10, "encoded_tokens": 18, "padded_encoded_positions": 20}
+{"stage": "tcn_pilot_batch_complete", "phase": "validation", "seed": 42, "contract_indices": [2, 3], "contracts": 2, "maximum_encoded_length": 10, "encoded_tokens": 18, "padded_encoded_positions": 20, "representative_quantile": 0.5, "warmup_batches": 1, "timed_batches": 3, "seconds": [0.0030225999653339386, 0.003063300042413175, 0.0030762999085709453], "median_seconds": 0.003063300042413175, "q90_seconds": 0.003073699935339391}
+{"stage": "tcn_pilot_measurement", "phase": "validation", "seed": 42, "representative_quantile": 0.9, "contract_indices": [4, 5], "contracts": 2, "maximum_encoded_length": 14, "encoded_tokens": 26, "padded_encoded_positions": 28}
+{"stage": "tcn_pilot_batch_complete", "phase": "validation", "seed": 42, "contract_indices": [4, 5], "contracts": 2, "maximum_encoded_length": 14, "encoded_tokens": 26, "padded_encoded_positions": 28, "representative_quantile": 0.9, "warmup_batches": 1, "timed_batches": 3, "seconds": [0.0033725000685080886, 0.003805499989539385, 0.0029731999384239316], "median_seconds": 0.0033725000685080886, "q90_seconds": 0.0037189000053331257}
+test_pilot_times_real_batches_after_warmup_without_final_scores_or_model (test_benchmark_tcn.TCNBenchmarkTests.test_pilot_times_real_batches_after_warmup_without_final_scores_or_model) ... ok
+{"stage": "tcn_training_start", "seed": 42, "resumed": false, "epoch": 1, "next_batch": 0, "training_contracts": 6, "training_encoded_tokens": 54, "receptive_field_encoded_tokens": 29}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 1}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 2}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 3}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 1, "loss": 0.70689857006073, "validation_log_loss": 0.6811971554227334, "validation_f1_macro": 0.625, "validation_roc_auc": 0.7777777777777778, "contracts_seen": 6, "optimizer_steps": 3, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 4}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 5}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 6}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 2, "loss": 0.6754230459531149, "validation_log_loss": 0.6747680930562637, "validation_f1_macro": 0.625, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 6, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 7}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 8}
+{"stage": "tcn_training", "seed": 42, "epoch": 3, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 9}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 3, "loss": 0.6777900656064352, "validation_log_loss": 0.663782212393525, "validation_f1_macro": 0.625, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 9, "learning_rate": 0.01}
+test_resume_rejects_changed_inputs_weights_config_or_source (test_benchmark_tcn.TCNBenchmarkTests.test_resume_rejects_changed_inputs_weights_config_or_source) ... ok
+test_tail_after_512_receives_gradient_and_changes_contract_prediction (test_benchmark_tcn.TCNBenchmarkTests.test_tail_after_512_receives_gradient_and_changes_contract_prediction) ... ok
+{"stage": "tcn_training_start", "seed": 42, "resumed": false, "epoch": 1, "next_batch": 0, "training_contracts": 6, "training_encoded_tokens": 54, "receptive_field_encoded_tokens": 29}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 1}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 2}
+{"stage": "tcn_training", "seed": 42, "epoch": 1, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 3}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 1, "loss": 0.70689857006073, "validation_log_loss": 0.12692801104297258, "validation_f1_macro": 1.0, "validation_roc_auc": 1.0, "contracts_seen": 6, "optimizer_steps": 3, "learning_rate": 0.01}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 1, "batches_per_epoch": 3, "contracts_seen": 2, "optimizer_steps": 4}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 2, "batches_per_epoch": 3, "contracts_seen": 4, "optimizer_steps": 5}
+{"stage": "tcn_training", "seed": 42, "epoch": 2, "batch": 3, "batches_per_epoch": 3, "contracts_seen": 6, "optimizer_steps": 6}
+{"stage": "tcn_epoch_complete", "seed": 42, "epoch": 2, "loss": 0.6754230459531149, "validation_log_loss": 2.1269280110429727, "validation_f1_macro": 0.0, "validation_roc_auc": 0.0, "contracts_seen": 6, "optimizer_steps": 6, "learning_rate": 0.01}
+test_validation_early_stopping_saves_best_epoch_instead_of_final_epoch (test_benchmark_tcn.TCNBenchmarkTests.test_validation_early_stopping_saves_best_epoch_instead_of_final_epoch) ... ok
+test_weighted_BCE_is_per_contract_and_tail_is_not_a_labelled_window (test_benchmark_tcn.TCNBenchmarkTests.test_weighted_BCE_is_per_contract_and_tail_is_not_a_labelled_window) ... ok
+test_audit_rejects_shared_effective_representations (test_data.IntegrityTests.test_audit_rejects_shared_effective_representations) ... ok
+test_consistent_duplicates_retain_provenance (test_data.IntegrityTests.test_consistent_duplicates_retain_provenance) ... ok
+test_opposite_labels_are_quarantined_without_majority_relabeling (test_data.IntegrityTests.test_opposite_labels_are_quarantined_without_majority_relabeling) ... ok
+test_partial_cgt_negatives_and_contextless_functions_are_rejected (test_data.IntegrityTests.test_partial_cgt_negatives_and_contextless_functions_are_rejected) ... ok
+test_renamed_variants_are_grouped (test_data.IntegrityTests.test_renamed_variants_are_grouped) ... ok
+test_source_holdout_includes_the_entire_related_group (test_data.IntegrityTests.test_source_holdout_includes_the_entire_related_group) ... ok
+test_all_tokens_including_tail_are_encoded (test_data.PreprocessingTests.test_all_tokens_including_tail_are_encoded) ... ok
+test_comments_are_removed_and_quoted_urls_are_preserved (test_data.PreprocessingTests.test_comments_are_removed_and_quoted_urls_are_preserved) ... ok
+test_empty_code_after_comments_is_rejected (test_data.PreprocessingTests.test_empty_code_after_comments_is_rejected) ... ok
+test_renaming_identifiers_removes_annotation_names_consistently (test_data.PreprocessingTests.test_renaming_identifiers_removes_annotation_names_consistently) ... ok
+test_vocabulary_is_fitted_on_supplied_training_tokens_only (test_data.PreprocessingTests.test_vocabulary_is_fitted_on_supplied_training_tokens_only) ... ok
+test_failed_transaction_rolls_back_and_closes_connection (test_database.DatabaseTests.test_failed_transaction_rolls_back_and_closes_connection) ... ok
+test_history_crud_and_statistics (test_database.DatabaseTests.test_history_crud_and_statistics) ... ok
+test_importing_application_does_not_create_database (test_database.DatabaseTests.test_importing_application_does_not_create_database) ... ok
+test_http_prediction_reproduces_frozen_test_prediction (test_integration.ProductionTests.test_http_prediction_reproduces_frozen_test_prediction) ... ok
+test_invalid_uploads_have_client_errors (test_integration.ProductionTests.test_invalid_uploads_have_client_errors) ... ok
+test_reports_and_dashboard_use_active_experiment (test_integration.ProductionTests.test_reports_and_dashboard_use_active_experiment) ... ok
+test_calibration_temperature_and_threshold_are_fitted_on_labels (test_model.CalibrationTests.test_calibration_temperature_and_threshold_are_fitted_on_labels) ... ok
+test_single_class_calibration_is_rejected (test_model.CalibrationTests.test_single_class_calibration_is_rejected) ... ok
+test_single_class_holdout_does_not_report_fake_auc (test_model.CalibrationTests.test_single_class_holdout_does_not_report_fake_auc) ... ok
+WARNING:tensorflow:From C:\Users\Exauce\anaconda3\envs\smartcontract\Lib\site-packages\keras\src\backend\tensorflow\core.py:233: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+I0000 00:00:1791388505.204829   14952 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI AVX_VNNI_INT8 AVX_NE_CONVERT FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+test_bucketed_training_visits_every_contract_each_epoch (test_model.ModelTests.test_bucketed_training_visits_every_contract_each_epoch) ... ok
+test_padding_windows_do_not_change_prediction (test_model.ModelTests.test_padding_windows_do_not_change_prediction) ... E0000 00:00:1791388506.135006   14952 util.cc:131] oneDNN supports DT_BOOL only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+ok
+test_saved_model_reproduces_inference (test_model.ModelTests.test_saved_model_reproduces_inference) ... C:\Users\Exauce\anaconda3\envs\smartcontract\Lib\site-packages\keras\src\backend\tensorflow\core.py:172: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+  return np.array(x)
+ok
+test_windows_share_one_contract_label (test_model.ModelTests.test_windows_share_one_contract_label) ... ok
+test_failed_json_serialization_preserves_previous_completion_marker (test_model_benchmark.ModelBenchmarkTests.test_failed_json_serialization_preserves_previous_completion_marker) ... ok
+test_import_rejects_different_feature_protocol_before_copying_results (test_model_benchmark.ModelBenchmarkTests.test_import_rejects_different_feature_protocol_before_copying_results) ... ok
+test_paired_comparison_rejects_different_contract_order (test_model_benchmark.ModelBenchmarkTests.test_paired_comparison_rejects_different_contract_order) ... ok
+test_pending_models_have_no_fake_metrics_or_final_ranking (test_model_benchmark.ModelBenchmarkTests.test_pending_models_have_no_fake_metrics_or_final_ranking) ... ok
+test_selection_ignores_higher_test_score (test_model_benchmark.ModelBenchmarkTests.test_selection_ignores_higher_test_score) ... ok
+test_validation_tokens_never_enter_tfidf_vocabulary (test_model_benchmark.ModelBenchmarkTests.test_validation_tokens_never_enter_tfidf_vocabulary) ... ok
+test_calibration_mismatch_is_rejected_before_test_is_opened (test_plot_model_benchmark.AvailableModelPlotTests.test_calibration_mismatch_is_rejected_before_test_is_opened) ... ok
+test_declared_evaluated_model_with_missing_calibration_is_rejected (test_plot_model_benchmark.AvailableModelPlotTests.test_declared_evaluated_model_with_missing_calibration_is_rejected) ... ok
+test_default_still_requires_all_three_evaluations (test_plot_model_benchmark.AvailableModelPlotTests.test_default_still_requires_all_three_evaluations) ... ok
+test_eligibility_does_not_select_the_highest_test_score (test_plot_model_benchmark.AvailableModelPlotTests.test_eligibility_does_not_select_the_highest_test_score) ... ok
+test_permuted_test_ids_are_rejected_despite_same_sample_count (test_plot_model_benchmark.AvailableModelPlotTests.test_permuted_test_ids_are_rejected_despite_same_sample_count) ... ok
+test_explicit_existing_sources_work_and_missing_sources_fail (test_source_paths.SourceRelocationTests.test_explicit_existing_sources_work_and_missing_sources_fail) ... ok
+test_relocation_checks_fingerprint_and_preserves_logical_reference (test_source_paths.SourceRelocationTests.test_relocation_checks_fingerprint_and_preserves_logical_reference) ... ok
+test_database_failure_preserves_prediction (test_webapp.PredictionContractTests.test_database_failure_preserves_prediction) ... ok
+test_invalid_predictions_cannot_become_a_zero_risk_result (test_webapp.PredictionContractTests.test_invalid_predictions_cannot_become_a_zero_risk_result) ... ok
+test_optional_engine_failures_remain_unavailable (test_webapp.PredictionContractTests.test_optional_engine_failures_remain_unavailable) ... ok
+test_zero_and_small_percentages_are_not_missing_values (test_webapp.PredictionContractTests.test_zero_and_small_percentages_are_not_missing_values) ... ok
+test_invalid_model_response_is_server_error (test_webapp.UploadTests.test_invalid_model_response_is_server_error) ... ok
+test_oversize_upload_reads_only_limit_plus_one (test_webapp.UploadTests.test_oversize_upload_reads_only_limit_plus_one) ... ok
+test_synchronous_analysis_does_not_block_event_loop (test_webapp.UploadTests.test_synchronous_analysis_does_not_block_event_loop) ... ok
+
+----------------------------------------------------------------------
+Ran 77 tests in 46.104s
+
+OK

@@ -1,0 +1,10 @@
+{
+  "benchmark_run_id": "cnn-xgboost-tcn-20261005",
+  "complete": false,
+  "status": "Entraînement TCN en cours ; dernière graine non terminée.",
+  "original_docx_sha256": "1c6c8c57e5f86dc6474d7dc222653d230b0423f01f723aa16d57c5cbf29bfeb3",
+  "original_pdf_sha256": "f8c2b1226153bb4bcd6e1b5c4ccea2baa76b0f7f1d16baec01e1dff39b4c5721",
+  "acknowledgments_source_exact": true,
+  "planned_pages": 44,
+  "stage": "C:\\Users\\Exauce\\Documents\\SmartContractSecurity\\.cache-comparison\\memoire\\tcn_integration_ready"
+}

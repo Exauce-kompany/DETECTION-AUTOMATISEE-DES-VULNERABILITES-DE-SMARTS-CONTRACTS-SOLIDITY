@@ -91,12 +91,16 @@ function riskSafeNumber(
     value
 ) {
 
+    if (value == null || value === "" || typeof value === "boolean") {
+        return null;
+    }
+
     const number =
         Number(value);
 
     return Number.isFinite(number)
         ? number
-        : 0;
+        : null;
 }
 
 
@@ -106,11 +110,16 @@ function riskClamp(
     max = 100
 ) {
 
+    const number = riskSafeNumber(value);
+    if (number === null) {
+        return null;
+    }
+
     return Math.min(
         max,
         Math.max(
             min,
-            riskSafeNumber(value)
+            number
         )
     );
 }
@@ -355,7 +364,7 @@ function riskScoreCard(
                 </span>
 
                 <strong>
-                    ${Math.round(value)}/100
+                    ${value === null ? "Indisponible" : `${Math.round(value)}/100`}
                 </strong>
 
             </div>
@@ -363,7 +372,7 @@ function riskScoreCard(
             <div class="risk-score-track">
 
                 <span
-                    style="width:${value}%"
+                    style="width:${value ?? 0}%"
                 ></span>
 
             </div>
@@ -372,7 +381,7 @@ function riskScoreCard(
 
                 <strong>
                     ${riskEscapeHtml(
-                        riskLevelLabel(level)
+                        riskLevelLabel(value === null ? "indisponible" : level)
                     )}
                 </strong>
 
@@ -544,6 +553,10 @@ function showRiskSummaryView() {
         ||
         {};
 
+    const staticAvailable = Boolean(data.risk_analysis)
+        && riskAnalysis.success !== false
+        && riskSafeNumber(staticAnalysis.score ?? data.static_risk_score) !== null;
+
 
     const combinedAnalysis =
         riskAnalysis.combined_analysis
@@ -578,7 +591,7 @@ function showRiskSummaryView() {
 
 
     const predictedLabel =
-        Number(
+        riskSafeNumber(
             data.predicted_label
         );
 
@@ -586,7 +599,7 @@ function showRiskSummaryView() {
     const verdict =
         predictedLabel === 1
             ? "VULNÉRABLE"
-            : "NON VULNÉRABLE";
+            : predictedLabel === 0 ? "NON VULNÉRABLE" : "INDISPONIBLE";
 
 
     const probabilityVulnerable =
@@ -602,9 +615,9 @@ function showRiskSummaryView() {
 
 
     const staticScore =
-        riskSafeNumber(
-            data.static_risk_score
-        );
+        staticAvailable ? riskSafeNumber(
+            data.static_risk_score ?? staticAnalysis.score
+        ) : null;
 
 
     const combinedScore =
@@ -663,22 +676,22 @@ function showRiskSummaryView() {
                         class="risk-main-ring"
                         style="
                             --risk-value:
-                            ${riskClamp(
+                            ${(riskClamp(
                                 combinedScore
-                            ) * 3.6}deg;
+                            ) ?? 0) * 3.6}deg;
                         "
                     >
 
                         <div>
 
                             <strong>
-                                ${Math.round(
+                                ${combinedScore === null ? "—" : Math.round(
                                     combinedScore
                                 )}
                             </strong>
 
                             <small>
-                                /100
+                                ${combinedScore === null ? "Indisponible" : "/100"}
                             </small>
 
                         </div>
@@ -688,7 +701,7 @@ function showRiskSummaryView() {
                     <h2>
                         ${riskEscapeHtml(
                             riskLevelLabel(
-                                data.ml_risk_level || data.risk_level
+                                combinedScore === null ? "indisponible" : data.ml_risk_level || data.risk_level
                             )
                         )}
                     </h2>
@@ -709,7 +722,7 @@ function showRiskSummaryView() {
                     <strong class="${
                         predictedLabel === 1
                             ? "danger"
-                            : "success"
+                            : predictedLabel === 0 ? "success" : ""
                     }">
                         ${verdict}
                     </strong>
@@ -721,7 +734,7 @@ function showRiskSummaryView() {
                         </span>
 
                         <b>
-                            ${probabilityVulnerable.toFixed(2)}%
+                            ${probabilityVulnerable === null ? "Indisponible" : `${probabilityVulnerable.toFixed(2)}%`}
                         </b>
 
                     </div>
@@ -733,7 +746,7 @@ function showRiskSummaryView() {
                                 width:
                                 ${riskClamp(
                                     probabilityVulnerable
-                                )}%;
+                                ) ?? 0}%;
                             "
                         ></span>
 
@@ -753,11 +766,11 @@ function showRiskSummaryView() {
                     </span>
 
                     <strong>
-                        ${findings.length}
+                        ${staticAvailable ? findings.length : "—"}
                     </strong>
 
                     <p>
-                        Motif(s) de risque détecté(s)
+                        ${staticAvailable ? "Motif(s) de risque détecté(s)" : "Analyse statique indisponible"}
                     </p>
 
                     <div class="risk-severity-mini-grid">
@@ -765,36 +778,36 @@ function showRiskSummaryView() {
                         <span class="critical">
                             C
                             <b>
-                                ${riskSafeNumber(
+                                ${staticAvailable ? riskSafeNumber(
                                     severityCounts.critical
-                                )}
+                                ) ?? "—" : "—"}
                             </b>
                         </span>
 
                         <span class="high">
                             H
                             <b>
-                                ${riskSafeNumber(
+                                ${staticAvailable ? riskSafeNumber(
                                     severityCounts.high
-                                )}
+                                ) ?? "—" : "—"}
                             </b>
                         </span>
 
                         <span class="medium">
                             M
                             <b>
-                                ${riskSafeNumber(
+                                ${staticAvailable ? riskSafeNumber(
                                     severityCounts.medium
-                                )}
+                                ) ?? "—" : "—"}
                             </b>
                         </span>
 
                         <span class="low">
                             L
                             <b>
-                                ${riskSafeNumber(
+                                ${staticAvailable ? riskSafeNumber(
                                     severityCounts.low
-                                )}
+                                ) ?? "—" : "—"}
                             </b>
                         </span>
 
@@ -853,9 +866,9 @@ function showRiskSummaryView() {
                         </span>
 
                         <strong>
-                            ${riskSafeNumber(
+                            ${staticAvailable ? riskSafeNumber(
                                 metrics.lines
-                            )}
+                            ) ?? "—" : "—"}
                         </strong>
                     </div>
 
@@ -865,9 +878,9 @@ function showRiskSummaryView() {
                         </span>
 
                         <strong>
-                            ${riskSafeNumber(
+                            ${staticAvailable ? riskSafeNumber(
                                 metrics.functions
-                            )}
+                            ) ?? "—" : "—"}
                         </strong>
                     </div>
 
@@ -877,9 +890,9 @@ function showRiskSummaryView() {
                         </span>
 
                         <strong>
-                            ${riskSafeNumber(
+                            ${staticAvailable ? riskSafeNumber(
                                 metrics.external_calls
-                            )}
+                            ) ?? "—" : "—"}
                         </strong>
                     </div>
 
@@ -889,9 +902,9 @@ function showRiskSummaryView() {
                         </span>
 
                         <strong>
-                            ${riskSafeNumber(
+                            ${staticAvailable ? riskSafeNumber(
                                 metrics.low_level_calls
-                            )}
+                            ) ?? "—" : "—"}
                         </strong>
                     </div>
 
@@ -901,9 +914,9 @@ function showRiskSummaryView() {
                         </span>
 
                         <strong>
-                            ${riskSafeNumber(
+                            ${staticAvailable ? riskSafeNumber(
                                 metrics.loops
-                            )}
+                            ) ?? "—" : "—"}
                         </strong>
                     </div>
 
@@ -913,9 +926,9 @@ function showRiskSummaryView() {
                         </span>
 
                         <strong>
-                            ${riskSafeNumber(
+                            ${staticAvailable ? riskSafeNumber(
                                 metrics.state_mutations_detected
-                            )}
+                            ) ?? "—" : "—"}
                         </strong>
                     </div>
 
@@ -941,15 +954,19 @@ function showRiskSummaryView() {
                     </div>
 
                     <strong class="risk-findings-count">
-                        ${findings.length}
-                        finding(s)
+                        ${staticAvailable ? `${findings.length} finding(s)` : "Indisponible"}
                     </strong>
 
                 </div>
 
 
                 ${
-                    findings.length > 0
+                    !staticAvailable
+                        ? `<div class="risk-no-findings" role="status">
+                            <h3>Analyse statique indisponible</h3>
+                            <p>${riskEscapeHtml(riskAnalysis.error || "Le moteur statique n'a pas pu analyser ce contrat.")}</p>
+                        </div>`
+                        : findings.length > 0
 
                         ? `
                             <div class="risk-findings-list">

@@ -28,21 +28,20 @@ function reportEscapeHtml(value) {
 }
 
 
-function reportNumber(
-    value,
-    fallback = 0
-) {
-    const number =
-        Number(value);
-
-    return Number.isFinite(number)
-        ? number
-        : fallback;
+function reportNumber(value) {
+    return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
 
 function reportPercent(value) {
-    return `${reportNumber(value).toFixed(2)}%`;
+    const number = reportNumber(value);
+    return number === null ? "Indisponible" : `${number.toFixed(2)}%`;
+}
+
+
+function reportScore(value) {
+    const number = reportNumber(value);
+    return number === null ? "Indisponible" : `${number.toFixed(0)}/100`;
 }
 
 
@@ -334,44 +333,17 @@ function showReportsView() {
         ||
         {};
 
-    const riskSummary =
-        risk.summary
-        ||
-        {};
+    const riskSummary = risk.static_analysis || {};
+    const riskAvailable = risk.success === true && Array.isArray(riskSummary.findings);
+    const riskFindings = riskAvailable ? riskSummary.findings : [];
 
-    const riskFindings =
-        Array.isArray(
-            risk.findings
-        )
-            ? risk.findings
-            : [];
-
-
-    const performance =
-        data.performance_analysis
-        ||
-        {};
-
-    const performanceSummary =
-        performance.summary
-        ||
-        {};
-
-    const performanceFindings =
-        Array.isArray(
-            performance.findings
-        )
-            ? performance.findings
-            : [];
-
-
-    const recommendations =
-        Array.isArray(
-            performanceSummary.recommendations
-        )
-            ? performanceSummary.recommendations
-            : [];
-
+    const performance = data.performance_analysis || {};
+    const performanceAvailable = performance.success === true;
+    const performanceSummary = performance.summary || {};
+    const performanceFindings = performanceAvailable && Array.isArray(performance.findings)
+        ? performance.findings : [];
+    const recommendations = performanceAvailable && Array.isArray(performanceSummary.recommendations)
+        ? performanceSummary.recommendations : [];
 
     const filename =
         file.filename
@@ -393,101 +365,19 @@ function showReportsView() {
             : "NON VULNÉRABLE";
 
 
-    const confidence =
-        reportNumber(
-            data.confidence
-        );
-
-
-    const vulnerableProbability =
-        reportNumber(
-            data.probability_vulnerable_percent
-            ??
-            data.probability_vulnerable
-        );
-
-
-    const safeProbability =
-        reportNumber(
-            data.probability_non_vulnerable_percent
-            ??
-            data.probability_non_vulnerable
-        );
-
-
-    const combinedRisk =
-        reportNumber(
-            data.ml_risk_score ?? data.risk_score
-        );
-
-
-    const combinedRiskLevel =
-        data.ml_risk_level
-        ??
-        data.risk_level
-        ??
-        "-";
-
-
-    const staticRisk =
-        reportNumber(
-            data.static_risk_score
-        );
-
-
-    const staticRiskLevel =
-        data.static_risk_level
-        ??
-        "-";
-
-
-    const efficiency =
-        reportNumber(
-            performanceSummary.efficiency_score
-            ??
-            data.performance_efficiency_score
-        );
-
-
-    const efficiencyLevel =
-        performanceSummary.efficiency_level
-        ??
-        data.performance_efficiency_level
-        ??
-        "-";
-
-
-    const complexity =
-        reportNumber(
-            performanceSummary.complexity_score
-            ??
-            data.performance_complexity_score
-        );
-
-
-    const complexityLevel =
-        performanceSummary.complexity_level
-        ??
-        data.performance_complexity_level
-        ??
-        "-";
-
-
-    const costPressure =
-        reportNumber(
-            performanceSummary.cost_pressure_score
-            ??
-            data.performance_cost_pressure_score
-        );
-
-
-    const costPressureLevel =
-        performanceSummary.cost_pressure_level
-        ??
-        data.performance_cost_pressure_level
-        ??
-        "-";
-
+    const confidence = reportNumber(data.confidence_percent);
+    const vulnerableProbability = reportNumber(data.probability_vulnerable_percent);
+    const safeProbability = reportNumber(data.probability_non_vulnerable_percent);
+    const combinedRisk = reportNumber(data.ml_risk_score ?? data.risk_score);
+    const combinedRiskLevel = data.ml_risk_level ?? data.risk_level ?? "-";
+    const staticRisk = riskAvailable ? reportNumber(riskSummary.score) : null;
+    const staticRiskLevel = riskAvailable ? riskSummary.level : "indisponible";
+    const efficiency = performanceAvailable ? reportNumber(performanceSummary.efficiency_score) : null;
+    const efficiencyLevel = performanceAvailable ? performanceSummary.efficiency_level : "indisponible";
+    const complexity = performanceAvailable ? reportNumber(performanceSummary.complexity_score) : null;
+    const complexityLevel = performanceAvailable ? performanceSummary.complexity_level : "indisponible";
+    const costPressure = performanceAvailable ? reportNumber(performanceSummary.cost_pressure_score) : null;
+    const costPressureLevel = performanceAvailable ? performanceSummary.cost_pressure_level : "indisponible";
 
     const reportDate =
         new Date()
@@ -622,16 +512,16 @@ function showReportsView() {
                             CONFIANCE
                         </span>
                         <strong>
-                            ${confidence.toFixed(2)}%
+                            ${reportPercent(confidence)}
                         </strong>
                     </div>
 
                     <div>
                         <span>
-                            RISQUE COMBINÉ
+                            SCORE IA
                         </span>
                         <strong>
-                            ${combinedRisk.toFixed(0)}/100
+                            ${reportScore(combinedRisk)}
                         </strong>
                         <small>
                             ${reportEscapeHtml(
@@ -738,9 +628,7 @@ function showReportsView() {
                                 Risque IA
                             </span>
                             <strong>
-                                ${reportNumber(
-                                    data.ml_risk_score
-                                ).toFixed(0)}/100
+                                ${reportScore(data.ml_risk_score)}
                             </strong>
                         </div>
 
@@ -749,7 +637,7 @@ function showReportsView() {
                                 Risque statique
                             </span>
                             <strong>
-                                ${staticRisk.toFixed(0)}/100
+                                ${reportScore(staticRisk)}
                             </strong>
                             <small>
                                 ${reportEscapeHtml(
@@ -765,7 +653,7 @@ function showReportsView() {
                                 Score IA
                             </span>
                             <strong>
-                                ${combinedRisk.toFixed(0)}/100
+                                ${reportScore(combinedRisk)}
                             </strong>
                         </div>
 
@@ -774,7 +662,7 @@ function showReportsView() {
                                 Findings
                             </span>
                             <strong>
-                                ${riskFindings.length}
+                                ${riskAvailable ? riskFindings.length : "—"}
                             </strong>
                         </div>
 
@@ -796,9 +684,7 @@ function showReportsView() {
                             </thead>
 
                             <tbody>
-                                ${reportFindingRows(
-                                    riskFindings
-                                )}
+                                ${riskAvailable ? reportFindingRows(riskFindings) : '<tr><td colspan="5">Analyse statique indisponible</td></tr>'}
                             </tbody>
 
                         </table>
@@ -829,7 +715,7 @@ function showReportsView() {
                                 Efficacité
                             </span>
                             <strong>
-                                ${efficiency.toFixed(0)}/100
+                                ${reportScore(efficiency)}
                             </strong>
                             <small>
                                 ${reportEscapeHtml(
@@ -845,7 +731,7 @@ function showReportsView() {
                                 Complexité
                             </span>
                             <strong>
-                                ${complexity.toFixed(0)}/100
+                                ${reportScore(complexity)}
                             </strong>
                             <small>
                                 ${reportEscapeHtml(
@@ -861,7 +747,7 @@ function showReportsView() {
                                 Pression de coût
                             </span>
                             <strong>
-                                ${costPressure.toFixed(0)}/100
+                                ${reportScore(costPressure)}
                             </strong>
                             <small>
                                 ${reportEscapeHtml(
@@ -877,7 +763,7 @@ function showReportsView() {
                                 Findings performance
                             </span>
                             <strong>
-                                ${performanceFindings.length}
+                                ${performanceAvailable ? performanceFindings.length : "—"}
                             </strong>
                         </div>
 
@@ -899,9 +785,7 @@ function showReportsView() {
                             </thead>
 
                             <tbody>
-                                ${reportFindingRows(
-                                    performanceFindings
-                                )}
+                                ${performanceAvailable ? reportFindingRows(performanceFindings) : '<tr><td colspan="5">Analyse de performances indisponible</td></tr>'}
                             </tbody>
 
                         </table>
@@ -926,9 +810,7 @@ function showReportsView() {
                     </h3>
 
                     <ol class="report-recommendation-list">
-                        ${reportRecommendationList(
-                            recommendations
-                        )}
+                        ${performanceAvailable ? reportRecommendationList(recommendations) : "<li>Recommandations de performance indisponibles.</li>"}
                     </ol>
 
                 </section>

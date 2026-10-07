@@ -26,3 +26,7 @@ dataset/sources/val.json filter=lfs diff=lfs merge=lfs -text
 dataset/sources/test.json filter=lfs diff=lfs merge=lfs -text
 results/training/**/*.svg -text -whitespace
 results/benchmark/**/*.svg -text -whitespace
+
+# Archived evidence must retain its byte-level hashes.
+archives/** -text whitespace=cr-at-eol
+archives/**/*.svg -whitespace

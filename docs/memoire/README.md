@@ -11,7 +11,7 @@ Les résultats proviennent de `results/benchmark/cnn-xgboost-tcn-20261005/summar
 - `qa.json`, `visual_inspection_final.json` : contrôle de 44 pages, 8 tableaux, 14 références et 44 abréviations ; inspection complète des pages ; hashes des livrables et images inspectées.
 - `pages.json` : les deux textes de remerciements de référence, aux positions 3 et 4 attendues par le contrôleur. Les autres pages du PDF modèle ne sont pas reproduites ici.
 - `check_tcn_memoire.py` : contrôles numériques, pagination, références et identité textuelle/pixel des remerciements.
-- `drafts/` : archives datées de partie 1 et de préparation TCN du 5–6 octobre 2026. Les anciens statuts de pause ou d'incomplétude concernent uniquement ces archives.
+- `../../archives/2026-10-07/historique/docs/memoire/drafts/` : archives datées de partie 1 et de préparation TCN du 5–6 octobre 2026. Les anciens statuts de pause ou d'incomplétude concernent uniquement ces archives.
 
 ## Régénérer directement l'édition finale
 
@@ -42,4 +42,6 @@ Pour vérifier aussi l'identité des remerciements en pixels, conserver la réf�
 
 ## Préparateur historique
 
-`update_tcn_models.py` et `render_tcn_revision.ps1` documentent la migration à partir des anciens repères CodeBERT et de la référence locale `before_tcn_models`. Ils ne sont pas idempotents sur les sources finales. Le préparateur refuse de recréer sa référence depuis une édition déjà marquée finale. Leur staging reste une étape locale de migration ; la régénération normale de cette édition utilise directement `content.md`, `make_figures.py` et `build_memoire.py` ci-dessus.
+Les scripts archivés `archives/2026-10-07/historique/docs/memoire/update_tcn_models.py` et `render_tcn_revision.ps1` documentent la migration à partir des anciens repères CodeBERT et de la référence locale `before_tcn_models`. Ils ne sont pas idempotents sur les sources finales. Le préparateur refuse de recréer sa référence depuis une édition déjà marquée finale. Leur staging reste une étape locale de migration ; la régénération normale de cette édition utilise directement `content.md`, `make_figures.py` et `build_memoire.py` ci-dessus.
+
+Archivage du 7 octobre 2026 : les scripts de comparaison ancienne et de migration documentaire sont conservés dans `archives/2026-10-07/historique/`, sous leurs chemins d'origine. Les commandes historiques nécessitent une restauration dans une copie séparée ; voir le [guide de restauration](../../archives/2026-10-07/README.md).

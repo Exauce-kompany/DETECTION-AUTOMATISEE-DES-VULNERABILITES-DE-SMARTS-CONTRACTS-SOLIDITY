@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.tmp-tests/
 .venv/
 .venv-comparison/
 .cache-comparison/
@@ -48,3 +49,6 @@ env/
 ~$*
 .DS_Store
 Thumbs.db
+
+# Local caches retained for recovery, never publish them.
+/archives/*/local/

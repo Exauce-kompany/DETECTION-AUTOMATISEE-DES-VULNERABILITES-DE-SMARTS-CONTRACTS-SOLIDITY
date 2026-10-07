@@ -1,0 +1,982 @@
+{
+  "checked_utc": "2026-10-07T08:35:06.537364+00:00",
+  "checks": [
+    {
+      "name": "summary complete and all three models evaluated",
+      "passed": true
+    },
+    {
+      "name": "configuration equals frozen protocol",
+      "passed": true
+    },
+    {
+      "name": "active CNN manifest unchanged",
+      "passed": true
+    },
+    {
+      "name": "historical snapshot: run_model_benchmark.py",
+      "passed": true
+    },
+    {
+      "name": "historical snapshot: comparison_metrics.py",
+      "passed": true
+    },
+    {
+      "name": "historical snapshot: experiment.py",
+      "passed": true
+    },
+    {
+      "name": "historical snapshot: preprocessing.py",
+      "passed": true
+    },
+    {
+      "name": "historical snapshot: model.py",
+      "passed": true
+    },
+    {
+      "name": "historical snapshot: benchmark_tcn.py",
+      "passed": true
+    },
+    {
+      "name": "historical snapshot: comparison_data.py",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: cnn_bilstm/calibration.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: cnn_bilstm/calibration.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: cnn_bilstm/evaluation.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: cnn_bilstm/evaluation.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: cnn_bilstm/selection.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: cnn_bilstm/selection.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: cnn_bilstm/source_holdout_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "original baseline: cnn_bilstm/source_holdout_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: cnn_bilstm/source_holdout_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: cnn_bilstm/source_holdout_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: cnn_bilstm/test_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "original baseline: cnn_bilstm/test_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: cnn_bilstm/test_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: cnn_bilstm/test_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/calibration.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/calibration.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/evaluation.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/evaluation.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-101/history.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-101/history.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-101/training.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-101/training.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-101/validation_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-101/validation_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-42/history.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-42/history.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-42/training.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-42/training.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-42/validation_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-42/validation_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-73/history.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-73/history.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-73/training.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-73/training.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/seed-73/validation_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/seed-73/validation_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/selection.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/selection.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/source_holdout_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/source_holdout_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/source_holdout_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/source_holdout_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/test_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/test_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "imported baseline: xgboost/test_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "original baseline: xgboost/test_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "CNN experiment completed",
+      "passed": true
+    },
+    {
+      "name": "CNN seed 42 epochs/checkpoint",
+      "passed": true
+    },
+    {
+      "name": "CNN seed 73 epochs/checkpoint",
+      "passed": true
+    },
+    {
+      "name": "CNN seed 101 epochs/checkpoint",
+      "passed": true
+    },
+    {
+      "name": "CNN selected by validation",
+      "passed": true
+    },
+    {
+      "name": "CNN selected weights hash",
+      "passed": true
+    },
+    {
+      "name": "CNN vocabulary hash",
+      "passed": true
+    },
+    {
+      "name": "xgboost seed 42 weights",
+      "passed": true
+    },
+    {
+      "name": "XGBoost seed 42 completed validation history",
+      "passed": true
+    },
+    {
+      "name": "XGBoost seed 42 vectorizer",
+      "passed": true
+    },
+    {
+      "name": "xgboost seed 73 weights",
+      "passed": true
+    },
+    {
+      "name": "XGBoost seed 73 completed validation history",
+      "passed": true
+    },
+    {
+      "name": "XGBoost seed 73 vectorizer",
+      "passed": true
+    },
+    {
+      "name": "xgboost seed 101 weights",
+      "passed": true
+    },
+    {
+      "name": "XGBoost seed 101 completed validation history",
+      "passed": true
+    },
+    {
+      "name": "XGBoost seed 101 vectorizer",
+      "passed": true
+    },
+    {
+      "name": "xgboost selected by validation",
+      "passed": true
+    },
+    {
+      "name": "xgboost summary selected checkpoint",
+      "passed": true
+    },
+    {
+      "name": "tcn seed 42 weights",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 42 complete/best/history",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 42 weight metadata",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 42 best checkpoint tensors",
+      "passed": true
+    },
+    {
+      "name": "tcn seed 73 weights",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 73 complete/best/history",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 73 weight metadata",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 73 best checkpoint tensors",
+      "passed": true
+    },
+    {
+      "name": "tcn seed 101 weights",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 101 complete/best/history",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 101 weight metadata",
+      "passed": true
+    },
+    {
+      "name": "TCN seed 101 best checkpoint tensors",
+      "passed": true
+    },
+    {
+      "name": "tcn selected by validation",
+      "passed": true
+    },
+    {
+      "name": "tcn summary selected checkpoint",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm calibration/selection separation",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/test canonical order",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/test finite logits",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/test/calibrated matrix",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/test/calibrated metrics",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/test/fpr_operating_point matrix",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/test/fpr_operating_point metrics",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm summary metrics",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/source_holdout canonical order",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/source_holdout finite logits",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/source_holdout/calibrated matrix",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/source_holdout/calibrated metrics",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/source_holdout/fpr_operating_point matrix",
+      "passed": true
+    },
+    {
+      "name": "cnn_bilstm/source_holdout/fpr_operating_point metrics",
+      "passed": true
+    },
+    {
+      "name": "xgboost calibration/selection separation",
+      "passed": true
+    },
+    {
+      "name": "xgboost/test canonical order",
+      "passed": true
+    },
+    {
+      "name": "xgboost/test finite logits",
+      "passed": true
+    },
+    {
+      "name": "xgboost/test/calibrated matrix",
+      "passed": true
+    },
+    {
+      "name": "xgboost/test/calibrated metrics",
+      "passed": true
+    },
+    {
+      "name": "xgboost/test/fpr_operating_point matrix",
+      "passed": true
+    },
+    {
+      "name": "xgboost/test/fpr_operating_point metrics",
+      "passed": true
+    },
+    {
+      "name": "xgboost summary metrics",
+      "passed": true
+    },
+    {
+      "name": "xgboost/source_holdout canonical order",
+      "passed": true
+    },
+    {
+      "name": "xgboost/source_holdout finite logits",
+      "passed": true
+    },
+    {
+      "name": "xgboost/source_holdout/calibrated matrix",
+      "passed": true
+    },
+    {
+      "name": "xgboost/source_holdout/calibrated metrics",
+      "passed": true
+    },
+    {
+      "name": "xgboost/source_holdout/fpr_operating_point matrix",
+      "passed": true
+    },
+    {
+      "name": "xgboost/source_holdout/fpr_operating_point metrics",
+      "passed": true
+    },
+    {
+      "name": "tcn calibration/selection separation",
+      "passed": true
+    },
+    {
+      "name": "tcn/test canonical order",
+      "passed": true
+    },
+    {
+      "name": "tcn/test finite logits",
+      "passed": true
+    },
+    {
+      "name": "tcn/test/calibrated matrix",
+      "passed": true
+    },
+    {
+      "name": "tcn/test/calibrated metrics",
+      "passed": true
+    },
+    {
+      "name": "tcn/test/fpr_operating_point matrix",
+      "passed": true
+    },
+    {
+      "name": "tcn/test/fpr_operating_point metrics",
+      "passed": true
+    },
+    {
+      "name": "tcn summary metrics",
+      "passed": true
+    },
+    {
+      "name": "tcn/source_holdout canonical order",
+      "passed": true
+    },
+    {
+      "name": "tcn/source_holdout finite logits",
+      "passed": true
+    },
+    {
+      "name": "tcn/source_holdout/calibrated matrix",
+      "passed": true
+    },
+    {
+      "name": "tcn/source_holdout/calibrated metrics",
+      "passed": true
+    },
+    {
+      "name": "tcn/source_holdout/fpr_operating_point matrix",
+      "passed": true
+    },
+    {
+      "name": "tcn/source_holdout/fpr_operating_point metrics",
+      "passed": true
+    },
+    {
+      "name": "paired comparison fingerprint",
+      "passed": true
+    },
+    {
+      "name": "paired comparison settings",
+      "passed": true
+    },
+    {
+      "name": "paired delta xgboost-cnn_bilstm/f1_macro",
+      "passed": true
+    },
+    {
+      "name": "paired delta xgboost-cnn_bilstm/recall_vulnerable",
+      "passed": true
+    },
+    {
+      "name": "paired delta tcn-cnn_bilstm/f1_macro",
+      "passed": true
+    },
+    {
+      "name": "paired delta tcn-cnn_bilstm/recall_vulnerable",
+      "passed": true
+    },
+    {
+      "name": "paired delta tcn-xgboost/f1_macro",
+      "passed": true
+    },
+    {
+      "name": "paired delta tcn-xgboost/recall_vulnerable",
+      "passed": true
+    },
+    {
+      "name": "all final plots",
+      "passed": true
+    },
+    {
+      "name": "plot input: config/benchmark_models.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/protocol.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/seed-42/history.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/seed-73/history.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/seed-101/history.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/summary.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/cnn_bilstm/evaluation.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/cnn_bilstm/selection.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/cnn_bilstm/calibration.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: models/trained/smartbug-403bb881-20260922T101754Z/seed-73.keras",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/xgboost/evaluation.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/xgboost/selection.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/xgboost/calibration.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: models/benchmark/cnn-xgboost-codebert-20261005/xgboost/seed-101.ubj",
+      "passed": true
+    },
+    {
+      "name": "plot input: models/benchmark/cnn-xgboost-codebert-20261005/xgboost/tfidf.pkl",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/evaluation.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/selection.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/calibration.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: models/benchmark/cnn-xgboost-tcn-20261005/tcn/seed-42/weights.pt",
+      "passed": true
+    },
+    {
+      "name": "plot input: dataset/benchmark/manifest.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: dataset/benchmark/test.jsonl.gz",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/cnn_bilstm/test_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/cnn_bilstm/test_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/xgboost/test_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/xgboost/test_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/test_sample_ids.json",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/tcn/test_logits.npy",
+      "passed": true
+    },
+    {
+      "name": "plot input: results/benchmark/cnn-xgboost-tcn-20261005/paired_comparisons.json",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/architecture_tcn.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/architecture_tcn.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/logloss_validation_tcn.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/logloss_validation_tcn.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/metriques_principales.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/metriques_principales.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrices_confusion.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrices_confusion.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrice_confusion_cnn_bilstm.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrice_confusion_cnn_bilstm.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrice_confusion_xgboost.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrice_confusion_xgboost.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrice_confusion_tcn.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/matrice_confusion_tcn.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/courbe_roc.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/courbe_roc.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/courbe_precision_rappel.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/courbe_precision_rappel.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/ecarts_f1_ic95.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/ecarts_f1_ic95.svg",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/pertes_tcn_selectionne.png",
+      "passed": true
+    },
+    {
+      "name": "plot export: results/benchmark/cnn-xgboost-tcn-20261005/plots/pertes_tcn_selectionne.svg",
+      "passed": true
+    },
+    {
+      "name": "memoire provenance: output/documents/Memoire_SMART_BUG_Exauce_Kompani.docx",
+      "passed": true
+    },
+    {
+      "name": "memoire provenance: output/pdf/Memoire_SMART_BUG_Exauce_Kompani.pdf",
+      "passed": true
+    },
+    {
+      "name": "memoire provenance: results\\benchmark\\cnn-xgboost-tcn-20261005\\summary.json",
+      "passed": true
+    },
+    {
+      "name": "memoire provenance: results\\benchmark\\cnn-xgboost-tcn-20261005\\runtime_notes.json",
+      "passed": true
+    },
+    {
+      "name": "memoire complete QA",
+      "passed": true
+    }
+  ],
+  "warnings": [
+    {
+      "type": "historical_source_changed_or_relocated",
+      "source": "run_model_benchmark.py",
+      "current_path": "src\\experiments\\benchmark\\run_model_benchmark.py",
+      "consequence": "New run-id required for a new or resumed computation; recorded historical results remain backed by source_snapshot."
+    },
+    {
+      "type": "historical_source_changed_or_relocated",
+      "source": "comparison_metrics.py",
+      "current_path": "src\\evaluation\\comparison_metrics.py",
+      "consequence": "New run-id required for a new or resumed computation; recorded historical results remain backed by source_snapshot."
+    },
+    {
+      "type": "historical_source_changed_or_relocated",
+      "source": "experiment.py",
+      "current_path": null,
+      "consequence": "New run-id required for a new or resumed computation; recorded historical results remain backed by source_snapshot."
+    },
+    {
+      "type": "historical_source_changed_or_relocated",
+      "source": "model.py",
+      "current_path": "src\\training\\model.py",
+      "consequence": "New run-id required for a new or resumed computation; recorded historical results remain backed by source_snapshot."
+    },
+    {
+      "type": "historical_source_changed_or_relocated",
+      "source": "benchmark_tcn.py",
+      "current_path": "src\\experiments\\benchmark\\benchmark_tcn.py",
+      "consequence": "New run-id required for a new or resumed computation; recorded historical results remain backed by source_snapshot."
+    },
+    {
+      "type": "historical_source_changed_or_relocated",
+      "source": "comparison_data.py",
+      "current_path": "src\\experiments\\comparison\\comparison_data.py",
+      "consequence": "New run-id required for a new or resumed computation; recorded historical results remain backed by source_snapshot."
+    },
+    {
+      "type": "historical_plot_generator_relocated",
+      "consequence": "Existing plots and their 50 input/output hashes remain valid; regenerate only using current command and a new manifest."
+    }
+  ],
+  "models": {
+    "cnn_bilstm": {
+      "completed": true,
+      "runs": [
+        {
+          "seed": 42,
+          "epochs": 6,
+          "best_epoch": 3,
+          "validation_log_loss": 0.44722509384155273
+        },
+        {
+          "seed": 73,
+          "epochs": 6,
+          "best_epoch": 3,
+          "validation_log_loss": 0.4394614100456238
+        },
+        {
+          "seed": 101,
+          "epochs": 8,
+          "best_epoch": 5,
+          "validation_log_loss": 0.44829246401786804
+        }
+      ],
+      "selected_seed": 73,
+      "selected_epoch": 3,
+      "reused_historical_training": true,
+      "test_metrics": {
+        "f1_macro": 0.8209915019515119,
+        "recall_vulnerable": 0.8895486935866983,
+        "precision_vulnerable": 0.7793964620187305,
+        "false_positive_rate": 0.24452133794694347,
+        "average_precision": 0.8967019187174269,
+        "confusion_matrix": [
+          [
+            655,
+            212
+          ],
+          [
+            93,
+            749
+          ]
+        ]
+      }
+    },
+    "xgboost": {
+      "completed": true,
+      "runs": [
+        {
+          "seed": 42,
+          "iterations_executed": 600,
+          "best_iteration_zero_based": 588,
+          "selected_trees": 589,
+          "validation_log_loss": 0.32442139774071893
+        },
+        {
+          "seed": 73,
+          "iterations_executed": 600,
+          "best_iteration_zero_based": 593,
+          "selected_trees": 594,
+          "validation_log_loss": 0.32709861885630914
+        },
+        {
+          "seed": 101,
+          "iterations_executed": 600,
+          "best_iteration_zero_based": 597,
+          "selected_trees": 598,
+          "validation_log_loss": 0.319669257096825
+        }
+      ],
+      "selected_seed": 101,
+      "reused_historical_training": true,
+      "test_metrics": {
+        "f1_macro": 0.8940725574336252,
+        "recall_vulnerable": 0.8942992874109263,
+        "precision_vulnerable": 0.8911242603550296,
+        "false_positive_rate": 0.1061130334486736,
+        "average_precision": 0.953369066501294,
+        "confusion_matrix": [
+          [
+            775,
+            92
+          ],
+          [
+            89,
+            753
+          ]
+        ]
+      }
+    },
+    "tcn": {
+      "completed": true,
+      "runs": [
+        {
+          "seed": 42,
+          "epochs": 10,
+          "best_epoch": 7,
+          "validation_log_loss": 0.3923923044707302
+        },
+        {
+          "seed": 73,
+          "epochs": 5,
+          "best_epoch": 2,
+          "validation_log_loss": 0.463125498854974
+        },
+        {
+          "seed": 101,
+          "epochs": 10,
+          "best_epoch": 7,
+          "validation_log_loss": 0.40111063419612736
+        }
+      ],
+      "selected_seed": 42,
+      "reused_historical_training": false,
+      "test_metrics": {
+        "f1_macro": 0.8477065150929376,
+        "recall_vulnerable": 0.8931116389548693,
+        "precision_vulnerable": 0.8156182212581344,
+        "false_positive_rate": 0.19607843137254902,
+        "average_precision": 0.9234460694077787,
+        "confusion_matrix": [
+          [
+            697,
+            170
+          ],
+          [
+            90,
+            752
+          ]
+        ]
+      }
+    }
+  },
+  "passed": true,
+  "external_checks": {
+    "python_tests": {
+      "last_successful_count": 92,
+      "last_successful_log": ".tmp-tests/audit-20261007-tests-full.log",
+      "new_execution": "not_executed",
+      "reason": "Automatic approval review could not complete because of usage limit; this is not a test failure or an unsafe-action determination.",
+      "application_source_files_newer_than_last_successful_log": []
+    },
+    "frontend": {
+      "passed": true,
+      "assertions": 45,
+      "runtime": "V8 with simulated DOM"
+    },
+    "ruff": {
+      "version": "0.16.10",
+      "lint_passed": true,
+      "format_passed": true,
+      "files_formatted": 65
+    },
+    "dataset": {
+      "passed": true,
+      "samples": 18238,
+      "cross_split_overlaps": 0,
+      "encodings_match_records": true
+    }
+  }
+}

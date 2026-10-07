@@ -1,13 +1,14 @@
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 
 import numpy as np
 import tensorflow as tf
 
-from src.experiment import calculate_metrics, fit_calibration, make_dataset
-from src.model import build_model
+from src.evaluation.metrics import calculate_metrics, fit_calibration
 from src.preprocessing import load_config
+from src.training.datasets import make_dataset
+from src.training.model import build_model
 
 
 class ModelTests(unittest.TestCase):
@@ -15,7 +16,9 @@ class ModelTests(unittest.TestCase):
     def setUpClass(cls):
         tf.keras.utils.set_random_seed(42)
         cls.config = load_config()
-        cls.config.update(window_size=16, embedding_dim=8, convolution_filters=4, lstm_units=4, batch_size=2)
+        cls.config.update(
+            window_size=16, embedding_dim=8, convolution_filters=4, lstm_units=4, batch_size=2
+        )
         cls.model = build_model(cls.config, 300)
 
     def test_padding_windows_do_not_change_prediction(self):
@@ -23,7 +26,9 @@ class ModelTests(unittest.TestCase):
         inputs[0, 0, :8] = np.arange(2, 10)
         inputs[0, 1, :2] = [4, 6]
         padded = np.pad(inputs, ((0, 0), (0, 3), (0, 0)))
-        np.testing.assert_allclose(self.model(inputs, training=False), self.model(padded, training=False), atol=1e-6)
+        np.testing.assert_allclose(
+            self.model(inputs, training=False), self.model(padded, training=False), atol=1e-6
+        )
 
     def test_saved_model_reproduces_inference(self):
         inputs = np.full((2, 3, 16), 2, dtype=np.int32)
@@ -31,10 +36,16 @@ class ModelTests(unittest.TestCase):
             path = Path(directory) / "model.keras"
             self.model.save(path)
             restored = tf.keras.models.load_model(path, compile=False)
-            np.testing.assert_allclose(restored(inputs, training=False), self.model(inputs, training=False), atol=1e-6)
+            np.testing.assert_allclose(
+                restored(inputs, training=False), self.model(inputs, training=False), atol=1e-6
+            )
 
     def test_windows_share_one_contract_label(self):
-        arrays = {"tokens": np.arange(2, 42, dtype=np.int32), "offsets": np.asarray([0, 33, 40]), "labels": np.asarray([1, 0])}
+        arrays = {
+            "tokens": np.arange(2, 42, dtype=np.int32),
+            "offsets": np.asarray([0, 33, 40]),
+            "labels": np.asarray([1, 0]),
+        }
         x, y = next(iter(make_dataset(arrays, self.config)))
         self.assertEqual(tuple(x.shape), (2, 3, 16))
         np.testing.assert_array_equal(y, [[1], [0]])
@@ -42,7 +53,11 @@ class ModelTests(unittest.TestCase):
 
     def test_bucketed_training_visits_every_contract_each_epoch(self):
         lengths = [5, 45, 200, 1100, 9, 78, 130, 3, 1300]
-        arrays = {"tokens": np.full(sum(lengths), 2, dtype=np.int32), "offsets": np.cumsum([0] + lengths), "labels": np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 1])}
+        arrays = {
+            "tokens": np.full(sum(lengths), 2, dtype=np.int32),
+            "offsets": np.cumsum([0] + lengths),
+            "labels": np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 1]),
+        }
         dataset = make_dataset(arrays, self.config, training=True)
         for _ in range(2):
             seen = [int(np.count_nonzero(row)) for x, _ in dataset for row in x.numpy()]

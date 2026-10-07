@@ -18,20 +18,29 @@ const smartBugPerformanceNav =
 
 
 function perfSafeNumber(value) {
+    if (value == null || value === "" || typeof value === "boolean") {
+        return null;
+    }
+
     const number = Number(value);
 
     return Number.isFinite(number)
         ? number
-        : 0;
+        : null;
 }
 
 
 function perfClamp(value, min = 0, max = 100) {
+    const number = perfSafeNumber(value);
+    if (number === null) {
+        return null;
+    }
+
     return Math.min(
         max,
         Math.max(
             min,
-            perfSafeNumber(value)
+            number
         )
     );
 }
@@ -251,19 +260,19 @@ function performanceScoreCard(
 
             <div class="performance-score-top">
                 <span>${perfEscapeHtml(title)}</span>
-                <strong>${safeScore.toFixed(0)}/100</strong>
+                <strong>${safeScore === null ? "Indisponible" : `${safeScore.toFixed(0)}/100`}</strong>
             </div>
 
             <div class="performance-score-track">
                 <span
-                    style="width:${safeScore}%"
+                    style="width:${safeScore ?? 0}%"
                 ></span>
             </div>
 
             <div class="performance-score-bottom">
                 <strong>
                     ${perfEscapeHtml(
-                        perfLevelLabel(level)
+                        perfLevelLabel(safeScore === null ? "indisponible" : level)
                     )}
                 </strong>
 
@@ -436,7 +445,7 @@ function showPerformanceView() {
         {};
 
     if (
-        performance.success
+        !data.performance_analysis || performance.success
         ===
         false
     ) {
@@ -480,7 +489,7 @@ function showPerformanceView() {
                         ${perfEscapeHtml(
                             performance.error
                             ||
-                            "Erreur inconnue."
+                            "Aucun résultat du moteur de performances n'est disponible."
                         )}
                     </p>
                 </div>
@@ -679,25 +688,25 @@ function showPerformanceView() {
                         class="performance-score-ring"
                         style="
                             --performance-value:
-                            ${perfClamp(
+                            ${(perfClamp(
                                 efficiencyScore
-                            ) * 3.6}deg;
+                            ) ?? 0) * 3.6}deg;
                         "
                     >
                         <div>
                             <strong>
-                                ${Math.round(
+                                ${efficiencyScore === null ? "—" : Math.round(
                                     efficiencyScore
                                 )}
                             </strong>
-                            <small>/100</small>
+                            <small>${efficiencyScore === null ? "Indisponible" : "/100"}</small>
                         </div>
                     </div>
 
                     <h2>
                         ${perfEscapeHtml(
                             perfLevelLabel(
-                                efficiencyLevel
+                                efficiencyScore === null ? "indisponible" : efficiencyLevel
                             )
                         )}
                     </h2>
@@ -887,7 +896,7 @@ function showPerformanceView() {
 
                     ${performanceScoreCard(
                         "Stockage",
-                        storagePressure.score ?? 0,
+                        storagePressure.score,
                         storagePressure.level ?? "-",
                         "Écritures et structures persistantes",
                         "storage"
@@ -895,7 +904,7 @@ function showPerformanceView() {
 
                     ${performanceScoreCard(
                         "Exécution",
-                        executionPressure.score ?? 0,
+                        executionPressure.score,
                         executionPressure.level ?? "-",
                         "Boucles, conditions et appels",
                         "execution"
@@ -903,7 +912,7 @@ function showPerformanceView() {
 
                     ${performanceScoreCard(
                         "Taille du code",
-                        codePressure.score ?? 0,
+                        codePressure.score,
                         codePressure.level ?? "-",
                         "Volume et structure du contrat",
                         "code-size"

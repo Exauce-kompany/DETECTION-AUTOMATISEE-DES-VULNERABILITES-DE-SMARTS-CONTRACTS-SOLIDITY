@@ -1,0 +1,28 @@
+* text=auto eol=lf
+
+# Model weights and prepared machine-learning inputs
+*.keras filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.npz filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.ubj filter=lfs diff=lfs merge=lfs -text
+dataset/benchmark/*.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+
+# Preserve byte-level manifest hashes for generated experiment artifacts.
+dataset/benchmark/*.json -text whitespace=cr-at-eol
+models/trained/**/*.json -text whitespace=cr-at-eol
+results/training/**/*.json -text whitespace=cr-at-eol
+results/training/**/*.csv -text whitespace=cr-at-eol
+results/comparison/**/*.csv -text whitespace=cr-at-eol
+results/benchmark/**/*.json -text whitespace=cr-at-eol
+results/benchmark/**/source_snapshot/* -text whitespace=cr-at-eol
+# Matplotlib emits SVG path whitespace; preserve the generated export verbatim.
+results/comparison/**/*.svg -text -whitespace
+
+# Raw sources required to reproduce SMART BUG; preserve their original bytes.
+dataset/sources/train.json filter=lfs diff=lfs merge=lfs -text
+dataset/sources/val.json filter=lfs diff=lfs merge=lfs -text
+dataset/sources/test.json filter=lfs diff=lfs merge=lfs -text
+results/training/**/*.svg -text -whitespace
+results/benchmark/**/*.svg -text -whitespace

@@ -3,8 +3,20 @@ import unittest
 
 import numpy as np
 
-from src.build_dataset import assign_groups, audit_splits, normalize_sample, quarantine_conflicts_and_deduplicate, split_records
-from src.preprocessing import as_windows, build_vocabulary, encode, load_config, prepare_code, tokenize
+from src.data.build_dataset import (
+    assign_groups,
+    audit_splits,
+    normalize_sample,
+    quarantine_conflicts_and_deduplicate,
+    split_records,
+)
+from src.preprocessing import (
+    build_vocabulary,
+    encode,
+    load_config,
+    prepare_code,
+    tokenize,
+)
 
 
 class PreprocessingTests(unittest.TestCase):
@@ -16,15 +28,20 @@ class PreprocessingTests(unittest.TestCase):
         self.assertNotIn("vulnerable_at_lines", " ".join(tokens))
 
     def test_renaming_identifiers_removes_annotation_names_consistently(self):
-        self.assertEqual(tokenize('function bug_reentrancy(uint bug) { bug += 1; }'), tokenize('function routine(uint amount) { amount += 1; }'))
+        self.assertEqual(
+            tokenize("function bug_reentrancy(uint bug) { bug += 1; }"),
+            tokenize("function routine(uint amount) { amount += 1; }"),
+        )
         self.assertIn("+=", tokenize("x += 1;"))
 
     def test_all_tokens_including_tail_are_encoded(self):
         tokens = tokenize("uint balance; " * 300 + "selfdestruct(msg.sender);")
         vocab = build_vocabulary([tokens], 512)
-        windows, info = prepare_code("uint balance; " * 300 + "selfdestruct(msg.sender);", vocab, 256)
+        windows, info = prepare_code(
+            "uint balance; " * 300 + "selfdestruct(msg.sender);", vocab, 256
+        )
         self.assertGreater(len(windows), 1)
-        np.testing.assert_array_equal(windows.ravel()[:len(tokens)], encode(tokens, vocab))
+        np.testing.assert_array_equal(windows.ravel()[: len(tokens)], encode(tokens, vocab))
         self.assertEqual(info["tokens_used"], len(tokens))
         self.assertFalse(info["truncated"])
         self.assertIn(vocab["selfdestruct"], windows[-1])
@@ -45,10 +62,17 @@ class IntegrityTests(unittest.TestCase):
         self.config = load_config()
 
     def record(self, code, label, index, **extra):
-        return normalize_sample({"context": code, "has_vulnerability": label, "source_dataset": "synthetic", **extra}, "train", index, self.config)
+        return normalize_sample(
+            {"context": code, "has_vulnerability": label, "source_dataset": "synthetic", **extra},
+            "train",
+            index,
+            self.config,
+        )
 
     def test_opposite_labels_are_quarantined_without_majority_relabeling(self):
-        records = [self.record("contract A { uint x; }", label, i) for i, label in enumerate([0, 0, 1])]
+        records = [
+            self.record("contract A { uint x; }", label, i) for i, label in enumerate([0, 0, 1])
+        ]
         kept, quarantine, duplicates = quarantine_conflicts_and_deduplicate(records)
         self.assertEqual(len(kept), 0)
         self.assertEqual(len(quarantine), 3)
@@ -62,12 +86,21 @@ class IntegrityTests(unittest.TestCase):
 
     def test_partial_cgt_negatives_and_contextless_functions_are_rejected(self):
         with self.assertRaisesRegex(ValueError, "incomplete_target_coverage"):
-            self.record("contract A {}", 0, 0, source_dataset="CGT", metadata={"assessed_types": "arithmetic|reentrancy"})
+            self.record(
+                "contract A {}",
+                0,
+                0,
+                source_dataset="CGT",
+                metadata={"assessed_types": "arithmetic|reentrancy"},
+            )
         with self.assertRaisesRegex(ValueError, "parent_contract_context"):
             self.record("function f() {}", 1, 0, granularity="function")
 
     def test_renamed_variants_are_grouped(self):
-        rows = [self.record("contract A { uint x = 10; }", 0, 0), self.record("contract B { uint y = 11; }", 1, 1)]
+        rows = [
+            self.record("contract A { uint x = 10; }", 0, 0),
+            self.record("contract B { uint y = 11; }", 1, 1),
+        ]
         assign_groups(rows)
         self.assertEqual(rows[0]["group_id"], rows[1]["group_id"])
 

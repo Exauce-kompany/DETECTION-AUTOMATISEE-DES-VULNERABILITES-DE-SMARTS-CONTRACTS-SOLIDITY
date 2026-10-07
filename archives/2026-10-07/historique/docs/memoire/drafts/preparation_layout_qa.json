@@ -1,0 +1,13 @@
+{
+  "purpose": "preparation only; final benchmark results pending",
+  "pages": 44,
+  "figures": 15,
+  "tables": 8,
+  "acknowledgments_pixel_identical": [
+    true,
+    true
+  ],
+  "horizontal_overflow": false,
+  "final_outputs_unchanged": true,
+  "staged_pdf_sha256": "ac12c020a879a078d8eb1b5669e34e2028538c69ab92dd751e360d5a1bc1fd01"
+}

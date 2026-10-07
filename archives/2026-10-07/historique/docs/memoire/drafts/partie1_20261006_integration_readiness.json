@@ -1,0 +1,21 @@
+{
+  "ready_for_measured_summary": true,
+  "current_complete": false,
+  "no_final_publication": true,
+  "python_compilation_passed": true,
+  "powershell_parse_passed": true,
+  "incomplete_guard_test_passed": true,
+  "preparation_pages_visually_reviewed": 44,
+  "acknowledgments_pixel_identical": [
+    true,
+    true
+  ],
+  "invocation": "pwsh -NoProfile -File .cache-comparison/memoire/render_tcn_revision.ps1",
+  "hashes": {
+    ".cache-comparison/memoire/update_tcn_models.py": "1114cdaf8e9ae003c2f5cdba743f70ce8059240e11aae34f48c08f4e0dfe389a",
+    ".cache-comparison/memoire/check_tcn_memoire.py": "11f6f51a60bc1f7e564a887635136aa92040c53d64b28ddd7f5476f4e0949ff5",
+    ".cache-comparison/memoire/render_tcn_revision.ps1": "7c613686d83bbb709b55faf628b3dc3e190907346c6132b7f67b0ddac464e34b",
+    ".cache-comparison/memoire/tcn_integration_ready/content.md": "3d67275b335458fe56ec28077333c2fd4bf87ba0f16f3507e73a43bae45749cb",
+    ".cache-comparison/memoire/tcn_integration_ready/comparison_snapshot.json": "5610616a9d799da0e73d4ab23f12d895ed37fe8df21dd4c862298034b0d17bed"
+  }
+}
